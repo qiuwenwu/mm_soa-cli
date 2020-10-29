@@ -1,0 +1,69 @@
+{
+    "name": "sys_app2",
+    "title": "应用信息",
+    "table": "sys_app",
+    "key": "app_id",
+    "orderby_default": "`app_id` desc",
+    "field_obj": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`icon`,`url`,`bind_ip`,`scope`,`scope_not`,`users`",
+    "field_default": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`url`",
+    "query": {
+        "encrypt_min": "`encrypt` >= {0}",
+        "encrypt_max": "`encrypt` <= {0}",
+        "times_allow_min": "`times_allow` >= {0}",
+        "times_allow_max": "`times_allow` <= {0}",
+        "times_today_min": "`times_today` >= {0}",
+        "times_today_max": "`times_today` <= {0}",
+        "max_age_min": "`max_age` >= {0}",
+        "max_age_max": "`max_age` <= {0}",
+        "times_count_min": "`times_count` >= {0}",
+        "times_count_max": "`times_count` <= {0}",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "name": "`name` like '%{0}%'",
+        "appid": "`appid` like '%{0}%'",
+        "token": "`token` like '%{0}%'",
+        "encoding_aes_key": "`encoding_aes_key` like '%{0}%'",
+        "appsecret": "`appsecret` like '%{0}%'",
+        "icon": "`icon` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "bind_ip": "`bind_ip` like '%{0}%'",
+        "scope": "`scope` like '%{0}%'",
+        "scope_not": "`scope_not` like '%{0}%'",
+        "users": "`users` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {
+        "encrypt_add": "`encrypt` = `encrypt` + {0}",
+        "times_allow_add": "`times_allow` = `times_allow` + {0}",
+        "times_today_add": "`times_today` = `times_today` + {0}",
+        "max_age_add": "`max_age` = `max_age` + {0}",
+        "times_count_add": "`times_count` = `times_count` + {0}"
+    },
+    "field_hide": [],
+    "format": [
+        {
+            "key": "available",
+            "title": "是否可用",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "encrypt",
+            "title": "加解密方式",
+            "list": [
+                "",
+                "明文模式",
+                "兼容模式",
+                "安全模式"
+            ]
+        },
+        {
+            "key": "user_id",
+            "title": "持有者",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ]
+}

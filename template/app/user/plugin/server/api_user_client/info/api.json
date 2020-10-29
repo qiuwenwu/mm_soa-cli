@@ -1,0 +1,12 @@
+{
+    "name": "user_info",
+    "title": "用户信息",
+    "description": "用于保存用户个人信息，如年龄、住址等",
+    "path": "/api/user/info",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

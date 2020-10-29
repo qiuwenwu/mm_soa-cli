@@ -1,0 +1,101 @@
+{
+    "name": "user_account2",
+    "title": "用户账户",
+    "table": "user_account",
+    "key": "user_id",
+    "orderby_default": "`user_id` desc",
+    "field_obj": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`",
+    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`create_time`",
+    "query": {
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "vip_min": "`vip` >= {0}",
+        "vip_max": "`vip` <= {0}",
+        "gm_min": "`gm` >= {0}",
+        "gm_max": "`gm` <= {0}",
+        "mc_min": "`mc` >= {0}",
+        "mc_max": "`mc` <= {0}",
+        "login_time_min": "`login_time` >= '{0}'",
+        "login_time_max": "`login_time` <= '{0}'",
+        "salt": "`salt` like '%{0}%'",
+        "invite_code": "`invite_code` like '%{0}%'",
+        "phone": "`phone` like '%{0}%'",
+        "username": "`username` like '%{0}%'",
+        "nickname": "`nickname` like '%{0}%'",
+        "password": "`password` like '%{0}%'",
+        "email": "`email` like '%{0}%'",
+        "user_group": "`user_group` like '%{0}%'",
+        "user_admin": "`user_admin` like '%{0}%'",
+        "login_ip": "`login_ip` like '%{0}%'",
+        "signature": "`signature` like '%{0}%'",
+        "avatar": "`avatar` like '%{0}%'",
+        "friends": "`friends` like '%{0}%'",
+        "admin_group": "`admin_group` like '%{0}%'",
+        "create_time_min": "`create_time` >= '{0}'",
+        "create_time_max": "`create_time` <= '{0}'",
+        "keyword": "(`username` like '%{0}%' || `nickname` like '%{0}%')",
+        "phone_state_min": "`phone_state` >= {0}",
+        "phone_state_max": "`phone_state` <= {0}",
+        "email_state_min": "`email_state` >= {0}",
+        "email_state_max": "`email_state` <= {0}"
+    },
+    "update": {
+        "state_add": "`state` = `state` + {0}",
+        "vip_add": "`vip` = `vip` + {0}",
+        "gm_add": "`gm` = `gm` + {0}",
+        "mc_add": "`mc` = `mc` + {0}",
+        "phone_state_add": "`phone_state` = `phone_state` + {0}",
+        "email_state_add": "`email_state` = `email_state` + {0}"
+    },
+    "field_hide": [],
+    "format": [
+        {
+            "key": "state",
+            "title": "账户状态",
+            "list": [
+                "",
+                "可用",
+                "异常",
+                "已冻结",
+                "已注销"
+            ]
+        },
+        {
+            "key": "group_id",
+            "title": "所在用户组",
+            "table": "user_group",
+            "name": "name"
+        },
+        {
+            "key": "admin_id",
+            "title": "所在管理组",
+            "table": "user_admin",
+            "name": "name"
+        },
+        {
+            "key": "referee_id",
+            "title": "推荐人",
+            "table": "user_account",
+            "name": "nickname",
+            "id": "user_id"
+        },
+        {
+            "key": "phone_state",
+            "title": "手机认证",
+            "list": [
+                "未认证",
+                "审核中",
+                "已认证"
+            ]
+        },
+        {
+            "key": "email_state",
+            "title": "邮箱认证",
+            "list": [
+                "未认证",
+                "审核中",
+                "已认证"
+            ]
+        }
+    ]
+}

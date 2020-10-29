@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="x-dns-prefetch-control" content="on">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="description" content="这是web API文档">
+		<meta name="keywords" content="开发文档">
+		<meta name="author" content="邱文武">
+
+		<!-- 加载CSS样式 -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css" async />
+		<link rel="stylesheet" href="/css/mm_base.css" async />
+		<link rel="stylesheet" href="/css/mm_common.css" async />
+		<link rel="stylesheet" href="/css/mm_component.css" async />
+		<link rel="stylesheet" href="/css/mm_theme.css" async />
+
+		<!-- 加载JS脚本 -->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/clipboard.min.js" async></script>
+		<script src="/js/vue.js"></script>
+		<script src="/js/mm_sdk.js" ></script>
+		<title>接口明细</title>
+		<style>
+			body { background: #fff; }
+			#app {
+				padding: 2rem;
+			}
+
+			#app h4 {
+				padding-bottom: 0.5rem;
+				border-bottom: 1px solid rgba(125,125,125,0.25);
+				margin-bottom: 1rem;
+			}
+
+			#app h5 {
+				font-size: 1.5rem;
+			}
+
+			.scope_list {
+				padding-left: 2rem;
+			}
+
+			.desc {
+				margin-bottom: 2rem;
+			}
+
+			dt {
+				float: left;
+				min-width: 6rem;
+			}
+
+			.mm_collapse {
+				border: 1px solid #26d2ff;
+				margin-bottom: 1rem;
+				border-radius: .5rem;
+				overflow: hidden;
+			}
+
+			.mm_collapse_info {
+				border-color: #26d2ff;
+			}
+
+			.mm_collapse_info .mm_head {
+				color: #fff;
+				background-color: #26d2ff;
+			}
+
+			.mm_collapse_default {
+				border-color: #999;
+			}
+
+			.mm_collapse_default .mm_head {
+				color: #fff;
+				background-color: #999;
+			}
+
+			.mm_collapse_primary {
+				border-color: #38f;
+			}
+
+			.mm_collapse_primary .mm_head {
+				color: #fff;
+				background-color: #38f;
+			}
+
+			.mm_collapse_info .mm_head {
+				color: #fff;
+				background-color: #26d2ff;
+			}
+
+			.mm_collapse .mm_head {
+				padding: 0.25rem 1rem;
+			}
+
+			.mm_collapse .mm_head span {
+				font-size: 75%;
+			}
+
+			.mm_collapse .mm_body {
+				padding: 1rem;
+			}
+
+			.mm_tabs {
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				border: 1px solid rgba(125,125,125,0.25);
+			}
+
+			.mm_tabs a,
+			.mm_tabs span {
+				display: inline-block;
+				padding: 0.25rem 0.5rem;
+				border-right: 1px solid rgba(125,125,125,0.25);
+			}
+
+			.mm_tabs a:hover {
+				color: #26d2ff;
+			}
+
+			.mm_tabs .fr {
+				color: #999;
+			}
+
+			.mm_tabs .active {
+				color: #26d2ff;
+			}
+
+			.mm_table th,
+			.mm_table td {
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			.mm_table p {
+				color: #999;
+				font-size: 0.875rem;
+			}
+
+			h4 a {
+				font-size: 0.875rem;
+				padding-top: 0.5rem;
+			}
+
+			.mm_head a {
+				float: right;
+				color: #fff;
+				border: 1px solid #fff;
+				padding: 0 0.75rem;
+				border-radius: 0.25rem;
+				font-size: 0.875rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_warp">
+				<h4>API接口文档 —— <span>明细</span> <a class="fr" :href="'./api_list.html?scope=' + query.scope">回到列表</a></h4>
+				<!-- <p class="desc" v-if="error.code === 0">该接口使用明细请看下方：</p> -->
+				<p class="desc">{{ error.message }}</p>
+				<div class="mm_view" v-if="config.name">
+					<h5 style="border: none;">{{ config.title ? config.title : config.name }} <span class="mm_badge" v-if="oauth">{{ oauth }}</span></h5>
+					<p class="desc" style="border: none;">{{ config.description }}</p>
+					<dl>
+						<dt>调用地址：</dt>
+						<dd><a :href="config.path">{{ config.path }}</a></dd>
+					</dl>
+					<dl>
+						<dt>请求方式：</dt>
+						<dd>{{ toMethod(config.method) }}</dd>
+					</dl>
+					<dl>
+						<dt>返回类型：</dt>
+						<dd>{{ contentType }}</dd>
+					</dl>
+
+					<div class="mm_tabs" v-if="config.type !== 'web'">
+						<span class="bg_grey">支持方法</span>
+						<a href="javascript:void(0)" v-for="(o, i) in tabs" :key="i" :class="{'active': i === index}" @click="index = i">
+							{{ o }}
+						</a>
+						<a href="javascript:void(0)" class="fr" @click="copyModel()">复制验证模型</a>
+					</div>
+					<div class="mm_collapse mm_collapse_default" v-if="list_headers.length > 0">
+						<div class="mm_head">
+							协议头参数<span>（Headers）</span>
+						</div>
+						<div class="mm_body">
+							<table class="mm_table table-sm table-hover">
+								<thead>
+									<tr>
+										<th width="150">参数</th>
+										<th width="100">类型</th>
+										<th width="70">必填</th>
+										<th width="200">标题</th>
+										<th>说明</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(o, k) in list_headers" :key="k">
+										<td><strong>{{ o.name }}</strong></td>
+										<td>{{ o.type }}</td>
+										<td>{{ o.required ? '是' : '否' }}</td>
+										<td>{{ o.title }}</td>
+										<td>{{ o.description }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="mm_collapse mm_collapse_info" v-if="list_query.length > 0">
+						<div class="mm_head">
+							URL请求参数<span>（Query）</span> <a href="javascript:void(0)" @click="copy('query')">复制</a>
+						</div>
+						<div class="mm_body">
+							<table class="mm_table table-sm table-hover">
+								<thead>
+									<tr>
+										<th width="150">参数</th>
+										<th width="100">类型</th>
+										<th width="70">必填</th>
+										<th width="200">标题</th>
+										<th>说明</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(o, k) in list_query" :key="k">
+										<td><strong>{{ o.name }}</strong></td>
+										<td>{{ o.type }}</td>
+										<td>{{ o.required ? '是' : '否' }}</td>
+										<td>{{ o.title }}</td>
+										<td>{{ o.description }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="mm_collapse mm_collapse_primary" v-if="list_body.length > 0">
+						<div class="mm_head">
+							正文请求参数<span>（Body）</span> <a href="javascript:void(0)" @click="copy('body')">复制</a>
+						</div>
+						<div class="mm_body">
+							<table class="mm_table table-sm table-hover">
+								<thead>
+									<tr>
+										<th width="150">参数</th>
+										<th width="100">类型</th>
+										<th width="70">必填</th>
+										<th width="200">标题</th>
+										<th>说明</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(o, k) in list_body" :key="k">
+										<td><strong>{{ o.name }}</strong></td>
+										<td>{{ o.type }}</td>
+										<td>{{ o.required ? '是' : '否' }}</td>
+										<td>{{ o.title }}</td>
+										<td>{{ o.description }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="desc center" v-if="list_query.length === 0 && list_body.length === 0 && config.type !== 'web'">无需传参</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var vue = new Vue({
+				el: '#app',
+				data() {
+					return {
+						url: "/api/dev/api?",
+						query: {
+							scope: "client",
+							name: ""
+						},
+						config: {
+							cache: 0,
+							check_param: true,
+							client_cache: true,
+							description: "用户获取api接口",
+							method: "",
+							name: "",
+							oauth: {
+								signIn: false,
+								gm: 0,
+								mc: 0,
+								vip: 0,
+								user_group: [],
+								user_admin: []
+							},
+							param_path: "",
+							path: "",
+							type: "",
+							sql_path: "",
+							title: "测试获取API接口"
+						},
+						param: {
+							add: {
+								body: [],
+								body_required: []
+							},
+							del: {
+								query: [],
+								query_required: []
+							},
+							set: {
+								query: [],
+								query_required: [],
+								body: [],
+								body_required: []
+							},
+							get: {
+								query: [],
+								query_required: []
+							},
+							post: {
+								query: [],
+								query_required: [],
+								body: [],
+								body_required: []
+							},
+							list: []
+						},
+						error: {
+							code: 0,
+							message: ""
+						},
+						tabs: [],
+						index: 0
+					}
+				},
+				methods: {
+					copyModel() {
+						// this.param.list;
+						var lt = [];
+						var arr = this.list_body;
+						if (arr.length > 0) {
+							lt = this.arr;
+						} else {
+							lt = this.list_query;
+						}
+
+						var list = [];
+						var len = lt.length;
+						for (var i = 0; i < len; i++) {
+							var o = $.copy(lt[i]);
+							delete o.description;
+							delete o.dataType;
+							const p = o.type;
+							if (p === 'number') {
+								delete o.string;
+								for (var k in o.number) {
+									if (!o.number[k]) {
+										delete o.number[k]
+									}
+								}
+							} else if (p === 'string') {
+								delete o.number;
+								for (var k in o.string) {
+									if (!o.string[k]) {
+										delete o.string[k]
+									}
+								}
+							} else {
+								delete o.string;
+								delete o.number;
+							}
+							list.push(o);
+						}
+						var code = JSON.stringify(list, null, 4);
+						$.copyText(code);
+						alert('复制成功');
+					},
+					copy(type) {
+						var arr = this['list_' + type];
+						if (arr) {
+							var code = "{";
+							var len = arr.length;
+							for (var i = 0; i < len; i++) {
+								var o = arr[i];
+								var val = '';
+								var p = o.type;
+								if (p === "number") {
+									val = 0;
+								} else if (p === 'date') {
+									val = '"1970-01-01"'
+								} else if (p === 'datetime') {
+									val = '"1970-01-01 00:00:00"'
+								} else if (p === 'ime') {
+									val = '"00:00:00"'
+								} else {
+									val = '""'
+								}
+								code += '\r\n	// ' + o.title;
+								code += '\r\n	"' + o.name + '":' + val + ","
+							}
+							$.copyText(code.substring(0, code.length - 1) + '\r\n}');
+							alert('复制成功');
+						} else {
+							alert('复制失败');
+						}
+					},
+					toMethod(method) {
+						var m = method.toLocaleUpperCase()
+						if (m === 'ALL') {
+							return 'GET / POST'
+						}
+						return m;
+					},
+					get_obj() {
+						var _this = this;
+						$.http.get(this.url + $.toUrl(this.query), function(json, status) {
+							_this.get_obj_after(json);
+						});
+					},
+					get_obj_after(json) {
+						if (json.result) {
+							$.clear(this.config);
+							$.push(this.config, json.result.config);
+							var cg = {};
+							if (json.result.param) {
+								cg = json.result.param.config;
+								$.clear(this.param);
+								$.push(this.param, cg);
+							}
+
+							var m = "";
+							var sql = json.result.sql;
+							if (sql) {
+								m = sql.config.method;
+							}
+							if (!m) {
+								var config = this.config;
+								m = config.method ? config.method.toLowerCase() : 'get';
+								if (m === 'all') {
+									m = "get post"
+								}
+							}
+							var list = this.tabs;
+							list.clear();
+							list.addList(m.split(' '));
+							var len = list.length;
+							for (var i = 0; i < len; i++) {
+								if (list[i] === 'get') {
+									this.index = i;
+									break;
+								}
+							}
+						} else if (json.error) {
+							$.push(this.error, json.error);
+						}
+					},
+					set_list(list, arr, required) {
+						if (arr) {
+							var params = this.param.list;
+							var len = arr.length;
+							for (var i = 0; i < len; i++) {
+								var k = arr[i];
+								var o = params.getObj({
+									name: k
+								});
+								if (o) {
+									o.required = required;
+									list.push(o);
+								}
+							}
+						};
+					}
+				},
+				computed: {
+					contentType() {
+						var type = "";
+						var cg = this.config;
+						if (cg.contentType) {
+							type = cg.contentType;
+						} else if (cg.type === "web") {
+							type = "HTML"
+						} else {
+							type = 'JSON';
+						}
+						return type
+					},
+					oauth() {
+						var badge = '';
+						var o = this.config.oauth;
+						if (o.signIn) {
+							if (o.vip || o.gm || o.mc || o.user_group.length || o.user_admin.length) {
+								badge = "需要权限"
+							} else {
+								badge = "需要登录"
+							}
+						}
+						return badge;
+					},
+					list_headers() {
+						var list = [];
+						var cg = this.config.oauth;
+						if (cg) {
+							if (cg.signIn) {
+								list.push({
+									name: "x-oauth-token",
+									type: "string",
+									required: false,
+									title: "临时访问牌"
+								});
+							};
+						}
+						return list;
+					},
+					list_body() {
+						var list = [];
+						var method = this.tabs[this.index];
+						var obj = this.param[method];
+						if (obj) {
+							if (obj.body_required) {
+								this.set_list(list, obj.body_required, true)
+							};
+							if (obj.body) {
+								this.set_list(list, obj.body)
+							};
+						}
+						return list;
+					},
+					list_query() {
+						var list = [];
+						var method = this.tabs[this.index];
+						var obj = this.param[method];
+						if (obj) {
+							if (obj.query_required) {
+								this.set_list(list, obj.query_required, true)
+							};
+							if (obj.query) {
+								this.set_list(list, obj.query)
+							};
+						}
+						return list;
+					},
+				},
+				created() {
+					var arr = location.search.replace('?', '').split("&");
+					var len = arr.length;
+					for (var i = 0; i < len; i++) {
+						var ar = arr[i].split("=");
+						if (ar.length > 1) {
+							this.query[ar[0]] = ar[1];
+						}
+					}
+					this.get_obj();
+				}
+			});
+		</script>
+	</body>
+</html>

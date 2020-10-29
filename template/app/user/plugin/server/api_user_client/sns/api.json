@@ -1,0 +1,12 @@
+{
+    "name": "user_sns",
+    "title": "社交账户",
+    "description": "用于保存用的社交平台账户，方便同步登录",
+    "path": "/api/user/sns",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

@@ -1,0 +1,34 @@
+[{
+	"target": "/demo/*",
+	"name": "demo",
+	"title": "执行前",
+	"description": "执行前，可以统计访问次数和返回缓存",
+	"stage": "before",
+	"func_file": "./before.js",
+	"sort": 100
+}, {
+	"target": "/demo/*",
+	"name": "demo",
+	"title": "示例事件(验证)",
+	"description": "验证，可以验证是否有权限调用",
+	"stage": "check",
+	"func_file": "./check.js",
+	"sort": 100
+}, {
+	"target": "/demo/*",
+	"name": "demo",
+	"title": "示例事件(主要)",
+	"description": "主要阶段，处理请求并响应",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 100,
+	"end": true
+}, {
+	"target": "/demo/*",
+	"name": "demo",
+	"title": "示例事件(执行后)",
+	"description": "执行后，可以记录执行结果，下次免重新执行，还可以并发事务",
+	"stage": "after",
+	"func_file": "./after.js",
+	"sort": 100
+}]

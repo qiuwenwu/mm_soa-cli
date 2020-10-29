@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="x-dns-prefetch-control" content="on">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="description" content="这是web API文档">
+		<meta name="keywords" content="开发文档">
+		<meta name="author" content="邱文武">
+
+		<!-- 加载CSS样式 -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css" async />
+		<link rel="stylesheet" href="/css/mm_base.css" async />
+		<link rel="stylesheet" href="/css/mm_common.css" async />
+		<link rel="stylesheet" href="/css/mm_component.css" async />
+		<link rel="stylesheet" href="/css/mm_theme.css" async />
+
+		<!-- 加载JS脚本 -->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/clipboard.min.js" async></script>
+		<script src="/js/vue.js"></script>
+		<script src="/js/mm_sdk.js" ></script>
+		
+		<title>接口列表</title>
+		<style>
+			body { background: #fff; }
+			#app {
+				padding: 2rem;
+			}
+
+			#app h4 {
+				padding-bottom: 0.5rem;
+				border-bottom: 1px solid rgba(125,125,125,0.25);
+				margin-bottom: 1rem;
+			}
+
+			.scope_list {
+				padding-left: 2rem;
+			}
+
+			.desc {
+				margin-bottom: 2rem;
+			}
+
+			.mm_btn {
+				line-height: 1.5rem;
+				height: 1.5rem;
+				border: 1px solid #e5e5e5;
+			}
+
+			.mm_table th,
+			.mm_table td {
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			h4 a {
+				font-size: 0.875rem;
+				padding-top: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_warp">
+				<h4>API接口文档 —— <span>列表</span> <a class="fr" href="./">选择域</a></h4>
+				<p class="desc">所有的API接口都作用在不同的域下，您可以点击以下域，访问该域下的接口列表</p>
+				<table class="mm_table table-hover" v-if="list.length">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th width="200">名称</th>
+							<th width="200">标题</th>
+							<th>描述</th>
+							<th width="80">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(o, k) in list" :key="k">
+							<th>{{ k + 1 }}</th>
+							<td><a :href="'./api_view.html?scope=' + query.scope + '&name=' + o.name">{{ o.name }}</a></td>
+							<td>{{ o.title }}</td>
+							<td>{{ o.description }}</td>
+							<td><a class="mm_btn btn_info-x" :href="'./api_view.html?scope=' + query.scope + '&name=' + o.name">查看</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div v-else class="desc center">
+					该域下没有定义API接口
+				</div>
+			</div>
+		</div>
+		<script>
+			var vue = new Vue({
+				el: '#app',
+				data() {
+					return {
+						url: "/api/dev/api?",
+						query: {
+							scope: "client"
+						},
+						list: []
+					}
+				},
+				methods: {
+					get_list() {
+						var _this = this;
+						$.http.get(this.url + $.toUrl(this.query), function(json, status) {
+							_this.get_list_after(json);
+						});
+					},
+					get_list_after(json) {
+						if (json.result) {
+							var list = this.list;
+							list.clear();
+							list.addList(json.result.list);
+						}
+					}
+				},
+				created() {
+					var arr = location.search.split("&");
+					var len = arr.length;
+					if (len > 0) {
+						for (var i = 0; i < len; i++) {
+							var o = arr[i];
+							if (o.indexOf('scope') !== -1) {
+								var ar = o.split("=");
+								if (ar.length > 1) {
+									this.query.scope = ar[1];
+								}
+							};
+						}
+					}
+					this.get_list();
+				}
+			});
+		</script>
+	</body>
+</html>

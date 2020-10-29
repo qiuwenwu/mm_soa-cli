@@ -1,0 +1,10 @@
+[{
+	"target": "/apis/sys/*",
+	"name": "apis_sys",
+	"title": "sys的管理端api接口",
+	"description": "用于系统后台访问接口",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 100,
+	"end": true
+}]

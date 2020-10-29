@@ -1,0 +1,73 @@
+{
+    "name": "user_sns",
+    "title": "社交账户",
+    "table": "user_sns",
+    "key": "user_id",
+    "orderby_default": "`user_id` desc",
+    "field_obj": "`user_id`,`qq`,`qq_state`,`wechat`,`wechat_state`,`mm`,`mm_state`,`baidu`,`baidu_state`,`taobao`,`taobao_state`",
+    "field_default": "`user_id`,`qq`,`qq_state`,`wechat`,`wechat_state`,`mm`,`mm_state`,`baidu`,`baidu_state`,`taobao`,`taobao_state`",
+    "method": "get get_obj",
+    "query": {
+        "qq": "`qq` like '%{0}%'",
+        "wechat": "`wechat` like '%{0}%'",
+        "mm": "`mm` like '%{0}%'",
+        "baidu": "`baidu` like '%{0}%'",
+        "taobao": "`taobao` like '%{0}%'"
+    },
+    "query_default": {
+        "user_id": "`user_id` = {user_id}"
+    },
+    "update": {},
+    "filter": {
+        "table": "table",
+        "page": "page",
+        "size": "size",
+        "method": "method",
+        "orderby": "orderby",
+        "field": "field",
+        "count_ret": "count_ret",
+        "user_id": "user_id"
+    },
+    "format": [
+        {
+            "key": "qq_state",
+            "title": "QQ认证",
+            "list": [
+                "未认证",
+                "已认证"
+            ]
+        },
+        {
+            "key": "wechat_state",
+            "title": "微信认证",
+            "list": [
+                "未认证",
+                "已认证"
+            ]
+        },
+        {
+            "key": "mm_state",
+            "title": "MM认证",
+            "list": [
+                "未认证",
+                "已认证"
+            ]
+        },
+        {
+            "key": "baidu_state",
+            "title": "百度认证",
+            "list": [
+                "未认证",
+                "已认证"
+            ]
+        },
+        {
+            "key": "taobao_state",
+            "title": "淘宝认证",
+            "list": [
+                "未认证",
+                "已认证"
+            ]
+        }
+    ]
+}

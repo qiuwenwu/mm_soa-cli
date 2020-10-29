@@ -1,0 +1,10 @@
+{
+	"target": "/*",
+	"name": "img_save",
+	"title": "图片保存工具",
+	"description": "用于监听上传图片时，保存图片到本地，并返回图片链接",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 99,
+	"end": true
+}

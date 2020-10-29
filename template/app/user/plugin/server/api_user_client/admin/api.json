@@ -1,0 +1,12 @@
+{
+    "name": "user_admin",
+    "title": "管理组",
+    "description": "用于判断用户后台管理鉴权",
+    "path": "/api/user/admin",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

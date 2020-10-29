@@ -1,0 +1,203 @@
+{
+	/**
+	 * web服务配置
+	 * @type {Object}
+	 */
+	"web": {
+		/**
+		 * 监听地址
+		 * @type {String}
+		 */
+		"host": "0.0.0.0",
+		/**
+		 * 监听端口
+		 * @type {Number}
+		 */
+		"port": 5000,
+		/**
+		 * 是否输出操作日志
+		 * @type {Boolean}
+		 */
+		"log": true,
+		/**
+		 * 进程数, 0为根据CPU核心数创建线程数
+		 * @type {Number}
+		 */
+		"process_num": 1,
+		/**
+		 * 是否启用压缩
+		 * @type {Boolean}
+		 */
+		"compress": false,
+		/**
+		 * 是否启用websocket通讯
+		 * @type {Boolean}
+		 */
+		"websocket": true,
+		/**
+		 * 是否启用静态文件处理器
+		 * @type {Boolean}
+		 */
+		"static": true,
+		/**
+		 * 使用外事件
+		 * @type {Boolean}
+		 */
+		"event": true
+	},
+	/**
+	 * 系统项
+	 * @type {Object}
+	 */
+	"sys": {
+		/**
+		 * 服务端名称
+		 * @type {String}
+		 */
+		"name": "mm",
+		/**
+		 * 服务端中文名
+		 * @type {String}
+		 */
+		"title": "超级美眉",
+		/**
+		 * 系统使用的语言
+		 * @type {String}
+		 */
+		"lang": "zh",
+		/**
+		 * 缓存方式, 选填 redis, cache, memory
+		 * @type {String}
+		 */
+		"cache": "redis",
+		/**
+		 * 数据存储方式
+		 * @type {String}
+		 */
+		"db": "mysql",
+		/**
+		 * 是否引用com函数
+		 * @type {Boolean}
+		 */
+		"com": true,
+		/**
+		 * 是否启用定时任务服务
+		 * @type {Boolean}
+		 */
+		"task": true
+	},
+	/**
+	 * 外缓存配置
+	 */
+	"redis": {
+		/**
+		 * 服务器地址
+		 * @type {String}
+		 */
+		"host": "127.0.0.1",
+		/**
+		 * 端口号
+		 * @type {Number}
+		 */
+		"port": 6379,
+		/**
+		 * 密码
+		 * @type {String}
+		 */
+		"password": "asd123",
+		/**
+		 * 选用的数据库0-9
+		 * @type {Number}
+		 */
+		"database": 0,
+		/**
+		 * 键前缀
+		 * @type {String}
+		 */
+		"prefix": "mm_"
+	},
+	/**
+	 * Mysql数据库存储配置
+	 */
+	"mysql": {
+		/**
+		 * 服务器地址
+		 * @type {String}
+		 */
+		"host": "127.0.0.1",
+		/**
+		 * 端口号
+		 * @type {Number}
+		 */
+		"port": 3306,
+		/**
+		 * 用户名
+		 * @type {String}
+		 */
+		"user": "root",
+		/**
+		 * 密码
+		 * @type {String}
+		 */
+		"password": "asd123",
+		/**
+		 * 数据库名称
+		 * @type {String}
+		 */
+		"database": "mm"
+	},
+	/**
+	 * mongo数据库存储配置
+	 */
+	"mongodb": {
+		/**
+		 * 服务器地址
+		 * @type {String}
+		 */
+		"host": "localhost",
+		/**
+		 * 端口号
+		 * @type {Number}
+		 */
+		"port": 27017,
+		/**
+		 * 数据库名
+		 * @type {String}
+		 */
+		"database": "mm",
+		/**
+		 * 用户名
+		 * @type {String}
+		 */
+		"user": "admin",
+		/**
+		 * 密码
+		 * @type {String}
+		 */
+		"password": "asd123"
+	},
+	/**
+	 * 重定向
+	 */
+	"redirect": {
+		// 将m.开头的域名指向到/phone/路由路径
+		"m.*": "/phone/",
+		"pad.*": "/pad/",
+		"tv.*": "/tv/"
+	},
+	/**
+	 * 代理
+	 */
+	"proxy": {
+		"targets": {
+			// 转发到开发者服务器
+			"/api/dev(.*)": {
+				"target": "http://127.0.0.1:10001",
+				"changeOrigin": true,
+				"header": {
+					"apikey": "bfd59291e825b5f2bbf1eb76569f8fe7"
+				}
+			}
+		}
+	}
+}

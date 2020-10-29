@@ -1,0 +1,10 @@
+[{
+	"target": "/upload*",
+	"name": "upload",
+	"title": "上传文件用的API",
+	"description": "用于上传图片、文档、视频、音乐、压缩包等到服务端",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 100,
+	"end": true
+}]
