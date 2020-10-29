@@ -1,0 +1,38 @@
+{
+	"name": "mm-cli",
+	"version": "1.0.0",
+	"description": "这是用来构建mm_soa服务端用的脚手架工具，用于快速搭建自动化智能网站",
+	"main": "index.js",
+	"bin": {
+		"mm": "./index.js"
+	},
+	"scripts": {
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/qiuwenwu/mm-cli.git"
+	},
+	"keywords": [
+		"mm",
+		"cli",
+		"mm_soa",
+		"服务端搭建",
+		"koa",
+		"vue",
+		"art"
+	],
+	"author": "邱文武",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/qiuwenwu/mm-cli/issues"
+	},
+	"homepage": "https://github.com/qiuwenwu/mm-cli#readme",
+	"dependencies": {
+		"colors": "^1.4.0",
+		"commander": "^6.2.0",
+		"download-git-repo": "^3.0.2",
+		"inquirer": "^7.3.3",
+		"ora": "^5.1.0"
+	}
+}
