@@ -110,7 +110,6 @@ function prompt_1(options, answers) {
 	});
 }
 
-
 program
 	.command('create <project_name>')
 	.action((name, options) => {
