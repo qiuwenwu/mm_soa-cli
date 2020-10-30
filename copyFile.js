@@ -13,15 +13,13 @@ function copyDir(src, dst) {
 			var path = paths[i];
 			const _src = src + '/' + path;
 			const _dst = dst + '/' + path;
-			let readable;
-			let writable
 			var st = fs.statSync(_src);
 			// 判断是否为文件
 			if (st.isFile()) {
 				// 创建读取流
-				readable = fs.createReadStream(_src)
+				let readable = fs.createReadStream(_src)
 				// 创建写入流
-				writable = fs.createWriteStream(_dst)
+				let writable = fs.createWriteStream(_dst)
 				// 通过管道来传输流
 				readable.pipe(writable)
 			}

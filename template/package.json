@@ -12,15 +12,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/qiuwenwu/{name}.git"
+		"url": "git+https://github.com/{author}/{name}.git"
 	},
 	"keywords": ["server", "mm_soa"],
 	"author": "{author}",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/qiuwenwu/{name}/issues"
+		"url": "https://github.com/{author}/{name}/issues"
 	},
-	"homepage": "https://github.com/qiuwenwu/{name}#readme",
+	"homepage": "https://github.com/{author}/{name}#readme",
 	"dependencies": {
 		"mm_expand": "^1.4.7",
 		"mm_soa": "^1.1.4"
