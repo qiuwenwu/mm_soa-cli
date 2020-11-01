@@ -21,7 +21,7 @@ for(var i = 0; i < files.length; i++){
 	require(file);
 }
 
-console.log('Hello, Welcome to use mm-cli!'.yellow);
+console.log('Hello, Welcome to use mm_soa-cli!'.yellow);
 
 program
 	.version(require('./package').version, '-v, --version')

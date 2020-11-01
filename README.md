@@ -1,9 +1,9 @@
-# mm-soa-cli
+# mm_soa-cli
  这是用来构建mm_soa服务端用的脚手架，用于快速搭建自动化智能网站
 
 ## 一、起步
-### 1.安装mm-soa-cli
-`npm i mm-soa-cli -g`
+### 1.安装mm_soa-cli
+`npm i mm_soa-cli -g`
 <br/>
 
 ### 2.创建mm-soa项目
@@ -61,7 +61,7 @@ To start for production:
 
 <br/>
 现在就让我们 `npm run dev` 开始开发项目吧！
-> 为了方便开发，我们再开启一个命令提示符窗口，通过 mm-soa-cli 辅助我们创建相关文件。
+> 为了方便开发，我们再开启一个命令提示符窗口，通过 mm_soa-cli 辅助我们创建相关文件。
 
 <br/>
 
@@ -107,5 +107,5 @@ sql.json 配置文件则时辅助使用mysql数据库的SQL模板
 <br/>
 
 为方便生成API和文档，数据表的字段最好采用如下方式写备注：
-![](https://github.com/qiuwenwu/mm-soa-cli/blob/main/pic/table.png)
+![](https://github.com/qiuwenwu/mm_soa-cli/blob/main/pic/table.png)
 
