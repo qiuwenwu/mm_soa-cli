@@ -5,6 +5,8 @@ const colors = require('colors');
 const download = require('download-git-repo');
 const inquirer = require('inquirer');
 const ora = require('ora');
+var exec = require('child_process').exec;
+
 require('mm_expand');
 
 var copyFile = require('./copyFile');
@@ -12,14 +14,19 @@ var copyFile = require('./copyFile');
 var dir_from = './template/'.fullname(__dirname);
 var dir_to = process.cwd() + "/";
 
+
+var files = "./command".fullname(__dirname).getFile();
+for(var i = 0; i < files.length; i++){
+	var file = files[i];
+	require(file);
+}
+
 console.log('Hello, Welcome to use mm-cli!'.yellow);
 
 program
 	.version(require('./package').version, '-v, --version')
-	.description('MM package manager')
-	.option('-p, --path <dir>', 'setting project dir')
-
-
+	.description('MM manager')
+	// .option('-p, --path <dir>', 'setting project dir')
 
 function prompt_2(options, answers) {
 	console.log('');
@@ -54,14 +61,34 @@ function prompt_2(options, answers) {
 			save_config('local', option);
 			save_config('production', option);
 			save_config('test', option);
-			
-			
-			spinner.succeed();
-			console.log('Create completed!'.green);
-			console.log('npm i \r\n');
-			console.log('');
-			console.log('');
 
+			exec('npm i mm_expand mm_soa', function(error, stdout, stderr) {
+				if (error) {
+					spinner.fail();
+					console.log('Create error!'.red);
+					console.log(error);
+				} else {
+					spinner.succeed();
+					console.log('Create completed!'.green);
+					console.log('');
+					console.log(`Please install the tool for the first development:`);
+					console.log(`
+	npm i cross-env nodemon -g
+	
+	`.cyan);
+
+					console.log(`To get started:`);
+					console.log(`
+	npm run dev
+	
+	`.cyan);
+
+					console.log(`To start for production:`);
+					console.log(`
+	npm run start
+	`.cyan);
+				}
+			});
 		} catch (err) {
 			spinner.fail();
 			console.log('Create error!'.red);
@@ -103,7 +130,8 @@ function prompt_1(options, answers) {
 		{
 			name: `password`,
 			message: `${db} password`,
-			type: 'input'
+			type: 'input',
+			default: "asd123"
 		}
 	]).then((aws) => {
 		prompt_2(options, Object.assign({}, answers, aws));
@@ -111,7 +139,7 @@ function prompt_1(options, answers) {
 }
 
 program
-	.command('create <project_name>')
+	.command('init <project_name>')
 	.action((name, options) => {
 		inquirer.prompt([{
 				name: 'author',
@@ -145,8 +173,8 @@ program
 				default: 0
 			},
 			{
-				name: 'cache_mode',
-				message: 'cache mode',
+				name: 'cache',
+				message: 'cache',
 				type: "rawlist",
 				choices: [
 					"redis",
@@ -194,28 +222,6 @@ program
 		console.log('  $ mm create <name>');
 	});
 
-program
-	.command('install <version>')
-	.action((version, options) => {
-		console.log(version);
-
-	}).on('--help', function() {
-		console.log('');
-		console.log('Examples:');
-		console.log('');
-		console.log('  $ mm update 2.0');
-	}).alias('i');
-
-program
-	.command('update <version>')
-	.action((version, options) => {
-		console.log(version)
-	}).on('--help', function() {
-		console.log('');
-		console.log('Examples:');
-		console.log('');
-		console.log('  $ mm update 2.0');
-	}).alias('u');
 
 
 function save_config(file, option) {
@@ -227,8 +233,8 @@ function save_config(file, option) {
 	text = text.replaceAll('{user}', option.user).replaceAll('{password}', option.password).replaceAll('{host}', option.host)
 		.replaceAll('{database}', option.database);
 
-	text = text.replaceAll('{db}', option.db).replaceAll('{cache}', option.cache).replaceAll('{name}', option.name).replaceAll(
-		'{web_language}', option.web_language);
+	text = text.replaceAll('{db}', option.db).replaceAll('{cache}', option.cache).replaceAll('{name}', option.name);
+	text = text.replaceAll('{web_title}', option.web_title).replaceAll('{web_language}', option.web_language).replaceAll('{web_description}', option.web_description);
 	text = text.replace('3306,', option.port + ',');
 	text = text.replace('"task": true', '"task": ' + option.timed_task);
 	(dir_to + `config/${file}.json`).saveText(text);
