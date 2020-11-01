@@ -3,7 +3,7 @@
 
 ## 一、起步
 ### 1.安装mm-soa-cli
-`npm i mm-soa-cli`
+`npm i mm-soa-cli -g`
 <br/>
 
 ### 2.创建mm-soa项目
