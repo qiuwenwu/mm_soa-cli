@@ -103,6 +103,7 @@ sql.json 配置文件则时辅助使用mysql数据库的SQL模板
 备注：动态创建会节省很多开发时间，但是对于数据表的设计也有严格要求，要求如下：
 1. 数据表采用_命名方式，例如：user_account、user_group、user_admin
 2. 数据表必须包含主键，主键最好用后缀名+_id命名，例如：user_group的主键group_id、user_admin的主键user_id
+
 <br/>
 
 为方便生成API和文档，数据表的字段最好采用如下方式写备注：
