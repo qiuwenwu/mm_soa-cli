@@ -38,7 +38,7 @@
 <br/>
 
 
-### 3.启动项目
+### 4.启动项目
 创建完成后提示如下：
 ```shell
 Please install the tool for the first development:
@@ -65,7 +65,7 @@ To start for production:
 
 <br/>
 
-### 4.创建应用
+### 5.创建应用
 `mm create-app <app_name>`
 创建应用命令，其实就是在项目 根目录/app 目录下创建一个文件夹，并在该文件夹下面创建空的app.json配置文件，然后mm-soa就会为自动创建好app.json配置信息，并生成了一个index.js的脚本文件。
 > 配置信息是一个模板,部分的信息还需要我们手动修改
@@ -79,7 +79,7 @@ To start for production:
 
 <br/>
 
-### 6.创建API接口
+### 5.创建API接口
 `mm create-api <api_name> <app_name>`
 创建API命令，会帮助我们在 /app/app_name/plugin/main/event_app_name目录下创建一个名为api_name的文件夹，并且在该文件夹下创建了一个空的api.json的文件。然后mm-soa就会为自动创建好api.json配置信息，并生成了一个index.js的脚本文件以及param.json、sql.json文件。
 > 同样的，配置信息是一个模板, 部分的信息还需要我们手动修改
@@ -90,7 +90,7 @@ sql.json 配置文件则时辅助使用mysql数据库的SQL模板
 <br/>
 
 
-## 二、根据数据库自动创建API及文档
+### 6.根据数据库自动创建API及文档
 当我们创建项目时，会携带有一个dev的app，这是一个辅助开发的用用。
 当我们启动程序后，可以通过 `域名/api/dev/db?method=update_config&table=demo_*`来动态创建API，
 > 需要注意的是`table=demo_*`，demo_*是表名，代表了以demo_开头的所有表，同时表的第一个前缀demo会被当作是应用
