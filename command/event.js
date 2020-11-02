@@ -13,7 +13,7 @@ program
 		dir = ('./' + name).fullname(dir);
 		dir.addDir();
 		
-		var file = "./event.json".fullname(dir);
+		var file = "./event.json".fullname(dir);		
 		if (file.hasFile()) {
 			console.log('create event error'.red);
 			console.log('	Plguin already exists!');
@@ -22,7 +22,22 @@ program
 			file.saveText('');
 			console.log('create event success'.green);
 			console.log('file path:', file);
-			console.log('route path:', `/api/${name}`);
+			
+			// 修改中
+			var l = $.slash;
+			var arr = file.split(l);
+			arr = arr.slice(arr.indexOf('app'));
+			console.log(arr);
+			var event_name = arr[3];
+			if(event_name.indexOf('manage') !== -1){
+				console.log('route path:', `/apis/${app_name}`);
+			}
+			else if(event_name.indexOf('client') !== -1){
+				console.log('route path:', `/api/${app_name}`);
+			}
+			else {
+				console.log('route path:', `/api/${name}`);
+			}
 		}
 	}).on('--help', function() {
 		console.log('');
