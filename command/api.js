@@ -9,7 +9,7 @@ program
 		dir.addDir();
 		var dir_event = "./event_api/".fullname(dir);
 		dir_event.addDir();
-		dir_event = ('./' + app_name).fullname(dir_event);
+		dir_event = ('./client').fullname(dir_event);
 		dir_event.addDir();
 		var file_event = "./event.json".fullname(dir_event);
 		if (!file_event.hasFile()) {
@@ -21,7 +21,7 @@ program
 		dir = './main'.fullname(dir);
 		dir.addDir();
 		
-		dir = ('./api_' + app_name).fullname(dir);
+		dir = ('./api_' + app_name + '_client').fullname(dir);
 		dir.addDir();
 		
 		dir = ('./' + name).fullname(dir);
