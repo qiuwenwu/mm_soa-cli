@@ -1,4 +1,16 @@
 {
+	"master": {
+		/**
+		 * 系统服务监听地址
+		 * @type {String}
+		 */
+		"host": "0.0.0.0",
+		/**
+		 * 系统服务监听端口
+		 * @type {Number}
+		 */
+		"port": 10001
+	},
 	/**
 	 * web服务配置
 	 * @type {Object}
