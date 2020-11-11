@@ -9,7 +9,7 @@ program
 		dir.addDir();
 		var dir_event = "./event_api/".fullname(dir);
 		dir_event.addDir();
-		dir_event = ('./client').fullname(dir_event);
+		dir_event = ('./client/').fullname(dir_event);
 		dir_event.addDir();
 		var file_event = "./event.json".fullname(dir_event);
 		if (!file_event.hasFile()) {
@@ -18,13 +18,13 @@ program
 		dir = './plugin/'.fullname(dir);
 		dir.addDir();
 		
-		dir = './main'.fullname(dir);
+		dir = './main/'.fullname(dir);
 		dir.addDir();
 		
-		dir = ('./api_' + app_name + '_client').fullname(dir);
+		dir = ('./api_' + app_name + '_client/').fullname(dir);
 		dir.addDir();
 		
-		dir = ('./' + name).fullname(dir);
+		dir = ('./' + name + "/").fullname(dir);
 		dir.addDir();
 		
 		var file = "./api.json".fullname(dir);
@@ -43,5 +43,5 @@ program
 		console.log('');
 		console.log('Examples:');
 		console.log('');
-		console.log('  $ mm create-api home');
+		console.log('  $ mm create-api test bbs');
 	}).alias('c-api');

@@ -10,7 +10,7 @@ program
 		dir = './plugin/'.fullname(dir);
 		dir.addDir();
 		
-		dir = ('./' + name).fullname(dir);
+		dir = ('./' + name + "/").fullname(dir);
 		dir.addDir();
 		
 		var file = "./plugin.json".fullname(dir);

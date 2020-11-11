@@ -1,0 +1,10 @@
+{
+	"target": "/tv*",
+	"name": "home_tv",
+	"title": "电视端",
+	"description": "用于访问电视端页面",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 50,
+	"end": true
+}

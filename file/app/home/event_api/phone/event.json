@@ -1,0 +1,10 @@
+{
+	"target": "/home/phone*",
+	"name": "home_phone",
+	"title": "手机端",
+	"description": "用于访问手机端页面",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 30,
+	"end": true
+}

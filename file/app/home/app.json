@@ -1,0 +1,12 @@
+{
+	"name": "home",
+	"title": "门户网站",
+	"description": "提供给用户访问的网站",
+	"version": "1.0",
+	"identifier": "home",
+	"lang_path": "./lang/",
+	"icon": "/home/img/logo.png",
+	"cmd": "home",
+	"sort": 10
+}
+

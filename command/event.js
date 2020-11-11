@@ -7,10 +7,10 @@ program
 	.action((name, app_name, options) => {
 		var dir = ("./app/" + app_name).fullname(dir_to);
 		dir.addDir();
-		dir = './event_api'.fullname(dir);
+		dir = './event_api/'.fullname(dir);
 		dir.addDir();
 		
-		dir = ('./' + name).fullname(dir);
+		dir = ('./' + name + "/").fullname(dir);
 		dir.addDir();
 		
 		var file = "./event.json".fullname(dir);		
@@ -27,7 +27,7 @@ program
 			var l = $.slash;
 			var arr = file.split(l);
 			arr = arr.slice(arr.indexOf('app'));
-			console.log(arr);
+			
 			var event_name = arr[3];
 			if(event_name.indexOf('manage') !== -1){
 				console.log('route path:', `/apis/${app_name}`);
@@ -43,5 +43,5 @@ program
 		console.log('');
 		console.log('Examples:');
 		console.log('');
-		console.log('  $ mm create-event home');
+		console.log('  $ mm create-event manage bbs');
 	}).alias('c-event');

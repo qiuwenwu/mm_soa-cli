@@ -15,7 +15,7 @@ var dir_from = './template/'.fullname(__dirname);
 var dir_to = process.cwd() + "/";
 
 
-var files = "./command".fullname(__dirname).getFile();
+var files = "./command/".fullname(__dirname).getFile();
 for(var i = 0; i < files.length; i++){
 	var file = files[i];
 	require(file);

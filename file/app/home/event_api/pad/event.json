@@ -1,0 +1,10 @@
+{
+	"target": "/pad*",
+	"name": "home_pad",
+	"title": "平板电脑端",
+	"description": "用于访问平板电脑端页面",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 40,
+	"end": true
+}
