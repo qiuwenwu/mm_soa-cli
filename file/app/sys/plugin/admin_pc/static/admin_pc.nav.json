@@ -160,6 +160,50 @@
                 "gm": 2,
                 "user_admin": []
             }
+        },
+        {
+            "name": "sys_lang",
+            "path": "/sys/lang",
+            "component": "/sys/admin_pc/src/pages/lang.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "sys_lang_form",
+            "path": "/sys/lang_form",
+            "component": "/sys/admin_pc/src/pages/lang_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "sys_message",
+            "path": "/sys/message",
+            "component": "/sys/admin_pc/src/pages/message.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "sys_message_form",
+            "path": "/sys/message_form",
+            "component": "/sys/admin_pc/src/pages/message_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
         }
     ],
     "top": [],
@@ -217,6 +261,18 @@
                     "show": false,
                     "name": "sys_config",
                     "url": "/sys/config"
+                },
+                {
+                    "title": "系统语言",
+                    "show": false,
+                    "name": "sys_lang",
+                    "url": "/sys/lang"
+                },
+                {
+                    "title": "系统消息",
+                    "show": false,
+                    "name": "sys_message",
+                    "url": "/sys/message"
                 }
             ]
         }

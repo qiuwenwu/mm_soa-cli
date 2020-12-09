@@ -1,13 +1,15 @@
 const dev = require('../com.js').dev;
 
+
+
 // 是否启用数据库管理器
 if ($.config.sys.db_admin) {
 	// 创建数据库管理器
 	var db = $.db_admin('sys');
 	db.update();
 }
-
 var dev_class = new dev('db');
+
 /**
  * @description 更新配置文件
  * @param {Object} req HTTP上文
@@ -21,7 +23,7 @@ dev_class.update_config = async function(req, db) {
 		scope = "sys";
 	}
 	var pool = $.pool.db[scope];
-	if(!pool){
+	if (!pool) {
 		return $.ret.error(10000, '作用域(scope)不存在!');
 	}
 	var msg = await pool.update_config(db, q["name"], q["table"], q["cover"]);
@@ -46,11 +48,15 @@ dev_class.update_db = async function(req, db) {
 		scope = "sys";
 	}
 	var pool = $.pool.db[scope];
-	var msg = await pool.update_db(db, q["name"], q["table"], q["all"]);
-	if (msg) {
-		return $.ret.bl(false, msg);
+	if (pool) {
+		var msg = await pool.update_db(db, q["name"], q["table"], q["all"]);
+		if (msg) {
+			return $.ret.bl(false, msg);
+		} else {
+			return $.ret.bl(true, '更新成功');
+		}
 	} else {
-		return $.ret.bl(true, '更新成功');
+		return $.ret.bl(false, '作用域不存在');
 	}
 };
 

@@ -1,6 +1,6 @@
 <template>
 	<mm_page id="main_index">
-		<mm_grid>
+		<mm_warp><mm_container><mm_row>
 			<mm_col width="100">
 				<mm_view>
 					<header class="arrow">
@@ -11,7 +11,7 @@
 					</mm_body>
 				</mm_view>
 			</mm_col>
-		</mm_grid>
+		</mm_row></mm_container></mm_warp>
 	</mm_page>
 </template>
 

@@ -1,17 +1,21 @@
 <template>
 	<mm_page id="main_index">
-		<mm_grid>
-			<mm_col width="100">
-				<mm_view>
-					<header class="arrow">
-						<h5>超级美眉</h5>
-					</header>
-					<mm_body>
-						<mm_drag style="width: 3rem; height: 3rem; background: #FC3274;" />
-					</mm_body>
-				</mm_view>
-			</mm_col>
-		</mm_grid>
+		<mm_warp>
+			<mm_container>
+				<mm_row>
+					<mm_col width="100">
+						<mm_view>
+							<header class="arrow">
+								<h5>超级美眉</h5>
+							</header>
+							<mm_body>
+								<mm_drag style="width: 3rem; height: 3rem; background: #FC3274;" />
+							</mm_body>
+						</mm_view>
+					</mm_col>
+				</mm_row>
+			</mm_container>
+		</mm_warp>
 	</mm_page>
 </template>
 

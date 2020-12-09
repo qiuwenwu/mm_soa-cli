@@ -1,45 +1,51 @@
 <template>
 	<main id="user_admin_form">
-		<mm_grid>
-			<mm_col width="33">
-				<mm_form class="card">
-					<div class="head arrow">
-						<h5>{{ form[field] ? '修改' : '创建' }}管理组</h5>
-					</div>
-					<div class="body">
-						<dl>
-							<dt>上级</dt>
-							<dd>
-								<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
-							</dd>
-							<dt class="required">名称</dt>
-							<dd>
-								<mm_input v-model="form.name" :minlength="0" :maxlength="0" placeholder=""
-								 :required="true" />
-							</dd>
-							<dt>部门</dt>
-							<dd>
-								<mm_input v-model="form.department" :minlength="0" :maxlength="0" placeholder="用于区分管理组织结构" />
-							</dd>
-							<dt>描述</dt>
-							<dd>
-								<mm_input v-model="form.description" :minlength="0" :maxlength="0" placeholder="描述该用户组的特点或权限范围" />
-							</dd>
-							<dt>图标</dt>
-							<dd>
-								<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
-							</dd>
-						</dl>
-					</div>
-					<div class="foot">
-						<div class="mm_group">
-							<button class="btn_default" type="button" @click="cancel">取消</button>
-							<button class="btn_primary" type="button" @click="submit()">提交</button>
-						</div>
-					</div>
-				</mm_form>
-			</mm_col>
-		</mm_grid>
+		<mm_warp>
+			<mm_container>
+				<mm_row>
+					<mm_col>
+						<mm_card>
+							<div class="card_head arrow">
+								<h5>{{ form[field] ? '修改' : '创建' }}管理组</h5>
+							</div>
+							<div class="card_body">
+								<mm_form>
+									<dl>
+										<dt>部门</dt>
+										<dd>
+											<mm_input v-model="form.department" :minlength="0" :maxlength="12" placeholder="用于区分管理组织结构" />
+										</dd>
+										<dt>描述</dt>
+										<dd>
+											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
+										</dd>
+										<dt>上级</dt>
+										<dd>
+											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+										</dd>
+										<dt>图标</dt>
+										<dd>
+											<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
+										</dd>
+										<dt class="required">名称</dt>
+										<dd>
+											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											 :required="true" />
+										</dd>
+									</dl>
+								</mm_form>
+							</div>
+							<div class="card_foot">
+								<div class="mm_group">
+									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_primary" type="button" @click="submit()">提交</button>
+								</div>
+							</div>
+						</mm_card>
+					</mm_col>
+				</mm_row>
+			</mm_container>
+		</mm_warp>
 	</main>
 </template>
 
@@ -60,11 +66,11 @@
 				},
 				form: {
 					"admin_id": 0,
-					"father_id": 0,
-					"name": '',
 					"department": '',
 					"description": '',
+					"father_id": 0,
 					"icon": '',
+					"name": '',
 				},
 				// 上级
 				'list_admin': [ ],

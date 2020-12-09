@@ -1,0 +1,119 @@
+{
+    "name": "user_message2",
+    "title": "用户留言",
+    "add": {
+        "body": [
+            "content",
+            "email",
+            "name",
+            "phone",
+            "title"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "message_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "content",
+            "message_id",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "content",
+            "email",
+            "name",
+            "phone",
+            "title"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "content",
+            "message_id",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "list": [
+        {
+            "name": "content",
+            "title": "留言内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "email",
+            "title": "留言者邮箱",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125,
+                "format": "email"
+            }
+        },
+        {
+            "name": "message_id",
+            "title": "消息ID",
+            "description": "用于记录和识别消息",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "留言者姓名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "phone",
+            "title": "留言者手机",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 11,
+                "format": "phone"
+            }
+        },
+        {
+            "name": "title",
+            "title": "留言标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索留言内容(content)、留言者姓名(name)、留言标题(title)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

@@ -1,24 +1,56 @@
 {
-    "filter": true,
-    "func_file": "",
-    "post": {
-        "query": [
-            "uid",
-            "name",
-            "username",
-            "phone",
-            "email"
-        ],
+    "name": "sys_app_refresh",
+    "title": "应用刷新",
+    "add": {
         "body": [
-            "age",
-            "headImg",
-            "birthday",
-            "password",
-            "confirm_password",
-            "pay_password"
+            "user_id"
+        ],
+        "body_required": [
+            "appid",
+            "refresh_token"
         ]
     },
+    "del": {
+        "query": [],
+        "query_required": [
+            "refresh_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "refresh_id"
+        ],
+        "query_required": [],
+        "body": [
+            "appid",
+            "refresh_token",
+            "user_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "refresh_id",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max"
+        ],
+        "query_required": []
+    },
     "list": [
+        {
+            "name": "appid",
+            "title": "应用ID",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
         {
             "name": "refresh_id",
             "title": "刷新Token的ID",
@@ -33,16 +65,14 @@
             }
         },
         {
-            "name": "user_id",
-            "title": "用户ID",
-            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+            "name": "refresh_token",
+            "title": "刷新令牌",
+            "description": "用来刷新访问牌，保留30天",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
             }
         },
         {
@@ -112,64 +142,17 @@
             }
         },
         {
-            "name": "appid",
-            "title": "应用ID",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
-            }
-        },
-        {
-            "name": "refresh_token",
-            "title": "刷新令牌",
-            "description": "用来刷新访问牌，保留30天",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
             }
         }
-    ],
-    "name": "sys_app_refresh",
-    "title": "应用刷新",
-    "add": {
-        "body": [
-            "user_id"
-        ],
-        "body_required": [
-            "appid",
-            "refresh_token"
-        ]
-    },
-    "del": {
-        "query": [],
-        "query_required": [
-            "refresh_id"
-        ]
-    },
-    "set": {
-        "query": [
-            "refresh_id"
-        ],
-        "query_required": [],
-        "body": [
-            "user_id",
-            "appid",
-            "refresh_token"
-        ],
-        "body_required": [],
-        "body_not": []
-    },
-    "get": {
-        "query": [
-            "refresh_id",
-            "time_create_min",
-            "time_create_max",
-            "time_update_min",
-            "time_update_max"
-        ],
-        "query_required": []
-    }
+    ]
 }

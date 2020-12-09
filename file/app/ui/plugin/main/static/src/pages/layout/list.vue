@@ -1,73 +1,89 @@
 <template>
 	<mm_page id="page_list">
 		<header>
-			<mm_grid>
-				<mm_col width="100">
-					<mm_view url="/">
-						<h3>
-							<span>列表</span>
-							<span class="fr">&lt; 返回</span></router-link>
-						</h3>
-					</mm_view>
-				</mm_col>
-			</mm_grid>
+			<mm_warp>
+				<mm_container>
+					<mm_row>
+						<mm_col width="100">
+							<mm_view url="/">
+								<h3>
+									<span>列表</span>
+									<span class="fr">&lt; 返回</span></router-link>
+								</h3>
+							</mm_view>
+						</mm_col>
+					</mm_row>
+				</mm_container>
+			</mm_warp>
 		</header>
 		<main>
-			<mm_grid>
-				<mm_col width="100">
-					<mm_view>
-						<h5>通过父级改变列数 <mm_btn class="btn_info" @click.native="add()">{{ col }}列</mm_btn>
-						</h5>
-						<mm_list :col="col" class="center list-x">
-							<mm_item>
-								<mm_view>1</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>2</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>3</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>4</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>5</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>6</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>7</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>8</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>9</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>10</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>11</mm_view>
-							</mm_item>
-							<mm_item>
-								<mm_view>12</mm_view>
-							</mm_item>
-						</mm_list>
-					</mm_view>
-					<mm_view>
-						<h5>自适应列数 <mm_btn class="btn_info" @click.native="add_num()">{{ num }}列</mm_btn>
-						</h5>
-						<mm_list class="center list-x list-sm">
-							<mm_item v-for="(o, idx) in num" :key="idx">
-								{{ o }}
-							</mm_item>
-						</mm_list>
-					</mm_view>
-				</mm_col>
-			</mm_grid>
+			<mm_warp>
+				<mm_container>
+					<mm_row>
+						<mm_col width="100">
+							<mm_card>
+								<div class="card_head">
+									<h5>通过父级改变列数 <mm_btn class="btn_info" @click.native="add()">{{ col }}列</mm_btn>
+									</h5>
+								</div>
+								<div class="card_body">
+									<mm_list :col="col" class="center list-x">
+										<mm_item>
+											<mm_view>1</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>2</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>3</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>4</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>5</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>6</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>7</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>8</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>9</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>10</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>11</mm_view>
+										</mm_item>
+										<mm_item>
+											<mm_view>12</mm_view>
+										</mm_item>
+									</mm_list>
+								</div>
+							</mm_card>
+						</mm_col>
+						<mm_col width="100">
+							<mm_card>
+								<div class="card_head">自适应列数 <mm_btn class="btn_info" @click.native="add_num()">{{ num }}列</mm_btn>
+								</div>
+								<div class="card_body">
+									<mm_list class="center list-x list-auto">
+										<mm_item v-for="(o, idx) in num" :key="idx">
+											{{ o }}
+										</mm_item>
+									</mm_list>
+								</div>
+							</mm_card>
+						</mm_col>
+					</mm_row>
+				</mm_container>
+			</mm_warp>
 		</main>
 	</mm_page>
 </template>

@@ -1,21 +1,23 @@
 <template>
 	<main id="error_404">
-		<div class="box">
-			<h1>404</h1>
-			<div class="mm_grid">
-				<div class="mm_col_50">
-					<h2>超级美眉</h2>
-				</div>
-				<div class="mm_col_50">
-					<div class="bg_no">
-						<h6>一个好玩的服务端</h6>
-						<p><a href="http://mm.elins.cn">http://mm.elins.cn</a></p>
+		<div class="warp">
+			<div class="box">
+				<h1>404</h1>
+				<div class="mm_grid">
+					<div class="mm_col col-12 col-md-6">
+						<h2>超级美眉</h2>
+					</div>
+					<div class="mm_col col-12 col-md-6">
+						<div class="bg_no">
+							<h6>一个好玩的服务端</h6>
+							<p><a href="http://mm.elins.cn">http://mm.elins.cn</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
+			<div class="border"></div>
+			<div class="border br2"></div>
 		</div>
-		<div class="border"></div>
-		<div class="border br2"></div>
 	</main>
 </template>
 
@@ -23,6 +25,23 @@
 </script>
 
 <style>
+	#error_404 {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	
+	#error_404 .warp { 
+		position: absolute;
+		top: 50%;
+		left: calc(50% - 6rem);
+		transition: left 0.5s ease-in-out;
+	}
+	
+	.fold ~ main .warp { 
+		left: calc(50% - 2.5rem) !important;
+	}
+	
 	#error_404 h1 {
 		font-size: 10rem;
 		line-height: 1;
@@ -31,7 +50,7 @@
 	#error_404 .box {
 		position: absolute;
 		top: 50%;
-		left: 50%;
+		left:  50%;
 		transform: translate(-50%, -50%);
 		margin-top: -4rem;
 		z-index: 2;

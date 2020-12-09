@@ -1,5 +1,5 @@
 {
-    "name": "user_account2",
+    "name": "user_account_manage",
     "title": "用户账户",
     "description": "用于保存用户登录信息",
     "path": "/apis/user/account",

@@ -1,0 +1,158 @@
+{
+    "name": "demo_address_city",
+    "title": "城市",
+    "add": {
+        "body": [
+            "display",
+            "province_id",
+            "show"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "city_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "city_id",
+            "display_min",
+            "display_max",
+            "name",
+            "show_min",
+            "show_max",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "display",
+            "display_add",
+            "name",
+            "province_id",
+            "show",
+            "show_add"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "city_id",
+            "display_min",
+            "display_max",
+            "name",
+            "show_min",
+            "show_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "list": [
+        {
+            "name": "city_id",
+            "title": "鍩庡競ID锛歔1,8388607]",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "name",
+            "title": "城市名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "province_id",
+            "title": "所属省份ID",
+            "description": "(sys_address_province)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
+            }
+        },
+        {
+            "name": "show",
+            "title": "显示位置",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
+        {
+            "name": "show_min",
+            "title": "显示位置——最小值",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
+        {
+            "name": "show_max",
+            "title": "显示位置——最大值",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索城市名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

@@ -3,15 +3,15 @@
     "title": "用户组",
     "add": {
         "body": [
-            "display",
-            "level",
-            "next_group_id",
-            "exp",
-            "discount",
-            "bonus",
             "app",
+            "bonus",
             "description",
-            "icon"
+            "discount",
+            "display",
+            "exp",
+            "icon",
+            "level",
+            "next_group_id"
         ],
         "body_required": [
             "name"
@@ -25,74 +25,129 @@
     },
     "set": {
         "query": [
-            "group_id",
-            "display_min",
-            "display_max",
-            "level_min",
-            "level_max",
-            "exp_min",
-            "exp_max",
-            "discount_min",
-            "discount_max",
             "bonus_min",
             "bonus_max",
-            "name",
             "description",
+            "discount_min",
+            "discount_max",
+            "display_min",
+            "display_max",
+            "exp_min",
+            "exp_max",
+            "group_id",
+            "level_min",
+            "level_max",
+            "name",
             "keyword"
         ],
         "query_required": [],
         "body": [
-            "display",
-            "display_add",
-            "level",
-            "level_add",
-            "next_group_id",
-            "exp",
-            "exp_add",
-            "discount",
-            "discount_add",
+            "app",
             "bonus",
             "bonus_add",
-            "app",
-            "name",
             "description",
-            "icon"
+            "discount",
+            "discount_add",
+            "display",
+            "display_add",
+            "exp",
+            "exp_add",
+            "icon",
+            "level",
+            "level_add",
+            "name",
+            "next_group_id"
         ],
         "body_required": [],
         "body_not": []
     },
     "get": {
         "query": [
-            "group_id",
-            "display_min",
-            "display_max",
-            "level_min",
-            "level_max",
-            "exp_min",
-            "exp_max",
-            "discount_min",
-            "discount_max",
             "bonus_min",
             "bonus_max",
-            "name",
             "description",
+            "discount_min",
+            "discount_max",
+            "display_min",
+            "display_max",
+            "exp_min",
+            "exp_max",
+            "group_id",
+            "level_min",
+            "level_max",
+            "name",
             "keyword"
         ],
         "query_required": []
     },
     "list": [
         {
-            "name": "group_id",
-            "title": "用户组ID",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+            "name": "app",
+            "title": "应用",
+            "description": "用于区分用户组使用范围，cms内容管理系统、bbs社区、mall商城",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 12
             }
+        },
+        {
+            "name": "bonus",
+            "title": "奖励比例",
+            "description": "用于确定用户的积分奖励",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "bonus_min",
+            "title": "奖励比例——最小值",
+            "description": "用于确定用户的积分奖励",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "bonus_max",
+            "title": "奖励比例——最大值",
+            "description": "用于确定用户的积分奖励",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "description",
+            "title": "描述",
+            "description": "描述该用户组的特点或权限范围",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "discount",
+            "title": "折扣",
+            "description": "用于确定用户的消费折扣",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "discount_min",
+            "title": "折扣——最小值",
+            "description": "用于确定用户的消费折扣",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "discount_max",
+            "title": "折扣——最大值",
+            "description": "用于确定用户的消费折扣",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
         },
         {
             "name": "display",
@@ -122,49 +177,6 @@
             "dataType": "smallint",
             "number": {
                 "max": 1000
-            }
-        },
-        {
-            "name": "level",
-            "title": "等级划分",
-            "description": "用于识别级别分组",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "level_min",
-            "title": "等级划分——最小值",
-            "description": "用于识别级别分组",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "level_max",
-            "title": "等级划分——最大值",
-            "description": "用于识别级别分组",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "next_group_id",
-            "title": "下级用户组ID",
-            "description": "决定用户升级后所属用户组(user_group.name.group_id)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
             }
         },
         {
@@ -198,60 +210,55 @@
             }
         },
         {
-            "name": "discount",
-            "title": "折扣",
-            "description": "用于确定用户的消费折扣",
+            "name": "group_id",
+            "title": "用户组ID",
+            "description": "",
             "type": "number",
-            "dataType": "double",
-            "number": {}
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
+            }
         },
         {
-            "name": "discount_min",
-            "title": "折扣——最小值",
-            "description": "用于确定用户的消费折扣",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "discount_max",
-            "title": "折扣——最大值",
-            "description": "用于确定用户的消费折扣",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "bonus",
-            "title": "奖励比例",
-            "description": "用于确定用户的积分奖励",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "bonus_min",
-            "title": "奖励比例——最小值",
-            "description": "用于确定用户的积分奖励",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "bonus_max",
-            "title": "奖励比例——最大值",
-            "description": "用于确定用户的积分奖励",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "app",
-            "title": "应用",
-            "description": "用于区分用户组使用范围，cms内容管理系统、bbs社区、mall商城",
+            "name": "icon",
+            "title": "图标",
+            "description": "用于标识用户组",
             "type": "string",
-            "dataType": "varchar",
+            "dataType": "text",
             "string": {}
+        },
+        {
+            "name": "level",
+            "title": "等级划分",
+            "description": "用于识别级别分组",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "level_min",
+            "title": "等级划分——最小值",
+            "description": "用于识别级别分组",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "level_max",
+            "title": "等级划分——最大值",
+            "description": "用于识别级别分组",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
         },
         {
             "name": "name",
@@ -260,31 +267,27 @@
             "type": "string",
             "dataType": "varchar",
             "string": {
-                "notEmpty": 1
+                "max": 16,
+                "notEmpty": true
             }
         },
         {
-            "name": "description",
-            "title": "描述",
-            "description": "描述该用户组的特点或权限范围",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {}
-        },
-        {
-            "name": "icon",
-            "title": "图标",
-            "description": "用于标识用户组",
-            "type": "string",
-            "dataType": "text",
-            "string": {
-                "max": 0
+            "name": "next_group_id",
+            "title": "下级用户组ID",
+            "description": "决定用户升级后所属用户组(user_group.name.group_id)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
             }
         },
         {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索名称(name)、描述(description)",
+            "description": "用于搜索描述(description)、名称(name)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

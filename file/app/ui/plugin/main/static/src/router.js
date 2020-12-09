@@ -100,6 +100,13 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
+			// 精灵
+			path: "/layout/sptite",
+			component: function(resolve) {
+				return require(['vue!./pages/layout/sptite.vue'], resolve);
+			}
+		},
+		{
 			// 表格
 			path: "/layout/table",
 			component: function(resolve) {
@@ -243,7 +250,14 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 		},
 		/* 列表元素 */
 		{
-			// 图片列表项
+			// 基础列表
+			path: "/list/base",
+			component: function(resolve) {
+				return require(['vue!./pages/list/base.vue'], resolve);
+			}
+		},
+		{
+			// 图片列表
 			path: "/list/img",
 			component: function(resolve) {
 				return require(['vue!./pages/list/img.vue'], resolve);
@@ -257,63 +271,63 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
-			// 联系人列表项
+			// 联系人列表
 			path: "/list/contact",
 			component: function(resolve) {
 				return require(['vue!./pages/list/contact.vue'], resolve);
 			}
 		},
 		{
-			// 消息列表项
+			// 消息列表
 			path: "/list/message",
 			component: function(resolve) {
 				return require(['vue!./pages/list/message.vue'], resolve);
 			}
 		},
 		{
-			// 新闻列表项
+			// 新闻列表
 			path: "/list/news",
 			component: function(resolve) {
 				return require(['vue!./pages/list/news.vue'], resolve);
 			}
 		},
 		{
-			// 号码列表项
+			// 号码列表
 			path: "/list/number",
 			component: function(resolve) {
 				return require(['vue!./pages/list/number.vue'], resolve);
 			}
 		},
 		{
-			// 商品列表项
+			// 商品列表
 			path: "/list/goods",
 			component: function(resolve) {
 				return require(['vue!./pages/list/goods.vue'], resolve);
 			}
 		},
 		{
-			// 问答列表项
+			// 问答列表
 			path: "/list/question",
 			component: function(resolve) {
 				return require(['vue!./pages/list/question.vue'], resolve);
 			}
 		},
 		{
-			// 用户列表项
+			// 用户列表
 			path: "/list/user",
 			component: function(resolve) {
 				return require(['vue!./pages/list/user.vue'], resolve);
 			}
 		},
 		{
-			// 视频列表项
+			// 视频列表
 			path: "/list/video",
 			component: function(resolve) {
 				return require(['vue!./pages/list/video.vue'], resolve);
 			}
 		},
 		{
-			// 音乐列表项
+			// 音乐列表
 			path: "/list/music",
 			component: function(resolve) {
 				return require(['vue!./pages/list/music.vue'], resolve);

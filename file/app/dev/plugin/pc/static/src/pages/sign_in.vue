@@ -1,20 +1,26 @@
 <template>
-	<mm_grid id="sign_in">
-		<mm_col>
-			<mm_view id="account_sign_in">
-				<mm_title>
-					<span class="h5">后台管理系统</span>
-				</mm_title>
-				<mm_form class="pc" id="form_account">
-					<mm_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱"></mm_input>
-					<mm_input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成"></mm_input>
-					<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
-					<mm_switch title="记住账户" v-model="remember_me"></mm_switch>
-				</mm_form>
-					<p class="copyright"><span>@ 超级美眉工作室</span></p>
-			</mm_view>
-		</mm_col>
-	</mm_grid>
+	<main>
+		<mm_warp>
+			<mm_container>
+				<mm_row id="sign_in">
+					<mm_col>
+						<mm_view id="account_sign_in">
+							<mm_title>
+								<span class="h5">后台管理系统</span>
+							</mm_title>
+							<mm_form class="pc" id="form_account">
+								<mm_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱"></mm_input>
+								<mm_input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成"></mm_input>
+								<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
+								<mm_switch title="记住账户" v-model="remember_me"></mm_switch>
+							</mm_form>
+							<p class="copyright"><span>@ 超级美眉工作室</span></p>
+						</mm_view>
+					</mm_col>
+				</mm_row>
+			</mm_container>
+		</mm_warp>
+	</main>
 </template>
 
 <script>
@@ -86,6 +92,7 @@
 	#account_sign_in .title {
 		color: #fff;
 	}
+
 	#account_sign_in {
 		position: absolute;
 		min-width: 27rem;
@@ -117,41 +124,42 @@
 	#sign_in #form_account input {
 		border: 1px solid #01d1e4;
 	}
-	
+
 	#account_sign_in .copyright {
 		position: absolute;
 		top: 120%;
 		left: 50%;
 		transform: translate(-50%, 0);
-		color: rgba(255,255,255, 0.5);
+		color: rgba(255, 255, 255, 0.5);
 	}
-	
+
 	#account_sign_in .mm_title {
 		color: #fff;
 		background: none;
 		border-color: #fff;
 	}
-	
+
 	#account_sign_in .btn_primary {
 		float: left;
 		margin-left: 1rem;
 		width: calc(55% - 1rem);
 		border-radius: 0.5rem;
 	}
-	
+
 	#account_sign_in .mm_switch {
 		transform: scale(.85);
 		padding: 0 0.75rem;
 		width: 45%;
 		float: right;
 	}
-	.mm_switch .onoff
-	{
+
+	.mm_switch .onoff {
 		float: right;
-		border:  none;
+		border: none;
 	}
+
 	.mm_switch .onoff::after {
-		border:  none;
+		border: none;
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.15);
 	}
 

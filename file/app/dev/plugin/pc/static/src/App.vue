@@ -17,14 +17,16 @@
 			</mm_side>
 			<mm_main id="main" :style="'margin-left: ' + (width || 192) + 'px;'">
 				<!-- 页签组件 -->
-				<div class="mm_tab_head" id="tabs">
-					<div v-for="(o, idx) in nav_cache" :key="idx" :class="{ 'active': o.url === url_now }">
-						<i class="fa-times-circle" v-if="o.name !== 'index'" @click="del_tab(o)"></i>
-						<router-link :to="o.url">
-							{{ o.title }}
-						</router-link>
+				<div id="tabs">
+					<div class="mm_tab_head">
+						<div v-for="(o, idx) in nav_cache" :key="idx" :class="{ 'active': o.url === url_now }">
+							<i class="fa-times-circle" v-if="o.name !== 'index'" @click="del_tab(o)"></i>
+							<router-link :to="o.url">
+								{{ o.title }}
+							</router-link>
+						</div>
+						<div></div>
 					</div>
-					<div></div>
 				</div>
 				<router-view></router-view>
 			</mm_main>
@@ -215,27 +217,29 @@
 
 	#tabs {
 		background: #fff;
+		width: 100%;
+		overflow-x: auto;
 	}
 
-	#tabs>div {
+	.mm_tab_head>div {
 		padding: 0;
 	}
 
-	#tabs>div:hover {
+	.mm_tab_head>div:hover {
 		background: rgba(0, 50, 128, 0.05);
 	}
 
-	#tabs>div:last-child {
+	.mm_tab_head>div:last-child {
 		background: #fff;
 	}
 
-	#tabs>div a {
+	.mm_tab_head>div a {
 		height: 2rem;
 		display: inline-block;
 		padding: 0 1rem;
 	}
 
-	#tabs i {
+	.mm_tab_head i {
 		height: 2rem;
 		line-height: 1.875rem;
 		display: inline-block;
@@ -245,16 +249,16 @@
 		color: #ccc;
 	}
 
-	#tabs i:hover {
+	.mm_tab_head i:hover {
 		color: red;
 		cursor: pointer;
 	}
 
-	#tabs i~a {
+	.mm_tab_head i~a {
 		padding-right: 0.25rem;
 	}
 
-	#tabs>.active {
+	.mm_tab_head>.active {
 		background: #efeff4;
 		border-bottom: 1px solid #efeff4;
 	}
@@ -271,14 +275,7 @@
 		padding: 0.5rem;
 	}
 
-	.mm_card {
-		background: #fff;
-		border-radius: 2px;
-		background-color: #fff;
-		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
-	}
-
-	.mm_card_head {
+	.card_head {
 		position: relative;
 		height: 2.5rem;
 		line-height: 2.5rem;
@@ -288,7 +285,7 @@
 		font-size: 14px;
 	}
 
-	.mm_card_body {
+	.card_body {
 		position: relative;
 		padding: 0.5rem 1rem 1rem 1rem;
 	}

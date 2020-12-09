@@ -9,6 +9,18 @@ const file =  '../../static/index.html'.fullname(__dirname);
 async function main(ctx, db) {
 	var path = ctx.path;
 	if (path.indexOf('.') === -1) {
+		var type = ctx.cookies.get('lang_type') || 'en';
+		db.table = "sys_lang";
+		db.size = 0;
+		var arr = await db.get({}, "", "`key`" + ",`" + type + "`");
+		var lang = {};
+		if (arr.length) {
+			for (var i = 0; i < arr.length; i++) {
+				var o = arr[i];
+				lang[o.key] = o[type];
+			}
+		}
+		
 		$.globalBag.congfig = $.config;
 		var model = {
 			os: "mm",
@@ -17,7 +29,8 @@ async function main(ctx, db) {
 			title: $.config.sys.title + "门户",
 			keywords: "mm home phone",
 			description: "",
-			content: ""
+			content: "",
+			lang
 		};
 		$.log.debug("路径" + path);
 		return db.tpl.view(file, model);

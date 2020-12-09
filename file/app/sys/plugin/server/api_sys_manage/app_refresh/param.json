@@ -22,9 +22,9 @@
         ],
         "query_required": [],
         "body": [
-            "user_id",
             "appid",
-            "refresh_token"
+            "refresh_token",
+            "user_id"
         ],
         "body_required": [],
         "body_not": []
@@ -41,6 +41,17 @@
     },
     "list": [
         {
+            "name": "appid",
+            "title": "应用ID",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
             "name": "refresh_id",
             "title": "刷新Token的ID",
             "description": "",
@@ -54,16 +65,14 @@
             }
         },
         {
-            "name": "user_id",
-            "title": "用户ID",
-            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+            "name": "refresh_token",
+            "title": "刷新令牌",
+            "description": "用来刷新访问牌，保留30天",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
             }
         },
         {
@@ -133,23 +142,16 @@
             }
         },
         {
-            "name": "appid",
-            "title": "应用ID",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
-            }
-        },
-        {
-            "name": "refresh_token",
-            "title": "刷新令牌",
-            "description": "用来刷新访问牌，保留30天",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
             }
         }
     ]

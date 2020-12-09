@@ -3,9 +3,9 @@
     "title": "城市",
     "add": {
         "body": [
-            "show",
             "display",
-            "province_id"
+            "province_id",
+            "show"
         ],
         "body_required": [
             "name"
@@ -20,21 +20,21 @@
     "set": {
         "query": [
             "city_id",
-            "show_min",
-            "show_max",
             "display_min",
             "display_max",
             "name",
+            "show_min",
+            "show_max",
             "keyword"
         ],
         "query_required": [],
         "body": [
-            "show",
-            "show_add",
             "display",
             "display_add",
+            "name",
             "province_id",
-            "name"
+            "show",
+            "show_add"
         ],
         "body_required": [],
         "body_not": []
@@ -42,11 +42,11 @@
     "get": {
         "query": [
             "city_id",
-            "show_min",
-            "show_max",
             "display_min",
             "display_max",
             "name",
+            "show_min",
+            "show_max",
             "keyword"
         ],
         "query_required": []
@@ -56,6 +56,60 @@
             "name": "city_id",
             "title": "城市ID",
             "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "range": [
+                    1,
+                    8388607
+                ]
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "name",
+            "title": "城市名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "province_id",
+            "title": "所属省份ID",
+            "description": "(sys_address_province)",
             "type": "number",
             "dataType": "mediumint",
             "number": {
@@ -93,59 +147,6 @@
             "dataType": "smallint",
             "number": {
                 "max": 2
-            }
-        },
-        {
-            "name": "display",
-            "title": "显示顺序",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "display_min",
-            "title": "显示顺序——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "display_max",
-            "title": "显示顺序——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "province_id",
-            "title": "所属省份ID",
-            "description": "(sys_address_province)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
-            }
-        },
-        {
-            "name": "name",
-            "title": "城市名称",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
             }
         },
         {

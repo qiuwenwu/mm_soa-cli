@@ -16,7 +16,7 @@ async function main(ctx, db) {
 		ctx.session.user = null;
 	}
 	if (!password) {
-		return $.ret.error(30000, "密码(password)不能为空");
+		return $.ret.error(30002, "密码(password)不能为空");
 	}
 	var list = [];
 	// 获取登录方式
@@ -47,7 +47,7 @@ async function main(ctx, db) {
 						phone
 					});
 				} else {
-					return $.ret.error(30000, '用户名(username)不能为空');
+					return $.ret.error(30002, '用户名(username)不能为空');
 				}
 			}
 		}

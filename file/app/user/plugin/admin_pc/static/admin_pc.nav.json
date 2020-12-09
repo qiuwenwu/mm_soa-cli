@@ -118,9 +118,9 @@
             }
         },
         {
-            "name": "user_sns",
-            "path": "/user/sns",
-            "component": "/user/admin_pc/src/pages/sns.vue",
+            "name": "user_message",
+            "path": "/user/message",
+            "component": "/user/admin_pc/src/pages/message.vue",
             "level": 3,
             "oauth": {
                 "signIn": true,
@@ -129,9 +129,9 @@
             }
         },
         {
-            "name": "user_sns_form",
-            "path": "/user/sns_form",
-            "component": "/user/admin_pc/src/pages/sns_form.vue",
+            "name": "user_message_form",
+            "path": "/user/message_form",
+            "component": "/user/admin_pc/src/pages/message_form.vue",
             "level": 4,
             "oauth": {
                 "signIn": true,
@@ -150,7 +150,7 @@
         {
             "title": "用户",
             "name": "user",
-            "icon": "<i class=\"fa-user\"></i>",
+            "icon": "<i class=\"fa-cog\"></i>",
             "url": "/user",
             "display": 0,
             "sub": [
@@ -185,10 +185,10 @@
                     "url": "/user/info"
                 },
                 {
-                    "title": "社交账户",
+                    "title": "用户留言",
                     "show": false,
-                    "name": "user_sns",
-                    "url": "/user/sns"
+                    "name": "user_message",
+                    "url": "/user/message"
                 }
             ]
         }

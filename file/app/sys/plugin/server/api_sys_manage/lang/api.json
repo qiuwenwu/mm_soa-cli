@@ -1,8 +1,8 @@
 {
-    "name": "user_sns2",
-    "title": "社交账户",
-    "description": "用于保存用的社交平台账户，方便同步登录",
-    "path": "/apis/user/sns",
+    "name": "sys_lang_manage",
+    "title": "系统语言",
+    "description": "用于开发站点多国语",
+    "path": "/apis/sys/lang",
     "method": "ALL",
     "cache": 0,
     "client_cache": false,

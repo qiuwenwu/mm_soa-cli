@@ -24,7 +24,7 @@
 		<meta property="twitter:title" content="${title}">
 		<meta property="twitter:description" content="${description}">
 		<meta property="twitter:image" content="/img/preview.png">
-		
+
 		<!-- 加载JS -->
 		<!--if lt IE 9]><script src="/js/html5.min.js"></script><![endif]-->
 		<script data-main="/home/pc/src/config" data-server="/" src="/js/require.js" charset="utf-8" async></script>
@@ -37,11 +37,28 @@
 		<link rel="stylesheet" href="/css/mm_base.css" async />
 		<link rel="stylesheet" href="/css/mm_common.css" async />
 		<link rel="stylesheet" href="/css/mm_component.css" async />
-		<link rel="stylesheet" type="text/css" href="/css/mm_theme.css" async />
+		<link rel="stylesheet" type="text/css" href="/theme/default/index.css" async />
 	</head>
 	<body>
-		<div id="app">
+		${lang.web_name}
+		<h5>${site_name}</h5>
+		<form action="/test" method="POST">
+			<!--{loop list item idx}-->
+			<!-- <dl v-for="(item, idx) in list"> -->
+			<dl>
+				<dt>姓名：</dt>
+				<dd>${ item.name }</dd>
+				<dd><input type="text" name="name" id="name" value="${item.name}" /></dd>
+				<dt>年龄：</dt>
+				<dd>${ item.age }</dd>
+				<dd><input type="number" name="age" id="age" value="${item.age}" /></dd>
+			</dl>
+			<!--{/loop}-->
+			<button type="submit">提交</button>
+			<button type="reset">重置</button>
+		</form>
+		<!-- 	<div id="app">
 			${content}
-		</div>
+		</div> -->
 	</body>
 </html>

@@ -1,5 +1,6 @@
 <template>
-	<div id="nav_quick">
+	<div class="mm_nav_fast" id="nav_quick">
+		<slot></slot>
 		<router-link v-for="(o, idx) in nav.quick" :key="idx" :to="o.url">
 			<mm_icon :src="o.icon" v-if="o.icon"></mm_icon>
 			<span>{{ o.title }}</span>
@@ -18,10 +19,6 @@
 </script>
 
 <style>
-	#nav_quick {
-		margin-left: -1px;
-	}
-
 	#nav_quick a .mm_icon {
 		float: left;
 	}

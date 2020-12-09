@@ -1,22 +1,26 @@
 <template>
-	<mm_page>
-		<mm_grid id="sign_in">
-			<mm_col>
-				<mm_view id="account_sign_in">
-					<mm_title>
-						<span class="h5">后台管理系统</span>
-					</mm_title>
-					<mm_form class="pc" id="form_account">
-						<mm_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱"></mm_input>
-						<input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成" @keyup.enter="sign_in()"></input>
-						<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
-						<mm_switch title="记住账户" v-model="remember_me"></mm_switch>
-					</mm_form>
-					<p class="copyright"><span>@ 超级美眉工作室</span></p>
-				</mm_view>
-			</mm_col>
-		</mm_grid>
-	</mm_page>
+	<mm_main>
+		<mm_warp>
+			<mm_container>
+				<mm_row id="sign_in">
+					<mm_col>
+						<mm_view id="account_sign_in">
+							<mm_title>
+								<span class="h5">后台管理系统</span>
+							</mm_title>
+							<mm_form class="pc" id="form_account">
+								<mm_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱"></mm_input>
+								<input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成" @keyup.enter="sign_in()"></input>
+								<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
+								<mm_switch title="记住账户" v-model="remember_me"></mm_switch>
+							</mm_form>
+							<p class="copyright"><span>@ 超级美眉工作室</span></p>
+						</mm_view>
+					</mm_col>
+				</mm_row>
+			</mm_container>
+		</mm_warp>
+	</mm_main>
 </template>
 
 <script>

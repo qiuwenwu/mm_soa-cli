@@ -1,5 +1,5 @@
 {
-    "name": "sys_address_city2",
+    "name": "sys_address_city_manage",
     "title": "城市",
     "description": "",
     "path": "/apis/sys/address_city",

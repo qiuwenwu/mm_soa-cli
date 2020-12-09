@@ -1,5 +1,5 @@
 {
-    "name": "sys_address_area2",
+    "name": "sys_address_area_manage",
     "title": "地区",
     "description": "",
     "path": "/apis/sys/address_area",

@@ -1,5 +1,5 @@
 {
-    "name": "sys_app_refresh2",
+    "name": "sys_app_refresh_manage",
     "title": "应用刷新",
     "description": "",
     "path": "/apis/sys/app_refresh",

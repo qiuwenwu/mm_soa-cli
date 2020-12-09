@@ -3,10 +3,10 @@
     "title": "系统配置",
     "add": {
         "body": [
-            "title",
-            "value",
             "description",
-            "model"
+            "model",
+            "title",
+            "value"
         ],
         "body_required": [
             "name",
@@ -22,19 +22,19 @@
     "set": {
         "query": [
             "config_id",
+            "description",
             "name",
             "title",
-            "description",
             "keyword"
         ],
         "query_required": [],
         "body": [
-            "name",
-            "type",
-            "title",
-            "value",
             "description",
-            "model"
+            "model",
+            "name",
+            "title",
+            "type",
+            "value"
         ],
         "body_required": [],
         "body_not": []
@@ -42,9 +42,9 @@
     "get": {
         "query": [
             "config_id",
+            "description",
             "name",
             "title",
-            "description",
             "keyword"
         ],
         "query_required": []
@@ -64,48 +64,14 @@
             }
         },
         {
-            "name": "name",
-            "title": "变量名",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
-            }
-        },
-        {
-            "name": "type",
-            "title": "数据类型",
-            "description": "string文本型、number数字型、boolean布尔型",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "notEmpty": 1
-            }
-        },
-        {
-            "name": "title",
-            "title": "变量标题",
-            "description": "可以用中文名",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {}
-        },
-        {
-            "name": "value",
-            "title": "变量值",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {}
-        },
-        {
             "name": "description",
             "title": "变量描述",
             "description": "描述该变量的作用",
             "type": "string",
             "dataType": "varchar",
-            "string": {}
+            "string": {
+                "max": 255
+            }
         },
         {
             "name": "model",
@@ -116,9 +82,51 @@
             "string": {}
         },
         {
+            "name": "name",
+            "title": "变量名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "变量标题",
+            "description": "可以用中文名",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "type",
+            "title": "数据类型",
+            "description": "string文本型、number数字型、boolean布尔型",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "value",
+            "title": "变量值",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索变量名(name)、变量标题(title)、变量描述(description)",
+            "description": "用于搜索变量描述(description)、变量名(name)、变量标题(title)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

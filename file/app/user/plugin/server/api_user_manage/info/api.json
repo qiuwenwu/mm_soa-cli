@@ -1,5 +1,5 @@
 {
-    "name": "user_info2",
+    "name": "user_info_manage",
     "title": "用户信息",
     "description": "用于保存用户个人信息，如年龄、住址等",
     "path": "/apis/user/info",

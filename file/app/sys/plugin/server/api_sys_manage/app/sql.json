@@ -4,42 +4,41 @@
     "table": "sys_app",
     "key": "app_id",
     "orderby_default": "`app_id` desc",
-    "field_obj": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`icon`,`url`,`bind_ip`,`scope`,`scope_not`,`users`",
-    "field_default": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`url`",
+    "field_obj": "`app_id`,`appid`,`appsecret`,`available`,`bind_ip`,`encoding_aes_key`,`encrypt`,`icon`,`max_age`,`name`,`scope`,`scope_not`,`times_allow`,`times_count`,`times_today`,`token`,`url`,`user_id`,`users`",
+    "field_default": "`app_id`,`appid`,`appsecret`,`available`,`encoding_aes_key`,`encrypt`,`max_age`,`name`,`time_update`,`times_allow`,`times_count`,`times_today`,`token`,`url`,`user_id`",
     "query": {
+        "appid": "`appid` like '%{0}%'",
+        "appsecret": "`appsecret` like '%{0}%'",
+        "bind_ip": "`bind_ip` like '%{0}%'",
+        "encoding_aes_key": "`encoding_aes_key` like '%{0}%'",
         "encrypt_min": "`encrypt` >= {0}",
         "encrypt_max": "`encrypt` <= {0}",
-        "times_allow_min": "`times_allow` >= {0}",
-        "times_allow_max": "`times_allow` <= {0}",
-        "times_today_min": "`times_today` >= {0}",
-        "times_today_max": "`times_today` <= {0}",
+        "icon": "`icon` like '%{0}%'",
         "max_age_min": "`max_age` >= {0}",
         "max_age_max": "`max_age` <= {0}",
-        "times_count_min": "`times_count` >= {0}",
-        "times_count_max": "`times_count` <= {0}",
-        "time_update_min": "`time_update` >= '{0}'",
-        "time_update_max": "`time_update` <= '{0}'",
         "name": "`name` like '%{0}%'",
-        "appid": "`appid` like '%{0}%'",
-        "token": "`token` like '%{0}%'",
-        "encoding_aes_key": "`encoding_aes_key` like '%{0}%'",
-        "appsecret": "`appsecret` like '%{0}%'",
-        "icon": "`icon` like '%{0}%'",
-        "url": "`url` like '%{0}%'",
-        "bind_ip": "`bind_ip` like '%{0}%'",
         "scope": "`scope` like '%{0}%'",
         "scope_not": "`scope_not` like '%{0}%'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "times_allow_min": "`times_allow` >= {0}",
+        "times_allow_max": "`times_allow` <= {0}",
+        "times_count_min": "`times_count` >= {0}",
+        "times_count_max": "`times_count` <= {0}",
+        "times_today_min": "`times_today` >= {0}",
+        "times_today_max": "`times_today` <= {0}",
+        "token": "`token` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
         "users": "`users` like '%{0}%'",
         "keyword": "(`name` like '%{0}%')"
     },
     "update": {
         "encrypt_add": "`encrypt` = `encrypt` + {0}",
-        "times_allow_add": "`times_allow` = `times_allow` + {0}",
-        "times_today_add": "`times_today` = `times_today` + {0}",
         "max_age_add": "`max_age` = `max_age` + {0}",
-        "times_count_add": "`times_count` = `times_count` + {0}"
+        "times_allow_add": "`times_allow` = `times_allow` + {0}",
+        "times_count_add": "`times_count` = `times_count` + {0}",
+        "times_today_add": "`times_today` = `times_today` + {0}"
     },
-    "field_hide": [],
     "format": [
         {
             "key": "available",
@@ -65,5 +64,6 @@
             "table": "user_account",
             "name": "nickname"
         }
-    ]
+    ],
+    "field_hide": []
 }

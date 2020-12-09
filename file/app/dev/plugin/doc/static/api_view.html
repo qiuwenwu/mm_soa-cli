@@ -16,25 +16,29 @@
 		<!-- 加载CSS样式 -->
 		<link rel="stylesheet" href="/css/font-awesome.min.css" async />
 		<link rel="stylesheet" href="/css/mm_base.css" async />
+		<link rel="stylesheet" href="/css/mm_layout.css" async />
 		<link rel="stylesheet" href="/css/mm_common.css" async />
 		<link rel="stylesheet" href="/css/mm_component.css" async />
-		<link rel="stylesheet" href="/css/mm_theme.css" async />
+		<link rel="stylesheet" href="/theme/default/index.css" async />
 
 		<!-- 加载JS脚本 -->
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/clipboard.min.js" async></script>
 		<script src="/js/vue.js"></script>
-		<script src="/js/mm_sdk.js" ></script>
+		<script src="/js/mm_sdk.js"></script>
 		<title>接口明细</title>
 		<style>
-			body { background: #fff; }
-			#app {
+			body {
+				background: #fff;
+			}
+
+			main {
 				padding: 2rem;
 			}
 
 			#app h4 {
 				padding-bottom: 0.5rem;
-				border-bottom: 1px solid rgba(125,125,125,0.25);
+				border-bottom: 1px solid rgba(125, 125, 125, 0.25);
 				margin-bottom: 1rem;
 			}
 
@@ -109,14 +113,14 @@
 			.mm_tabs {
 				margin-top: 2rem;
 				margin-bottom: 2rem;
-				border: 1px solid rgba(125,125,125,0.25);
+				border: 1px solid rgba(125, 125, 125, 0.25);
 			}
 
 			.mm_tabs a,
 			.mm_tabs span {
 				display: inline-block;
 				padding: 0.25rem 0.5rem;
-				border-right: 1px solid rgba(125,125,125,0.25);
+				border-right: 1px solid rgba(125, 125, 125, 0.25);
 			}
 
 			.mm_tabs a:hover {
@@ -159,119 +163,123 @@
 	</head>
 	<body>
 		<div id="app">
-			<div class="mm_warp">
-				<h4>API接口文档 —— <span>明细</span> <a class="fr" :href="'./api_list.html?scope=' + query.scope">回到列表</a></h4>
-				<!-- <p class="desc" v-if="error.code === 0">该接口使用明细请看下方：</p> -->
-				<p class="desc">{{ error.message }}</p>
-				<div class="mm_view" v-if="config.name">
-					<h5 style="border: none;">{{ config.title ? config.title : config.name }} <span class="mm_badge" v-if="oauth">{{ oauth }}</span></h5>
-					<p class="desc" style="border: none;">{{ config.description }}</p>
-					<dl>
-						<dt>调用地址：</dt>
-						<dd><a :href="config.path">{{ config.path }}</a></dd>
-					</dl>
-					<dl>
-						<dt>请求方式：</dt>
-						<dd>{{ toMethod(config.method) }}</dd>
-					</dl>
-					<dl>
-						<dt>返回类型：</dt>
-						<dd>{{ contentType }}</dd>
-					</dl>
+			<div class="mm_page">
+				<main>
+					<div class="mm_warp">
+						<h4>API接口文档 —— <span>明细</span> <a class="fr" :href="'./api_list.html?scope=' + query.scope">回到列表</a></h4>
+						<!-- <p class="desc" v-if="error.code === 0">该接口使用明细请看下方：</p> -->
+						<p class="desc">{{ error.message }}</p>
+						<div class="mm_view" v-if="config.name">
+							<h5 style="border: none;">{{ config.title ? config.title : config.name }} <span class="mm_badge" v-if="oauth">{{ oauth }}</span></h5>
+							<p class="desc" style="border: none;">{{ config.description }}</p>
+							<dl>
+								<dt>调用地址：</dt>
+								<dd><a :href="config.path">{{ config.path }}</a></dd>
+							</dl>
+							<dl>
+								<dt>请求方式：</dt>
+								<dd>{{ toMethod(config.method) }}</dd>
+							</dl>
+							<dl>
+								<dt>返回类型：</dt>
+								<dd>{{ contentType }}</dd>
+							</dl>
 
-					<div class="mm_tabs" v-if="config.type !== 'web'">
-						<span class="bg_grey">支持方法</span>
-						<a href="javascript:void(0)" v-for="(o, i) in tabs" :key="i" :class="{'active': i === index}" @click="index = i">
-							{{ o }}
-						</a>
-						<a href="javascript:void(0)" class="fr" @click="copyModel()">复制验证模型</a>
-					</div>
-					<div class="mm_collapse mm_collapse_default" v-if="list_headers.length > 0">
-						<div class="mm_head">
-							协议头参数<span>（Headers）</span>
-						</div>
-						<div class="mm_body">
-							<table class="mm_table table-sm table-hover">
-								<thead>
-									<tr>
-										<th width="150">参数</th>
-										<th width="100">类型</th>
-										<th width="70">必填</th>
-										<th width="200">标题</th>
-										<th>说明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="(o, k) in list_headers" :key="k">
-										<td><strong>{{ o.name }}</strong></td>
-										<td>{{ o.type }}</td>
-										<td>{{ o.required ? '是' : '否' }}</td>
-										<td>{{ o.title }}</td>
-										<td>{{ o.description }}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+							<div class="mm_tabs" v-if="config.type !== 'web'">
+								<span class="bg_grey">支持方法</span>
+								<a href="javascript:void(0)" v-for="(o, i) in tabs" :key="i" :class="{'active': i === index}" @click="index = i">
+									{{ o }}
+								</a>
+								<a href="javascript:void(0)" class="fr" @click="copyModel()">复制验证模型</a>
+							</div>
+							<div class="mm_collapse mm_collapse_default" v-if="list_headers.length > 0">
+								<div class="mm_head">
+									协议头参数<span>（Headers）</span>
+								</div>
+								<div class="mm_body">
+									<table class="mm_table table-sm table-hover">
+										<thead>
+											<tr>
+												<th width="150">参数</th>
+												<th width="100">类型</th>
+												<th width="70">必填</th>
+												<th width="200">标题</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="(o, k) in list_headers" :key="k">
+												<td><strong>{{ o.name }}</strong></td>
+												<td>{{ o.type }}</td>
+												<td>{{ o.required ? '是' : '否' }}</td>
+												<td>{{ o.title }}</td>
+												<td>{{ o.description }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 
-					<div class="mm_collapse mm_collapse_info" v-if="list_query.length > 0">
-						<div class="mm_head">
-							URL请求参数<span>（Query）</span> <a href="javascript:void(0)" @click="copy('query')">复制</a>
-						</div>
-						<div class="mm_body">
-							<table class="mm_table table-sm table-hover">
-								<thead>
-									<tr>
-										<th width="150">参数</th>
-										<th width="100">类型</th>
-										<th width="70">必填</th>
-										<th width="200">标题</th>
-										<th>说明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="(o, k) in list_query" :key="k">
-										<td><strong>{{ o.name }}</strong></td>
-										<td>{{ o.type }}</td>
-										<td>{{ o.required ? '是' : '否' }}</td>
-										<td>{{ o.title }}</td>
-										<td>{{ o.description }}</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="mm_collapse mm_collapse_info" v-if="list_query.length > 0">
+								<div class="mm_head">
+									URL请求参数<span>（Query）</span> <a href="javascript:void(0)" @click="copy('query')">复制</a>
+								</div>
+								<div class="mm_body">
+									<table class="mm_table table-sm table-hover">
+										<thead>
+											<tr>
+												<th width="150">参数</th>
+												<th width="100">类型</th>
+												<th width="70">必填</th>
+												<th width="200">标题</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="(o, k) in list_query" :key="k">
+												<td><strong>{{ o.name }}</strong></td>
+												<td>{{ o.type }}</td>
+												<td>{{ o.required ? '是' : '否' }}</td>
+												<td>{{ o.title }}</td>
+												<td>{{ o.description }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="mm_collapse mm_collapse_primary" v-if="list_body.length > 0">
+								<div class="mm_head">
+									正文请求参数<span>（Body）</span> <a href="javascript:void(0)" @click="copy('body')">复制</a>
+								</div>
+								<div class="mm_body">
+									<table class="mm_table table-sm table-hover">
+										<thead>
+											<tr>
+												<th width="150">参数</th>
+												<th width="100">类型</th>
+												<th width="70">必填</th>
+												<th width="200">标题</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="(o, k) in list_body" :key="k">
+												<td><strong>{{ o.name }}</strong></td>
+												<td>{{ o.type }}</td>
+												<td>{{ o.required ? '是' : '否' }}</td>
+												<td>{{ o.title }}</td>
+												<td>{{ o.description }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="desc center" v-if="list_query.length === 0 && list_body.length === 0 && config.type !== 'web'">无需传参</div>
 						</div>
 					</div>
-
-					<div class="mm_collapse mm_collapse_primary" v-if="list_body.length > 0">
-						<div class="mm_head">
-							正文请求参数<span>（Body）</span> <a href="javascript:void(0)" @click="copy('body')">复制</a>
-						</div>
-						<div class="mm_body">
-							<table class="mm_table table-sm table-hover">
-								<thead>
-									<tr>
-										<th width="150">参数</th>
-										<th width="100">类型</th>
-										<th width="70">必填</th>
-										<th width="200">标题</th>
-										<th>说明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="(o, k) in list_body" :key="k">
-										<td><strong>{{ o.name }}</strong></td>
-										<td>{{ o.type }}</td>
-										<td>{{ o.required ? '是' : '否' }}</td>
-										<td>{{ o.title }}</td>
-										<td>{{ o.description }}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div class="desc center" v-if="list_query.length === 0 && list_body.length === 0 && config.type !== 'web'">无需传参</div>
-				</div>
+				</main>
 			</div>
 		</div>
 		<script>

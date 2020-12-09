@@ -1,0 +1,17 @@
+{
+    "name": "sys_message2",
+    "title": "系统消息",
+    "table": "sys_message",
+    "key": "message_id",
+    "orderby_default": "`message_id` desc",
+    "field_obj": "`message_id`,`note`,`title`",
+    "field_default": "`message_id`,`title`",
+    "query": {
+        "note": "`note` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "keyword": "(`title` like '%{0}%')"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

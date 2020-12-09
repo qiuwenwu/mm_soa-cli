@@ -1,5 +1,5 @@
 <template>
-	<mm_grid id="root_index">
+	<main id="root_index"><mm_warp><mm_container><mm_row>
 		<mm_col>
 			<mm_view>
 				<mm_title>
@@ -11,7 +11,7 @@
 				</mm_body>
 			</mm_view>
 		</mm_col>
-	</mm_grid>
+	</mm_row></mm_container></mm_warp>
 </template>
 
 <script>

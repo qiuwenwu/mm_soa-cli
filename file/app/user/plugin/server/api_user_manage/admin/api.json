@@ -1,5 +1,5 @@
 {
-    "name": "user_admin2",
+    "name": "user_admin_manage",
     "title": "管理组",
     "description": "用于判断用户后台管理鉴权",
     "path": "/apis/user/admin",

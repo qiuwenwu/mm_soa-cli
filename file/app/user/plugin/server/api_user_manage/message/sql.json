@@ -1,0 +1,20 @@
+{
+    "name": "user_message2",
+    "title": "用户留言",
+    "table": "user_message",
+    "key": "message_id",
+    "orderby_default": "`message_id` desc",
+    "field_obj": "`content`,`email`,`message_id`,`name`,`phone`,`title`",
+    "field_default": "`email`,`message_id`,`name`,`phone`,`title`",
+    "query": {
+        "content": "`content` like '%{0}%'",
+        "email": "`email` like '%{0}%'",
+        "name": "`name` like '%{0}%'",
+        "phone": "`phone` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%')"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

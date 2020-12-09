@@ -1,0 +1,62 @@
+{
+	// SQL模板标题
+	"title": "示例sql模板",
+	// 调用的数据表
+	"table": "user_account",
+	// 表主键，用于getObj查询时
+	"key": "user_id",
+	// 排序方式，{0}表示支持前端传值来排序，传值方式例如：orderby=user_id
+	"orderby": "{0}",
+	// 默认排序方式，当前端没有传值的情况下，采用默认传值方式
+	"orderby_default": "`user_id` desc",
+	// 查询列表时返回的字段，{0}表示支持前端传值
+	"field": "{0}",
+	// 查询对象时返回的字段
+	"field_obj": "{0}",
+	// 默认返回字段
+	"field_default": "`username`, `phone`",
+	// 需要过滤的字段，*代表泛匹配 前面*表示以xxx结尾，后面*表示以xxx开头，前后*表示包含xxx的过滤
+	"field_hide": ["*password*", "*token*"],
+	// 传值分隔符，如果允许多个值，可以通过这个来分割，如果不允许传多个值则设置为空
+	"separator": "|",
+	// 关键词，用于过滤掉这些值不会写到查询条件中，同时用来识别传的参数
+	"keyword": {
+		// 数据表名，当"table":"{0}", 允许识别表明
+		"table": "table",
+		// 排序方式
+		"orderby": "orderby",
+		// 查询的字段
+		"field": "field",
+		// 页码
+		"page": "page",
+		// 页面大小
+		"size": "size",
+		// 总计，返回查询结果总数
+		"count": "count",
+		// 调用方式
+		"method": "method"
+	},
+	// 调用方式 add增 del删 set改 get查 import导入 export导出, 支持什么方式就传什么值，支持多个用空格分隔
+	"method": "add del set get import export",
+	// 查询条件转换
+	"query": {
+		// 当username=xx时，转为`username` like '%xxx%'的SQL语法
+		"username": "`username` like '%{0}%'"
+	},
+	// 修改时的查询条件
+	"where": {
+		// 当修改查询条件出现user_id=xx时，转为`user_id` = 'xxx'的SQL语法
+		"user_id": "`user_id` = '{0}'"
+	},
+	// 修改时值转换
+	"update": {
+		// 当修改的正文中出现username是转换为指定格式
+		"username": "`username` = '{0}'"
+	},
+	// SQL执行脚本，当设置js文件名后, 执行该SQL还将调用这个脚本
+	"func_file": "",
+	// 导入导出格式，转换导入、导出Eexcel时字段名和字段值
+	"format": [],
+	// 去重条件，需要查重、并去重的字段在这里写
+	"del_repeat": {}
+}

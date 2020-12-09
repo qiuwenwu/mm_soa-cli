@@ -25,6 +25,12 @@
 			"title": "名称",
 			"description": "选择要操作的配置文件名称",
 			"type": "string"
+		},
+		{
+			"name": "path",
+			"title": "名称",
+			"description": "选择要操作的配置文件名称",
+			"type": "string"
 		}
 	]
 }

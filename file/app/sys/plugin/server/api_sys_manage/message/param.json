@@ -1,0 +1,77 @@
+{
+    "name": "sys_message2",
+    "title": "系统消息",
+    "add": {
+        "body": [
+            "note",
+            "title"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "message_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "message_id",
+            "title",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "note",
+            "title"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "message_id",
+            "title",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "list": [
+        {
+            "name": "message_id",
+            "title": "消息ID",
+            "description": "用于记录和识别消息",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "note",
+            "title": "留言内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "title",
+            "title": "留言标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索留言标题(title)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}
