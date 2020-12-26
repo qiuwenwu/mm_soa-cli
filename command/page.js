@@ -1,5 +1,5 @@
 const program = require('commander');
-var dir_from = './template/'.fullname(__dirname);
+var dir_from = './template/'.fullname(__dirname + "/");
 var dir_to = process.cwd() + "/";
 
 // program

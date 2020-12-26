@@ -10,12 +10,12 @@ var exec = require('child_process').exec;
 require('mm_expand');
 
 var copyFile = require('./copyFile');
-
-var dir_from = './template/'.fullname(__dirname);
+var dirname = __dirname + "/";
+var dir_from = './template/'.fullname(dirname);
 var dir_to = process.cwd() + "/";
 
 
-var files = "./command/".fullname(__dirname).getFile();
+var files = "./command/".fullname(dirname).getFile();
 for(var i = 0; i < files.length; i++){
 	var file = files[i];
 	require(file);
@@ -47,7 +47,7 @@ function prompt_2(options, answers) {
 		spinner.start();
 		try {
 			// 复制目录
-			copyFile('./file/'.fullname(__dirname), './');
+			copyFile('./file/'.fullname(dirname), './');
 
 			// 设置package.json
 			var text = (dir_from + 'package.json').loadText();
