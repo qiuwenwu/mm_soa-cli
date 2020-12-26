@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}管理组</h5>
@@ -11,6 +11,15 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
+										<dt>上级</dt>
+										<dd>
+											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+										</dd>
+										<dt class="required">名称</dt>
+										<dd>
+											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											 :required="true" />
+										</dd>
 										<dt>部门</dt>
 										<dd>
 											<mm_input v-model="form.department" :minlength="0" :maxlength="12" placeholder="用于区分管理组织结构" />
@@ -19,18 +28,9 @@
 										<dd>
 											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
 										</dd>
-										<dt>上级</dt>
-										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
-										</dd>
 										<dt>图标</dt>
 										<dd>
 											<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
-										</dd>
-										<dt class="required">名称</dt>
-										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
-											 :required="true" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -66,14 +66,14 @@
 				},
 				form: {
 					"admin_id": 0,
+					"father_id": 0,
+					"name": '',
 					"department": '',
 					"description": '',
-					"father_id": 0,
 					"icon": '',
-					"name": '',
 				},
 				// 上级
-				'list_admin': [ ],
+				'list_admin':[],
 			}
 		},
 		methods: {
@@ -90,8 +90,8 @@
 				}
 				this.$get('~/apis/user/admin?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_admin .clear();
-						_this.list_admin .addList(json.result.list)
+						_this.list_admin.clear();
+						_this.list_admin.addList(json.result.list)
 					}
 				});
 			},

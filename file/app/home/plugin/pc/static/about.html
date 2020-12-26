@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+	<head>
+		${@view('./common/head.html')}
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_page">
+				${@view('./common/header.html')}
+				<main>
+					<!-- 路径导航 -->
+					<div class="mm_warp">
+						
+					</div>
+				</main>
+				${@view('./common/footer.html')}
+			</div>
+		</div>
+		
+		<!-- 公共js -->
+		<script src="/home/pc/js/common.js"></script>
+		<!-- 实例化VUE业务 -->
+		<script>
+			var app = new Vue({
+				el: "#app",
+				mixins: [mixin_page],
+				mounted() {
+					
+				}
+			});
+		</script>
+	</body>
+</html>

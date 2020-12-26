@@ -26,10 +26,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./app_refresh_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -38,10 +40,7 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="刷新Token的ID" v-model="query.orderby" field="refresh_id" :func="search"></mm_reverse>
-											</th>
-											<th>
-												<mm_reverse title="刷新令牌" v-model="query.orderby" field="refresh_token" :func="search"></mm_reverse>
+												<mm_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></mm_reverse>
@@ -50,7 +49,10 @@
 												<mm_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></mm_reverse>
+												<mm_reverse title="应用ID" v-model="query.orderby" field="appid" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="刷新令牌" v-model="query.orderby" field="refresh_token" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -59,14 +61,9 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ o.appid }}</span>
-											</td>
-											<td>
-												<span>{{ o.refresh_id }}</span>
-											</td>
-											<td>
-												<span>{{ o.refresh_token }}</span>
+												<span>{{ get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
 											</td>
 											<td>
 												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
@@ -75,7 +72,10 @@
 												<span>{{ $to_time(o.time_update, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ o.appid }}</span>
+											</td>
+											<td>
+												<span>{{ o.refresh_token }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./app_refresh_form?refresh_id=' + o[field]">修改</mm_btn>
@@ -138,6 +138,8 @@
 				url_get_list: "/apis/sys/app_refresh",
 				url_del: "/apis/sys/app_refresh?method=del&",
 				url_set: "/apis/sys/app_refresh?method=set&",
+				url_import: "/apis/sys/app_refresh?method=import&",
+				url_export: "/apis/sys/app_refresh?method=export&",
 				field: "refresh_id",
 				query_set: {
 					"refresh_id": ""
@@ -165,7 +167,7 @@
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
 				// 用户
-				'list_account': [ ],
+				'list_account':[],
 				// 视图模型
 				vm: {}
 			}
@@ -184,8 +186,8 @@
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_account .clear();
-						_this.list_account .addList(json.result.list)
+						_this.list_account.clear();
+						_this.list_account.addList(json.result.list)
 					}
 				});
 			},

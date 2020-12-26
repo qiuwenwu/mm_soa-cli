@@ -26,7 +26,7 @@
 									<h5 @click="$copy(code_1)">样式一(PC)</h5>
 								</div>
 								<div class="card_body">
-									<mm_checkbox v-model="value" :options="options"></mm_checkbox>
+									<mm_checkbox :symbol="symbol" v-model="value" :options="options"></mm_checkbox>
 								</div>
 							</mm_card>
 						</mm_col>
@@ -36,7 +36,7 @@
 									<h5 @click="$copy(code_2)">样式二(mobile)</h5>
 								</div>
 								<div class="card_body">
-									<mm_checkbox v-model="value" :options="options"></mm_checkbox>
+									<mm_checkbox :symbol="symbol" v-model="value" :options="options"></mm_checkbox>
 								</div>
 							</mm_card>
 						</mm_col>
@@ -50,6 +50,7 @@
 							<mm_card>
 								<div class="card_body">
 									选择结果：{{ value }}
+									<input class="fr" style="width: 4rem;" placeholder="分隔符" v-model="symbol">
 								</div>
 							</mm_card>
 						</mm_col>
@@ -64,6 +65,7 @@
 	export default {
 		data() {
 			return {
+				symbol: ",",
 				value: "",
 				options: [{
 						name: "选项一",

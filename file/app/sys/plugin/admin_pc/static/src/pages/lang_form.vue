@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}系统语言</h5>
@@ -11,22 +11,22 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
+										<dt>英文</dt>
+										<dd>
+											<mm_input v-model="form.en" :minlength="0" :maxlength="255" placeholder="" />
+										</dd>
 										<dt>日文</dt>
 										<dd>
 											<mm_input v-model="form.ja" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
-										<dt class="required">键名</dt>
+										<dt class="required">主键</dt>
 										<dd>
-											<mm_input v-model="form.key" :minlength="0" :maxlength="16" placeholder="用于获取对应语言值"
+											<mm_input v-model="form.key" :minlength="0" :maxlength="32" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>韩文</dt>
 										<dd>
 											<mm_input v-model="form.ko" :minlength="0" :maxlength="255" placeholder="" />
-										</dd>
-										<dt>语言ID</dt>
-										<dd>
-											<mm_input v-model="form.lang_id" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>简体中文</dt>
 										<dd>
@@ -69,11 +69,11 @@
 					"lang_id": 0
 				},
 				form: {
+					"lang_id": 0,
 					"en": '',
 					"ja": '',
 					"key": '',
 					"ko": '',
-					"lang_id": 0,
 					"zh_cn": '',
 					"zh_tw": '',
 				},

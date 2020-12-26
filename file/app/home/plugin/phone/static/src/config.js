@@ -33,7 +33,7 @@ require({
 		router: './router',
 		echarts: '/js/echarts',
 		page: '/src/mixins/page.js',
-		nav: '/api/nav.js?scope=home_phone',
+		nav: '/api/sys/nav.js?scope=home_phone',
 	},
 	shim: {
 		polyfill: {

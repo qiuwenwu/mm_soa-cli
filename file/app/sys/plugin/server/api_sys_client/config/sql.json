@@ -4,8 +4,8 @@
     "table": "sys_config",
     "key": "config_id",
     "orderby_default": "`config_id` desc",
-    "field_obj": "`config_id`,`description`,`model`,`name`,`title`,`type`,`value`",
-    "field_default": "`config_id`,`description`,`name`,`title`,`type`,`value`",
+    "field_obj": "`config_id`,`name`,`type`,`title`,`value`,`description`,`model`",
+    "field_default": "`config_id`,`name`,`type`,`title`,`value`,`description`",
     "method": "get get_obj",
     "query": {
         "description": "`description` like '%{0}%'",
@@ -14,7 +14,7 @@
         "title": "`title` like '%{0}%'",
         "type": "`type` like '%{0}%'",
         "value": "`value` like '%{0}%'",
-        "keyword": "(`description` like '%{0}%' || `name` like '%{0}%' || `title` like '%{0}%')"
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')"
     },
     "query_default": {},
     "update": {},

@@ -4,8 +4,8 @@
     "table": "user_account",
     "key": "user_id",
     "orderby_default": "`user_id` desc",
-    "field_obj": "`admin_id`,`avatar`,`create_time`,`email`,`email_state`,`friends`,`gm`,`group_id`,`invite_code`,`login_ip`,`login_time`,`mc`,`nickname`,`phone`,`phone_state`,`referee_id`,`signature`,`state`,`user_id`,`username`,`vip`",
-    "field_default": "`admin_id`,`avatar`,`create_time`,`email`,`email_state`,`gm`,`group_id`,`invite_code`,`login_ip`,`login_time`,`mc`,`nickname`,`phone`,`phone_state`,`referee_id`,`signature`,`state`,`user_id`,`username`,`vip`",
+    "field_obj": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`,`create_time`",
+    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`create_time`",
     "method": "get get_obj",
     "query": {
         "avatar": "`avatar` like '%{0}%'",
@@ -35,7 +35,7 @@
         "username": "`username` like '%{0}%'",
         "vip_min": "`vip` >= {0}",
         "vip_max": "`vip` <= {0}",
-        "keyword": "(`nickname` like '%{0}%' || `username` like '%{0}%')"
+        "keyword": "(`username` like '%{0}%' || `nickname` like '%{0}%')"
     },
     "query_default": {
         "user_id": "`user_id` = {user_id}"
@@ -50,18 +50,14 @@
     },
     "format": [
         {
-            "key": "admin_id",
-            "title": "所在管理组",
-            "table": "user_admin",
-            "name": "name"
-        },
-        {
-            "key": "email_state",
-            "title": "邮箱认证",
+            "key": "state",
+            "title": "账户状态",
             "list": [
-                "未认证",
-                "审核中",
-                "已认证"
+                "",
+                "可用",
+                "异常",
+                "已冻结",
+                "已注销"
             ]
         },
         {
@@ -69,6 +65,19 @@
             "title": "所在用户组",
             "table": "user_group",
             "name": "name"
+        },
+        {
+            "key": "admin_id",
+            "title": "所在管理组",
+            "table": "user_admin",
+            "name": "name"
+        },
+        {
+            "key": "referee_id",
+            "title": "推荐人",
+            "table": "user_account",
+            "name": "nickname",
+            "id": "user_id"
         },
         {
             "key": "phone_state",
@@ -80,21 +89,12 @@
             ]
         },
         {
-            "key": "referee_id",
-            "title": "推荐人",
-            "table": "user_account",
-            "name": "nickname",
-            "id": "user_id"
-        },
-        {
-            "key": "state",
-            "title": "账户状态",
+            "key": "email_state",
+            "title": "邮箱认证",
             "list": [
-                "",
-                "可用",
-                "异常",
-                "已冻结",
-                "已注销"
+                "未认证",
+                "审核中",
+                "已认证"
             ]
         }
     ],

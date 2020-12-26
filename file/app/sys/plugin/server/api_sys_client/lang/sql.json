@@ -4,8 +4,8 @@
     "table": "sys_lang",
     "key": "lang_id",
     "orderby_default": "`lang_id` desc",
-    "field_obj": "`en`,`ja`,`key`,`ko`,`lang_id`,`zh_cn`,`zh_tw`",
-    "field_default": "`en`,`ja`,`key`,`ko`,`lang_id`,`zh_cn`,`zh_tw`",
+    "field_obj": "`lang_id`,`en`,`ja`,`key`,`ko`,`zh_cn`,`zh_tw`",
+    "field_default": "`lang_id`,`en`,`ja`,`key`,`ko`,`zh_cn`,`zh_tw`",
     "method": "get get_obj",
     "query": {
         "en": "`en` like '%{0}%'",

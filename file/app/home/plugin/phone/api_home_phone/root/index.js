@@ -9,7 +9,7 @@ const file =  '../../static/index.html'.fullname(__dirname);
 async function main(ctx, db) {
 	var path = ctx.path;
 	if (path.indexOf('.') === -1) {
-		var type = ctx.cookies.get('lang_type') || 'en';
+		var type = ctx.cookies.get('sys_lang') || 'en';
 		db.table = "sys_lang";
 		db.size = 0;
 		var arr = await db.get({}, "", "`key`" + ",`" + type + "`");

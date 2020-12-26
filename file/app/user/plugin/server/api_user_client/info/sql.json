@@ -4,8 +4,8 @@
     "table": "user_info",
     "key": "user_id",
     "orderby_default": "`user_id` desc",
-    "field_obj": "`address`,`age`,`birthday`,`city_id`,`company_address`,`company_business`,`idcard`,`idcard_img`,`idcard_state`,`job`,`job_scope`,`major`,`name`,`province_id`,`school`,`sex`,`user_id`",
-    "field_default": "`address`,`age`,`birthday`,`city_id`,`company_address`,`company_business`,`idcard`,`idcard_state`,`job`,`job_scope`,`major`,`name`,`province_id`,`school`,`sex`,`user_id`",
+    "field_obj": "`user_id`,`sex`,`idcard_state`,`age`,`province_id`,`city_id`,`birthday`,`name`,`job`,`school`,`major`,`idcard`,`company_address`,`address`,`job_scope`,`company_business`,`idcard_img`",
+    "field_default": "`user_id`,`sex`,`idcard_state`,`age`,`province_id`,`city_id`,`birthday`,`name`,`job`,`school`,`major`,`idcard`,`company_address`,`address`,`job_scope`,`company_business`",
     "method": "get get_obj",
     "query": {
         "address": "`address` like '%{0}%'",
@@ -38,10 +38,13 @@
     },
     "format": [
         {
-            "key": "city_id",
-            "title": "所在城市",
-            "table": "sys_address_city",
-            "name": "name"
+            "key": "sex",
+            "title": "性别",
+            "list": [
+                "未设置",
+                "男",
+                "女"
+            ]
         },
         {
             "key": "idcard_state",
@@ -60,13 +63,10 @@
             "name": "name"
         },
         {
-            "key": "sex",
-            "title": "性别",
-            "list": [
-                "未设置",
-                "男",
-                "女"
-            ]
+            "key": "city_id",
+            "title": "所在城市",
+            "table": "sys_address_city",
+            "name": "name"
         }
     ],
     "filter": {

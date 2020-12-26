@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}广告信息</h5>
@@ -26,6 +26,10 @@
 										<dt>广告描述</dt>
 										<dd>
 											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
+										</dd>
+										<dt>呈现设备</dt>
+										<dd>
+											<mm_input v-model="form.device" :minlength="0" :maxlength="125" placeholder="在什么设备上展示，web_pc / web_pad / web_phone / app_pad / app_phone，多个设备用逗号隔开" />
 										</dd>
 										<dt>费用</dt>
 										<dd>
@@ -134,6 +138,7 @@
 					"area_id": 0,
 					"city_id": 0,
 					"description": '',
+					"device": '',
 					"fee": 0,
 					"fee_max": 0,
 					"fee_max": 0,
@@ -153,11 +158,11 @@
 					"user_id": 0,
 				},
 				// 投放地区
-				'list_address_area': [ ],
+				'list_address_area':[],
 				// 投放城市
-				'list_address_city': [ ],
+				'list_address_city':[],
 				// 广告主
-				'list_account': [ ],
+				'list_account':[],
 			}
 		},
 		methods: {
@@ -174,8 +179,8 @@
 				}
 				this.$get('~/apis/sys/address_area?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_area .clear();
-						_this.list_address_area .addList(json.result.list)
+						_this.list_address_area.clear();
+						_this.list_address_area.addList(json.result.list)
 					}
 				});
 			},
@@ -192,8 +197,8 @@
 				}
 				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_city .clear();
-						_this.list_address_city .addList(json.result.list)
+						_this.list_address_city.clear();
+						_this.list_address_city.addList(json.result.list)
 					}
 				});
 			},
@@ -210,8 +215,8 @@
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_account .clear();
-						_this.list_account .addList(json.result.list)
+						_this.list_account.clear();
+						_this.list_account.addList(json.result.list)
 					}
 				});
 			},

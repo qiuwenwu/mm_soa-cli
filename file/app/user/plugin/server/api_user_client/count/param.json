@@ -3,7 +3,8 @@
     "title": "用户统计",
     "add": {
         "body": [
-            "coin",
+            "level",
+            "iq",
             "credit",
             "credit_points",
             "exp",
@@ -15,9 +16,8 @@
             "extcredits6",
             "extcredits7",
             "extcredits8",
-            "iq",
-            "level",
-            "money"
+            "money",
+            "coin"
         ],
         "body_required": []
     },
@@ -29,8 +29,11 @@
     },
     "set": {
         "query": [
-            "coin_min",
-            "coin_max",
+            "user_id",
+            "level_min",
+            "level_max",
+            "iq_min",
+            "iq_max",
             "credit_min",
             "credit_max",
             "credit_points_min",
@@ -53,18 +56,17 @@
             "extcredits7_max",
             "extcredits8_min",
             "extcredits8_max",
-            "iq_min",
-            "iq_max",
-            "level_min",
-            "level_max",
             "money_min",
             "money_max",
-            "user_id"
+            "coin_min",
+            "coin_max"
         ],
         "query_required": [],
         "body": [
-            "coin",
-            "coin_add",
+            "level",
+            "level_add",
+            "iq",
+            "iq_add",
             "credit",
             "credit_add",
             "credit_points",
@@ -87,20 +89,21 @@
             "extcredits7_add",
             "extcredits8",
             "extcredits8_add",
-            "iq",
-            "iq_add",
-            "level",
-            "level_add",
             "money",
-            "money_add"
+            "money_add",
+            "coin",
+            "coin_add"
         ],
         "body_required": [],
         "body_not": []
     },
     "get": {
         "query": [
-            "coin_min",
-            "coin_max",
+            "user_id",
+            "level_min",
+            "level_max",
+            "iq_min",
+            "iq_max",
             "credit_min",
             "credit_max",
             "credit_points_min",
@@ -123,40 +126,92 @@
             "extcredits7_max",
             "extcredits8_min",
             "extcredits8_max",
-            "iq_min",
-            "iq_max",
-            "level_min",
-            "level_max",
             "money_min",
             "money_max",
-            "user_id"
+            "coin_min",
+            "coin_max"
         ],
         "query_required": []
     },
     "list": [
         {
-            "name": "coin",
-            "title": "货币",
-            "description": "用于游戏或数字货币业务",
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "",
             "type": "number",
-            "dataType": "decimal",
-            "number": {}
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
         },
         {
-            "name": "coin_min",
-            "title": "货币——最小值",
-            "description": "用于游戏或数字货币业务",
+            "name": "level",
+            "title": "等级",
+            "description": "",
             "type": "number",
-            "dataType": "decimal",
-            "number": {}
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
         },
         {
-            "name": "coin_max",
-            "title": "货币——最大值",
-            "description": "用于游戏或数字货币业务",
+            "name": "level_min",
+            "title": "等级——最小值",
+            "description": "",
             "type": "number",
-            "dataType": "decimal",
-            "number": {}
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "level_max",
+            "title": "等级——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "iq",
+            "title": "IQ智商",
+            "description": "用于激励用户评论和发帖",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "range": [
+                    80,
+                    200
+                ]
+            }
+        },
+        {
+            "name": "iq_min",
+            "title": "IQ智商——最小值",
+            "description": "用于激励用户评论和发帖",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "range": [
+                    80,
+                    200
+                ]
+            }
+        },
+        {
+            "name": "iq_max",
+            "title": "IQ智商——最大值",
+            "description": "用于激励用户评论和发帖",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "range": [
+                    80,
+                    200
+                ]
+            }
         },
         {
             "name": "credit",
@@ -489,75 +544,6 @@
             }
         },
         {
-            "name": "iq",
-            "title": "IQ智商",
-            "description": "用于激励用户评论和发帖",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "range": [
-                    80,
-                    200
-                ]
-            }
-        },
-        {
-            "name": "iq_min",
-            "title": "IQ智商——最小值",
-            "description": "用于激励用户评论和发帖",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "range": [
-                    80,
-                    200
-                ]
-            }
-        },
-        {
-            "name": "iq_max",
-            "title": "IQ智商——最大值",
-            "description": "用于激励用户评论和发帖",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "range": [
-                    80,
-                    200
-                ]
-            }
-        },
-        {
-            "name": "level",
-            "title": "等级",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "level_min",
-            "title": "等级——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
-            "name": "level_max",
-            "title": "等级——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
-            }
-        },
-        {
             "name": "money",
             "title": "钱",
             "description": "用于现金业务",
@@ -582,17 +568,28 @@
             "number": {}
         },
         {
-            "name": "user_id",
-            "title": "用户ID",
-            "description": "",
+            "name": "coin",
+            "title": "货币",
+            "description": "用于游戏或数字货币业务",
             "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
-            }
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "coin_min",
+            "title": "货币——最小值",
+            "description": "用于游戏或数字货币业务",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "coin_max",
+            "title": "货币——最大值",
+            "description": "用于游戏或数字货币业务",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
         }
     ]
 }

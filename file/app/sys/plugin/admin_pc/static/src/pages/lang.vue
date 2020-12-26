@@ -22,10 +22,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./lang_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -34,16 +36,16 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
+												<mm_reverse title="英文" v-model="query.orderby" field="en" :func="search"></mm_reverse>
+											</th>
+											<th>
 												<mm_reverse title="日文" v-model="query.orderby" field="ja" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="键名" v-model="query.orderby" field="key" :func="search"></mm_reverse>
+												<mm_reverse title="主键" v-model="query.orderby" field="key" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="韩文" v-model="query.orderby" field="ko" :func="search"></mm_reverse>
-											</th>
-											<th>
-												<mm_reverse title="语言ID" v-model="query.orderby" field="lang_id" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="简体中文" v-model="query.orderby" field="zh_cn" :func="search"></mm_reverse>
@@ -58,6 +60,7 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.en }}</span>
 											</td>
@@ -69,9 +72,6 @@
 											</td>
 											<td>
 												<span>{{ o.ko }}</span>
-											</td>
-											<td>
-												<span>{{ o.lang_id }}</span>
 											</td>
 											<td>
 												<span>{{ o.zh_cn }}</span>
@@ -136,6 +136,8 @@
 				url_get_list: "/apis/sys/lang",
 				url_del: "/apis/sys/lang?method=del&",
 				url_set: "/apis/sys/lang?method=set&",
+				url_import: "/apis/sys/lang?method=import&",
+				url_export: "/apis/sys/lang?method=export&",
 				field: "lang_id",
 				query_set: {
 					"lang_id": ""

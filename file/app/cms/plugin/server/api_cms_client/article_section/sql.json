@@ -1,0 +1,31 @@
+{
+    "name": "cms_article_section",
+    "title": "文章章节",
+    "table": "cms_article_section",
+    "key": "section_id",
+    "orderby_default": "`display` asc",
+    "field_obj": "`section_id`,`article_id`,`title`,`tag`,`content`,`img`",
+    "field_default": "`section_id`,`display`,`article_id`,`title`,`tag`",
+    "method": "get get_obj",
+    "query": {
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "title": "`title` like '%{0}%'",
+        "tag": "`tag` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "img": "`img` like '%{0}%'",
+        "keyword": "(`title` like '%{0}%' || `tag` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "article_id",
+            "title": "对应文章",
+            "table": "cms_article",
+            "name": "title"
+        }
+    ]
+}

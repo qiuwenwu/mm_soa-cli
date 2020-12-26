@@ -22,10 +22,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./count_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -33,6 +35,12 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
+											<th>
+												<mm_reverse title="等级" v-model="query.orderby" field="level" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="IQ智商" v-model="query.orderby" field="iq" :func="search"></mm_reverse>
+											</th>
 											<th>
 												<mm_reverse title="信用度" v-model="query.orderby" field="credit" :func="search"></mm_reverse>
 											</th>
@@ -67,16 +75,10 @@
 												<mm_reverse title="拓展积分8" v-model="query.orderby" field="extcredits8" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="IQ智商" v-model="query.orderby" field="iq" :func="search"></mm_reverse>
-											</th>
-											<th>
-												<mm_reverse title="等级" v-model="query.orderby" field="level" :func="search"></mm_reverse>
-											</th>
-											<th>
 												<mm_reverse title="钱" v-model="query.orderby" field="money" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="用户ID" v-model="query.orderby" field="user_id" :func="search"></mm_reverse>
+												<mm_reverse title="货币" v-model="query.orderby" field="coin" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -85,8 +87,12 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ o.coin }}</span>
+												<span>{{ o.level }}</span>
+											</td>
+											<td>
+												<span>{{ o.iq }}</span>
 											</td>
 											<td>
 												<span>{{ o.credit }}</span>
@@ -122,16 +128,10 @@
 												<span>{{ o.extcredits8 }}</span>
 											</td>
 											<td>
-												<span>{{ o.iq }}</span>
-											</td>
-											<td>
-												<span>{{ o.level }}</span>
-											</td>
-											<td>
 												<span>{{ o.money }}</span>
 											</td>
 											<td>
-												<span>{{ o.user_id }}</span>
+												<span>{{ o.coin }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./count_form?user_id=' + o[field]">修改</mm_btn>
@@ -190,6 +190,8 @@
 				url_get_list: "/apis/user/count",
 				url_del: "/apis/user/count?method=del&",
 				url_set: "/apis/user/count?method=set&",
+				url_import: "/apis/user/count?method=import&",
+				url_export: "/apis/user/count?method=export&",
 				field: "user_id",
 				query_set: {
 					"user_id": ""
@@ -200,10 +202,16 @@
 					page: 1,
 					//页面大小
 					size: 10,
-					// 货币——最小值
-					'coin_min': 0,
-					// 货币——最大值
-					'coin_max': 0,
+					// 用户ID
+					'user_id': 0,
+					// 等级——最小值
+					'level_min': 0,
+					// 等级——最大值
+					'level_max': 0,
+					// IQ智商——最小值
+					'iq_min': 0,
+					// IQ智商——最大值
+					'iq_max': 0,
 					// 信用度——最小值
 					'credit_min': 0,
 					// 信用度——最大值
@@ -248,20 +256,14 @@
 					'extcredits8_min': 0,
 					// 拓展积分8——最大值
 					'extcredits8_max': 0,
-					// IQ智商——最小值
-					'iq_min': 0,
-					// IQ智商——最大值
-					'iq_max': 0,
-					// 等级——最小值
-					'level_min': 0,
-					// 等级——最大值
-					'level_max': 0,
 					// 钱——最小值
 					'money_min': 0,
 					// 钱——最大值
 					'money_max': 0,
-					// 用户ID
-					'user_id': 0,
+					// 货币——最小值
+					'coin_min': 0,
+					// 货币——最大值
+					'coin_max': 0,
 					//排序
 					orderby: ""
 				},

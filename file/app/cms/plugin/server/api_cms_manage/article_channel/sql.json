@@ -1,0 +1,62 @@
+{
+    "name": "cms_article_channel2",
+    "title": "文章频道",
+    "table": "cms_article_channel",
+    "key": "channel_id",
+    "orderby_default": "`channel_id` desc",
+    "field_obj": "`available`,`can_comment`,`channel_id`,`city_id`,`description`,`father_id`,`hide`,`icon`,`name`,`template`,`url`",
+    "field_default": "`available`,`can_comment`,`channel_id`,`city_id`,`description`,`display`,`father_id`,`hide`,`name`,`template`,`url`",
+    "query": {
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "template": "`template` like '%{0}%'",
+        "description": "`description` like '%{0}%'",
+        "icon": "`icon` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "keyword": "(`description` like '%{0}%' || `name` like '%{0}%')"
+    },
+    "update": {
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "can_comment",
+            "title": "是否可评论",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "city_id",
+            "title": "所属城市",
+            "table": "sys_address_city",
+            "name": "name"
+        },
+        {
+            "key": "father_id",
+            "title": "上级",
+            "table": "cms_article_channel",
+            "name": "name",
+            "id": "channel_id"
+        },
+        {
+            "key": "hide",
+            "title": "是否隐藏",
+            "list": [
+                "否",
+                "是"
+            ]
+        }
+    ],
+    "field_hide": []
+}

@@ -3,10 +3,10 @@
     "title": "管理组",
     "add": {
         "body": [
+            "father_id",
+            "display",
             "department",
             "description",
-            "display",
-            "father_id",
             "icon"
         ],
         "body_required": [
@@ -22,21 +22,21 @@
     "set": {
         "query": [
             "admin_id",
-            "description",
             "display_min",
             "display_max",
             "name",
+            "description",
             "keyword"
         ],
         "query_required": [],
         "body": [
-            "department",
-            "description",
+            "father_id",
             "display",
             "display_add",
-            "father_id",
-            "icon",
-            "name"
+            "name",
+            "department",
+            "description",
+            "icon"
         ],
         "body_required": [],
         "body_not": []
@@ -44,10 +44,10 @@
     "get": {
         "query": [
             "admin_id",
-            "description",
             "display_min",
             "display_max",
             "name",
+            "description",
             "keyword"
         ],
         "query_required": []
@@ -60,30 +60,17 @@
             "type": "number",
             "dataType": "smallint",
             "number": {
-                "range": [
-                    1,
-                    1000
-                ]
+                "max": 1000
             }
         },
         {
-            "name": "department",
-            "title": "部门",
-            "description": "用于区分管理组织结构",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 12
-            }
-        },
-        {
-            "name": "description",
-            "title": "描述",
-            "description": "描述该用户组的特点或权限范围",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255
+            "name": "father_id",
+            "title": "上级ID",
+            "description": "(user_admin.name.admin_id)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
             }
         },
         {
@@ -117,27 +104,6 @@
             }
         },
         {
-            "name": "father_id",
-            "title": "上级ID",
-            "description": "(user_admin.name.admin_id)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "range": [
-                    1,
-                    32767
-                ]
-            }
-        },
-        {
-            "name": "icon",
-            "title": "图标",
-            "description": "用于标识用户组",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
             "name": "name",
             "title": "名称",
             "description": "",
@@ -149,9 +115,37 @@
             }
         },
         {
+            "name": "department",
+            "title": "部门",
+            "description": "用于区分管理组织结构",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 12
+            }
+        },
+        {
+            "name": "description",
+            "title": "描述",
+            "description": "描述该用户组的特点或权限范围",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "icon",
+            "title": "图标",
+            "description": "用于标识用户组",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索描述(description)、名称(name)",
+            "description": "用于搜索名称(name)、描述(description)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

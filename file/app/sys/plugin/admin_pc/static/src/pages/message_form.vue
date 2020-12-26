@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}系统消息</h5>

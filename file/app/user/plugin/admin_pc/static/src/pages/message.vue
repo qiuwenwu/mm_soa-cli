@@ -15,7 +15,7 @@
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="留言内容 / 留言者姓名 / 留言标题"
+											<mm_input v-model="query.keyword" title="关键词" desc="留言标题 / 留言内容 / 留言者姓名"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -26,10 +26,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./message_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -38,16 +40,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="消息ID" v-model="query.orderby" field="message_id" :func="search"></mm_reverse>
-											</th>
-											<th>
-												<mm_reverse title="留言者姓名" v-model="query.orderby" field="name" :func="search"></mm_reverse>
+												<mm_reverse title="留言标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="留言者手机" v-model="query.orderby" field="phone" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="留言标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
+												<mm_reverse title="留言者邮箱" v-model="query.orderby" field="email" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="留言者姓名" v-model="query.orderby" field="name" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="留言时间" v-model="query.orderby" field="time_create" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -56,20 +61,21 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ o.email }}</span>
-											</td>
-											<td>
-												<span>{{ o.message_id }}</span>
-											</td>
-											<td>
-												<span>{{ o.name }}</span>
+												<span>{{ o.title }}</span>
 											</td>
 											<td>
 												<span>{{ o.phone }}</span>
 											</td>
 											<td>
-												<span>{{ o.title }}</span>
+												<span>{{ o.email }}</span>
+											</td>
+											<td>
+												<span>{{ o.name }}</span>
+											</td>
+											<td>
+												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./message_form?message_id=' + o[field]">修改</mm_btn>
@@ -128,6 +134,8 @@
 				url_get_list: "/apis/user/message",
 				url_del: "/apis/user/message?method=del&",
 				url_set: "/apis/user/message?method=set&",
+				url_import: "/apis/user/message?method=import&",
+				url_export: "/apis/user/message?method=export&",
 				field: "message_id",
 				query_set: {
 					"message_id": ""
@@ -138,14 +146,18 @@
 					page: 1,
 					//页面大小
 					size: 10,
-					// 留言内容
-					'content': '',
 					// 消息ID
 					'message_id': 0,
-					// 留言者姓名
-					'name': '',
 					// 留言标题
 					'title': '',
+					// 留言内容
+					'content': '',
+					// 留言者姓名
+					'name': '',
+					// 留言时间——开始时间
+					'time_create_min': '',
+					// 留言时间——结束时间
+					'time_create_max': '',
 					// 关键词
 					'keyword': '',
 					//排序

@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}用户留言</h5>
@@ -11,25 +11,25 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>留言者邮箱</dt>
+										<dt>留言标题</dt>
 										<dd>
-											<mm_input v-model="form.email" :minlength="0" :maxlength="125" placeholder="" />
+											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
-										<dt>消息ID</dt>
+										<dt>留言内容</dt>
 										<dd>
-											<mm_input v-model="form.message_id" :minlength="0" :maxlength="0" placeholder="用于记录和识别消息" />
-										</dd>
-										<dt>留言者姓名</dt>
-										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
+											<mm_textarea v-model="form.content" type="text" placeholder="" />
 										</dd>
 										<dt>留言者手机</dt>
 										<dd>
 											<mm_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="" />
 										</dd>
-										<dt>留言标题</dt>
+										<dt>留言者邮箱</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
+											<mm_input v-model="form.email" :minlength="0" :maxlength="125" placeholder="" />
+										</dd>
+										<dt>留言者姓名</dt>
+										<dd>
+											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -64,12 +64,12 @@
 					"message_id": 0
 				},
 				form: {
-					"content": '',
-					"email": '',
 					"message_id": 0,
-					"name": '',
-					"phone": '',
 					"title": '',
+					"content": '',
+					"phone": '',
+					"email": '',
+					"name": '',
 				},
 			}
 		},

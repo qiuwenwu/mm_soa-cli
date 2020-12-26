@@ -21,7 +21,7 @@ require({
 		mm_sdk: '/js/mm_sdk',
 		mm_vue: '/js/mm_vue',
 		ui: '/js/mm_vue_ui',
-		nav: '/api/nav.js?scope=dev_pc',
+		nav: '/api/sys/nav.js?scope=dev_pc',
 		store: './store',
 		router: './router',
 		echarts: '/js/echarts',

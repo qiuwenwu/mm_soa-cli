@@ -43,6 +43,16 @@
     },
     "list": [
         {
+            "name": "lang_id",
+            "title": "语言ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
             "name": "en",
             "title": "英文",
             "description": "",
@@ -64,12 +74,12 @@
         },
         {
             "name": "key",
-            "title": "键名",
-            "description": "用于获取对应语言值",
+            "title": "主键",
+            "description": "",
             "type": "string",
             "dataType": "varchar",
             "string": {
-                "max": 16,
+                "max": 32,
                 "notEmpty": true
             }
         },
@@ -81,16 +91,6 @@
             "dataType": "varchar",
             "string": {
                 "max": 255
-            }
-        },
-        {
-            "name": "lang_id",
-            "title": "语言ID",
-            "description": "",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 2147483647
             }
         },
         {

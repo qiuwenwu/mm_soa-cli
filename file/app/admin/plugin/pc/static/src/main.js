@@ -23,7 +23,7 @@ require({
 		sortablejs: '/js/sortable.min',
 		vuedraggable: '/js/vuedraggable.min',
 		ui: '/js/mm_vue_ui',
-		nav: '/api/nav.js?scope=admin_pc',
+		nav: '/api/sys/nav.js?scope=admin_pc',
 		store: './store',
 		router: './router',
 		echarts: '/js/echarts',

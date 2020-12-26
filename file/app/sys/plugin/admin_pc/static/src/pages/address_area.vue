@@ -19,11 +19,11 @@
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
-											 @change="search()" />
+											<mm_select v-model="query.show" title="是否可见" :options="$to_kv(arr_show)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.show" title="是否可见" :options="$to_kv(arr_show)" @change="search()" />
+											<mm_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
+											 @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -33,10 +33,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./address_area_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -45,16 +47,16 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="所属城市" v-model="query.orderby" field="city_id" :func="search"></mm_reverse>
+												<mm_reverse title="是否可见" v-model="query.orderby" field="show" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="地区名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
+												<mm_reverse title="所属城市" v-model="query.orderby" field="city_id" :func="search"></mm_reverse>
 											</th>
 											<th>
-												<mm_reverse title="是否可见" v-model="query.orderby" field="show" :func="search"></mm_reverse>
+												<mm_reverse title="地区名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -63,20 +65,18 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ o.area_id }}</span>
-											</td>
-											<td>
-												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{arr_show[o.show] }}</span>
 											</td>
 											<td>
 												<input class="td_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ o.name }}</span>
+												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{arr_show[o.show] }}</span>
+												<span>{{ o.name }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./address_area_form?area_id=' + o[field]">修改</mm_btn>
@@ -111,13 +111,13 @@
 				</div>
 				<div class="card_body">
 					<dl>
-						<dt>所属城市</dt>
-						<dd>
-							<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
-						</dd>
 						<dt>是否可见</dt>
 						<dd>
 							<mm_select v-model="form.show" :options="$to_kv(arr_show)" />
+						</dd>
+						<dt>所属城市</dt>
+						<dd>
+							<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
 						</dd>
 					</dl>
 				</div>
@@ -143,6 +143,8 @@
 				url_get_list: "/apis/sys/address_area",
 				url_del: "/apis/sys/address_area?method=del&",
 				url_set: "/apis/sys/address_area?method=set&",
+				url_import: "/apis/sys/address_area?method=import&",
+				url_export: "/apis/sys/address_area?method=export&",
 				field: "area_id",
 				query_set: {
 					"area_id": ""
@@ -155,16 +157,16 @@
 					size: 10,
 					// 地区ID
 					'area_id': 0,
+					// 是否可见——最小值
+					'show_min': '',
+					// 是否可见——最大值
+					'show_max': '',
 					// 显示顺序——最小值
 					'display_min': 0,
 					// 显示顺序——最大值
 					'display_max': 0,
 					// 地区名称
 					'name': '',
-					// 是否可见——最小值
-					'show_min': '',
-					// 是否可见——最大值
-					'show_max': '',
 					// 关键词
 					'keyword': '',
 					//排序
@@ -173,10 +175,10 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
-				// 所属城市
-				'list_address_city': [ ],
 				// 是否可见
-				'arr_show': [ '仅表单可见' , '表单和搜索可见' , '均可见' ],
+				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
+				// 所属城市
+				'list_address_city':[],
 				// 视图模型
 				vm: {}
 			}
@@ -195,8 +197,8 @@
 				}
 				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_city .clear();
-						_this.list_address_city .addList(json.result.list)
+						_this.list_address_city.clear();
+						_this.list_address_city.addList(json.result.list)
 					}
 				});
 			},

@@ -1,5 +1,5 @@
 <template>
-	<mm_page id="page_btn">
+	<mm_page id="page_select">
 		<header>
 			<mm_warp>
 				<mm_container>
@@ -22,7 +22,9 @@
 					<mm_row class="pb">
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_1)">样式一 (原生)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_1)">样式一 (原生)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options"></mm_select>
 								</div>
@@ -30,7 +32,9 @@
 						</mm_col>
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_2)">样式二 (鼠标经过 hover)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_2)">样式二 (鼠标经过 hover)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options" type="hover"></mm_select>
 								</div>
@@ -38,7 +42,9 @@
 						</mm_col>
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_3)">样式三 (获取焦点 focus)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_3)">样式三 (获取焦点 focus)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options" type="focus"></mm_select>
 								</div>
@@ -46,7 +52,9 @@
 						</mm_col>
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_4)">样式四 (点击 click)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_4)">样式四 (点击 click)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options" type="click"></mm_select>
 								</div>
@@ -54,7 +62,9 @@
 						</mm_col>
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_5)">样式五 (带图标)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_5)">样式五 (带图标)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options" type="click" class="select_diy">
 										<mm_icon src="/img/avatar.png"></mm_icon>
@@ -64,7 +74,9 @@
 						</mm_col>
 						<mm_col class="col-12 col-md-33">
 							<mm_card class="pc">
-								<div class="card_head"><h5 @click="$copy(code_5)">样式六 (多选)</h5></div>
+								<div class="card_head">
+									<h5 @click="$copy(code_5)">样式六 (多选)</h5>
+								</div>
 								<div class="card_body">
 									<mm_select v-model="value" :options="options" type="multiple"></mm_select>
 								</div>
@@ -124,8 +136,12 @@
 	}
 </script>
 
-<style>
-	.select_diy img {
+<style scoped="scoped">
+	#page_select .select_diy img {
 		width: 2rem;
+	}
+
+	#page_select .card_body {
+		padding-bottom: 8rem;
 	}
 </style>

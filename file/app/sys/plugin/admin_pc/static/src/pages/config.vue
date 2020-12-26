@@ -15,7 +15,7 @@
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="变量描述 / 变量名 / 变量标题"
+											<mm_input v-model="query.keyword" title="关键词" desc="变量名 / 变量标题 / 变量描述"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -26,10 +26,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./config_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -38,19 +40,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="变量描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
-											</th>
-											<th>
 												<mm_reverse title="变量名" v-model="query.orderby" field="name" :func="search"></mm_reverse>
-											</th>
-											<th>
-												<mm_reverse title="变量标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="数据类型" v-model="query.orderby" field="type" :func="search"></mm_reverse>
 											</th>
 											<th>
+												<mm_reverse title="变量标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
+											</th>
+											<th>
 												<mm_reverse title="变量值" v-model="query.orderby" field="value" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="变量描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -59,23 +61,21 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
-											<td>
-												<span>{{ o.config_id }}</span>
-											</td>
-											<td>
-												<span>{{ o.description }}</span>
-											</td>
+											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.name }}</span>
-											</td>
-											<td>
-												<span>{{ o.title }}</span>
 											</td>
 											<td>
 												<span>{{ o.type }}</span>
 											</td>
 											<td>
+												<span>{{ o.title }}</span>
+											</td>
+											<td>
 												<span>{{ o.value }}</span>
+											</td>
+											<td>
+												<span>{{ o.description }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./config_form?config_id=' + o[field]">修改</mm_btn>
@@ -134,6 +134,8 @@
 				url_get_list: "/apis/sys/config",
 				url_del: "/apis/sys/config?method=del&",
 				url_set: "/apis/sys/config?method=set&",
+				url_import: "/apis/sys/config?method=import&",
+				url_export: "/apis/sys/config?method=export&",
 				field: "config_id",
 				query_set: {
 					"config_id": ""
@@ -146,12 +148,12 @@
 					size: 10,
 					// 配置ID
 					'config_id': 0,
-					// 变量描述
-					'description': '',
 					// 变量名
 					'name': '',
 					// 变量标题
 					'title': '',
+					// 变量描述
+					'description': '',
 					// 关键词
 					'keyword': '',
 					//排序

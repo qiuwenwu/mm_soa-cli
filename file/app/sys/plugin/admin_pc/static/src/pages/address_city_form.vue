@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}城市</h5>
@@ -11,18 +11,18 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt class="required">城市名称</dt>
+										<dt>显示位置</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
-											 :required="true" />
+											<mm_select v-model="form.show" :options="$to_kv(arr_show)" />
 										</dd>
 										<dt>所属省份</dt>
 										<dd>
 											<mm_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name')" />
 										</dd>
-										<dt>显示位置</dt>
+										<dt class="required">城市名称</dt>
 										<dd>
-											<mm_select v-model="form.show" :options="$to_kv(arr_show)" />
+											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											 :required="true" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -58,14 +58,14 @@
 				},
 				form: {
 					"city_id": 0,
-					"name": '',
-					"province_id": 0,
 					"show": 0,
+					"province_id": 0,
+					"name": '',
 				},
-				// 所属省份
-				'list_address_province': [ ],
 				// 显示位置
-				'arr_show': [ '仅表单可见' , '表单和搜索可见' , '均可见' ],
+				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
+				// 所属省份
+				'list_address_province':[],
 			}
 		},
 		methods: {
@@ -82,8 +82,8 @@
 				}
 				this.$get('~/apis/sys/address_province?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_province .clear();
-						_this.list_address_province .addList(json.result.list)
+						_this.list_address_province.clear();
+						_this.list_address_province.addList(json.result.list)
 					}
 				});
 			},

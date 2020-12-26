@@ -1,5 +1,5 @@
 {
-	"target": "/home*",
+	"target": "/*",
 	"name": "home_pc",
 	"title": "电脑端",
 	"description": "用于访问电脑端页面",

@@ -3,7 +3,7 @@
     "title": "用户留言",
     "description": "用于记录用提交的留言信息",
     "path": "/api/user/message",
-    "method": "ALL",
+    "method": "POST",
     "cache": 0,
     "client_cache": false,
     "param_path": "./param.json",

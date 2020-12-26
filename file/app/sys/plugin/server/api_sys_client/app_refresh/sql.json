@@ -4,8 +4,8 @@
     "table": "sys_app_refresh",
     "key": "refresh_id",
     "orderby_default": "`refresh_id` desc",
-    "field_obj": "`appid`,`refresh_id`,`refresh_token`,`time_create`,`time_update`,`user_id`",
-    "field_default": "`appid`,`refresh_id`,`refresh_token`,`time_create`,`time_update`,`user_id`",
+    "field_obj": "`refresh_id`,`user_id`,`time_create`,`time_update`,`appid`,`refresh_token`",
+    "field_default": "`refresh_id`,`user_id`,`time_create`,`time_update`,`appid`,`refresh_token`",
     "method": "get get_obj",
     "query": {
         "appid": "`appid` like '%{0}%'",

@@ -246,8 +246,23 @@
 		line-height: 2rem;
 	}
 
-	.mm_action>div {
+	.mm_action .btns {
 		float: right;
+	}
+
+	.mm_action .btn_small {
+		padding: 0 2.5rem;
+		margin-right: auto;
+	}
+
+	.mm_action .btn_small .mm_btn {
+		font-size: 0.625rem;
+		height: 1.5rem;
+		line-height: 1.5rem;
+		padding-left: var(--padding_mini);
+		padding-right: var(--padding_mini);
+		position: relative;
+		top: 0.25rem
 	}
 
 	.mm_action::before,
@@ -267,14 +282,18 @@
 		padding-right: 1rem;
 		color: var(--color_default);
 	}
-	
+
 	#copyright a:hover {
 		color: var(--color_info);
 	}
-	
+
 	@media (max-width: 576px) {
 		#copyright {
 			display: none;
+		}
+		
+		.col-mm-12 .mm_form input {
+			width: 100%;
 		}
 	}
 </style>

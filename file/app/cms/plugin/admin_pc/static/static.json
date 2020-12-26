@@ -1,0 +1,18 @@
+{
+	// 路由路径，注意：这里是泛路径，相当于/*
+	"path": "/cms/admin_pc",
+	// 默认文件，当直接访问这个路径时，如果存在默认文件，这直接访问该文件
+	"index": "index.html",
+	// 资源缓存寿命，单位：秒
+	"maxAge": 0,
+	// 是否恒久不变，一般资源文件可能变化，所以这里一般是false
+	"immutable": false,
+	// 是否使用brotli压缩方式
+	"brotli": true,
+	// 是否启用gzip压缩方式
+	"gzip": true,
+	// 是否限制访问指定拓展名的文件，多个
+	"extensions": null,
+	// 是否转换JS、vue代码为amd标准，true的情况下会把es6和commonJS都转成amd格式
+	"convert_amd": true
+}

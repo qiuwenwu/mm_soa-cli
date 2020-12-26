@@ -38,10 +38,12 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<input type="file" accept=".xls,.xlsx,.csv" class="mm_btn btn_primary-x" @click="import_db()">导入</input>
-										<mm_btn class="btn_primary-x" @click.native="export_db()">导出</mm_btn>
 										<mm_btn class="btn_primary-x" url="./ad_form">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -60,6 +62,9 @@
 											</th>
 											<th>
 												<mm_reverse title="广告描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
+											</th>
+											<th>
+												<mm_reverse title="呈现设备" v-model="query.orderby" field="device" :func="search"></mm_reverse>
 											</th>
 											<th>
 												<mm_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></mm_reverse>
@@ -122,9 +127,7 @@
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
-											<td>
-												<span>{{ o.ad_id }}</span>
-											</td>
+											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.app }}</span>
 											</td>
@@ -136,6 +139,9 @@
 											</td>
 											<td>
 												<span>{{ o.description }}</span>
+											</td>
+											<td>
+												<span>{{ o.device }}</span>
 											</td>
 											<td>
 												<input class="td_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
@@ -260,6 +266,8 @@
 				url_get_list: "/apis/sys/ad",
 				url_del: "/apis/sys/ad?method=del&",
 				url_set: "/apis/sys/ad?method=set&",
+				url_import: "/apis/sys/ad?method=import&",
+				url_export: "/apis/sys/ad?method=export&",
 				field: "ad_id",
 				query_set: {
 					"ad_id": ""
@@ -317,11 +325,11 @@
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
 				// 投放地区
-				'list_address_area': [ ],
+				'list_address_area':[],
 				// 投放城市
-				'list_address_city': [ ],
+				'list_address_city':[],
 				// 广告主
-				'list_account': [ ],
+				'list_account':[],
 				// 视图模型
 				vm: {}
 			}
@@ -340,8 +348,8 @@
 				}
 				this.$get('~/apis/sys/address_area?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_area .clear();
-						_this.list_address_area .addList(json.result.list)
+						_this.list_address_area.clear();
+						_this.list_address_area.addList(json.result.list)
 					}
 				});
 			},
@@ -358,8 +366,8 @@
 				}
 				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_address_city .clear();
-						_this.list_address_city .addList(json.result.list)
+						_this.list_address_city.clear();
+						_this.list_address_city.addList(json.result.list)
 					}
 				});
 			},
@@ -376,8 +384,8 @@
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {
 					if (json.result) {
-						_this.list_account .clear();
-						_this.list_account .addList(json.result.list)
+						_this.list_account.clear();
+						_this.list_account.addList(json.result.list)
 					}
 				});
 			},

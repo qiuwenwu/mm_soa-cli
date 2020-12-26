@@ -1,9 +1,0 @@
-[{
-	"target": "/",
-	"name": "root",
-	"title": "首页",
-	"description": "当访问首页时路由转向/home",
-	"stage": "main",
-	"func_file": "./main.js",
-	"sort": 101
-}]

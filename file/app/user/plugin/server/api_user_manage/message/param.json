@@ -3,11 +3,11 @@
     "title": "用户留言",
     "add": {
         "body": [
+            "title",
             "content",
-            "email",
-            "name",
             "phone",
-            "title"
+            "email",
+            "name"
         ],
         "body_required": []
     },
@@ -19,53 +19,36 @@
     },
     "set": {
         "query": [
-            "content",
             "message_id",
-            "name",
             "title",
+            "content",
+            "name",
             "keyword"
         ],
         "query_required": [],
         "body": [
+            "title",
             "content",
-            "email",
-            "name",
             "phone",
-            "title"
+            "email",
+            "name"
         ],
         "body_required": [],
         "body_not": []
     },
     "get": {
         "query": [
-            "content",
             "message_id",
-            "name",
             "title",
+            "content",
+            "name",
+            "time_create_min",
+            "time_create_max",
             "keyword"
         ],
         "query_required": []
     },
     "list": [
-        {
-            "name": "content",
-            "title": "留言内容",
-            "description": "",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
-            "name": "email",
-            "title": "留言者邮箱",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 125,
-                "format": "email"
-            }
-        },
         {
             "name": "message_id",
             "title": "消息ID",
@@ -74,27 +57,6 @@
             "dataType": "int",
             "number": {
                 "max": 2147483647
-            }
-        },
-        {
-            "name": "name",
-            "title": "留言者姓名",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 16
-            }
-        },
-        {
-            "name": "phone",
-            "title": "留言者手机",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 11,
-                "format": "phone"
             }
         },
         {
@@ -108,9 +70,82 @@
             }
         },
         {
+            "name": "content",
+            "title": "留言内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "phone",
+            "title": "留言者手机",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 11,
+                "format": "phone"
+            }
+        },
+        {
+            "name": "email",
+            "title": "留言者邮箱",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125,
+                "format": "email"
+            }
+        },
+        {
+            "name": "name",
+            "title": "留言者姓名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "time_create",
+            "title": "留言时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "留言时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "留言时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索留言内容(content)、留言者姓名(name)、留言标题(title)",
+            "description": "用于搜索留言标题(title)、留言内容(content)、留言者姓名(name)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

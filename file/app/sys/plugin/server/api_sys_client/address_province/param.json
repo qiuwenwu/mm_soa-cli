@@ -3,8 +3,8 @@
     "title": "省份",
     "add": {
         "body": [
-            "display",
-            "show"
+            "show",
+            "display"
         ],
         "body_required": [
             "name"
@@ -18,38 +18,78 @@
     },
     "set": {
         "query": [
-            "display_min",
-            "display_max",
-            "name",
             "province_id",
             "show_min",
             "show_max",
+            "display_min",
+            "display_max",
+            "name",
             "keyword"
         ],
         "query_required": [],
         "body": [
+            "show",
+            "show_add",
             "display",
             "display_add",
-            "name",
-            "show",
-            "show_add"
+            "name"
         ],
         "body_required": [],
         "body_not": []
     },
     "get": {
         "query": [
-            "display_min",
-            "display_max",
-            "name",
             "province_id",
             "show_min",
             "show_max",
+            "display_min",
+            "display_max",
+            "name",
             "keyword"
         ],
         "query_required": []
     },
     "list": [
+        {
+            "name": "province_id",
+            "title": "省份ID",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "show",
+            "title": "是否可见",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
+        {
+            "name": "show_min",
+            "title": "是否可见——最小值",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
+        {
+            "name": "show_max",
+            "title": "是否可见——最大值",
+            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 2
+            }
+        },
         {
             "name": "display",
             "title": "显示顺序",
@@ -89,49 +129,6 @@
             "string": {
                 "max": 16,
                 "notEmpty": true
-            }
-        },
-        {
-            "name": "province_id",
-            "title": "省份ID",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
-            }
-        },
-        {
-            "name": "show",
-            "title": "是否可见",
-            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 2
-            }
-        },
-        {
-            "name": "show_min",
-            "title": "是否可见——最小值",
-            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 2
-            }
-        },
-        {
-            "name": "show_max",
-            "title": "是否可见——最大值",
-            "description": "(0仅表单可见|1表单和搜索可见|2均可见)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 2
             }
         },
         {

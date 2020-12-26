@@ -22,9 +22,9 @@
         ],
         "query_required": [],
         "body": [
+            "user_id",
             "appid",
-            "refresh_token",
-            "user_id"
+            "refresh_token"
         ],
         "body_required": [],
         "body_not": []
@@ -41,38 +41,23 @@
     },
     "list": [
         {
-            "name": "appid",
-            "title": "应用ID",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 16,
-                "notEmpty": true
-            }
-        },
-        {
             "name": "refresh_id",
             "title": "刷新Token的ID",
             "description": "",
             "type": "number",
             "dataType": "int",
             "number": {
-                "range": [
-                    1,
-                    2147483647
-                ]
+                "max": 2147483647
             }
         },
         {
-            "name": "refresh_token",
-            "title": "刷新令牌",
-            "description": "用来刷新访问牌，保留30天",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 32,
-                "notEmpty": true
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
             }
         },
         {
@@ -142,16 +127,25 @@
             }
         },
         {
-            "name": "user_id",
-            "title": "用户ID",
-            "description": "表示当前Token绑定的用户uid(user_account.nickname)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+            "name": "appid",
+            "title": "应用ID",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "refresh_token",
+            "title": "刷新令牌",
+            "description": "用来刷新访问牌，保留30天",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
             }
         }
     ]

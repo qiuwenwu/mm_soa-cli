@@ -1,0 +1,77 @@
+[{
+		"name": "wechat",
+		"client_id": "",
+		"client_secret": "",
+		"token": "",
+		"scope": "snsapi_userinfo",
+		"url_code": "https://open.weixin.qq.com/connect/oauth2/authorize?appid={client_id}&redirect_uri={redirect_uri}&response_type=code&scope={scope}&state={state}#wechat_redirect",
+		"url_token": "https://api.weixin.qq.com/sns/oauth2/access_token?appid={client_id}&secret={client_secret}&code={code}&grant_type=authorization_code",
+		"url_user_info": "https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={open_id}&lang=zh_CN",
+		"url_check_token": "https://api.weixin.qq.com/sns/auth?access_token={access_token}&openid={open_id}",
+		"url_refresh_token": "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={client_id}&grant_type=refresh_token&refresh_token={refresh_token}",
+		"dict": {
+			"client_id": "appid",
+			"client_secret": "secret",
+			"open_id": "openid"
+		}
+	},
+	{
+		"name": "qq",
+		"client_id": "",
+		"client_secret": "",
+		"scope": "get_user_info",
+		"url_code": "https://graph.qq.com/oauth2.0/authorize?grant_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}&scope={scope}&display=mobile",
+		"url_token": "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={client_id}&client_secret={client_secret}",
+		"url_user_info": "https://graph.qq.com/user/get_user_info?access_token={access_token}&oauth_consumer_key={client_id}&openid={open_id}",
+		"url_check_token": "https://graph.qq.com/user/get_user_info?access_token{access_token}&oauth_consumer_key={client_id}&openid={open_id}&format=json",
+		"url_refresh_token": "https://graph.qq.com/oauth2.0/token?grant_type=refresh_token&client_id={client_id}&client_secret={client_secret}&refresh_token={refresh_token}",
+		"dict": {
+			"open_id": "openid",
+			"access_token": "client_secret"
+		}
+	},
+	{
+		"name": "taobao",
+		"client_id": "",
+		"client_secret": "",
+		"url_code": "https://oauth.taobao.com/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}&view=web",
+		"url_token": "https://oauth.taobao.com/token?grant_type=authorization_code&client_id={client_id}&client_secret={client_secret}&client_secret={client_secret}&code={code}&redirect_uri={redirect_uri}",
+		"url_user_info": "",
+		"url_check_token": "",
+		"url_refresh_token": "",
+		"dict": {
+			"expires_in": "expires_in",
+			"open_id": "taobao_user_id"
+		}
+	},
+	{
+		"name": "sina",
+		"client_id": "",
+		"client_secret": "",
+		"url_code": "",
+		"url_token": "",
+		"url_user_info": "",
+		"url_check_token": "",
+		"url_refresh_token": ""
+	},
+	{
+		"name": "github",
+		"client_id": "",
+		"client_secret": "",
+		"url_code": "",
+		"url_token": "",
+		"url_user_info": "",
+		"url_check_token": "",
+		"url_refresh_token": ""
+	},
+	{
+		"name": "gitee",
+		"client_id": "",
+		"client_secret": "",
+		"url_code": "",
+		"url_token": "",
+		"url_user_info": "",
+		"url_check_token": "",
+		"url_refresh_token": ""
+	}
+]

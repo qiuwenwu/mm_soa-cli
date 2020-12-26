@@ -18,6 +18,39 @@
                 "user_admin": []
             }
         },
+		{
+		    "name": "sys_ad_form",
+		    "path": "/sys/ad_form",
+		    "component": "/sys/admin_pc/src/pages/ad_form.vue",
+		    "level": 4,
+		    "oauth": {
+		        "signIn": true,
+		        "gm": 2,
+		        "user_admin": []
+		    }
+		},
+		{
+		    "name": "sys_nav",
+		    "path": "/sys/nav",
+		    "component": "/sys/admin_pc/src/pages/nav.vue",
+		    "level": 3,
+		    "oauth": {
+		        "signIn": true,
+		        "gm": 2,
+		        "user_admin": []
+		    }
+		},
+		{
+		    "name": "sys_form",
+		    "path": "/sys/nav_form",
+		    "component": "/sys/admin_pc/src/pages/nav_form.vue",
+		    "level": 4,
+		    "oauth": {
+		        "signIn": true,
+		        "gm": 2,
+		        "user_admin": []
+		    }
+		},
         {
             "name": "sys_ad_form",
             "path": "/sys/ad_form",
@@ -221,10 +254,16 @@
             "display": 0,
             "sub": [
                 {
-                    "title": "广告信息",
+                    "title": "广告",
                     "show": false,
                     "name": "sys_ad",
                     "url": "/sys/ad"
+                },
+                {
+                    "title": "导航",
+                    "show": false,
+                    "name": "sys_nav",
+                    "url": "/sys/nav"
                 },
                 {
                     "title": "地区",

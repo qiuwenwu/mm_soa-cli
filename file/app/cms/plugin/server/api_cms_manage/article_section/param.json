@@ -1,0 +1,161 @@
+{
+    "name": "cms_article_section2",
+    "title": "文章章节",
+    "add": {
+        "body": [
+            "display",
+            "article_id",
+            "content",
+            "img"
+        ],
+        "body_required": [
+            "title",
+            "tag"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "section_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "section_id",
+            "display_min",
+            "display_max",
+            "title",
+            "tag",
+            "content",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "display",
+            "display_add",
+            "article_id",
+            "title",
+            "tag",
+            "content",
+            "img"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "section_id",
+            "display_min",
+            "display_max",
+            "title",
+            "tag",
+            "content",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "list": [
+        {
+            "name": "section_id",
+            "title": "章节模块ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "range": [
+                    1,
+                    2147483647
+                ]
+            }
+        },
+        {
+            "name": "display",
+            "title": "排序",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "排序——最小值",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "排序——最大值",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "article_id",
+            "title": "对应文章ID",
+            "description": "(cms_article.title)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "range": [
+                    1,
+                    2147483647
+                ]
+            }
+        },
+        {
+            "name": "title",
+            "title": "章节标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "tag",
+            "title": "章节标签",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "content",
+            "title": "章节内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "img",
+            "title": "章节图片",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索章节标题(title)、章节标签(tag)、章节内容(content)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

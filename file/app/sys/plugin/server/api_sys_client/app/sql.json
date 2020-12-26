@@ -4,8 +4,8 @@
     "table": "sys_app",
     "key": "app_id",
     "orderby_default": "`app_id` desc",
-    "field_obj": "`app_id`,`appid`,`appsecret`,`available`,`bind_ip`,`encoding_aes_key`,`encrypt`,`icon`,`max_age`,`name`,`scope`,`scope_not`,`time_update`,`times_allow`,`times_count`,`times_today`,`token`,`url`,`user_id`,`users`",
-    "field_default": "`app_id`,`appid`,`appsecret`,`available`,`encoding_aes_key`,`encrypt`,`max_age`,`name`,`time_update`,`times_allow`,`times_count`,`times_today`,`token`,`url`,`user_id`",
+    "field_obj": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`icon`,`url`,`bind_ip`,`scope`,`scope_not`,`users`",
+    "field_default": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`url`",
     "method": "get get_obj",
     "query": {
         "appid": "`appid` like '%{0}%'",

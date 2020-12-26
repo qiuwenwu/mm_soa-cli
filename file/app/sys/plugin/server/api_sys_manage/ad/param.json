@@ -7,6 +7,7 @@
             "area_id",
             "city_id",
             "description",
+            "device",
             "display",
             "fee",
             "fee_max",
@@ -63,6 +64,7 @@
             "area_id",
             "city_id",
             "description",
+            "device",
             "display",
             "display_add",
             "fee",
@@ -124,10 +126,7 @@
             "type": "number",
             "dataType": "smallint",
             "number": {
-                "range": [
-                    1,
-                    32767
-                ]
+                "max": 32767
             }
         },
         {
@@ -168,6 +167,16 @@
             "dataType": "varchar",
             "string": {
                 "max": 255
+            }
+        },
+        {
+            "name": "device",
+            "title": "呈现设备",
+            "description": "在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
             }
         },
         {
@@ -467,10 +476,7 @@
             "type": "number",
             "dataType": "mediumint",
             "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+                "max": 8388607
             }
         },
         {
