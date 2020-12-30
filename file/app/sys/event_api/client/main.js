@@ -3,8 +3,6 @@ var api = $.api_admin('sys_client', '系统客户端');
 api.update('sys/');
 
 var sql = $.mysql_admin('sys', __dirname);
-sql.setConfig($.config.mysql);
-sql.open();
 
 /**
  * @description 接口主函数

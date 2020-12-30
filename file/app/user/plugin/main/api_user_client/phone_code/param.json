@@ -1,0 +1,58 @@
+{
+	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
+	"filter": true,
+	// 校验脚本文件, 可以使用脚本的方式加一步进行校验, 让传参更加安全
+	"func_file": "",
+	// get请求
+	"get": {
+		// 查询参数校验项
+		"query": [],
+		// 查询必填参数
+		"query_required": ["username", "phone", "method"]
+	},
+	// post请求
+	"post": {
+		// 查询参数校验项
+		"query": [],
+		// 查询必填参数
+		"query_required": [],
+		// 正文参数校验项
+		"body": [],
+		// 正文必填参数
+		"body_required": ["username", "phone", "method"]
+	},
+	// 校验列表
+	"list": [{
+			"name": "method",
+			"title": "方法",
+			"type": "string",
+			// 字符串类型时设置
+			"string": {
+				// 传值范围，字符串时为限制字符长度
+				"range": [4, 16]
+			}
+		},
+		{
+			"name": "username",
+			"title": "用户名",
+			"type": "string",
+			// 字符串类型时设置
+			"string": {
+				"format": "username",
+				// 传值范围，字符串时为限制字符长度
+				"range": [5, 24]
+			}
+		},
+		{
+			"name": "phone",
+			"title": "手机号码",
+			"type": "string",
+			// 字符串类型时设置
+			"string": {
+				"format": "phone",
+				// 传值范围，字符串时为限制字符长度
+				"range": [11, 11]
+			}
+		}
+	]
+}

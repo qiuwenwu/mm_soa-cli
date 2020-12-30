@@ -1,0 +1,18 @@
+[{
+	// 目标对象
+	"target": "/apis/cms/*",
+	// 事件名称, 用于动态增删改
+	"name": "cms_manage",
+	// 标题, 用于开发者查看事件
+	"title": "内容管理接口",
+	// 描述, 用于介绍该事件是做什么用的
+	"description": "用于发布的文章、公告、问答等相关内容",
+	// 阶段, 分执行前before、验证check、主要main、渲染render、执行后after阶段
+	"stage": "main",
+	// 响应方法 GET请求、POST请求、ALL所有请求，如果非API事件可自定义
+	"method": "ALL",
+	// 函数文件, 当事件触发时执行指定的脚本
+	"func_file": "./main.js",
+	// 执行顺序, 数值越小越优先执行
+	"sort": 100
+}]

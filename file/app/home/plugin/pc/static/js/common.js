@@ -16,5 +16,20 @@ var mixin_page = {
 				window.location.href = window.location.href;
 			})
 		}
+	},
+	mounted() {
+		$('.mm_page').on('scroll', function(e) {
+			if ($(this).scrollTop() >= document.body.clientHeight) {
+				$('#scroll_top').removeClass('hide');
+			} else {
+				$('#scroll_top').addClass('hide');
+			}
+		});
+		$('#scroll_top').click(function() {
+			$('.mm_page').animate({
+				scrollTop: 0
+			}, 800);
+		});
+
 	}
 };

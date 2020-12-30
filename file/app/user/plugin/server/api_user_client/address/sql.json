@@ -1,0 +1,57 @@
+{
+    "name": "user_address",
+    "title": "收货地址",
+    "table": "user_address",
+    "key": "address_id",
+    "orderby_default": "`address_id` desc",
+    "field_obj": "`address_id`,`province`,`city`,`area`,`sex`,`phone`,`name`,`house_number`,`address`,`user_id`",
+    "field_default": "`address_id`,`province`,`city`,`area`,`sex`,`phone`,`name`,`house_number`,`address`,`user_id`",
+    "method": "get get_obj",
+    "query": {
+        "province_min": "`province` >= {0}",
+        "province_max": "`province` <= {0}",
+        "city_min": "`city` >= {0}",
+        "city_max": "`city` <= {0}",
+        "area_min": "`area` >= {0}",
+        "area_max": "`area` <= {0}",
+        "phone": "`phone` like '%{0}%'",
+        "name": "`name` like '%{0}%'",
+        "house_number": "`house_number` like '%{0}%'",
+        "address": "`address` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "query_default": {
+        "user_id": "`user_id` = {user_id}"
+    },
+    "update": {
+        "province_add": "`province` = `province` + {0}",
+        "city_add": "`city` = `city` + {0}",
+        "area_add": "`area` = `area` + {0}"
+    },
+    "format": [
+        {
+            "key": "sex",
+            "title": "收件人性别",
+            "list": [
+                "女",
+                "男"
+            ]
+        },
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
+    "filter": {
+        "table": "table",
+        "page": "page",
+        "size": "size",
+        "method": "method",
+        "orderby": "orderby",
+        "field": "field",
+        "count_ret": "count_ret",
+        "user_id": "user_id"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "user_address",
+    "title": "收货地址",
+    "description": "用于保存用户的收件信息",
+    "path": "/api/user/address",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

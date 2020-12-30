@@ -1,0 +1,241 @@
+{
+    "name": "user_address2",
+    "title": "收货地址",
+    "add": {
+        "body": [
+            "province",
+            "city",
+            "area",
+            "sex",
+            "phone",
+            "name",
+            "house_number",
+            "address",
+            "user_id"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "address_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "address_id",
+            "province_min",
+            "province_max",
+            "city_min",
+            "city_max",
+            "area_min",
+            "area_max",
+            "sex",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "province",
+            "province_add",
+            "city",
+            "city_add",
+            "area",
+            "area_add",
+            "sex",
+            "phone",
+            "name",
+            "house_number",
+            "address",
+            "user_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "address_id",
+            "province_min",
+            "province_max",
+            "city_min",
+            "city_max",
+            "area_min",
+            "area_max",
+            "sex",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "list": [
+        {
+            "name": "address_id",
+            "title": "地址ID",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "province",
+            "title": "省",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "province_min",
+            "title": "省——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "province_max",
+            "title": "省——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "city",
+            "title": "市",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "city_min",
+            "title": "市——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "city_max",
+            "title": "市——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "area",
+            "title": "区",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "area_min",
+            "title": "区——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "area_max",
+            "title": "区——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "sex",
+            "title": "收件人性别",
+            "description": "(0女|1男)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "phone",
+            "title": "收件人电话",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 11,
+                "format": "phone"
+            }
+        },
+        {
+            "name": "name",
+            "title": "收件人姓名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "house_number",
+            "title": "门牌号",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "address",
+            "title": "收件地址",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "表示该地址是哪个用户的(user_account.nickname)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索收件人姓名(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

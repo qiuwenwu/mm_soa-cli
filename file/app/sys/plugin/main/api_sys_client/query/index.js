@@ -35,7 +35,7 @@ async function main(ctx, db) {
 				break;
 			}
 			else {
-				body[k] = res.result.list;
+				body[k] = res.result.list || res.result.obj;
 			}
 		}
 		else {

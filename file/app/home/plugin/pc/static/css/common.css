@@ -216,4 +216,33 @@
 
 .mm_page>footer {
 	position: relative;
+	margin-top: 5rem;
+}
+
+.mm_page>footer .mm_warp {
+	color: #fff;
+	background: #002147 !important;
+}
+
+#nav_bottom a {
+	display: inline-block;
+	line-height: 1.5rem;
+	padding: 0 1rem;
+	margin: .5rem 0;
+}
+
+#nav_bottom a~a {
+	border-left: 1px solid var(--color_border);
+}
+
+#copyright {
+	padding-bottom: 1rem;
+}
+
+#float_button {
+	position: fixed;
+	display: inline-block;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 11;
 }

@@ -3,8 +3,6 @@ var api = $.api_admin('manage', '默认管理端');
 api.update();
 
 var sql = $.mysql_admin('sys', __dirname);
-sql.setConfig($.config.mysql);
-sql.open();
 
 /**
  * @description 接口主函数

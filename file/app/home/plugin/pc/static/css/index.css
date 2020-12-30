@@ -324,8 +324,9 @@
 	display: block;
 	color: #fff;
 }
+
 #latest_event .mm_btn {
-    float: right;
+	float: right;
 }
 
 #latest_product {
@@ -380,6 +381,12 @@
 #latest_product .mm_btn {
 	margin-top: 1rem;
 	float: right;
+}
+
+
+
+footer {
+	border-top: 1px solid var(--color_border);
 }
 
 @media (max-width:576px) {

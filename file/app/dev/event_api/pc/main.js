@@ -7,8 +7,6 @@ const nav = $.nav_admin('dev_pc');
 nav.update();
 
 var sql = $.mysql_admin('sys', __dirname);
-sql.setConfig($.config.mysql);
-sql.open();
 
 /**
  * @description 接口主函数
