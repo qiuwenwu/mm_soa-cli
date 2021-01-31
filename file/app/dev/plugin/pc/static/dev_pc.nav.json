@@ -1,32 +1,110 @@
 {
-	"name": "admin",
+	"name": "dev_dev_pc",
 	"sort": 1,
 	"routes": [{
 			"name": "root",
 			"path": "/",
-			"component": "/admin/pc/src/pages/index.vue",
+			"component": "/dev/pc/src/pages/index.vue",
 			"level": 1,
 			"oauth": {
 				"signIn": true,
-				"gm": 2,
+				"gm": 4,
 				"user_admin": []
 			}
 		},
 		{
 			"name": "sign_in",
 			"path": "/sign_in",
-			"component": "/admin/pc/src/pages/sign_in.vue",
+			"component": "/dev/pc/src/pages/sign_in.vue",
 			"level": 2
-		}, {
-			"name": "sign_up",
-			"path": "/sign_up",
-			"component": "/admin/pc/src/pages/sign_up.vue",
-			"level": 2
-		}, {
-			"name": "forgot",
-			"path": "/forgot",
-			"component": "/admin/pc/src/pages/forgot.vue",
-			"level": 2
+		},
+		{
+			"name": "config_app",
+			"path": "/config/app",
+			"component": "/dev/pc/src/pages/config/app.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_plugin",
+			"path": "/config/plugin",
+			"component": "/dev/pc/src/pages/config/plugin.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_event",
+			"path": "/config/event",
+			"component": "/dev/pc/src/pages/config/event.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_api",
+			"path": "/config/api",
+			"component": "/dev/pc/src/pages/config/api.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_route",
+			"path": "/config/route",
+			"component": "/dev/pc/src/pages/config/route.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_source",
+			"path": "/config/source",
+			"component": "/dev/pc/src/pages/config/source.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_db",
+			"path": "/config/db",
+			"component": "/dev/pc/src/pages/config/db.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "config_console",
+			"path": "/config/console",
+			"component": "/dev/pc/src/pages/config/console.vue",
+			"level": 2,
+			"oauth": {
+				"signIn": true,
+				"gm": 4,
+				"user_admin": []
+			}
 		}
 	],
 	"top": [],
@@ -37,26 +115,39 @@
 	"desktop": [],
 	"main": [{
 		"title": "配置",
+		"icon": "<i class=\"fa-cog\"></i>",
 		"name": "config",
 		"url": "/config",
 		"display": 0,
 		"sub": [{
-				"title": "接口",
-				"show": false,
-				"name": "config_api",
-				"url": "/config/api"
-			},
-			{
 				"title": "应用",
 				"show": false,
-				"name": "config_api",
-				"url": "/config/config_api"
+				"name": "config_app",
+				"url": "/config/app"
+			},
+			{
+				"title": "插件",
+				"show": false,
+				"name": "config_plugin",
+				"url": "/config/plugin"
 			},
 			{
 				"title": "事件",
 				"show": false,
 				"name": "config_event",
 				"url": "/config/event"
+			},
+			{
+				"title": "接口",
+				"show": false,
+				"name": "config_api",
+				"url": "/config/api"
+			},
+			{
+				"title": "路由",
+				"show": false,
+				"name": "config_route",
+				"url": "/config/route"
 			},
 			{
 				"title": "素材",

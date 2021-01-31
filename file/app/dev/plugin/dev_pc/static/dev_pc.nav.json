@@ -1,0 +1,280 @@
+{
+    "name": "dev_dev_pc",
+    "sort": 1,
+    "routes": [
+        {
+            "name": "dev",
+            "path": "/dev",
+            "redirect": "/dev/app"
+        },
+        {
+            "name": "dev_app",
+            "path": "/dev/app",
+            "component": "/dev/dev_pc/src/pages/app.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_app_form",
+            "path": "/dev/app_form",
+            "component": "/dev/dev_pc/src/pages/app_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_app_type",
+            "path": "/dev/app_type",
+            "component": "/dev/dev_pc/src/pages/app_type.vue",
+            "level": 2,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_app_type_form",
+            "path": "/dev/app_type_form",
+            "component": "/dev/dev_pc/src/pages/app_type_form.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_component",
+            "path": "/dev/component",
+            "component": "/dev/dev_pc/src/pages/component.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_component_form",
+            "path": "/dev/component_form",
+            "component": "/dev/dev_pc/src/pages/component_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_component_type",
+            "path": "/dev/component_type",
+            "component": "/dev/dev_pc/src/pages/component_type.vue",
+            "level": 2,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_component_type_form",
+            "path": "/dev/component_type_form",
+            "component": "/dev/dev_pc/src/pages/component_type_form.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_page",
+            "path": "/dev/page",
+            "component": "/dev/dev_pc/src/pages/page.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_page_form",
+            "path": "/dev/page_form",
+            "component": "/dev/dev_pc/src/pages/page_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_page_group",
+            "path": "/dev/page_group",
+            "component": "/dev/dev_pc/src/pages/page_group.vue",
+            "level": 2,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_page_group_form",
+            "path": "/dev/page_group_form",
+            "component": "/dev/dev_pc/src/pages/page_group_form.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table",
+            "path": "/dev/table",
+            "component": "/dev/dev_pc/src/pages/table.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table_form",
+            "path": "/dev/table_form",
+            "component": "/dev/dev_pc/src/pages/table_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table_field",
+            "path": "/dev/table_field",
+            "component": "/dev/dev_pc/src/pages/table_field.vue",
+            "level": 2,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table_field_form",
+            "path": "/dev/table_field_form",
+            "component": "/dev/dev_pc/src/pages/table_field_form.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table_group",
+            "path": "/dev/table_group",
+            "component": "/dev/dev_pc/src/pages/table_group.vue",
+            "level": 2,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "dev_table_group_form",
+            "path": "/dev/table_group_form",
+            "component": "/dev/dev_pc/src/pages/table_group_form.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        }
+    ],
+    "top": [],
+    "left": [],
+    "bottom": [],
+    "right": [],
+    "desktop": [],
+    "quick": [],
+    "main": [
+        {
+            "title": "开发者",
+            "name": "dev",
+            "icon": "<i class=\"fa-book\"></i>",
+            "url": "/dev",
+            "display": 0,
+            "sub": [
+                {
+                    "title": "应用",
+                    "show": false,
+                    "name": "dev_app",
+                    "url": "/dev/app"
+                },
+                {
+                    "title": "应用分类",
+                    "show": false,
+                    "name": "dev_app_type",
+                    "url": "/dev/app_type"
+                },
+                {
+                    "title": "组件",
+                    "show": false,
+                    "name": "dev_component",
+                    "url": "/dev/component"
+                },
+                {
+                    "title": "组件分类",
+                    "show": false,
+                    "name": "dev_component_type",
+                    "url": "/dev/component_type"
+                },
+                {
+                    "title": "页面",
+                    "show": false,
+                    "name": "dev_page",
+                    "url": "/dev/page"
+                },
+                {
+                    "title": "页面分组",
+                    "show": false,
+                    "name": "dev_page_group",
+                    "url": "/dev/page_group"
+                },
+                {
+                    "title": "数据表",
+                    "show": false,
+                    "name": "dev_table",
+                    "url": "/dev/table"
+                },
+                {
+                    "title": "开发表字段",
+                    "show": false,
+                    "name": "dev_table_field",
+                    "url": "/dev/table_field"
+                },
+                {
+                    "title": "数据表分组",
+                    "show": false,
+                    "name": "dev_table_group",
+                    "url": "/dev/table_group"
+                }
+            ]
+        }
+    ]
+}

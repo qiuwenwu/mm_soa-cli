@@ -10,6 +10,7 @@
             "discount",
             "bonus",
             "app",
+            "title",
             "description",
             "icon"
         ],
@@ -37,6 +38,7 @@
             "bonus_min",
             "bonus_max",
             "name",
+            "title",
             "description",
             "keyword"
         ],
@@ -55,6 +57,7 @@
             "bonus_add",
             "app",
             "name",
+            "title",
             "description",
             "icon"
         ],
@@ -75,6 +78,7 @@
             "bonus_min",
             "bonus_max",
             "name",
+            "title",
             "description",
             "keyword"
         ],
@@ -261,6 +265,16 @@
             }
         },
         {
+            "name": "title",
+            "title": "分组标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
             "name": "description",
             "title": "描述",
             "description": "描述该用户组的特点或权限范围",
@@ -281,10 +295,15 @@
         {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索名称(name)、描述(description)",
+            "description": "用于搜索名称(name)、分组标题(title)、描述(description)",
             "type": "string",
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "group_id"
+        ]
+    }
 }

@@ -11,6 +11,10 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
+										<dt>是否启用</dt>
+										<dd>
+											<mm_switch v-model="form.available" />
+										</dd>
 										<dt class="required">英文名称</dt>
 										<dd>
 											<mm_input v-model="form.name" :minlength="0" :maxlength="32" placeholder="用于多国语识别"
@@ -46,7 +50,7 @@
 										</dd>
 										<dt>上级</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_nav, 'nav_id', 'name')" />
+											<mm_select v-model="form.father_id" :options="$to_kv(list_nav, 'nav_id', 'name', 0)" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -74,7 +78,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/nav?",
+				url: "/apis/sys/nav?",
 				url_get_obj: "/apis/sys/nav?method=get_obj",
 				field: "nav_id",
 				query: {
@@ -82,6 +86,7 @@
 				},
 				form: {
 					"nav_id": 0,
+					"available": 0,
 					"name": '',
 					"title": '',
 					"url": '',
@@ -92,6 +97,8 @@
 					"device": '',
 					"father_id": 0,
 				},
+				// 是否启用
+				'arr_available':["否","是"],
 				// 上级
 				'list_nav':[],
 			}
@@ -105,7 +112,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "nav_id,name"
+						field: "nav_id,name,father_id"
 					};
 				}
 				this.$get('~/apis/sys/nav?size=0', query, function(json) {

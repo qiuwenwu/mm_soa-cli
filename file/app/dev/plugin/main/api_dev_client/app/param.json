@@ -1,0 +1,147 @@
+{
+	"name": "dev_app",
+	"get": {
+		"query": [
+			"method",
+			"scope",
+			"name",
+			"app_id",
+			"title",
+			"description",
+			"keywords",
+			"keyword"
+		],
+		"query_required": []
+	},
+	"list": [{
+			"name": "method",
+			"title": "执行方式",
+			"description": "add增、del删、get改、set查、update更新、load载入、save保存",
+			"type": "string"
+		},
+		{
+			"name": "scope",
+			"title": "作用域",
+			"description": "一般为sys系统，自定义机制输入自定义作用域名",
+			"type": "string"
+		},
+		{
+			"name": "name",
+			"title": "名称",
+			"description": "选择要操作的配置文件名称",
+			"type": "string"
+		},
+		{
+			"name": "app_id",
+			"title": "应用ID",
+			"description": "",
+			"type": "number",
+			"dataType": "int",
+			"number": {
+				"max": 2147483647
+			}
+		},
+		{
+			"name": "type_id",
+			"title": "应用分类ID",
+			"description": "(dev_app_type.name.type_id)",
+			"type": "number",
+			"dataType": "int",
+			"number": {
+				"max": 2147483647
+			}
+		},
+		{
+			"name": "name",
+			"title": "应用名",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 32,
+				"notEmpty": true
+			}
+		},
+		{
+			"name": "title",
+			"title": "标题",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 125
+			}
+		},
+		{
+			"name": "description",
+			"title": "描述",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 255
+			}
+		},
+		{
+			"name": "keywords",
+			"title": "关键词",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 255
+			}
+		},
+		{
+			"name": "keyword",
+			"title": "关键词",
+			"description": "用于搜索应用名(name)、标题(title)、描述(description)、关键词(keywords)",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {}
+		}
+	],
+	"add": {
+		"body": [
+			"type_id",
+			"title",
+			"description",
+			"keywords"
+		],
+		"body_required": [
+			"name"
+		]
+	},
+	"del": {
+		"query": [],
+		"query_required": [
+			"app_id"
+		]
+	},
+	"set": {
+		"query": [
+			"app_id",
+			"name",
+			"title",
+			"description",
+			"keywords",
+			"keyword"
+		],
+		"query_required": [],
+		"body": [
+			"type_id",
+			"name",
+			"title",
+			"description",
+			"keywords"
+		],
+		"body_required": [],
+		"body_not": []
+	},
+	"get_obj": {
+		"query_required": [
+			"app_id"
+		]
+	},
+	"title": "开发应用"
+}

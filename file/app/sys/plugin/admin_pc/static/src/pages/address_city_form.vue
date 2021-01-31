@@ -17,7 +17,7 @@
 										</dd>
 										<dt>所属省份</dt>
 										<dd>
-											<mm_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name')" />
+											<mm_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
 										</dd>
 										<dt class="required">城市名称</dt>
 										<dd>
@@ -50,7 +50,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/address_city?",
+				url: "/apis/sys/address_city?",
 				url_get_obj: "/apis/sys/address_city?method=get_obj",
 				field: "city_id",
 				query: {

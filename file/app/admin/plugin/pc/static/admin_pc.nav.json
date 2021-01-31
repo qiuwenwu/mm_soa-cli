@@ -1,5 +1,5 @@
 {
-	"name": "admin",
+	"name": "admin_pc",
 	"sort": 1,
 	"routes": [{
 			"name": "root",

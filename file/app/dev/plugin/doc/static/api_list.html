@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="/css/mm_layout.css" async />
 		<link rel="stylesheet" href="/css/mm_common.css" async />
 		<link rel="stylesheet" href="/css/mm_component.css" async />
-		<link rel="stylesheet" href="/theme/default/index.css" async />
+		<link rel="stylesheet" href="/css/mm_theme.css" async />
 
 		<!-- 加载JS脚本 -->
 		<script src="/js/jquery.min.js"></script>
@@ -54,7 +54,7 @@
 			.mm_btn {
 				line-height: 1.5rem;
 				height: 1.5rem;
-				border: 1px solid #e5e5e5;
+				border: 1px solid var(--color_border);
 			}
 
 			.mm_table th,
@@ -108,7 +108,7 @@
 				el: '#app',
 				data() {
 					return {
-						url: "/api/dev/api?",
+						url: "/api/dev_api?",
 						query: {
 							scope: "client"
 						},

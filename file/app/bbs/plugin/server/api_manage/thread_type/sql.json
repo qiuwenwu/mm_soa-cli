@@ -1,0 +1,31 @@
+{
+    "name": "bbs_thread_type2",
+    "title": "主题分类",
+    "table": "bbs_thread_type",
+    "key": "type_id",
+    "orderby_default": "`type_id` desc",
+    "field_obj": "`type_id`,`father_id`,`name`,`title`,`description`,`icon`",
+    "field_default": "`type_id`,`display`,`father_id`,`name`,`title`,`description`",
+    "query": {
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "icon": "`icon` like '%{0}%'",
+        "description": "`description` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')",
+        "title": "`title` like '%{0}%'"
+    },
+    "update": {
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "father_id",
+            "title": "上级分类",
+            "table": "bbs_thread_type",
+            "name": "name",
+            "id": "type_id"
+        }
+    ],
+    "field_hide": []
+}

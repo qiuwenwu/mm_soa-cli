@@ -4,7 +4,7 @@
     "table": "sys_message",
     "key": "message_id",
     "orderby_default": "`message_id` desc",
-    "field_obj": "`message_id`,`note`,`title`",
+    "field_obj": "`message_id`,`title`,`note`",
     "field_default": "`message_id`,`title`",
     "method": "get get_obj",
     "query": {

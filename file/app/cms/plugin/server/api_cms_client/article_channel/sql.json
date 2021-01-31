@@ -4,8 +4,8 @@
     "table": "cms_article_channel",
     "key": "channel_id",
     "orderby_default": "`display` asc",
-    "field_obj": "`available`,`can_comment`,`channel_id`,`city_id`,`description`,`father_id`,`hide`,`icon`,`name`,`template`,`url`",
-    "field_default": "`available`,`can_comment`,`channel_id`,`city_id`,`description`,`display`,`father_id`,`hide`,`name`,`template`,`url`",
+    "field_obj": "`channel_id`,`available`,`hide`,`can_comment`,`father_id`,`city_id`,`name`,`template`,`title`,`description`,`icon`,`url`",
+    "field_default": "`channel_id`,`available`,`hide`,`can_comment`,`display`,`father_id`,`city_id`,`name`,`template`,`title`,`description`,`url`",
     "method": "get get_obj",
     "query": {
         "display_min": "`display` >= {0}",
@@ -15,7 +15,8 @@
         "description": "`description` like '%{0}%'",
         "icon": "`icon` like '%{0}%'",
         "url": "`url` like '%{0}%'",
-        "keyword": "(`description` like '%{0}%' || `name` like '%{0}%')"
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')",
+        "title": "`title` like '%{0}%'"
     },
     "query_default": {},
     "update": {
@@ -31,18 +32,20 @@
             ]
         },
         {
-            "key": "can_comment",
-            "title": "是否可评论",
+            "key": "hide",
+            "title": "是否隐藏",
             "list": [
                 "否",
                 "是"
             ]
         },
         {
-            "key": "city_id",
-            "title": "所属城市",
-            "table": "sys_address_city",
-            "name": "name"
+            "key": "can_comment",
+            "title": "是否可评论",
+            "list": [
+                "否",
+                "是"
+            ]
         },
         {
             "key": "father_id",
@@ -52,12 +55,10 @@
             "id": "channel_id"
         },
         {
-            "key": "hide",
-            "title": "是否隐藏",
-            "list": [
-                "否",
-                "是"
-            ]
+            "key": "city_id",
+            "title": "所属城市",
+            "table": "sys_address_city",
+            "name": "name"
         }
     ]
 }

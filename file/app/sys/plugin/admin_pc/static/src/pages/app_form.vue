@@ -33,7 +33,7 @@
 										</dd>
 										<dt>持有者</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>请求总次数</dt>
 										<dd>
@@ -72,19 +72,19 @@
 										</dd>
 										<dt>访问绑定IP</dt>
 										<dd>
-											<mm_textarea v-model="form.bind_ip" type="text" placeholder="网站授权时确认重定向网址为已授权IP" />
+											<mm_textarea v-model="form.bind_ip" type="text" placeholder="网站授权时确认重定向网址为已授权IP"></mm_textarea>
 										</dd>
 										<dt>允许使用的接口</dt>
 										<dd>
-											<mm_textarea v-model="form.scope" type="text" placeholder="多个接口用”，“分隔" />
+											<mm_textarea v-model="form.scope" type="text" placeholder="多个接口用”，“分隔"></mm_textarea>
 										</dd>
 										<dt>不允许使用的接口</dt>
 										<dd>
-											<mm_textarea v-model="form.scope_not" type="text" placeholder="“多个接口用”，“分隔" />
+											<mm_textarea v-model="form.scope_not" type="text" placeholder="“多个接口用”，“分隔"></mm_textarea>
 										</dd>
 										<dt>授权的用户</dt>
 										<dd>
-											<mm_textarea v-model="form.users" type="text" placeholder="" />
+											<mm_textarea v-model="form.users" type="text" placeholder=""></mm_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -112,7 +112,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/app?",
+				url: "/apis/sys/app?",
 				url_get_obj: "/apis/sys/app?method=get_obj",
 				field: "app_id",
 				query: {

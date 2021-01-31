@@ -13,7 +13,7 @@
 									<dl>
 										<dt>对应文章</dt>
 										<dd>
-											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title')" />
+											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
 										</dd>
 										<dt class="required">章节标题</dt>
 										<dd>
@@ -27,7 +27,7 @@
 										</dd>
 										<dt>章节内容</dt>
 										<dd>
-											<mm_textarea v-model="form.content" type="text" placeholder="" />
+											<mm_rich v-model="form.content"></mm_rich>
 										</dd>
 										<dt>章节图片</dt>
 										<dd>
@@ -59,7 +59,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/cms/article_section?",
+				url: "/apis/cms/article_section?",
 				url_get_obj: "/apis/cms/article_section?method=get_obj",
 				field: "section_id",
 				query: {

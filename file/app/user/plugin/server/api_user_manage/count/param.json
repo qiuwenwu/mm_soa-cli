@@ -591,5 +591,10 @@
             "dataType": "decimal",
             "number": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "user_id"
+        ]
+    }
 }

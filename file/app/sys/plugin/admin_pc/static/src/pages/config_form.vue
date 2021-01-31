@@ -18,8 +18,7 @@
 										</dd>
 										<dt class="required">数据类型</dt>
 										<dd>
-											<mm_input v-model="form.type" :minlength="0" :maxlength="16" placeholder="string文本型 / number数字型 / boolean布尔型"
-											 :required="true" />
+											<mm_select v-model="form.type" :options="$to_kv(arr_type)" />
 										</dd>
 										<dt>变量标题</dt>
 										<dd>
@@ -35,7 +34,7 @@
 										</dd>
 										<dt>数据模型</dt>
 										<dd>
-											<mm_textarea v-model="form.model" type="text" placeholder="json格式，用于单选 / 多选模式" />
+											<mm_textarea v-model="form.model" type="text" placeholder="json格式，用于单选 / 多选模式"></mm_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -63,7 +62,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/config?",
+				url: "/apis/sys/config?",
 				url_get_obj: "/apis/sys/config?method=get_obj",
 				field: "config_id",
 				query: {
@@ -78,6 +77,8 @@
 					"description": '',
 					"model": '',
 				},
+				// 数据类型
+				'arr_type':[{"name":"文本型","value":"string"},{"name":"数字型","value":"number"},{"name":"布尔型","value":"boolean"}],
 			}
 		},
 		methods: {

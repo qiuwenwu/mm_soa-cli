@@ -1,0 +1,10 @@
+{
+	"path": "/api/dev_event",
+	"type": "api",
+	"name": "dev_event_main",
+	"title": "管理事件的接口",
+	"cache": 0,
+	"func_file": "./index.js",
+	"method": "ALL",
+	"param_path": "./param.json"
+}

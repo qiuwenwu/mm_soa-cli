@@ -519,9 +519,9 @@ CREATE TABLE `sys_ad`  (
 -- ----------------------------
 -- Records of sys_ad
 -- ----------------------------
-INSERT INTO `sys_ad` VALUES (1, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告1', 'banner', '', '', '', '', 'banner_1', '', '', '/home/pc/img/banner/banner_3.jpg', '/', '');
-INSERT INTO `sys_ad` VALUES (2, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告2', 'banner', '', '', '', '', 'banner_2', '', '', '/home/pc/img/banner/banner_2.jpg', '/', '');
-INSERT INTO `sys_ad` VALUES (3, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告3', 'banner', '', '', '', '', 'banner_3', '', '', '/home/pc/img/banner/banner_1.jpg', '/', '');
+INSERT INTO `sys_ad` VALUES (1, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告1', 'banner', '', '', '', '', 'banner_1', '', '', '/cms/home_pc/template/default/img/banner/banner_3.jpg', '/', '');
+INSERT INTO `sys_ad` VALUES (2, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告2', 'banner', '', '', '', '', 'banner_2', '', '', '/cms/home_pc/template/default/img/banner/banner_2.jpg', '/', '');
+INSERT INTO `sys_ad` VALUES (3, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告3', 'banner', '', '', '', '', 'banner_3', '', '', '/cms/home_pc/template/default/img/banner/banner_1.jpg', '/', '');
 
 -- ----------------------------
 -- Table structure for sys_address_area
@@ -643,7 +643,7 @@ CREATE TABLE `sys_config`  (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO `sys_config` VALUES (1, 'theme_style', 'string', '主题风格', 'default', '用于配置系统默认主题风格', '');
+INSERT INTO `sys_config` VALUES (1, 'theme_name', 'string', '主题风格', 'default', '用于配置系统默认主题风格', '');
 INSERT INTO `sys_config` VALUES (2, 'theme_color', 'string', '主题色', 'blue', '用于配置系统默认主题色调', '[{\n   \"name\":\"红\",\n   \"value\": \"red\"\n},{\n   \"name\":\"黄\",\n   \"value\": \"yellow\"\n},{\n   \"name\":\"绿\",\n   \"value\": \"green\"\n},{\n   \"name\":\"蓝\",\n   \"value\": \"blue\"\n},{\n   \"name\":\"紫\",\n   \"value\": \"purple\"\n}\n]');
 INSERT INTO `sys_config` VALUES (3, 'sys_lang', 'string', '系统语言', 'zh_cn', '用于配置系统默认语言', '[{\n   \"name\":\"英文\",\n   \"value\": \"en\"\n},{\n   \"name\":\"简体中文\",\n   \"value\": \"zh_cn\"\n},{\n   \"name\":\"繁体中文\",\n   \"value\": \"zh_tw\"\n},{\n   \"name\":\"英文\",\n   \"value\": \"en\"\n},{\n   \"name\":\"日文\",\n   \"value\": \"ja\"\n},{\n   \"name\":\"韩文\",\n   \"value\": \"ko\"\n}\n]');
 INSERT INTO `sys_config` VALUES (4, 'sys_lang_list', 'string', '系统支持语言', 'zh_cn en', '', '');

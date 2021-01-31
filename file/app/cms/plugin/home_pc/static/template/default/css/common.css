@@ -1,0 +1,287 @@
+input:invalid {
+    border-color: var(--color_border);
+}
+
+#head_top {
+	background: var(--bg_black);
+	color: var(--color_white);
+}
+
+#head_main {
+	background: #fff;
+	color: var(--bg_black);
+	padding: 0.5rem 0;
+}
+
+#contact {
+	float: left;
+	padding: 0;
+}
+
+#user_action {
+	float: right;
+	background: var(--color_primary);
+	padding: 0;
+	margin: 0 1rem;
+}
+
+#user_action li,
+#contact li {
+	float: left;
+	list-style: none;
+	padding: 0 1rem;
+	line-height: 2.5rem;
+}
+
+#user_action i,
+#contact i {
+	color: var(--color_primary);
+	margin-right: .5rem;
+}
+
+#logo {
+	float: left;
+	padding: 0 1rem;
+	margin-right: 2.5rem;
+}
+
+#logo img {
+	width: 2rem;
+	margin-right: .25rem;
+}
+
+#logo span {
+	font-size: 1.25rem;
+	position: relative;
+	top: 0.25rem
+}
+
+#nav_top a {
+	font-size: 1rem;
+}
+
+#nav_top>button {
+	background: var(--color_primary);
+	color: #fff;
+	margin-right: 1rem;
+	border-radius: 0.25rem;
+	line-height: 2rem;
+	height: 2rem;
+}
+
+.mm_search {
+	margin: 0 1rem;
+	position: relative;
+	display: inline-block !important;
+}
+
+.mm_search input {
+	height: 2.5rem;
+	line-height: 2.5rem;
+	border: 1px solid var(--color_border);
+	border-radius: 0.25rem;
+	padding: 0 1rem;
+}
+
+.mm_search button {
+	position: absolute;
+	top: 50%;
+	right: 1rem;
+	transform: translateY(-50%);
+	font-size: 1rem;
+	border: none;
+}
+
+#nav_top {
+	float: none;
+	overflow-x: hidden;
+}
+
+#nav_top nav .item:last-child {
+	float: right;
+}
+
+@media (max-width: 800px) {
+	#nav_top {
+		min-width: auto;
+	}
+
+	#nav_top a {
+		color: #fff;
+	}
+
+	#nav_top nav .item:last-child {
+		float: none;
+	}
+}
+
+
+#lang_select li {
+	float: none !important;
+}
+
+#config {
+	list-style: none;
+	padding: 0;
+	float: left;
+}
+
+#config>li {
+	float: left;
+	line-height: 2.5rem;
+	padding: 0 0.5rem;
+	height: 2.5rem;
+}
+
+#lang li {
+	color: var(--color_base);
+	white-space: nowrap;
+}
+
+#lang li:hover {
+	color: #fff !important;
+	background: var(--color_primary) !important;
+}
+
+#lang img {
+	height: 1rem;
+	margin-right: 0.25rem;
+	position: relative;
+	top: -1px;
+}
+
+#lang .selected {
+	border: none;
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+
+#lang .active {
+	color: #fff;
+	background: var(--color_primary);
+}
+
+#lang ul:hover .active {
+	color: var(--color_base);
+	background: #fff;
+}
+
+#lang .mm_box {
+	min-width: 8rem;
+}
+
+#colors i {
+	display: block;
+	width: 1rem;
+	height: 1rem;
+}
+
+#colors .selected i {
+	background: #fff;
+	position: relative;
+	top: 0.5rem;
+	float: left;
+	margin-right: 0.25rem;
+}
+
+#colors .mm_box {
+	width: 17rem;
+	padding: 1rem;
+}
+
+#colors .selected {
+	border: none;
+}
+
+#colors li {
+	float: left;
+	width: auto;
+	padding: 0.25rem;
+	border: 1px solid #fff;
+}
+
+#colors li~li {
+	margin-left: 1rem;
+}
+
+#colors li:hover {
+	border: 1px solid var(--color_border);
+}
+
+#colors .active {
+	border: 1px solid var(--color_border);
+}
+
+#nav_top .active {
+	color: var(--color_primary);
+	font-weight: 600;
+}
+
+.mm_page>header~main {
+	margin-top: 6rem;
+	margin-bottom: 0;
+}
+
+.mm_page>footer {
+	position: relative;
+	margin-top: 5rem;
+}
+
+.mm_page>footer .mm_warp {
+	color: #fff;
+	background: #002147 !important;
+}
+
+#nav_bottom a {
+	display: inline-block;
+	line-height: 1.5rem;
+	padding: 0 1rem;
+	margin: .5rem 0;
+}
+
+#nav_bottom a~a {
+	border-left: 1px solid var(--color_border);
+}
+
+#copyright {
+	padding-bottom: 1rem;
+}
+
+#float_button {
+	position: fixed;
+	display: inline-block;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 11;
+}
+
+#nav_path {
+	color: #fff;
+	background: url(/cms/home_pc/template/default/img/banner/banner_2.jpg) no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	z-index: 1;
+	padding: 4rem 0;
+}
+
+#nav_path h2 {
+	font-size: 2.25rem;
+	line-height: 2.625rem;
+	margin-bottom: 0.875rem;
+}
+
+#nav_path:before {
+	content: "";
+	background: rgba(0, 33, 71, 0.8);
+	position: absolute;
+	top: 0;
+	min-height: 100%;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+#nav_path .mm_view {
+	padding: 1rem;
+}

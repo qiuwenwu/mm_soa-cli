@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="/css/mm_layout.css" async />
 		<link rel="stylesheet" href="/css/mm_common.css" async />
 		<link rel="stylesheet" href="/css/mm_component.css" async />
-		<link rel="stylesheet" href="/theme/default/index.css" async />
+		<link rel="stylesheet" href="/css/mm_theme.css" async />
 
 		<!-- 加载JS脚本 -->
 		<script src="/js/jquery.min.js"></script>
@@ -165,7 +165,7 @@
 		<div id="app">
 			<div class="mm_page">
 				<main>
-					<div class="mm_warp">
+					<div class="mm_warp" id="info">
 						<h4>API接口文档 —— <span>明细</span> <a class="fr" :href="'./api_list.html?scope=' + query.scope">回到列表</a></h4>
 						<!-- <p class="desc" v-if="error.code === 0">该接口使用明细请看下方：</p> -->
 						<p class="desc">{{ error.message }}</p>
@@ -174,7 +174,7 @@
 							<p class="desc" style="border: none;">{{ config.description }}</p>
 							<dl>
 								<dt>调用地址：</dt>
-								<dd><a :href="config.path">{{ config.path }}</a></dd>
+								<dd><a :href="config.path">{{ config.path }}{{ query_str }}</a></dd>
 							</dl>
 							<dl>
 								<dt>请求方式：</dt>
@@ -279,7 +279,26 @@
 							<div class="desc center" v-if="list_query.length === 0 && list_body.length === 0 && config.type !== 'web'">无需传参</div>
 						</div>
 					</div>
+
+					<!-- 测试请求 -->
+					<div class="mm_warp" id="test_request">
+						<div class="mm_card pa ma-0">
+							<div class="card_head">
+								<div class="title">测试{{ tabs[index] }}请求</div>
+							</div>
+							<div class="card_body">
+								<dl>
+									<dt>URL地址</dt>
+									<dd style="width: 100%;"><input type="text" v-model="form.url" style="width: 100%;"></dd>
+									<dt>正文参数</dt>
+									<dd style="width: 100%;"><textarea type="text" v-model="form.body" style="width: 100%;"></textarea></dd>
+								</dl>
+								<button class="mm_btn btn_primary" @click="submit()" style="width: 10rem; display: block;margin: auto;">发送</button>
+							</div>
+						</div>
+					</div>
 				</main>
+				<iframe class="bn" id="html" style="width: 100%;"></iframe>
 			</div>
 		</div>
 		<script>
@@ -287,10 +306,14 @@
 				el: '#app',
 				data() {
 					return {
-						url: "/api/dev/api?",
+						url: "/api/dev_api?",
 						query: {
 							scope: "client",
 							name: ""
+						},
+						form: {
+							url: "",
+							body: ""
 						},
 						config: {
 							cache: 0,
@@ -338,6 +361,10 @@
 								body: [],
 								body_required: []
 							},
+							get_obj: {
+								query: [],
+								query_required: []
+							},
 							list: []
 						},
 						error: {
@@ -349,10 +376,13 @@
 					}
 				},
 				methods: {
-					copyModel() {
+					getModel(body) {
+						if (!body) {
+							body = this.list_body;
+						}
 						// this.param.list;
 						var lt = [];
-						var arr = this.list_body;
+						var arr = body;
 						if (arr.length > 0) {
 							lt = this.arr;
 						} else {
@@ -386,13 +416,18 @@
 							}
 							list.push(o);
 						}
+						return list;
+					},
+					copyModel() {
+						var list = this.getModel();
 						var code = JSON.stringify(list, null, 4);
 						$.copyText(code);
 						alert('复制成功');
 					},
-					copy(type) {
+					copy(type, noCopy) {
+						var text = '';
 						var arr = this['list_' + type];
-						if (arr) {
+						if (arr && arr.length) {
 							var code = "{";
 							var len = arr.length;
 							for (var i = 0; i < len; i++) {
@@ -413,11 +448,20 @@
 								code += '\r\n	// ' + o.title;
 								code += '\r\n	"' + o.name + '":' + val + ","
 							}
-							$.copyText(code.substring(0, code.length - 1) + '\r\n}');
-							alert('复制成功');
+							if(code !== "{"){
+								code = code.substring(0, code.length - 1);
+							}
+							text = code + '\r\n}';
+							if(!noCopy){
+								$.copyText(text);
+								alert('复制成功');
+							}
 						} else {
-							alert('复制失败');
+							if(!noCopy){
+								alert('复制失败');
+							}
 						}
+						return text;
 					},
 					toMethod(method) {
 						var m = method.toLocaleUpperCase()
@@ -484,6 +528,41 @@
 								}
 							}
 						};
+					},
+					submit() {
+						if (this.tabs[this.index] == "post") {
+							if (!this.form.body) {
+								body = {};
+							} else {
+								body = JSON.parse(this.form.body);
+							}
+							try {
+								$.http.post(this.form.url, body, (res) => {
+									var html = typeof(res) === "object" ? $.toJson(res, true) : res;
+									$(document.getElementById('html').contentWindow.document.body).html(`<div contenteditable>${html}</div>`);
+								});
+							} catch (err) {
+								console.error(err);
+							}
+						} else {
+							$.http.get(this.form.url, (res) => {
+								var html = typeof(res) === "object" ? $.toJson(res, true) : res;
+								$(document.getElementById('html').contentWindow.document.body).html(`<div contenteditable>${html}</div>`);
+							});
+						}
+					},
+					set_url(){
+						var url = this.config.path + this.query_str;
+						this.list_query.map((o) => {
+							url += "&" + o.name + "="
+						});
+						if (url.indexOf('?') === -1) {
+							url = url.replace('&', '?')
+						}
+						this.form.url = url;
+					},
+					set_body(){
+						this.form.body = this.copy('body', true);
 					}
 				},
 				computed: {
@@ -554,6 +633,14 @@
 						}
 						return list;
 					},
+					query_str() {
+						var method = this.tabs[this.index];
+						console.log(method);
+						if (method === "get" || method === "post") {
+							return "";
+						}
+						return "?method=" + method;
+					}
 				},
 				created() {
 					var arr = location.search.replace('?', '').split("&");
@@ -565,6 +652,12 @@
 						}
 					}
 					this.get_obj();
+				},
+				watch: {
+					index() {
+						this.set_url();
+						this.set_body();
+					}
 				}
 			});
 		</script>

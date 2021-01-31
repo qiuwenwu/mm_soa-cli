@@ -23,7 +23,7 @@ require({
 		sortablejs: '/js/sortable.min',
 		vuedraggable: '/js/vuedraggable.min',
 		ui: '/js/mm_vue_ui',
-		nav: '/api/sys/nav.js?scope=admin_pc',
+		nav: '/api/sys_nav.js?scope=admin_pc',
 		store: './store',
 		router: './router',
 		echarts: '/js/echarts',
@@ -68,13 +68,14 @@ require({
 			'templateVar': '__template__'
 		}
 	}
-}, ['Vue', 'mm_sdk', 'mm_vue', 'store', 'router', 'ui', 'clipboard', 'vuedraggable', 'vue!./App.vue'], function(Vue, mm_sdk, mm_vue, store, router,
-	ui, clipboard, vuedraggable, app) {
+}, ['Vue', 'mm_sdk', 'mm_vue', 'store', 'router', 'ui', 'clipboard', 'vuedraggable', 'vue!/src/components/form/mm_rich.vue','vue!./App.vue'], function(Vue, mm_sdk, mm_vue, store, router,
+	ui, clipboard, vuedraggable, mm_rich, app) {
 	// 开启调试模式
 	Vue.config.debug = true;
 	// 使用UI组件
 	Vue.config.devtools = true;
 	
+	Vue.component('mm_rich', mm_rich);
 	Vue.component('draggable', vuedraggable);
 	Vue.use(mm_vue);
 	Vue.use(ui);

@@ -9,7 +9,7 @@ require({
 	paths: {
 		css: '/js/css.min',
 		text: '/js/text.min',
-		vue: '/js/mm-requirejs-vue',
+		vue: '/js/requirejs-vue',
 
 		// 生产版||调试版
 		Vue: '/js/vue',
@@ -21,7 +21,7 @@ require({
 		mm_sdk: '/js/mm_sdk',
 		mm_vue: '/js/mm_vue',
 		ui: '/js/mm_vue_ui',
-		nav: '/api/sys/nav.js?scope=dev_pc',
+		nav: '/api/sys_nav.js?scope=dev_pc',
 		store: './store',
 		router: './router',
 		echarts: '/js/echarts',

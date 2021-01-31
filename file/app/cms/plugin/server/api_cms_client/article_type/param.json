@@ -6,6 +6,7 @@
             "display",
             "father_id",
             "name",
+            "title",
             "description",
             "icon"
         ],
@@ -23,6 +24,7 @@
             "display_min",
             "display_max",
             "name",
+            "title",
             "description",
             "keyword"
         ],
@@ -32,6 +34,7 @@
             "display_add",
             "father_id",
             "name",
+            "title",
             "description",
             "icon"
         ],
@@ -44,6 +47,7 @@
             "display_min",
             "display_max",
             "name",
+            "title",
             "description",
             "keyword"
         ],
@@ -57,10 +61,7 @@
             "type": "number",
             "dataType": "smallint",
             "number": {
-                "range": [
-                    1,
-                    30000
-                ]
+                "max": 30000
             }
         },
         {
@@ -100,10 +101,7 @@
             "type": "number",
             "dataType": "smallint",
             "number": {
-                "range": [
-                    1,
-                    32767
-                ]
+                "max": 32767
             }
         },
         {
@@ -114,6 +112,16 @@
             "dataType": "varchar",
             "string": {
                 "max": 16
+            }
+        },
+        {
+            "name": "title",
+            "title": "分类标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
             }
         },
         {
@@ -137,10 +145,15 @@
         {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索分类名称(name)、分类描述(description)",
+            "description": "用于搜索分类名称(name)、分类标题(title)、分类描述(description)",
             "type": "string",
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "type_id"
+        ]
+    }
 }

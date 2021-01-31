@@ -441,7 +441,7 @@
         },
         {
             "name": "login_ip",
-            "title": "上次登录时的IP地址",
+            "title": "上次登录IP",
             "description": "",
             "type": "string",
             "dataType": "varchar",
@@ -518,5 +518,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "user_id"
+        ]
+    }
 }

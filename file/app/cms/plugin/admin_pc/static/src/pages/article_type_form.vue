@@ -13,11 +13,15 @@
 									<dl>
 										<dt>上级分类</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_article_type, 'type_id', 'name')" />
+											<mm_select v-model="form.father_id" :options="$to_kv(list_article_type, 'type_id', 'name', 0)" />
 										</dd>
 										<dt>分类名称</dt>
 										<dd>
 											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
+										</dd>
+										<dt>分类标题</dt>
+										<dd>
+											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>分类描述</dt>
 										<dd>
@@ -53,7 +57,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/cms/article_type?",
+				url: "/apis/cms/article_type?",
 				url_get_obj: "/apis/cms/article_type?method=get_obj",
 				field: "type_id",
 				query: {
@@ -63,6 +67,7 @@
 					"type_id": 0,
 					"father_id": 0,
 					"name": '',
+					"title": '',
 					"description": '',
 					"icon": '',
 				},
@@ -79,7 +84,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "type_id,name"
+						field: "type_id,name,father_id"
 					};
 				}
 				this.$get('~/apis/cms/article_type?size=0', query, function(json) {

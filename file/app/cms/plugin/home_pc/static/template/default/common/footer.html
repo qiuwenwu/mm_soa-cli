@@ -1,0 +1,31 @@
+<footer>
+	<div class="mm_warp">
+		<div class="mm_container">
+			<div class="mm_row">
+				<div class="mm_col col-12 center">
+					<div class="mm_view" style="overflow-x: auto;">
+						<nav id="nav_bottom">
+							<!--{loop nav.bottom o i}-->
+							<!--{if(o.device === '' || o.device === 'web_pc')}-->
+							<a href="${o.url}" class="${ o.url === path || (path !== '/' && o.url.indexOf(path) !== -1) ? 'active' : '' }">
+								<span>${ lang["nav_" + o.name] }</span>
+							</a>
+							<!--{/if}-->
+							<!--{/loop}-->
+						</nav>
+					</div>
+				</div>
+			</div>
+			<div class="mm_row">
+				<div class="mm_col col-12 center">
+					<div class="mm_view">
+						<div id="copyright">
+							${ lang.copyright }
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+

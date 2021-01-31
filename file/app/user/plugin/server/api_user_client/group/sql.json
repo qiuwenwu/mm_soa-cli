@@ -4,8 +4,8 @@
     "table": "user_group",
     "key": "group_id",
     "orderby_default": "`display` asc",
-    "field_obj": "`group_id`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`description`,`icon`",
-    "field_default": "`group_id`,`display`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`description`",
+    "field_obj": "`group_id`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`title`,`description`,`icon`",
+    "field_default": "`group_id`,`display`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`title`,`description`",
     "method": "get get_obj",
     "query": {
         "app": "`app` like '%{0}%'",
@@ -22,7 +22,8 @@
         "level_min": "`level` >= {0}",
         "level_max": "`level` <= {0}",
         "name": "`name` like '%{0}%'",
-        "keyword": "(`name` like '%{0}%' || `description` like '%{0}%')"
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')",
+        "title": "`title` like '%{0}%'"
     },
     "query_default": {},
     "update": {

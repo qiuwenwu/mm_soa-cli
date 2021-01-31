@@ -29,15 +29,15 @@
 										</dd>
 										<dt>所在用户组</dt>
 										<dd>
-											<mm_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
+											<mm_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name', 0)" />
 										</dd>
 										<dt>所在管理组</dt>
 										<dd>
-											<mm_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+											<mm_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
 										</dd>
 										<dt>推荐人</dt>
 										<dd>
-											<mm_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+											<mm_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>上次登录时间</dt>
 										<dd>
@@ -73,7 +73,7 @@
 										<dd>
 											<mm_select v-model="form.email_state" :options="$to_kv(arr_email_state)" />
 										</dd>
-										<dt>上次登录时的IP地址</dt>
+										<dt>上次登录IP</dt>
 										<dd>
 											<mm_input v-model="form.login_ip" :minlength="0" :maxlength="128" placeholder="" />
 										</dd>
@@ -83,11 +83,11 @@
 										</dd>
 										<dt>头像地址</dt>
 										<dd>
-											<mm_input v-model="form.avatar" :minlength="0" :maxlength="255" placeholder="" />
+											<mm_upload_img width="10rem" height="10rem" name="avatar" type="text" v-model="form.avatar" />
 										</dd>
 										<dt>好友</dt>
 										<dd>
-											<mm_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔" />
+											<mm_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔"></mm_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -115,7 +115,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/user/account?",
+				url: "/apis/user/account?",
 				url_get_obj: "/apis/user/account?method=get_obj",
 				field: "user_id",
 				query: {

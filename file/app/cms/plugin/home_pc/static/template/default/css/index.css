@@ -1,0 +1,421 @@
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	min-height: 37.5rem;
+	text-align: center;
+
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	background: no-repeat center top;
+	background-size: 100% auto;
+}
+
+#banner h1 {
+	width: 53rem;
+	font-size: 3.75rem;
+	font-weight: 600;
+	color: var(--color_white);
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	max-width: calc(100% - 2rem);
+}
+
+#banner .mm_btn {
+	position: absolute;
+	left: 50%;
+	top: 62%;
+	transform: translate(-50%, 0);
+}
+
+#banner .swiper-slide .mask {
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+}
+
+#recommend {
+	text-align: center;
+	margin-top: -9rem;
+	position: relative;
+	z-index: 2;
+	margin-bottom: 5rem;
+}
+
+#recommend .mm_card {
+	padding: 2.5rem 1.875rem;
+}
+
+#recommend .mm_card i {
+	font-size: 2.25rem;
+	color: var(--color_primary);
+}
+
+#recommend h4 {
+	margin-bottom: 1rem;
+}
+
+#recommend p {
+	min-height: 3rem;
+	margin-bottom: 1rem;
+}
+
+#image_text {
+	margin-bottom: 6rem;
+}
+
+#image_text .mm_view {
+	padding: 1rem;
+	padding-right: 3rem;
+}
+
+#image_text .mm_btn {
+	margin: 1rem 0;
+}
+
+#image_text h4 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+#image_text p {
+	color: var(--color_grey);
+	margin-bottom: 1rem;
+}
+
+#apply {
+	color: #fff;
+	background: url(/cms/home_pc/template/default/img/banner/banner_3.jpg) no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	z-index: 1;
+	padding: 5rem 0;
+	margin-bottom: 1rem;
+}
+
+#apply h2 {
+	font-size: 2.25rem;
+	line-height: 2.625rem;
+	margin-bottom: 0.875rem;
+}
+
+#apply h4 {
+	font-size: 1.375rem;
+	color: #fff;
+	line-height: 1.75rem;
+	margin-bottom: 1rem;
+}
+
+#apply .mm_btn {
+	position: absolute;
+	right: 3rem;
+	top: 50%;
+	transform: translateY(-100%);
+	margin-top: 2rem;
+}
+
+#apply:before {
+	content: "";
+	background: rgba(0, 33, 71, 0.8);
+	position: absolute;
+	top: 0;
+	min-height: 100%;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+#apply .mm_view {
+	padding: 1rem;
+}
+
+#business {
+	padding: 5rem 0;
+}
+
+#business .mm_row {
+	justify-content: space-between;
+}
+
+#business .item {
+	padding: 33px 0;
+	border-radius: 4px;
+	text-align: center;
+	background-color: #002147;
+	margin: 1rem;
+	color: #fff;
+}
+
+#business .item i {
+	font-size: 2.625rem;
+	margin-bottom: 1rem;
+}
+
+#need {
+	padding: 2rem 1.5rem;
+	background: #f7f7f7;
+	border-radius: 4px;
+	position: relative;
+	height: calc(100% - 2rem);
+	margin: 1rem;
+	border: 1px solid var(--color_border);
+}
+
+#need input {
+	margin-bottom: 1rem;
+	border-radius: 0;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	width: 100%;
+	min-width: auto;
+}
+
+#need h2 {
+	line-height: 2.375rem;
+	font-size: 1.375rem;
+	margin-bottom: 0.5rem;
+}
+
+#need p {
+	margin-bottom: 0.5rem;
+}
+
+#need .mm_btn {
+	width: 100%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+
+#count {
+	background: #f7f7f7;
+	padding: 2rem 0;
+}
+
+#count h2 {
+	float: left;
+	font-size: 3rem;
+	margin-right: 1rem;
+	line-height: 1;
+}
+
+#count p {
+	float: left;
+	text-align: left;
+}
+
+#count .mm_view {
+	display: inline-block;
+	margin: 0.5rem;
+}
+
+#count .mm_col {
+	text-align: center;
+}
+
+#introduce {
+	color: #fff;
+	background: url(/cms/home_pc/template/default/img/banner/banner_2.jpg) no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	z-index: 1;
+	padding: 3rem 0;
+	margin-bottom: 5rem;
+}
+
+#introduce h2 {
+	font-size: 2.25rem;
+	line-height: 2.625rem;
+	margin-bottom: 0.875rem;
+}
+
+#introduce:before {
+	content: "";
+	background: rgba(0, 33, 71, 0.8);
+	position: absolute;
+	top: 0;
+	min-height: 100%;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+#introduce .mm_view {
+	padding: 1rem;
+}
+
+
+#introduce p {
+	margin-top: 1rem;
+}
+
+#introduce img {
+	display: inline-block;
+	border-radius: 50%;
+	border: 4px solid #fff;
+}
+
+#introduce h4 {
+	font-size: 1.25rem;
+	color: var(--color_primary);
+	margin-top: 1rem;
+}
+
+
+#latest_event {
+	padding: 1rem;
+}
+
+#latest_event h2 {
+	margin-bottom: 1.5rem;
+}
+
+#latest_event .mm_item {
+	background-color: #ffffff;
+	padding: 1.25rem;
+	overflow: hidden;
+	margin-bottom: 1rem;
+	border-radius: 0.25rem;
+	border: 1px solid var(--color_border);
+}
+
+#latest_event .mm_icon {
+	text-align: center;
+	background: var(--color_primary);
+	border-radius: 0.25rem;
+	overflow: hidden;
+}
+
+#latest_event .icon {
+	width: 6.25rem;
+	padding-top: 0.875rem;
+	color: #fff;
+}
+
+#latest_event h3 {
+	font-size: 2rem;
+	line-height: 2.375rem;
+}
+
+#latest_event .icon p {
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+	line-height: 1.5rem;
+}
+
+#latest_event figcaption {
+	background-color: #002147;
+	line-height: 2.5;
+	height: 2.5rem;
+	display: block;
+	color: #fff;
+}
+
+#latest_event .mm_btn {
+	float: right;
+}
+
+#latest_product {
+	padding: 1rem;
+}
+
+#latest_product h2 {
+	margin-bottom: 1.5rem;
+}
+
+#latest_product nav {
+	background-color: #fff;
+	border-radius: 0.25rem;
+	border: 1px solid var(--color_border);
+}
+
+#latest_product .mm_item {
+	border-bottom: 1px solid var(--color_border);
+	margin: 0 1rem;
+	padding: 1rem 0;
+}
+
+#latest_product .mm_item:last-child {
+	border-bottom: none;
+}
+
+#latest_product .mm_icon {
+	width: 10rem;
+	height: 6.875rem;
+	border-radius: 0.25rem;
+}
+
+#latest_product .title {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+#latest_product .media {
+	float: left;
+}
+
+#latest_product .time {
+	color: #999;
+}
+
+#latest_product .desc {
+	margin-top: 0.5rem;
+	white-space: normal;
+}
+
+#latest_product .mm_btn {
+	margin-top: 1rem;
+	float: right;
+}
+
+
+
+footer {
+	border-top: 1px solid var(--color_border);
+}
+
+@media (max-width:576px) {
+	#apply .mm_btn {
+		position: initial;
+		transform: translateY(0);
+	}
+
+	#banner h1 {
+		font-size: 1.25rem;
+	}
+
+	.swiper-slide {
+		min-height: 13rem;
+	}
+
+	#recommend {
+		margin-top: 0;
+	}
+
+	#latest_product .media {
+		float: none;
+		width: 100%;
+		padding: 0;
+	}
+
+	#latest_product .mm_icon {
+		width: 100%;
+		background-size: 100% auto;
+		height: 10rem;
+	}
+}

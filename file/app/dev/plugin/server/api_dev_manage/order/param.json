@@ -1,0 +1,389 @@
+{
+    "name": "dev_order2",
+    "title": "订单信息",
+    "add": {
+        "body": [
+            "orderid",
+            "name",
+            "price",
+            "doc",
+            "file",
+            "lang",
+            "ui",
+            "db",
+            "framework",
+            "state",
+            "balance",
+            "tpl_home",
+            "tpl_admin",
+            "publisher",
+            "handler"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "order_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "order_id",
+            "name",
+            "price_min",
+            "price_max",
+            "state_min",
+            "state_max",
+            "balance",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "orderid",
+            "name",
+            "price",
+            "price_add",
+            "doc",
+            "file",
+            "lang",
+            "ui",
+            "db",
+            "framework",
+            "state",
+            "state_add",
+            "balance",
+            "tpl_home",
+            "tpl_admin",
+            "publisher",
+            "handler"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "order_id",
+            "name",
+            "price_min",
+            "price_max",
+            "time_end_min",
+            "time_end_max",
+            "state_min",
+            "state_max",
+            "balance",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "order_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "order_id",
+            "title": "订单唯一ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "orderid",
+            "title": "订单ID",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "name",
+            "title": "项目名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "price",
+            "title": "单价",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_min",
+            "title": "单价——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_max",
+            "title": "单价——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "time_end",
+            "title": "要求时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_end_min",
+            "title": "要求时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_end_max",
+            "title": "要求时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "doc",
+            "title": "需求文档",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "file",
+            "title": "需求文件",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "lang",
+            "title": "语言",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "ui",
+            "title": "UI框架",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "db",
+            "title": "数据库",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "framework",
+            "title": "程序架构",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "state",
+            "title": "订单状态",
+            "description": "(1待领取|2待开发|3进行中|4已完成|5修改中|6已删除)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "state_min",
+            "title": "订单状态——最小值",
+            "description": "(1待领取|2待开发|3进行中|4已完成|5修改中|6已删除)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "state_max",
+            "title": "订单状态——最大值",
+            "description": "(1待领取|2待开发|3进行中|4已完成|5修改中|6已删除)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "balance",
+            "title": "已结算",
+            "description": "(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "tpl_home",
+            "title": "前台模板",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "tpl_admin",
+            "title": "后台模板",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "publisher",
+            "title": "录入员",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "handler",
+            "title": "指派员",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "创建时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "创建时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索项目名(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

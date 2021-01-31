@@ -148,5 +148,10 @@
                 "notEmpty": true
             }
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "refresh_id"
+        ]
+    }
 }

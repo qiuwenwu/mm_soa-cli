@@ -1,0 +1,40 @@
+{
+    "name": "cms_nav",
+    "title": "CMS导航",
+    "table": "cms_nav",
+    "key": "nav_id",
+    "orderby_default": "`nav_id` desc",
+    "field_obj": "`nav_id`,`available`,`name`,`title`,`url`,`style`,`class`,`target`,`position`,`device`,`father_id`",
+    "field_default": "`nav_id`,`available`,`name`,`title`,`url`,`style`,`class`,`target`,`position`,`device`,`father_id`",
+    "method": "get get_obj",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "style": "`style` like '%{0}%'",
+        "class": "`class` like '%{0}%'",
+        "target": "`target` like '%{0}%'",
+        "position": "`position` like '%{0}%'",
+        "device": "`device` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {},
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "father_id",
+            "title": "上级",
+            "table": "cms_nav",
+            "name": "name",
+            "id": "nav_id"
+        }
+    ]
+}

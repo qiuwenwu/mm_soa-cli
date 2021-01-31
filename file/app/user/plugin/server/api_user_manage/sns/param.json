@@ -184,5 +184,10 @@
                 "max": 1
             }
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "user_id"
+        ]
+    }
 }

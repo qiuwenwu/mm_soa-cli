@@ -62,10 +62,7 @@
             "type": "number",
             "dataType": "int",
             "number": {
-                "range": [
-                    1,
-                    2147483647
-                ]
+                "max": 2147483647
             }
         },
         {
@@ -105,10 +102,7 @@
             "type": "number",
             "dataType": "int",
             "number": {
-                "range": [
-                    1,
-                    2147483647
-                ]
+                "max": 2147483647
             }
         },
         {
@@ -157,5 +151,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "section_id"
+        ]
+    }
 }

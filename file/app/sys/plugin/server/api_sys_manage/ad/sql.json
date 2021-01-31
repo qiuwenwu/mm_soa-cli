@@ -4,8 +4,8 @@
     "table": "sys_ad",
     "key": "ad_id",
     "orderby_default": "`ad_id` desc",
-    "field_obj": "`ad_id`,`app`,`area_id`,`city_id`,`description`,`device`,`fee`,`fee_max`,`fee_way`,`img`,`keywords`,`location`,`name`,`times_click`,`times_max`,`times_show`,`times_user`,`title`,`trade`,`type`,`url`,`user_id`",
-    "field_default": "`ad_id`,`app`,`area_id`,`city_id`,`description`,`device`,`display`,`fee`,`fee_max`,`fee_way`,`img`,`keywords`,`location`,`name`,`times_click`,`times_max`,`times_show`,`times_user`,`title`,`trade`,`type`,`url`,`user_id`",
+    "field_obj": "`ad_id`,`city_id`,`area_id`,`user_id`,`times_user`,`times_max`,`times_show`,`times_click`,`fee`,`fee_max`,`name`,`type`,`location`,`fee_way`,`app`,`trade`,`title`,`device`,`description`,`img`,`url`,`keywords`",
+    "field_default": "`ad_id`,`display`,`city_id`,`area_id`,`user_id`,`times_user`,`times_max`,`times_show`,`times_click`,`fee`,`fee_max`,`name`,`type`,`location`,`fee_way`,`app`,`trade`,`title`,`device`,`description`,`img`,`url`,`keywords`",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",
@@ -32,7 +32,7 @@
         "img": "`img` like '%{0}%'",
         "url": "`url` like '%{0}%'",
         "keywords": "`keywords` like '%{0}%'",
-        "keyword": "(`description` like '%{0}%' || `keywords` like '%{0}%' || `name` like '%{0}%' || `title` like '%{0}%')",
+        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%' || `keywords` like '%{0}%')",
         "device": "`device` like '%{0}%'"
     },
     "update": {
@@ -46,15 +46,15 @@
     },
     "format": [
         {
-            "key": "area_id",
-            "title": "投放地区",
-            "table": "sys_address_area",
-            "name": "name"
-        },
-        {
             "key": "city_id",
             "title": "投放城市",
             "table": "sys_address_city",
+            "name": "name"
+        },
+        {
+            "key": "area_id",
+            "title": "投放地区",
+            "table": "sys_address_area",
             "name": "name"
         },
         {

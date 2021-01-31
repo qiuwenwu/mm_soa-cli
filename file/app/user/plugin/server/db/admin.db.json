@@ -21,10 +21,7 @@
             "max": 1000,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "father_id",
@@ -42,10 +39,7 @@
             "max": 32767,
             "decimal": 0,
             "default": "0",
-            "map": "user_admin.name.admin_id",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "user_admin.name.admin_id"
         },
         {
             "name": "display",
@@ -63,10 +57,7 @@
             "max": 1000,
             "decimal": 0,
             "default": "100",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "name",
@@ -84,10 +75,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "department",
@@ -105,10 +93,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "description",
@@ -126,10 +111,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "icon",
@@ -144,13 +126,10 @@
             "min_length": 0,
             "max_length": 0,
             "min": 0,
-            "max": 255,
+            "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         }
     ]
 }

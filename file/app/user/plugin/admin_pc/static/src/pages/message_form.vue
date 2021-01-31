@@ -17,7 +17,7 @@
 										</dd>
 										<dt>留言内容</dt>
 										<dd>
-											<mm_textarea v-model="form.content" type="text" placeholder="" />
+											<mm_rich v-model="form.content"></mm_rich>
 										</dd>
 										<dt>留言者手机</dt>
 										<dd>
@@ -57,7 +57,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/user/message?",
+				url: "/apis/user/message?",
 				url_get_obj: "/apis/user/message?method=get_obj",
 				field: "message_id",
 				query: {

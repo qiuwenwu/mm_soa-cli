@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+	<head>
+		${@view('./common/head.html')}
+		<style>
+			#article_side .mm_view {
+				margin: 1rem 0.5rem;
+			}
+
+			#article .mm_card {
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+				height: calc(100% - var(--margin_base) * 2);
+			}
+
+			/* 列表 */
+			#ad_right {
+				border-radius: 0.25rem;
+			}
+
+			#list_about ul {
+				list-style-type: none;
+				padding: 0 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#list_about li {
+				width: 100%;
+				padding: .5rem 0;
+				border-top: 1px dashed rgba(125, 125, 125, 0.25);
+			}
+
+			#list_about .time {
+				float: right;
+			}
+
+			#list_hot ol {
+				display: block;
+				margin-bottom: 1rem;
+			}
+
+			#list_hot li {
+				width: 100%;
+				padding: .5rem 0;
+				border-top: 1px dashed rgba(125, 125, 125, 0.25);
+			}
+
+			#list_hot .hot {
+				float: right;
+			}
+
+			#list_hot li:first-child {
+				border: none;
+			}
+
+			#list_about li:first-child {
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_page">
+				${@view('./common/header.html')}
+				<main>
+					<!-- 路径导航 -->
+					<div class="mm_warp" id="nav_path">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="col-12">
+									<div class="mm_view">
+										<h2>Article</h2>
+										<p><a href="index.html">Home</a> &nbsp; / &nbsp; Article</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="mm_warp">
+						<div class="mm_container">
+							<div class="mm_row">
+								<!-- 文章主体 -->
+								<div class="mm_col col-12 col-lg-9" id="article">
+									<div class="mm_card">
+										<div class="card_head center pt-5">
+											<h2><span>${@obj.title}</span></h2>
+											<p><span class="time">${@obj.time_create}</span></p>
+										</div>
+										<div class="card_body">
+											${@obj.content}
+										</div>
+										<div class="card_foot pa">
+											<div class="fl"><button><span>阅读 ${obj.hot > 9999 + '+' ? 9999 : obj.hot }</span></button> <button><span>点赞 ${obj.praise > 9999 + '+' ? 9999 : obj.praise}</span></button></div>
+											<div class="fr">
+												<button><i class="fa-heart-o"></i> <span>收藏</span></button>
+												<button><i class="fa-edit"></i> <span>评论</span></button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- 文章侧栏 -->
+								<div class="mm_col col-12 col-lg-3" id="article_side">
+									<div id="list_hot" class="mm_view card">
+										<div class="card_head">
+											<h5>热门文章</h5>
+										</div>
+										<div class="card_body">
+											<ol class="mm_list">
+												<li><a href="#"><span class="title">前端开发技巧</span><span class="hot">9999+</span></a></li>
+												<li><a href="#"><span class="title">后端开发技巧</span><span class="hot">2301</span></a></li>
+												<li><a href="#"><span class="title">UI设计规范</span><span class="hot">9999+</span></a></li>
+												<li><a href="#"><span class="title">前端页面结构</span><span class="hot">3121</span></a></li>
+												<li><a href="#"><span class="title">插件开发示例</span><span class="hot">3121</span></a></li>
+												<li><a href="#"><span class="title">数据库设计规范</span><span class="hot">3121</span></a></li>
+											</ol>
+										</div>
+									</div>
+									<div id="ad_right" class="mm_view">
+										<a href="#" class="mm_item">
+											<figure><img src="/img/web.png" alt="广告图"></figure>
+										</a>
+									</div>
+									<div id="list_about" class="mm_view card">
+										<div class="card_head">
+											<h5>相关文章</h5>
+										</div>
+										<div class="card_body">
+											<ul>
+												<li><a href="#"><span class="title">前端开发技巧</span><span class="time">2020-02-15</span></a></li>
+												<li><a href="#"><span class="title">后端开发技巧</span><span class="time">2020-02-13</span></a></li>
+												<li><a href="#"><span class="title">UI设计规范</span><span class="time">2020-02-12</span></a></li>
+												<li><a href="#"><span class="title">前端页面结构</span><span class="time">2020-02-11</span></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				${@view('./common/footer.html')}
+			</div>
+		</div>
+
+		<!-- 公共js -->
+		<script src="/cms/home_pc/template/default/js/common.js"></script>
+		<!-- 实例化VUE业务 -->
+		<script>
+			var app = new Vue({
+				el: "#app",
+				mixins: [mixin_page],
+				mounted() {
+
+				}
+			});
+		</script>
+	</body>
+</html>

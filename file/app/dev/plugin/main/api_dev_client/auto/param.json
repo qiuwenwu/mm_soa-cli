@@ -1,0 +1,51 @@
+{
+	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
+	"filter": true,
+	// 校验脚本文件, 可以使用脚本的方式加一步进行校验, 让传参更加安全
+	"func_file": "",
+	// get请求
+	"get": {
+		// 查询参数校验项
+		"query": [],
+		// 查询必填参数
+		"query_required": ["table"]
+	},
+	// post请求
+	"post": {
+		// 查询参数校验项
+		"query": [],
+		// 查询必填参数
+		"query_required": ["table"],
+		// 正文参数校验项
+		"body": [],
+		// 正文必填参数
+		"body_required": []
+	},
+	// 校验列表
+	"list": [
+		{
+				"name": "table",
+				"title": "数据表名",
+				"description": "要操作的数据表名，仅支持dev_开头的数据表",
+				"type": "string"
+			},
+		{
+				"name": "method",
+				"title": "执行方式",
+				"description": "add增、del删、get改、set查、update更新、load载入、save保存、update_config更新配置文件、update_db更新数据库",
+				"type": "string"
+			},
+			{
+				"name": "scope",
+				"title": "作用域",
+				"description": "一般为sys系统，自定义机制输入自定义作用域名",
+				"type": "string"
+			},
+			{
+				"name": "name",
+				"title": "名称",
+				"description": "选择要操作的配置文件名称",
+				"type": "string"
+			}
+	]
+}

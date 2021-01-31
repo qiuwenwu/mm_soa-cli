@@ -1,0 +1,136 @@
+{
+    "name": "dev_template",
+    "title": "",
+    "add": {
+        "body": [
+            "img",
+            "path",
+            "colors",
+            "tag",
+            "name",
+            "title"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "template_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "template_id",
+            "tag",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "img",
+            "path",
+            "colors",
+            "tag",
+            "name",
+            "title"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "template_id",
+            "tag",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "template_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "template_id",
+            "title": "模板ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "img",
+            "title": "模板图片",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "path",
+            "title": "文件路径",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "colors",
+            "title": "支持颜色",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "tag",
+            "title": "标签",
+            "description": "用于标注模板相关标签，多个标签用空格隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "name",
+            "title": "名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "title",
+            "title": "标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索标签(tag)、名称(name)、标题(title)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

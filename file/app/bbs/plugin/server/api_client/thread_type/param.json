@@ -1,0 +1,159 @@
+{
+    "name": "bbs_thread_type",
+    "title": "主题分类",
+    "add": {
+        "body": [
+            "display",
+            "father_id",
+            "name",
+            "title",
+            "description",
+            "icon"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "type_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "type_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "display",
+            "display_add",
+            "father_id",
+            "name",
+            "title",
+            "description",
+            "icon"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "type_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "type_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "type_id",
+            "title": "主题分类ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 30000
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "father_id",
+            "title": "上级分类ID",
+            "description": "(bbs_thread_type.name.type_id)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "name",
+            "title": "分类名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "title",
+            "title": "分类标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "分类描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "icon",
+            "title": "分类图标",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索分类名称(name)、分类标题(title)、分类描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

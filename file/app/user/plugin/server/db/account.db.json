@@ -21,10 +21,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "state",
@@ -42,10 +39,7 @@
             "max": 10,
             "decimal": 0,
             "default": "1",
-            "map": "1可用|2异常|3已冻结|4已注销",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "1可用|2异常|3已冻结|4已注销"
         },
         {
             "name": "vip",
@@ -63,10 +57,7 @@
             "max": 10,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "gm",
@@ -84,10 +75,7 @@
             "max": 10,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "mc",
@@ -105,10 +93,7 @@
             "max": 10,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "group_id",
@@ -126,10 +111,7 @@
             "max": 32767,
             "decimal": 0,
             "default": "0",
-            "map": "user_group",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "user_group"
         },
         {
             "name": "admin_id",
@@ -147,10 +129,7 @@
             "max": 32767,
             "decimal": 0,
             "default": "0",
-            "map": "user_admin",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "user_admin"
         },
         {
             "name": "referee_id",
@@ -168,10 +147,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "user_account.nickname.user_id",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "user_account.nickname.user_id"
         },
         {
             "name": "login_time",
@@ -189,10 +165,7 @@
             "max": 0,
             "decimal": 0,
             "default": "CURRENT_TIMESTAMP",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "salt",
@@ -210,10 +183,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "invite_code",
@@ -231,10 +201,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "phone",
@@ -252,10 +219,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "phone_state",
@@ -273,10 +237,7 @@
             "max": 1,
             "decimal": 0,
             "default": "0",
-            "map": "0未认证|1审核中|2已认证",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "0未认证|1审核中|2已认证"
         },
         {
             "name": "username",
@@ -294,10 +255,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "nickname",
@@ -315,10 +273,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "password",
@@ -336,10 +291,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "email",
@@ -357,10 +309,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "email_state",
@@ -378,14 +327,11 @@
             "max": 1,
             "decimal": 0,
             "default": "0",
-            "map": "0未认证|1审核中|2已认证",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "0未认证|1审核中|2已认证"
         },
         {
             "name": "login_ip",
-            "title": "上次登录时的IP地址",
+            "title": "上次登录IP",
             "description": "",
             "type": "varchar",
             "key": false,
@@ -399,10 +345,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "signature",
@@ -420,10 +363,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "avatar",
@@ -441,10 +381,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "friends",
@@ -462,10 +399,7 @@
             "max": 0,
             "decimal": 0,
             "default": null,
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "create_time",
@@ -483,10 +417,7 @@
             "max": 0,
             "decimal": 0,
             "default": "CURRENT_TIMESTAMP",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         }
     ]
 }

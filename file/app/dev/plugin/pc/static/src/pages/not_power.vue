@@ -1,15 +1,10 @@
 <template>
-	<main id="error_404">
+	<main id="error_403">
 		<div class="box">
-			<h1>404</h1>
-			<div class="mm_grid">
-				<div class="mm_col col-12 col-md-6">
-					<h2>超级美眉</h2>
-				</div>
-				<div class="mm_col col-12 col-md-6">
-					<h5>一个好玩的服务端</h5>
-					<p><a href="http://mm.elins.cn">http://mm.elins.cn</a></p>
-				</div>
+			<h1>403</h1>
+			<div class="center">
+				<h5>没有访问权限</h5>
+				<p><a href="http://mm.elins.cn">http://mm.elins.cn</a></p>
 			</div>
 		</div>
 		<div class="border"></div>
@@ -21,12 +16,12 @@
 </script>
 
 <style>
-	#error_404 h1 {
+	#error_403 h1 {
 		font-size: 10rem;
 		line-height: 1;
 	}
 
-	#error_404 .box {
+	#error_403 .box {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -35,12 +30,12 @@
 		z-index: 2;
 	}
 
-	#error_404 .mm_grid {
+	#error_403 .center {
 		border-top: 1px solid #e1e4e8;
 		padding-top: 0.5rem;
 	}
 
-	#error_404 .border {
+	#error_403 .border {
 		opacity: 0.75;
 		width: 25rem;
 		height: 25rem;
@@ -53,7 +48,7 @@
 		background: rgba(255, 255, 255, .5);
 	}
 
-	#error_404 .br2 {
+	#error_403 .br2 {
 		border-color: #f5cbc5;
 		transform: translate(-50%, -50%) rotate(210deg);
 		background: rgba(255, 255, 255, .5);

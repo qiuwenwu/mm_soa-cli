@@ -14,7 +14,7 @@
 		</div>
 		<div class="item">
 			<mm_select class="user" v-model="option" :options="options" type="click" :func="select">
-				<img class="avatar" :src="user.avatar" />
+				<img class="avatar" :src="user.avatar || '/img/avatar.png'" />
 			</mm_select>
 		</div>
 		<div class="item">

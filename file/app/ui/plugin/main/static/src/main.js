@@ -22,7 +22,7 @@ require({
 		mm_vue: '/js/mm_vue',
 		ui: '/js/mm_vue_ui',
 		mm_component: '/src/mm_component',
-		nav: '/api/sys/nav.js?scope=home_pc',
+		nav: '/api/sys_nav.js?scope=home_pc',
 		store: './store',
 		router: './router',
 		echarts: '/js/echarts',

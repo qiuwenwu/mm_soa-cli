@@ -150,5 +150,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "message_id"
+        ]
+    }
 }

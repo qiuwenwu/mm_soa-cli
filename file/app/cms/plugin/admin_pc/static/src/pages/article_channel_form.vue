@@ -15,29 +15,21 @@
 										<dd>
 											<mm_switch v-model="form.available" />
 										</dd>
-										<dt>是否可评论</dt>
-										<dd>
-											<mm_switch v-model="form.can_comment" />
-										</dd>
-										<dt>所属城市</dt>
-										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
-										</dd>
-										<dt>描述</dt>
-										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该频道的作用" />
-										</dd>
-										<dt>上级</dt>
-										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name')" />
-										</dd>
 										<dt>是否隐藏</dt>
 										<dd>
 											<mm_switch v-model="form.hide" />
 										</dd>
-										<dt>频道图标</dt>
+										<dt>是否可评论</dt>
 										<dd>
-											<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
+											<mm_switch v-model="form.can_comment" />
+										</dd>
+										<dt>上级</dt>
+										<dd>
+											<mm_select v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name', 0)" />
+										</dd>
+										<dt>所属城市</dt>
+										<dd>
+											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt class="required">频道名称</dt>
 										<dd>
@@ -47,6 +39,18 @@
 										<dt>风格模板</dt>
 										<dd>
 											<mm_input v-model="form.template" :minlength="0" :maxlength="64" placeholder="频道和文章都使用的样式" />
+										</dd>
+										<dt>频道标题</dt>
+										<dd>
+											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
+										</dd>
+										<dt>描述</dt>
+										<dd>
+											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该频道的作用" />
+										</dd>
+										<dt>频道图标</dt>
+										<dd>
+											<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
 										</dd>
 										<dt>外链地址</dt>
 										<dd>
@@ -78,38 +82,57 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/cms/article_channel?",
+				url: "/apis/cms/article_channel?",
 				url_get_obj: "/apis/cms/article_channel?method=get_obj",
 				field: "channel_id",
 				query: {
 					"channel_id": 0
 				},
 				form: {
-					"available": 0,
-					"can_comment": 0,
 					"channel_id": 0,
-					"city_id": 0,
-					"description": '',
-					"father_id": 0,
+					"available": 0,
 					"hide": 0,
-					"icon": '',
+					"can_comment": 0,
+					"father_id": 0,
+					"city_id": 0,
 					"name": '',
 					"template": '',
+					"title": '',
+					"description": '',
+					"icon": '',
 					"url": '',
 				},
 				// 是否启用
 				'arr_available':["否","是"],
-				// 是否可评论
-				'arr_can_comment':["否","是"],
-				// 所属城市
-				'list_address_city':[],
-				// 上级
-				'list_article_channel':[],
 				// 是否隐藏
 				'arr_hide':["否","是"],
+				// 是否可评论
+				'arr_can_comment':["否","是"],
+				// 上级
+				'list_article_channel':[],
+				// 所属城市
+				'list_address_city':[],
 			}
 		},
 		methods: {
+			/**
+			 * 获取上级
+			 * @param {query} 查询条件
+			 */
+			get_article_channel(query) {
+				var _this = this;
+				if (!query) {
+					query = {
+						field: "channel_id,name,father_id"
+					};
+				}
+				this.$get('~/apis/cms/article_channel?size=0', query, function(json) {
+					if (json.result) {
+						_this.list_article_channel.clear();
+						_this.list_article_channel.addList(json.result.list)
+					}
+				});
+			},
 			/**
 			 * 获取所属城市
 			 * @param {query} 查询条件
@@ -128,30 +151,12 @@
 					}
 				});
 			},
-			/**
-			 * 获取上级
-			 * @param {query} 查询条件
-			 */
-			get_article_channel(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "channel_id,name"
-					};
-				}
-				this.$get('~/apis/cms/article_channel?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_article_channel.clear();
-						_this.list_article_channel.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取所属城市
-			this.get_address_city();
 			// 获取上级
 			this.get_article_channel();
+			// 获取所属城市
+			this.get_address_city();
 		}
 	}
 </script>

@@ -15,7 +15,7 @@
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="名称 / 描述"
+											<mm_input v-model="query.keyword" title="关键词" desc="名称 / 分组标题 / 描述"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -30,7 +30,7 @@
 								<div class="mm_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
-										<mm_btn class="btn_primary-x" url="./group_form">添加</mm_btn>
+										<mm_btn class="btn_primary-x" url="./group_form?">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
 									</div>
 									<div class="btn_small">
@@ -68,6 +68,9 @@
 												<mm_reverse title="名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
 											</th>
 											<th>
+												<mm_reverse title="分组标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
+											</th>
+											<th>
 												<mm_reverse title="描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -76,10 +79,10 @@
 									<tbody>
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
-											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<input class="td_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
+												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
 												<span>{{ o.level }}</span>
@@ -101,6 +104,9 @@
 											</td>
 											<td>
 												<span>{{ o.name }}</span>
+											</td>
+											<td>
+												<span>{{ o.title }}</span>
 											</td>
 											<td>
 												<span>{{ o.description }}</span>
@@ -202,6 +208,8 @@
 					'bonus_max': 0,
 					// 名称
 					'name': '',
+					// 分组标题
+					'title': '',
 					// 描述
 					'description': '',
 					// 关键词

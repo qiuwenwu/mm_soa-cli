@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+	<head>
+		${@view('./common/head.html')}
+		<style>
+			main .mm_view {
+				margin: 0.5rem;
+			}
+			
+			.contact {
+				background: #fff;
+				border: 1px solid var(--color_border);
+				border-radius: 0.5rem;
+			}
+			.contact .mm_item {
+				border-bottom: 1px solid var(--color_border);
+				position: relative;
+				padding: 1rem;
+			}
+			.contact .mm_item i {
+				position: absolute;
+				right: 1rem;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+			
+			.contact .mm_item:last-child a {
+				color: #fff;
+			    background: #002147;
+			    width: 2.25rem;
+			    height: 2.25rem;
+			    line-height: 2.25rem;
+			    display: inline-block;
+			    text-align: center;
+			    border-radius: 50%;
+				margin-right: 0.25rem;
+			}
+			
+			.form input {
+				width: 100%;
+				height: 2.5rem;
+			}
+			
+			#contact_address {
+				margin-top: 5rem;
+				margin-bottom: 4rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_page">
+				${@view('./common/header.html')}
+				<main>
+					<!-- 路径导航 -->
+					<div class="mm_warp" id="nav_path">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="col-12">
+									<div class="mm_view">
+										<h2>Contact Us</h2>
+										<p><a href="index.html">Home</a> &nbsp; / &nbsp; Contact</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 联系方式 -->
+					<div class="mm_warp" id="contact_address">
+						<div class="mm_container">
+							<div class="row">
+								<!-- contact address -->
+								<div class="col-lg-3">
+									<div class="mm_view contact">
+										<div class="mm_item">
+											<h4>Address:</h4>
+											<p>PO Box 1212, California, US</p>
+											<i class="fa-map-marker"></i>
+										</div>
+										<div class="mm_item">
+											<h4>Email:</h4>
+											<a href="mailto:573242395@qq.com">
+												<p>573242395@qq.com</p>
+											</a>
+											<i class="fa-envelope"></i>
+										</div>
+										<div class="mm_item">
+											<h4>Phone:</h4>
+											<a href="tel:18813868813">
+												<p>18813868813</p>
+											</a>
+											<i class="fa-phone"></i>
+										</div>
+										<div class="mm_item">
+											<h4>Find Us On</h4>
+											<div class="mt-2">
+												<a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+												<a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+												<a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+												<a href="#google-plus" class="google-plus"><span class="fa fa-google-plus"></span></a>
+												<a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col-lg-6">
+									<form class="mm_view form">
+										<div class="row">
+											<div class="col-sm-6 col-12 mb-3 pr-1">
+												<input type="text" placeholder="Name" v-model="form.name" required="">
+											</div>
+											<div class="col-sm-6 col-12 mb-3 pl-1">
+												<input type="email" placeholder="Email" v-model="form.email" required="">
+											</div>
+										</div>
+										<input class="mb-3" type="text" placeholder="Phone Number" v-model="form.phone" required="">
+										<textarea class="mb-3" placeholder="Message" v-model="form.message" required=""></textarea>
+										<div>
+											<button type="submit" class="btn btn_primary fr">Submit Now</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</main>
+				${@view('./common/footer.html')}
+			</div>
+		</div>
+
+		<!-- 公共js -->
+		<script src="/cms/home_pc/template/default/js/common.js"></script>
+		<!-- 实例化VUE业务 -->
+		<script>
+			var app = new Vue({
+				el: "#app",
+				mixins: [mixin_page],
+				mounted() {},
+				data() {
+					return {
+						form: {}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

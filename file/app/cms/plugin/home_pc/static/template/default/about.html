@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+	<head>
+		${@view('./common/head.html')}
+		<style>
+			body {
+				background-color: #fff;
+			}
+
+			.info-image {
+				text-align: right;
+			}
+
+			main .mm_view {
+				padding: 1rem;
+			}
+			
+			#about_info {
+				padding: 1rem 0;
+			}
+			#about_info h3 {
+				font-size: 36px;
+				line-height: 44px;
+				margin-bottom: 10px;
+			}
+
+			#about_info p {
+				margin: 25px 0;
+			}
+
+			#about_info ul {
+				padding: 0;
+				list-style: none;
+			}
+
+			#about_info li {
+				font-size: 16px;
+				line-height: 24px;
+				margin: 10px 0;
+			}
+
+			#about_info i {
+				margin-right: .5rem;
+				color: var(--color_primary);
+			}
+
+			#about_info .mm_view {
+				margin-top: 2rem;
+			}
+
+			#about_info .col-md-6:last-child .mm_view {
+				text-align: right;
+			}
+
+			#about_info img {
+				width: 85%;
+				border-radius: .25rem;
+			}
+
+			@media (max-width:768px) {
+				#about_info img {
+					width: 100%;
+				}
+			}
+
+			#info_card {
+				padding: 1rem 0;
+			}
+			#info_card .mm_view {
+				margin-bottom: 1rem;
+			}
+
+			#info_card h5 {
+				font-size: 1.5rem;
+				margin-bottom: 0.5rem;
+			}
+
+			#select_us {
+				background: #f7f7f7;
+				padding: 3rem 0;
+				text-align: center;
+			}
+
+			#select_us h3 {
+				font-size: 2.25rem;
+				line-height: 42px;
+			}
+
+			#select_us p {
+				color: var(--text-color);
+				line-height: 1.5;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#select_us i {
+				display: inline-block;
+				height: 4.5rem;
+				width: 4.5rem;
+				font-size: 1.75rem;
+				line-height: 4.5rem;
+				background: var(--color_primary);
+				border-radius: 50%;
+				color: #fff;
+			}
+
+			#select_us h4 {
+				font-size: 1.375rem;
+				line-height: 1.5;
+				margin-top: 1.5rem;
+			}
+
+			#developer {
+				text-align: center;
+				padding: 3rem 0;
+			}
+
+			#developer h3 {
+				font-size: 2.25rem;
+				line-height: 42px;
+			}
+
+			#developer p {
+				color: var(--text-color);
+				line-height: 1.5;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#developer ul {
+				padding: 0;
+				list-style: none;
+			}
+
+
+			#developer .mm_view {
+				overflow-x: visible;
+			}
+
+			#developer .mm_img {
+				position: relative;
+			}
+
+			#developer .col-lg-3:nth-child(even) .mm_img {
+				margin-top: 4rem;
+			}
+
+			#developer img {
+				width: 100%;
+				border-radius: 0.5rem;
+				box-shadow: 0 12px 60px rgba(0, 0, 0, 0.17);
+				-webkit-box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
+				-o-box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
+				-moz-box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
+				-ms-box-shadow: 0 12px 60px rgba(0, 0, 0, 0.2);
+			}
+
+			#developer .share {
+				left: auto;
+				bottom: 0;
+				width: 100%;
+				padding: 0 20px;
+				position: absolute;
+				opacity: 0;
+				color: #fff;
+				transform: translate3d(0, 10%, 0);
+				transition: all 0.4s;
+			}
+
+			#developer .share h4 {
+				font-size: 20px;
+				letter-spacing: 1px;
+				color: #fff;
+			}
+			
+			#developer .share div {
+				padding: 1rem 0;
+			}
+			#developer .share a {
+				display: inline-block;
+				background: var(--color_primary);
+				width: 2rem;
+				height: 2rem;
+				line-height: 2rem;
+				text-align: center;
+				border-radius: 50%;
+				margin: 0 0.5rem;
+				transition: all 0.4s;
+			}
+
+			#developer .mm_img:hover .share {
+				opacity: 1;
+				transform: translate3d(0, -10%, 0);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_page">
+				${@view('./common/header.html')}
+				<main>
+					<!-- 路径导航 -->
+					<div class="mm_warp" id="nav_path">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="col-12">
+									<div class="mm_view">
+										<h2>About Us</h2>
+										<p><a href="index.html">Home</a> &nbsp; / &nbsp; About</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 图文介绍 -->
+					<div class="mm_warp" id="about_info">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="col-md-6">
+									<div class="mm_view">
+										<h3>About Our Institution</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et
+											dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+										</p>
+										<ul>
+											<li><i class="fa-check"></i>Materiality &amp; Interpretation</li>
+											<li><i class="fa-check"></i>Design Management and Cultural Enterprise </li>
+											<li><i class="fa-check"></i>Experience Design (XD)</li>
+											<li><i class="fa-check"></i>Sound Design; Social Media and SEO </li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mm_view">
+										<img src="/cms/home_pc/template/default/img/ad_2.jpg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 信息卡介绍 -->
+					<div class="mm_warp" id="info_card">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="col-lg-4 col-sm-6">
+									<div class="mm_view">
+										<h5>我们的历史1998</h5>
+										<p>Lorem ipsum dolor坐下，安全协助，sed do eiusmod tempor incididunt ut Labore等人。尽量少用veniam，不要打扰。</p>
+									</div>
+								</div>
+								<div class="col-lg-4 col-sm-6">
+									<div class="mm_view">
+										<h5>超过100种食物</h5>
+										<p>Lorem ipsum dolor坐下，安全协助，sed do eiusmod tempor incididunt ut Labore等人。尽量少用veniam，不要打扰。</p>
+									</div>
+								</div>
+								<div class="col-lg-4 col-sm-6">
+									<div class="mm_view">
+										<h5>我们有12,000名学生</h5>
+										<p>Lorem ipsum dolor坐下，安全协助，sed do eiusmod tempor incididunt ut Labore等人。尽量少用veniam，不要打扰。</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 选择我们 -->
+					<div class="mm_warp" id="select_us">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="mm_col col-8">
+									<div class="mm_view">
+										<h3>为什么选择我们的机构</h3>
+										<p>
+											紫茎泽兰和乌贼菌中的初生的Vestibulum ante ipsum primis；Nulla mollis dapibus nunc，ut rhoncus turpis sodales quis。整数坐在amet
+											mattis quam上。
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="mm_row">
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="icon"> <i class="fa-graduation-cap"></i></div>
+										<h4>奖学金设施</h4>
+										<p>紫茎泽兰和小茴香中的前庭静脉</p>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="icon"> <i class="fa-user"></i></div>
+										<h4>技术讲师</h4>
+										<p>紫茎泽兰和小茴香中的前庭静脉</p>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="icon"> <i class="fa-book"></i></div>
+										<h4>图书馆与商店</h4>
+										<p>紫茎泽兰和小茴香中的前庭静脉</p>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="icon"> <i class="fa-bed"></i></div>
+										<h4>旅馆设施</h4>
+										<p>紫茎泽兰和小茴香中的前庭静脉</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 开发者介绍 -->
+					<div class="mm_warp" id="developer">
+						<div class="mm_container">
+							<div class="mm_row">
+								<div class="mm_col col-8">
+									<div class="mm_view">
+										<h3>我们的开发者</h3>
+										<p>
+											紫茎泽兰和乌贼菌中的初生的Vestibulum ante ipsum primis；Nulla mollis dapibus nunc，ut rhoncus turpis sodales quis。整数坐在amet
+											mattis quam上。
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="mm_row">
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="mm_img">
+											<img src="/cms/home_pc/template/default/img/t1.jpg" alt="">
+											<div class="share">
+												<h4>玛丽亚·克莱斯特斯</h4>
+												<div> <a href="#">
+														<i class="fa-facebook-f"></i>
+													</a>
+													<a href="#">
+														<i class="fa-twitter"></i>
+													</a>
+													<a href="#">
+														<i class="fa-google-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="mm_img">
+											<img src="/cms/home_pc/template/default/img/t2.jpg" alt="">
+											<div class="share">
+												<h4>玛丽亚·克莱斯特斯</h4>
+												<div> <a href="#">
+														<i class="fa-facebook-f"></i>
+													</a>
+													<a href="#">
+														<i class="fa-twitter"></i>
+													</a>
+													<a href="#">
+														<i class="fa-google-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="mm_img">
+											<img src="/cms/home_pc/template/default/img/t3.jpg" alt="">
+											<div class="share">
+												<h4>玛丽亚·克莱斯特斯</h4>
+												<div><a href="#">
+														<i class="fa-facebook-f"></i>
+													</a>
+													<a href="#">
+														<i class="fa-twitter"></i>
+													</a>
+													<a href="#">
+														<i class="fa-google-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-sm-6">
+									<div class="mm_view">
+										<div class="mm_img">
+											<img src="/cms/home_pc/template/default/img/t4.jpg" alt="">
+											<div class="share">
+												<h4>玛丽亚·克莱斯特斯</h4>
+												<div><a href="#">
+														<i class="fa-facebook-f"></i>
+													</a>
+													<a href="#">
+														<i class="fa-twitter"></i>
+													</a>
+													<a href="#">
+														<i class="fa-google-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				${@view('./common/footer.html')}
+			</div>
+		</div>
+
+		<!-- 公共js -->
+		<script src="/cms/home_pc/template/default/js/common.js"></script>
+		<!-- 实例化VUE业务 -->
+		<script>
+			var app = new Vue({
+				el: "#app",
+				mixins: [mixin_page],
+				mounted() {
+
+				}
+			});
+		</script>
+	</body>
+</html>

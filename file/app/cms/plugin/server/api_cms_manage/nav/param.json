@@ -1,0 +1,187 @@
+{
+    "name": "cms_nav2",
+    "title": "CMS导航",
+    "add": {
+        "body": [
+            "available",
+            "title",
+            "url",
+            "style",
+            "class",
+            "target",
+            "position",
+            "device",
+            "father_id"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "nav_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "nav_id",
+            "available",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "available",
+            "name",
+            "title",
+            "url",
+            "style",
+            "class",
+            "target",
+            "position",
+            "device",
+            "father_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "nav_id",
+            "available",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "nav_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "nav_id",
+            "title": "导航ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "available",
+            "title": "是否启用",
+            "description": "启用后才可以看到该导航。(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "name",
+            "title": "英文名称",
+            "description": "用于多国语识别",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "中文标题",
+            "description": "用于中文提示",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "url",
+            "title": "跳转链接",
+            "description": "跳转的链接地址",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "format": "url"
+            }
+        },
+        {
+            "name": "style",
+            "title": "风格样式",
+            "description": "自定义css样式",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "class",
+            "title": "样式类型",
+            "description": "绑定的css class",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "target",
+            "title": "跳转方式",
+            "description": "_blank表示新窗口跳转",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "position",
+            "title": "展现位置",
+            "description": "top顶部、bottom底部、side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "device",
+            "title": "呈现设备",
+            "description": "在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "father_id",
+            "title": "上级ID",
+            "description": "在频道列表操作时，当上级导航展开时，才显示该导航(cms_nav.name.nav_id)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索英文名称(name)、中文标题(title)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

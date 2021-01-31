@@ -3,26 +3,26 @@
     "title": "文章",
     "add": {
         "body": [
-            "author",
             "available",
-            "channel_id",
-            "city_id",
-            "collect_id",
-            "collecter",
-            "content",
-            "description",
-            "display",
-            "hot",
-            "img",
-            "keywords",
-            "lang",
-            "praise",
-            "source",
             "state",
-            "tag",
             "type_id",
+            "display",
+            "channel_id",
+            "user_id",
+            "city_id",
+            "hot",
+            "praise",
+            "collect_id",
+            "lang",
+            "author",
+            "keywords",
+            "description",
+            "source",
             "url",
-            "user_id"
+            "tag",
+            "img",
+            "content",
+            "collecter"
         ],
         "body_required": [
             "title"
@@ -38,48 +38,48 @@
         "query": [
             "article_id",
             "available",
-            "content",
-            "description",
+            "state_min",
+            "state_max",
             "display_min",
             "display_max",
             "hot_min",
             "hot_max",
-            "keywords",
             "praise_min",
             "praise_max",
-            "state_min",
-            "state_max",
-            "tag",
             "title",
+            "keywords",
+            "description",
+            "tag",
+            "content",
             "keyword"
         ],
         "query_required": [],
         "body": [
-            "author",
             "available",
-            "channel_id",
-            "city_id",
-            "collect_id",
-            "collecter",
-            "content",
-            "description",
-            "display",
-            "display_add",
-            "hot",
-            "hot_add",
-            "img",
-            "keywords",
-            "lang",
-            "praise",
-            "praise_add",
-            "source",
             "state",
             "state_add",
-            "tag",
-            "title",
             "type_id",
+            "display",
+            "display_add",
+            "channel_id",
+            "user_id",
+            "city_id",
+            "hot",
+            "hot_add",
+            "praise",
+            "praise_add",
+            "collect_id",
+            "lang",
+            "author",
+            "title",
+            "keywords",
+            "description",
+            "source",
             "url",
-            "user_id"
+            "tag",
+            "img",
+            "content",
+            "collecter"
         ],
         "body_required": [],
         "body_not": []
@@ -88,26 +88,31 @@
         "query": [
             "article_id",
             "available",
-            "content",
-            "description",
+            "state_min",
+            "state_max",
             "display_min",
             "display_max",
             "hot_min",
             "hot_max",
-            "keywords",
             "praise_min",
             "praise_max",
-            "state_min",
-            "state_max",
-            "tag",
             "time_create_min",
             "time_create_max",
             "time_update_min",
             "time_update_max",
             "title",
+            "keywords",
+            "description",
+            "tag",
+            "content",
             "keyword"
         ],
         "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "article_id"
+        ]
     },
     "list": [
         {
@@ -121,16 +126,6 @@
             }
         },
         {
-            "name": "author",
-            "title": "作者",
-            "description": "写出该文章的人",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 16
-            }
-        },
-        {
             "name": "available",
             "title": "是否启用",
             "description": "启用后前台才会显示该文章(0否|1是)",
@@ -138,191 +133,6 @@
             "dataType": "tinyint",
             "number": {
                 "max": 1
-            }
-        },
-        {
-            "name": "channel_id",
-            "title": "频道ID",
-            "description": "该文章所属频道，仅该频道列表可以看到该文章(cms_article_channel)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10000
-            }
-        },
-        {
-            "name": "city_id",
-            "title": "所属城市ID",
-            "description": "对于一些地方文章，可以通过该ID筛看(sys_address_city)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "collect_id",
-            "title": "采集规则ID",
-            "description": "如果文章是通过采集的方式获得，那么具有采集ID",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "collecter",
-            "title": "收藏者",
-            "description": "多个收藏者用”,“分隔",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
-            "name": "content",
-            "title": "正文",
-            "description": "文章的主体内容",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
-            "name": "description",
-            "title": "描述",
-            "description": "用于文章提纲和搜索引擎收录",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255
-            }
-        },
-        {
-            "name": "display",
-            "title": "排序",
-            "description": "决定文章显示的顺序",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10000
-            }
-        },
-        {
-            "name": "display_min",
-            "title": "排序——最小值",
-            "description": "决定文章显示的顺序",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10000
-            }
-        },
-        {
-            "name": "display_max",
-            "title": "排序——最大值",
-            "description": "决定文章显示的顺序",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10000
-            }
-        },
-        {
-            "name": "hot",
-            "title": "热度",
-            "description": "访问这篇文章的人次",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "hot_min",
-            "title": "热度——最小值",
-            "description": "访问这篇文章的人次",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "hot_max",
-            "title": "热度——最大值",
-            "description": "访问这篇文章的人次",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "img",
-            "title": "封面图",
-            "description": "用于显示于文章列表页，多个封面图用换行分隔",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
-            "name": "keywords",
-            "title": "关键词",
-            "description": "用于搜索引擎收录",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 125
-            }
-        },
-        {
-            "name": "lang",
-            "title": "语言",
-            "description": "默认zh_cn(zh_cn|en|zh_tw|ko|ja)",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 16
-            }
-        },
-        {
-            "name": "praise",
-            "title": "点赞次数",
-            "description": "",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "praise_min",
-            "title": "点赞次数——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "praise_max",
-            "title": "点赞次数——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 1000000000
-            }
-        },
-        {
-            "name": "source",
-            "title": "来源",
-            "description": "文章的出处",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255,
-                "format": "url"
             }
         },
         {
@@ -365,13 +175,143 @@
             }
         },
         {
-            "name": "tag",
-            "title": "标签",
-            "description": "用于标注文章所属相关内容，多个标签用空格隔开",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255
+            "name": "type_id",
+            "title": "文章分类ID",
+            "description": "用来搜索指定类型的文章(cms_article_type)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display",
+            "title": "排序",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "排序——最小值",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "排序——最大值",
+            "description": "决定文章显示的顺序",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "channel_id",
+            "title": "频道ID",
+            "description": "该文章所属频道，仅该频道列表可以看到该文章(cms_article_channel)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "编辑这篇文章到本站的用户ID(user_account.nickname)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "city_id",
+            "title": "所属城市ID",
+            "description": "对于一些地方文章，可以通过该ID筛看(sys_address_city)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "hot",
+            "title": "热度",
+            "description": "访问这篇文章的人次",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "hot_min",
+            "title": "热度——最小值",
+            "description": "访问这篇文章的人次",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "hot_max",
+            "title": "热度——最大值",
+            "description": "访问这篇文章的人次",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "praise",
+            "title": "点赞次数",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "praise_min",
+            "title": "点赞次数——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "praise_max",
+            "title": "点赞次数——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
+            }
+        },
+        {
+            "name": "collect_id",
+            "title": "采集规则ID",
+            "description": "如果文章是通过采集的方式获得，那么具有采集ID",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000000000
             }
         },
         {
@@ -441,6 +381,26 @@
             }
         },
         {
+            "name": "lang",
+            "title": "语言",
+            "description": "默认zh_cn(zh_cn|en|zh_tw|ko|ja)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "author",
+            "title": "作者",
+            "description": "写出该文章的人",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
             "name": "title",
             "title": "标题",
             "description": "用于文章和html的title标签中",
@@ -452,13 +412,34 @@
             }
         },
         {
-            "name": "type_id",
-            "title": "文章分类ID",
-            "description": "用来搜索指定类型的文章(cms_article_type)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 1000
+            "name": "keywords",
+            "title": "关键词",
+            "description": "用于搜索引擎收录",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "描述",
+            "description": "用于文章提纲和搜索引擎收录",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "source",
+            "title": "来源",
+            "description": "文章的出处",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "format": "url"
             }
         },
         {
@@ -473,19 +454,45 @@
             }
         },
         {
-            "name": "user_id",
-            "title": "用户ID",
-            "description": "编辑这篇文章到本站的用户ID(user_account.nickname)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
+            "name": "tag",
+            "title": "标签",
+            "description": "用于标注文章所属相关内容，多个标签用空格隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
             }
+        },
+        {
+            "name": "img",
+            "title": "封面图",
+            "description": "用于显示于文章列表页，多个封面图用换行分隔",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "content",
+            "title": "正文",
+            "description": "文章的主体内容",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "collecter",
+            "title": "收藏者",
+            "description": "多个收藏者用”,“分隔",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
         },
         {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索正文(content)、描述(description)、关键词(keywords)、标签(tag)、标题(title)",
+            "description": "用于搜索标题(title)、关键词(keywords)、描述(description)、标签(tag)、正文(content)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

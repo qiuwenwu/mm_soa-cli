@@ -4,39 +4,39 @@
     "table": "cms_article",
     "key": "article_id",
     "orderby_default": "`article_id` desc",
-    "field_obj": "`article_id`,`author`,`available`,`channel_id`,`city_id`,`collect_id`,`collecter`,`content`,`description`,`hot`,`img`,`keywords`,`lang`,`praise`,`source`,`state`,`tag`,`title`,`type_id`,`url`,`user_id`",
-    "field_default": "`article_id`,`author`,`available`,`channel_id`,`city_id`,`collect_id`,`description`,`display`,`hot`,`keywords`,`lang`,`praise`,`source`,`state`,`tag`,`time_create`,`time_update`,`title`,`type_id`,`url`,`user_id`",
+    "field_obj": "`article_id`,`available`,`state`,`type_id`,`channel_id`,`user_id`,`city_id`,`hot`,`praise`,`collect_id`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`,`content`,`collecter`",
+    "field_default": "`article_id`,`available`,`state`,`type_id`,`display`,`channel_id`,`user_id`,`city_id`,`hot`,`praise`,`collect_id`,`time_create`,`time_update`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`",
     "query": {
-        "author": "`author` like '%{0}%'",
-        "collecter": "`collecter` like '%{0}%'",
-        "content": "`content` like '%{0}%'",
-        "description": "`description` like '%{0}%'",
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",
         "hot_min": "`hot` >= {0}",
         "hot_max": "`hot` <= {0}",
-        "img": "`img` like '%{0}%'",
-        "keywords": "`keywords` like '%{0}%'",
-        "lang": "`lang` like '%{0}%'",
         "praise_min": "`praise` >= {0}",
         "praise_max": "`praise` <= {0}",
-        "source": "`source` like '%{0}%'",
-        "state_min": "`state` >= {0}",
-        "state_max": "`state` <= {0}",
-        "tag": "`tag` like '%{0}%'",
         "time_create_min": "`time_create` >= '{0}'",
         "time_create_max": "`time_create` <= '{0}'",
         "time_update_min": "`time_update` >= '{0}'",
         "time_update_max": "`time_update` <= '{0}'",
+        "lang": "`lang` like '%{0}%'",
+        "author": "`author` like '%{0}%'",
         "title": "`title` like '%{0}%'",
+        "keywords": "`keywords` like '%{0}%'",
+        "description": "`description` like '%{0}%'",
+        "source": "`source` like '%{0}%'",
         "url": "`url` like '%{0}%'",
-        "keyword": "(`description` like '%{0}%' || `keywords` like '%{0}%' || `tag` like '%{0}%' || `title` like '%{0}%')"
+        "tag": "`tag` like '%{0}%'",
+        "img": "`img` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "collecter": "`collecter` like '%{0}%'",
+        "keyword": "(`title` like '%{0}%' || `keywords` like '%{0}%' || `description` like '%{0}%' || `tag` like '%{0}%')"
     },
     "update": {
+        "state_add": "`state` = `state` + {0}",
         "display_add": "`display` = `display` + {0}",
         "hot_add": "`hot` = `hot` + {0}",
-        "praise_add": "`praise` = `praise` + {0}",
-        "state_add": "`state` = `state` + {0}"
+        "praise_add": "`praise` = `praise` + {0}"
     },
     "format": [
         {
@@ -48,10 +48,34 @@
             ]
         },
         {
+            "key": "state",
+            "title": "状态",
+            "list": [
+                "",
+                "正常",
+                "推荐",
+                "认证",
+                "违规",
+                "官方"
+            ]
+        },
+        {
+            "key": "type_id",
+            "title": "文章分类",
+            "table": "cms_article_type",
+            "name": "name"
+        },
+        {
             "key": "channel_id",
             "title": "频道",
             "table": "cms_article_channel",
             "name": "name"
+        },
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
         },
         {
             "key": "city_id",
@@ -84,30 +108,6 @@
                     "value": "ja"
                 }
             ]
-        },
-        {
-            "key": "state",
-            "title": "状态",
-            "list": [
-                "",
-                "正常",
-                "推荐",
-                "认证",
-                "违规",
-                "官方"
-            ]
-        },
-        {
-            "key": "type_id",
-            "title": "文章分类",
-            "table": "cms_article_type",
-            "name": "name"
-        },
-        {
-            "key": "user_id",
-            "title": "用户",
-            "table": "user_account",
-            "name": "nickname"
         }
     ],
     "field_hide": []

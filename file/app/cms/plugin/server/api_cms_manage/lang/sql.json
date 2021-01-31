@@ -1,0 +1,20 @@
+{
+    "name": "cms_lang2",
+    "title": "CMS语言",
+    "table": "cms_lang",
+    "key": "lang_id",
+    "orderby_default": "`lang_id` desc",
+    "field_obj": "`lang_id`,`key`,`en`,`zh_cn`,`zh_tw`,`ko`,`ja`",
+    "field_default": "`lang_id`,`key`,`en`,`zh_cn`,`zh_tw`,`ko`,`ja`",
+    "query": {
+        "key": "`key` like '%{0}%'",
+        "en": "`en` like '%{0}%'",
+        "zh_cn": "`zh_cn` like '%{0}%'",
+        "zh_tw": "`zh_tw` like '%{0}%'",
+        "ko": "`ko` like '%{0}%'",
+        "ja": "`ja` like '%{0}%'"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

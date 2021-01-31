@@ -1,14 +1,5 @@
 [
     {
-        "path": "/api/user/password",
-        "type": "api",
-        "name": "user_password",
-        "title": "修改密码",
-        "cache": 0,
-        "func_file": "./password.js",
-        "method": "POST"
-    },
-    {
         "path": "/api/user/forgot",
         "type": "api",
         "name": "user_forgot",

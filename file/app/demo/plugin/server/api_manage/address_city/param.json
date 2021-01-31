@@ -54,7 +54,7 @@
     "list": [
         {
             "name": "city_id",
-            "title": "鍩庡競ID锛歔1,8388607]",
+            "title": "城市ID",
             "description": "",
             "type": "number",
             "dataType": "mediumint",

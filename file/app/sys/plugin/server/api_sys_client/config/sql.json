@@ -18,5 +18,24 @@
     },
     "query_default": {},
     "update": {},
-    "format": []
+    "format": [
+        {
+            "key": "type",
+            "title": "数据类型",
+            "list": [
+                {
+                    "name": "文本型",
+                    "value": "string"
+                },
+                {
+                    "name": "数字型",
+                    "value": "number"
+                },
+                {
+                    "name": "布尔型",
+                    "value": "boolean"
+                }
+            ]
+        }
+    ]
 }

@@ -1,0 +1,12 @@
+{
+    "name": "cms_nav",
+    "title": "CMS导航",
+    "description": "用于管理员自定义应用的导航",
+    "path": "/api/cms/nav",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

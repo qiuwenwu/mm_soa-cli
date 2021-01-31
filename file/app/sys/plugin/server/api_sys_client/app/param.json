@@ -427,5 +427,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "app_id"
+        ]
+    }
 }

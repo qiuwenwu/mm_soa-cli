@@ -1,11 +1,33 @@
 {
-    "name": "admin_pc",
+    "name": "cms_admin_pc",
     "sort": 1,
     "routes": [
         {
             "name": "cms",
             "path": "/cms",
-            "redirect": "/cms/article"
+            "redirect": "/cms/ad"
+        },
+        {
+            "name": "cms_ad",
+            "path": "/cms/ad",
+            "component": "/cms/admin_pc/src/pages/ad.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "cms_ad_form",
+            "path": "/cms/ad_form",
+            "component": "/cms/admin_pc/src/pages/ad_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
         },
         {
             "name": "cms_article",
@@ -116,6 +138,50 @@
                 "gm": 2,
                 "user_admin": []
             }
+        },
+        {
+            "name": "cms_lang",
+            "path": "/cms/lang",
+            "component": "/cms/admin_pc/src/pages/lang.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "cms_lang_form",
+            "path": "/cms/lang_form",
+            "component": "/cms/admin_pc/src/pages/lang_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "cms_nav",
+            "path": "/cms/nav",
+            "component": "/cms/admin_pc/src/pages/nav.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "cms_nav_form",
+            "path": "/cms/nav_form",
+            "component": "/cms/admin_pc/src/pages/nav_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
         }
     ],
     "top": [],
@@ -126,12 +192,18 @@
     "quick": [],
     "main": [
         {
-            "title": "内容管理",
+            "title": "内容管理系统",
             "name": "cms",
             "icon": "<i class=\"fa-file-text-o\"></i>",
             "url": "/cms",
             "display": 0,
             "sub": [
+                {
+                    "title": "CMS广告",
+                    "show": false,
+                    "name": "cms_ad",
+                    "url": "/cms/ad"
+                },
                 {
                     "title": "文章",
                     "show": false,
@@ -161,6 +233,18 @@
                     "show": false,
                     "name": "cms_article_type",
                     "url": "/cms/article_type"
+                },
+                {
+                    "title": "CMS语言",
+                    "show": false,
+                    "name": "cms_lang",
+                    "url": "/cms/lang"
+                },
+                {
+                    "title": "CMS导航",
+                    "show": false,
+                    "name": "cms_nav",
+                    "url": "/cms/nav"
                 }
             ]
         }

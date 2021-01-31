@@ -46,7 +46,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/address_province?",
+				url: "/apis/sys/address_province?",
 				url_get_obj: "/apis/sys/address_province?method=get_obj",
 				field: "province_id",
 				query: {

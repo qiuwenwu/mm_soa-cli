@@ -1,0 +1,120 @@
+<header>
+	<div class="mm_warp">
+		<div class="mm_container">
+			<div class="mm_row">
+				<div class="mm_col col-12">
+					<div class="mm_view">
+						<ul id="config">
+							<li>
+								<div id="lang" class="mm_select">
+									<div class="value">
+										<a href="javascript:void(0)" class="hover">
+											<div class="selected">
+												<img src="/cms/home_pc/template/default/img/lang/${sys_lang}.jpg" alt="${sys_language}"><span>${sys_language}</span>
+											</div>
+											<div class="mm_box">
+												<ul>
+													<!-- ${if(config.sys_lang_list.indexOf('zh_cn') !== -1)} -->
+													<li class="${ sys_lang == 'zh_cn' ? 'active' : '' }" @click="set_lang('zh_cn')"><img src="/cms/home_pc/template/default/img/lang/zh_cn.jpg"
+														 alt="简体中文"><span>简体中文</span></li>
+													<!-- ${/if} -->
+													<!-- ${if(config.sys_lang_list.indexOf('zh_tw') !== -1)} -->
+													<li class="${ sys_lang == 'zh_tw' ? 'active' : '' }" @click="set_lang('zh_tw')"><img src="/cms/home_pc/template/default/img/lang/zh_tw.jpg"
+														 alt="繁體中文"><span>繁體中文</span></li>
+													<!-- ${/if} -->
+													<!-- ${if(config.sys_lang_list.indexOf('en') !== -1)} -->
+													<li class="${ sys_lang == 'en' ? 'active' : '' }" @click="set_lang('en')"><img src="/cms/home_pc/template/default/img/lang/en.jpg"
+														 alt="English"><span>English</span></li>
+													<!-- ${/if} -->
+													<!-- ${if(config.sys_lang_list.indexOf('ko') !== -1)} -->
+													<li class="${ sys_lang == 'ko' ? 'active' : '' }" @click="set_lang('ko')"><img src="/cms/home_pc/template/default/img/lang/ko.jpg"
+														 alt="한글"><span>한글</span></li>
+													<!-- ${/if} -->
+													<!-- ${if(config.sys_lang_list.indexOf('ja') !== -1)} -->
+													<li class="${ sys_lang == 'ja' ? 'active' : '' }" @click="set_lang('ja')"><img src="/cms/home_pc/template/default/img/lang/ja.jpg"
+														 alt="日本語"><span>日本語</span></li>
+													<!-- ${/if} -->
+												</ul>
+											</div>
+										</a>
+									</div>
+									<!---->
+								</div>
+							</li>
+							<li class="hide_phone">
+								<div id="colors" class="mm_select">
+									<div class="value">
+										<a href="javascript:void(0)" class="hover">
+											<div class="selected">
+												<i class="${ 'bg_' + theme_color }"></i><span>颜色</span>
+											</div>
+											<div class="mm_box">
+												<ul>
+													<li class="${ theme_color == 'red' ? 'active' : '' }" @click="set_color('red')"><i class="bg_red"></i></li>
+													<li class="${ theme_color == 'yellow' ? 'active' : '' }" @click="set_color('yellow')"><i class="bg_yellow"></i></li>
+													<li class="${ theme_color == 'green' ? 'active' : '' }" @click="set_color('green')"><i class="bg_green"></i></li>
+													<li class="${ theme_color == 'cyan' ? 'active' : '' }" @click="set_color('cyan')"><i class="bg_cyan"></i></li>
+													<li class="${ theme_color == 'blue' ? 'active' : '' }" @click="set_color('blue')"><i class="bg_blue"></i></li>
+													<li class="${ theme_color == 'purple' ? 'active' : '' }" @click="set_color('purple')"><i class="bg_purple"></i></li>
+												</ul>
+											</div>
+										</a>
+									</div>
+									<!---->
+								</div>
+							</li>
+						</ul>
+						<!-- 	<ul id="contact">
+							<li><i class="fa-phone"></i><span>18813868813</span></li>
+							<li class="hide_phone"><i class="fa-envelope-o"></i><span>31772309@qq.com</span></li>
+						</ul> -->
+						<ul id="user_action">
+							<li><a href="/account/sign_up"><span>${lang.btn_sign_up}</span></a></li>
+							<li><a href="/account/sign_in"><span>${lang.btn_sign_in}</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mm_warp" id="head_main">
+		<div class="mm_container">
+			<div class="mm_row">
+				<div class="mm_col col-12">
+					<!-- logo -->
+					<div id="logo"><a href="#"><img src="/img/logo.png" alt="${lang.web_name}LOGO"> <span>${lang.web_name}</span></a></div>
+					<!-- 主导航 -->
+					<div class="mm_nav_top" :class="{ show: nav_top_show }" id="nav_top">
+						<button class="btn_link" @click="nav_top_show = !nav_top_show"><i class="fa fa-bars"></i></button>
+						<div class="nav_warp">
+							<nav>
+								<!--{loop nav.top o i}-->
+								<!--{if(o.device === '' || o.device === 'web_pc')}-->
+								<div class="item">
+									<a href="${o.url}" class="${ o.url === path || (path !== '/' && o.url.indexOf(path) !== -1) ? 'active' : '' }">
+										<span>${ lang["nav_" + o.name] }</span>
+									</a>
+								</div>
+								<!--{/if}-->
+								<!--{/loop}-->
+
+								<!-- 搜索栏 -->
+								<div class="item">
+									<div class="mm_search">
+										<input placeholder="${lang.input_desc_search}" />
+										<button class="btn btn-search" type="button"><i class="fa-search"></i></button>
+									</div>
+								</div>
+							</nav>
+							<div class="mask" @click="nav_top_show = false"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div id="float_button">
+	<button class="mm_btn btn_primary hide" id="scroll_top"><i class="fa-angle-up"></i></button>
+</div>

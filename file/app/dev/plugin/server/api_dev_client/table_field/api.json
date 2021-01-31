@@ -1,0 +1,12 @@
+{
+    "name": "dev_table_field",
+    "title": "开发表字段",
+    "description": "用于构建数据表时自动创建字段",
+    "path": "/api/dev/table_field",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

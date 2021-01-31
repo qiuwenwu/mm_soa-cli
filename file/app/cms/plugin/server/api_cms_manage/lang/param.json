@@ -1,0 +1,122 @@
+{
+    "name": "cms_lang2",
+    "title": "CMS语言",
+    "add": {
+        "body": [
+            "en",
+            "zh_cn",
+            "zh_tw",
+            "ko",
+            "ja"
+        ],
+        "body_required": [
+            "key"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "lang_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "lang_id"
+        ],
+        "query_required": [],
+        "body": [
+            "key",
+            "en",
+            "zh_cn",
+            "zh_tw",
+            "ko",
+            "ja"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "lang_id"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "lang_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "lang_id",
+            "title": "语言ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "key",
+            "title": "主键",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "en",
+            "title": "英文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "zh_cn",
+            "title": "简体中文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "zh_tw",
+            "title": "繁体中文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "ko",
+            "title": "韩文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "ja",
+            "title": "日文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        }
+    ]
+}

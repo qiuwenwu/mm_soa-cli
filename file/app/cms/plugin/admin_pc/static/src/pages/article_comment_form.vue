@@ -21,11 +21,11 @@
 										</dd>
 										<dt>所属文章</dt>
 										<dd>
-											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title')" />
+											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
 										</dd>
 										<dt>用户</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>留言者姓名</dt>
 										<dd>
@@ -37,11 +37,11 @@
 										</dd>
 										<dt>正文</dt>
 										<dd>
-											<mm_textarea v-model="form.content" type="text" placeholder="评论内容" />
+											<mm_rich v-model="form.content"></mm_rich>
 										</dd>
 										<dt>评论回复</dt>
 										<dd>
-											<mm_textarea v-model="form.reply" type="text" placeholder="对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔" />
+											<mm_textarea v-model="form.reply" type="text" placeholder="对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔"></mm_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -69,7 +69,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/cms/article_comment?",
+				url: "/apis/cms/article_comment?",
 				url_get_obj: "/apis/cms/article_comment?method=get_obj",
 				field: "comment_id",
 				query: {

@@ -74,7 +74,7 @@
         {
             "name": "type",
             "title": "数据类型",
-            "description": "string文本型、number数字型、boolean布尔型",
+            "description": "(string,文本型|number,数字型|boolean,布尔型)",
             "type": "string",
             "dataType": "varchar",
             "string": {
@@ -128,5 +128,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "config_id"
+        ]
+    }
 }

@@ -21,10 +21,7 @@
             "max": 2147483647,
             "decimal": 0,
             "default": "0",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "user_id",
@@ -42,10 +39,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "user_account.nickname",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": "user_account.nickname"
         },
         {
             "name": "time_create",
@@ -63,10 +57,7 @@
             "max": 0,
             "decimal": 0,
             "default": "1970-01-01 00:00:00",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "time_update",
@@ -84,10 +75,7 @@
             "max": 0,
             "decimal": 0,
             "default": "CURRENT_TIMESTAMP",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "appid",
@@ -105,10 +93,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         },
         {
             "name": "refresh_token",
@@ -126,10 +111,7 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+            "map": ""
         }
     ]
 }

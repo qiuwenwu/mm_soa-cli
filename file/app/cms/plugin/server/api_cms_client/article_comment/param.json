@@ -74,10 +74,7 @@
             "type": "number",
             "dataType": "int",
             "number": {
-                "range": [
-                    1,
-                    2147483647
-                ]
+                "max": 2147483647
             }
         },
         {
@@ -157,10 +154,7 @@
             "type": "number",
             "dataType": "mediumint",
             "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+                "max": 8388607
             }
         },
         {
@@ -170,10 +164,7 @@
             "type": "number",
             "dataType": "mediumint",
             "number": {
-                "range": [
-                    1,
-                    8388607
-                ]
+                "max": 8388607
             }
         },
         {
@@ -223,5 +214,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "comment_id"
+        ]
+    }
 }

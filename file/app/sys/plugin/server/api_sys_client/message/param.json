@@ -3,8 +3,8 @@
     "title": "系统消息",
     "add": {
         "body": [
-            "note",
-            "title"
+            "title",
+            "note"
         ],
         "body_required": []
     },
@@ -22,8 +22,8 @@
         ],
         "query_required": [],
         "body": [
-            "note",
-            "title"
+            "title",
+            "note"
         ],
         "body_required": [],
         "body_not": []
@@ -48,14 +48,6 @@
             }
         },
         {
-            "name": "note",
-            "title": "留言内容",
-            "description": "",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
             "name": "title",
             "title": "留言标题",
             "description": "",
@@ -66,6 +58,14 @@
             }
         },
         {
+            "name": "note",
+            "title": "留言内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
             "name": "keyword",
             "title": "关键词",
             "description": "用于搜索留言标题(title)",
@@ -73,5 +73,10 @@
             "dataType": "varchar",
             "string": {}
         }
-    ]
+    ],
+    "get_obj": {
+        "query_required": [
+            "message_id"
+        ]
+    }
 }

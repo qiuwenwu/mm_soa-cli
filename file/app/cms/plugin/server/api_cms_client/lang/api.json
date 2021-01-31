@@ -1,0 +1,12 @@
+{
+    "name": "cms_lang",
+    "title": "CMS语言",
+    "description": "用于开发站点多国语",
+    "path": "/api/cms/lang",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

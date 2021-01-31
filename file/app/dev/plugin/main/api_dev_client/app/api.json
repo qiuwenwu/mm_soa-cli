@@ -1,0 +1,13 @@
+{
+    "path": "/api/dev_app",
+    "type": "api",
+    "name": "dev_app_main",
+    "title": "管理API的接口",
+    "cache": 0,
+    "func_file": "./index.js",
+    "method": "GET",
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true,
+    "description": "用于引导创建应用"
+}

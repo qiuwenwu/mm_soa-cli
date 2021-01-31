@@ -22,9 +22,9 @@
             "decimal": 0,
             "default": "0",
             "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+        
+            
+            
         },
         {
             "name": "display",
@@ -43,9 +43,9 @@
             "decimal": 0,
             "default": "100",
             "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+        
+            
+            
         },
         {
             "name": "name",
@@ -64,9 +64,9 @@
             "decimal": 0,
             "default": "",
             "map": "",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+        
+            
+            
         },
         {
             "name": "province_id",
@@ -85,9 +85,9 @@
             "decimal": 0,
             "default": "0",
             "map": "sys_address_province",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+        
+            
+            
         },
         {
             "name": "show",
@@ -106,9 +106,9 @@
             "decimal": 0,
             "default": "0",
             "map": "0仅表单可见|1表单和搜索可见|2均可见",
-            "join_in": [],
-            "join_out": [],
-            "position": []
+        
+            
+            
         }
     ]
 }

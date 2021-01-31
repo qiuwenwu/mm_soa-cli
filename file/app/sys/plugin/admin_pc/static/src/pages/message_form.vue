@@ -11,13 +11,13 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>留言内容</dt>
-										<dd>
-											<mm_textarea v-model="form.note" type="text" placeholder="" />
-										</dd>
 										<dt>留言标题</dt>
 										<dd>
 											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
+										</dd>
+										<dt>留言内容</dt>
+										<dd>
+											<mm_rich v-model="form.note"></mm_rich>
 										</dd>
 									</dl>
 								</mm_form>
@@ -45,7 +45,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/sys/message?",
+				url: "/apis/sys/message?",
 				url_get_obj: "/apis/sys/message?method=get_obj",
 				field: "message_id",
 				query: {
@@ -53,8 +53,8 @@
 				},
 				form: {
 					"message_id": 0,
-					"note": '',
 					"title": '',
+					"note": '',
 				},
 			}
 		},

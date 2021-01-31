@@ -1,0 +1,18 @@
+{
+    "name": "cms_nav_manage",
+    "title": "CMS导航",
+    "description": "用于管理员自定义应用的导航",
+    "path": "/apis/cms/nav",
+    "method": "ALL",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true,
+    "oauth": {
+        "scope": true,
+        "signIn": true,
+        "gm": 2,
+        "user_admin": []
+    }
+}

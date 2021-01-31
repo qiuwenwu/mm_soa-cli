@@ -19,6 +19,9 @@
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
+											<mm_select v-model="query.available" title="是否启用" :options="$to_kv(arr_available)" @change="search()" />
+										</mm_item>
+										<mm_item>
 											<mm_select v-model="query.father_id" title="上级" :options="$to_kv(list_nav, 'nav_id', 'name')"
 											 @change="search()" />
 										</mm_item>
@@ -43,6 +46,9 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
+											<th>
+												<mm_reverse title="是否启用" v-model="query.orderby" field="available" :func="search"></mm_reverse>
+											</th>
 											<th>
 												<mm_reverse title="英文名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
 											</th>
@@ -76,8 +82,11 @@
 									<tbody>
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
-											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
+											<td>
+												<mm_switch v-model="o.available" @click.native="set(o)" />
+											</td>
 											<td>
 												<span>{{ o.name }}</span>
 											</td>
@@ -138,6 +147,10 @@
 				</div>
 				<div class="card_body">
 					<dl>
+						<dt>是否启用</dt>
+						<dd>
+							<mm_select v-model="form.available" :options="$to_kv(arr_available)" />
+						</dd>
 						<dt>上级</dt>
 						<dd>
 							<mm_select v-model="form.father_id" :options="$to_kv(list_nav, 'nav_id', 'name')" />
@@ -180,6 +193,8 @@
 					size: 10,
 					// 导航ID
 					'nav_id': 0,
+					// 是否启用
+					'available': '',
 					// 英文名称
 					'name': '',
 					// 中文标题
@@ -192,6 +207,8 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
+				// 是否启用
+				'arr_available':["否","是"],
 				// 上级
 				'list_nav':[],
 				// 视图模型
@@ -207,7 +224,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "nav_id,name"
+						field: "nav_id,name,father_id"
 					};
 				}
 				this.$get('~/apis/sys/nav?size=0', query, function(json) {

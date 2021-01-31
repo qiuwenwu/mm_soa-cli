@@ -1,0 +1,163 @@
+{
+    "name": "dev_table_group",
+    "title": "数据表分组",
+    "add": {
+        "body": [
+            "display",
+            "father_id",
+            "app_id",
+            "title",
+            "description"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "group_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "display",
+            "display_add",
+            "father_id",
+            "app_id",
+            "name",
+            "title",
+            "description"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "group_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "group_id",
+            "title": "数据表分组ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 30000
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "father_id",
+            "title": "上级分组ID",
+            "description": "(dev_table_group.name.group_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "app_id",
+            "title": "适用的应用ID",
+            "description": "(dev_app.name.app_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "分组名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "分组标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "分组描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索分组名称(name)、分组标题(title)、分组描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

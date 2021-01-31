@@ -13,7 +13,7 @@
 									<dl>
 										<dt>上级</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
 										</dd>
 										<dt class="required">名称</dt>
 										<dd>
@@ -58,7 +58,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/user/admin?",
+				url: "/apis/user/admin?",
 				url_get_obj: "/apis/user/admin?method=get_obj",
 				field: "admin_id",
 				query: {
@@ -85,7 +85,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "admin_id,name"
+						field: "admin_id,name,father_id"
 					};
 				}
 				this.$get('~/apis/user/admin?size=0', query, function(json) {

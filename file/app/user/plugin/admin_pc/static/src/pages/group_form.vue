@@ -17,7 +17,7 @@
 										</dd>
 										<dt>下级用户组</dt>
 										<dd>
-											<mm_select v-model="form.next_group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
+											<mm_select v-model="form.next_group_id" :options="$to_kv(list_group, 'group_id', 'name', 0)" />
 										</dd>
 										<dt>升级所需经验</dt>
 										<dd>
@@ -39,6 +39,10 @@
 										<dd>
 											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
+										</dd>
+										<dt>分组标题</dt>
+										<dd>
+											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
@@ -74,7 +78,7 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/user/group?",
+				url: "/apis/user/group?",
 				url_get_obj: "/apis/user/group?method=get_obj",
 				field: "group_id",
 				query: {
@@ -89,6 +93,7 @@
 					"bonus": 0,
 					"app": '',
 					"name": '',
+					"title": '',
 					"description": '',
 					"icon": '',
 				},
