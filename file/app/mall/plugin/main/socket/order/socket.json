@@ -1,0 +1,8 @@
+{
+	"path": "/ws/o2o_order",
+	"name": "o2o_order",
+	"title": "点餐websocket",
+	"description": "用于点餐下单和修改订单,同步订单到其他终端",
+	"func_file": "./index.js",
+	"interval": 1000
+}

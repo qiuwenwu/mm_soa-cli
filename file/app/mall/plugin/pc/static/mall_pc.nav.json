@@ -1,0 +1,60 @@
+{
+	"name": "mall_pc",
+	"sort": 3,
+	"routes": [{
+			"name": "root",
+			"path": "/",
+			"component": "/mall/pc/src/pages/index.vue",
+			"level": 1,
+			"oauth": {
+				"signIn": false,
+				"gm": 0,
+				"user_admin": []
+			}
+		},
+		{
+			"name": "sign_in",
+			"path": "/sign_in",
+			"component": "/mall/pc/src/pages/account/sign_in.vue",
+			"level": 2
+		}, {
+			"name": "sign_up",
+			"path": "/sign_up",
+			"component": "/mall/pc/src/pages/account/sign_up.vue",
+			"level": 2
+		}, {
+			"name": "forgot",
+			"path": "/forgot",
+			"component": "/mall/pc/src/pages/account/forgot.vue",
+			"level": 2
+		},
+		{
+			"name": "info",
+			"path": "/info",
+			"component": "/mall/pc/src/pages/info.vue",
+			"level": 2
+		}, {
+			"name": "password",
+			"path": "/password",
+			"component": "/mall/pc/src/pages/password.vue",
+			"level": 2
+		}, {
+			"name": "config",
+			"path": "/config",
+			"component": "/mall/pc/src/pages/config.vue",
+			"level": 2
+		}, {
+			"name": "goods",
+			"path": "/goods",
+			"component": "/mall/pc/src/pages/goods/index.vue",
+			"level": 2
+		}
+	],
+	"top": [],
+	"left": [],
+	"bottom": [],
+	"right": [],
+	"quick": [],
+	"desktop": [],
+	"main": []
+}

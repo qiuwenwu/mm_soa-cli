@@ -20,12 +20,12 @@
             "source",
             "url",
             "tag",
-            "img",
-            "content",
-            "collecter"
+            "img"
         ],
         "body_required": [
-            "title"
+            "title",
+            "content",
+            "collecter"
         ]
     },
     "del": {
@@ -478,16 +478,20 @@
             "title": "正文",
             "description": "文章的主体内容",
             "type": "string",
-            "dataType": "text",
-            "string": {}
+            "dataType": "longtext",
+            "string": {
+                "notEmpty": true
+            }
         },
         {
             "name": "collecter",
             "title": "收藏者",
             "description": "多个收藏者用”,“分隔",
             "type": "string",
-            "dataType": "text",
-            "string": {}
+            "dataType": "longtext",
+            "string": {
+                "notEmpty": true
+            }
         },
         {
             "name": "keyword",

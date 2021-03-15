@@ -1,53 +1,208 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地服务器
+ Source Server         : 本地数据库
  Source Server Type    : MySQL
- Source Server Version : 80012
+ Source Server Version : 50726
  Source Host           : localhost:3306
  Source Schema         : mm
 
  Target Server Type    : MySQL
- Target Server Version : 80012
+ Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 21/12/2020 19:01:36
+ Date: 11/02/2021 01:49:15
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for bbs_config
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_config`;
+CREATE TABLE `bbs_config`  (
+  `config_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID：[0,2147483647]',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '变量名：[0,16]',
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'string' COMMENT '数据类型：[0,16]string文本型、number数字型、boolean布尔型',
+  `title` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量标题：[0,16]可以用中文名',
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量值：[0,255]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量描述：[0,255]描述该变量的作用',
+  `model` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '数据模型：json格式，用于单选、多选模式',
+  PRIMARY KEY (`config_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '社区配置：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_config
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bbs_thread
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_thread`;
+CREATE TABLE `bbs_thread`  (
+  `thread_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主题id：[0,8388607]',
+  `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后前台才会显示该主题(0否|1是)',
+  `state` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：[1,5](1正常|2推荐|3认证|4违规|5官方)',
+  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '主题分类ID：[0,1000]用来搜索指定类型的主题(bbs_thread_type)',
+  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[0,10000]该主题所属频道，仅该频道列表可以看到该主题(bbs_thread_channel)',
+  `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '排序：[0,10000]决定主题显示的顺序',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[0,8388607]对于一些地方主题，可以通过该ID筛看(sys_address_city)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑这篇主题到本站的用户ID(user_account.nickname)',
+  `hot` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '热度：[0,1000000000]访问这篇主题的人次',
+  `praise` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞次数：[0,1000000000]',
+  `collect_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '采集规则ID：[0,1000000000]如果主题是通过采集的方式获得，那么具有采集ID',
+  `time_create` datetime(0) NOT NULL DEFAULT '1997-01-01 00:00:00' COMMENT '创建时间：',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间：',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '标题：[0,125]用于主题和html的<title>标签中',
+  `keywords` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,125]用于搜索引擎收录',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]用于主题提纲和搜索引擎收录',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '来源地址：[0,255]用于跳转到发布该主题的网站',
+  `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签：[0,255]用于标注主题所属相关内容，多个标签用空格隔开',
+  `img` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '封面图：用于显示于主题列表页，多个封面图用换行分隔',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '正文：主题的主体内容',
+  `collecter` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '收藏者：多个收藏者用”,“分隔',
+  PRIMARY KEY (`thread_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '社区主题：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_thread
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bbs_thread_channel
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_thread_channel`;
+CREATE TABLE `bbs_thread_channel`  (
+  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[0,10000]',
+  `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后才可以看到该频道(0否|1是)',
+  `hide` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否隐藏：[0,1]隐藏非管理员该频道无法查看.(0否|1是)',
+  `can_comment` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否可评论：[0,1]不可评论则用户只能看，无法点评。(0否|1是)',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]决定频道显示的先后顺序',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级频道展开时，才显示该频道(bbs_thread_channel.name.channel_id)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[0,8388607]一些地方频道，可以通过该条判断是否可查看(sys_address_city)',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '频道名称：[2,16]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '频道标题：[0,125]',
+  `template` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '风格模板：[0,64]频道和主题都使用的样式。question问答、info资讯、news新闻、article文章、activity活动',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该频道的作用',
+  `icon` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '频道图标：',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '外链地址：[0,255]如果该频道是跳转到其他网站的情况下，就在该URL上设置',
+  PRIMARY KEY (`channel_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '主题板块：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_thread_channel
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bbs_thread_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_thread_comment`;
+CREATE TABLE `bbs_thread_comment`  (
+  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[0,2147483647]',
+  `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用则显示该评论(0否|1是)',
+  `score` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '评分：[0,5]最低1分、最多5分',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示排序：[0,1000]决定显示的顺序',
+  `thread_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属主题id：[0,8388607](bbs_thread.title)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑评论的用户ID(user_account.nickname)',
+  `tag` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签：[0,64]评论人给的标签，多个标签用空格隔开',
+  `reply` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '评论回复：对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '正文：评论内容',
+  PRIMARY KEY (`comment_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '主题评论：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_thread_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bbs_thread_type
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_thread_type`;
+CREATE TABLE `bbs_thread_type`  (
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主题分类ID：[0,30000]',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](bbs_thread_type.name.type_id)',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类名称：[0,16]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
+  `icon` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '分类图标：',
+  PRIMARY KEY (`type_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '主题分类：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_thread_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cms_ad
+-- ----------------------------
+DROP TABLE IF EXISTS `cms_ad`;
+CREATE TABLE `cms_ad`  (
+  `ad_id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '广告ID：[0,32767]',
+  `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,10000]数值越小，越优先显示',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放城市ID：[0,8388607](sys_address_city)',
+  `area_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放地区：[0,8388607](sys_address_area)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '广告主ID：[0,8388607]表示是谁打的广告(user_account.nickname)',
+  `times_user` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '访客数：[0,2147483647]',
+  `times_max` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '次数上限：[0,2147483647]表示点击或展现达多少次后不再打该广告',
+  `times_show` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '展现量：[0,2147483647]',
+  `times_click` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点击量：[0,2147483647]',
+  `fee` double(5, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用：每次点击或展现、增加访客所需的费用',
+  `fee_max` double(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用上限：表示打广告消费到多少钱后不再打广告',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '广告名称：[0,16]',
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告类型：[0,16]text文字、img图片、video视频、flash交互动画',
+  `location` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投放位置：[0,16]',
+  `fee_way` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付费方式：[0,16]click点击付费、show展现付费、user访客付费',
+  `app` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展现应用：[0,16]将在指定的应用下才展现广告',
+  `trade` varchar(24) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属行业：[0,24]可以根据不同的行业定制不同的投放',
+  `title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告标题：[0,32]',
+  `device` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '呈现设备：[0,125]在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告描述：[0,255]',
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告图：[0,255]',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转链接：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]在出现于关键词相关的情况下才打广告，多个关键词用空格分隔',
+  PRIMARY KEY (`ad_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'CMS广告：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cms_ad
+-- ----------------------------
+INSERT INTO `cms_ad` VALUES (1, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告1', 'banner', '', '', '', '', 'banner_1', '', '', '/cms/home_pc/template/default/img/banner/banner_3.jpg', '/', '');
+INSERT INTO `cms_ad` VALUES (2, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告2', 'banner', '', '', '', '', 'banner_2', '', '', '/cms/home_pc/template/default/img/banner/banner_2.jpg', '/', '');
+INSERT INTO `cms_ad` VALUES (3, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告3', 'banner', '', '', '', '', 'banner_3', '', '', '/cms/home_pc/template/default/img/banner/banner_1.jpg', '/', '');
+
+-- ----------------------------
 -- Table structure for cms_article
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article`;
 CREATE TABLE `cms_article`  (
-  `article_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章id：[1,8388607]',
+  `article_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章id：[0,8388607]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后前台才会显示该文章(0否|1是)',
   `state` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：[1,5](1正常|2推荐|3认证|4违规|5官方)',
-  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '文章分类ID：[1,1000]用来搜索指定类型的文章(cms_article_type)',
+  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '文章分类ID：[0,1000]用来搜索指定类型的文章(cms_article_type)',
   `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '排序：[0,10000]决定文章显示的顺序',
-  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[1,10000]该文章所属频道，仅该频道列表可以看到该文章(cms_article_channel)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]编辑这篇文章到本站的用户ID(user_account.nickname)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[1,8388607]对于一些地方文章，可以通过该ID筛看(sys_address_city)',
+  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[0,10000]该文章所属频道，仅该频道列表可以看到该文章(cms_article_channel)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑这篇文章到本站的用户ID(user_account.nickname)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[0,8388607]对于一些地方文章，可以通过该ID筛看(sys_address_city)',
   `hot` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '热度：[0,1000000000]访问这篇文章的人次',
   `praise` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞次数：[0,1000000000]',
-  `collect_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '采集规则ID：[1,1000000000]如果文章是通过采集的方式获得，那么具有采集ID',
-  `time_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间：',
-  `time_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间：',
-  `lang` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'zh_cn' COMMENT '语言：默认zh_cn(zh_cn|en|zh_tw|ko|ja)',
+  `collect_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '采集规则ID：[0,1000000000]如果文章是通过采集的方式获得，那么具有采集ID',
+  `time_create` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间：',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间：',
+  `lang` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'zh_cn' COMMENT '语言：[0,16]默认zh_cn(zh_cn|en|zh_tw|ko|ja)',
   `author` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '作者：[0,16]写出该文章的人',
-  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '标题：[0,125]用于文章和html的title标签中',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '标题：[0,125]用于文章和html的title标签中',
   `keywords` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,125]用于搜索引擎收录',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]用于文章提纲和搜索引擎收录',
   `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '来源：[0,255]文章的出处',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '来源地址：[0,255]用于跳转到发布该文章的网站',
   `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签：[0,255]用于标注文章所属相关内容，多个标签用空格隔开',
-  `img` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '封面图：用于显示于文章列表页，多个封面图用换行分隔',
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：文章的主体内容',
-  `collecter` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '收藏者：多个收藏者用”,“分隔',
+  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '封面图：[0,255]用于显示于文章列表页，多个封面图用换行分隔',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：文章的主体内容',
+  `collecter` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '收藏者：多个收藏者用”,“分隔',
   PRIMARY KEY (`article_id`, `title`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章：用于内容管理系统的文章' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章：用于内容管理系统的文章' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cms_article
@@ -63,53 +218,54 @@ INSERT INTO `cms_article` VALUES (10, 1, 1, 0, 100, 11, 0, 0, 0, 0, 0, '2020-12-
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article_channel`;
 CREATE TABLE `cms_article_channel`  (
-  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[1,10000]',
+  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[0,10000]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后才可以看到该频道。(0否|1是)',
   `hide` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否隐藏：[0,1]隐藏非管理员该频道无法查看。(0否|1是)',
   `can_comment` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否可评论：[0,1]不可评论则用户只能看，无法点评。(0否|1是)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]决定频道显示的先后顺序',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[1,10000]在频道列表操作时，当上级频道展开时，才显示该频道(cms_article_channel.name.channel_id)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[1,8388607]一些地方频道，可以通过该条判断是否可查看。(sys_address_city)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级频道展开时，才显示该频道(cms_article_channel.name.channel_id)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[0,8388607]一些地方频道，可以通过该条判断是否可查看。(sys_address_city)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '频道名称：[2,16]',
   `template` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '风格模板：[0,64]频道和文章都使用的样式',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该频道的作用',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '频道图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '频道图标：',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '外链地址：[0,255]如果该频道是跳转到其他网站的情况下，就在该URL上设置',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '频道标题：[0,125]',
   PRIMARY KEY (`channel_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章频道：用于汇总浏览文章，在不同频道下展示不同文章。' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章频道：用于汇总浏览文章，在不同频道下展示不同文章。' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cms_article_channel
 -- ----------------------------
-INSERT INTO `cms_article_channel` VALUES (2, 1, 1, 0, 100, 0, 0, 'info', '', '企业信息', '', '');
-INSERT INTO `cms_article_channel` VALUES (3, 1, 0, 0, 100, 0, 0, 'help', '', '操作帮助', '', '');
-INSERT INTO `cms_article_channel` VALUES (4, 1, 0, 0, 100, 0, 0, 'product', '', '产品展示', '', '');
-INSERT INTO `cms_article_channel` VALUES (5, 1, 0, 0, 100, 4, 0, 'ui', '', 'UI类产品展示', '', '');
-INSERT INTO `cms_article_channel` VALUES (6, 1, 0, 0, 100, 4, 0, 'front_end', '', '前端产品展示', '', '');
-INSERT INTO `cms_article_channel` VALUES (7, 1, 0, 0, 100, 4, 0, 'after_end', '', '后端产品展示', '', '');
-INSERT INTO `cms_article_channel` VALUES (8, 1, 0, 0, 100, 0, 0, 'doc', '', '开发文档', '', '');
-INSERT INTO `cms_article_channel` VALUES (9, 1, 0, 0, 100, 8, 0, 'doc_front_end', '', '前端开发文档', '', '');
-INSERT INTO `cms_article_channel` VALUES (10, 1, 0, 0, 100, 8, 0, 'doc_after_end', '', '后端开发文档', '', '');
-INSERT INTO `cms_article_channel` VALUES (11, 1, 0, 0, 100, 4, 0, 'package', '', '完整应用展示', '', '');
-INSERT INTO `cms_article_channel` VALUES (12, 1, 0, 0, 100, 2, 0, 'event', '', '历史事件', '', '');
+INSERT INTO `cms_article_channel` VALUES (2, 1, 1, 0, 100, 0, 0, 'info', '', '企业信息', '', '', '企业信息');
+INSERT INTO `cms_article_channel` VALUES (3, 1, 0, 0, 100, 0, 0, 'help', '', '操作帮助', '', '', '操作帮助');
+INSERT INTO `cms_article_channel` VALUES (4, 1, 0, 0, 100, 0, 0, 'product', '', '产品展示', '', '', '产品展示');
+INSERT INTO `cms_article_channel` VALUES (5, 1, 0, 0, 100, 4, 0, 'ui', '', 'UI类产品展示', '', '', 'UI');
+INSERT INTO `cms_article_channel` VALUES (6, 1, 0, 0, 100, 4, 0, 'front_end', '', '前端产品展示', '', '', '前端');
+INSERT INTO `cms_article_channel` VALUES (7, 1, 0, 0, 100, 4, 0, 'after_end', '', '后端产品展示', '', '', '后端');
+INSERT INTO `cms_article_channel` VALUES (8, 1, 0, 0, 100, 0, 0, 'doc', '', '开发文档', '', '', '开发文档');
+INSERT INTO `cms_article_channel` VALUES (9, 1, 0, 0, 100, 8, 0, 'doc_front_end', '', '前端开发文档', '', '', '前端开发文档');
+INSERT INTO `cms_article_channel` VALUES (10, 1, 0, 0, 100, 8, 0, 'doc_after_end', '', '后端开发文档', '', '', '后端开发文档');
+INSERT INTO `cms_article_channel` VALUES (11, 1, 0, 0, 100, 4, 0, 'package', '', '完整应用展示', '', '', '完整应用');
+INSERT INTO `cms_article_channel` VALUES (12, 1, 0, 0, 100, 2, 0, 'event', '', '历史事件', '', '', '历史事件');
 
 -- ----------------------------
 -- Table structure for cms_article_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article_comment`;
 CREATE TABLE `cms_article_comment`  (
-  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[1,2147483647]',
+  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[0,2147483647]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用则显示该评论(0否|1是)',
   `score` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '评分：[0,5]最低1分、最多5分',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示排序：[0,1000]决定显示的顺序',
-  `article_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属文章id：[1,8388607](cms_article.title)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]编辑评论的用户ID(user_account.nickname)',
+  `article_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属文章id：[0,8388607](cms_article.title)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑评论的用户ID(user_account.nickname)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '留言者姓名：[2,16]用于实名回复',
   `tag` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签：[0,64]评论人给的标签，多个标签用空格隔开',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：评论内容',
   `reply` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '评论回复：对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔',
   PRIMARY KEY (`comment_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章评论：用于记录读者对某文章的评论' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章评论：用于记录读者对某文章的评论' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cms_article_comment
@@ -120,15 +276,15 @@ CREATE TABLE `cms_article_comment`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article_section`;
 CREATE TABLE `cms_article_section`  (
-  `section_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '章节模块ID：[1,2147483647]',
+  `section_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '章节模块ID：[0,2147483647]',
   `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '排序：[0,10000]决定文章显示的顺序',
-  `article_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '对应文章ID：[1,2147483647](cms_article.title)',
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '章节标题：[0,255]',
+  `article_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '对应文章ID：[0,2147483647](cms_article.title)',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '章节标题：[0,255]',
   `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '章节标签：[0,255]',
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '章节内容：',
-  `img` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '章节图片：',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '章节内容：',
+  `img` varchar(0) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '章节图片：',
   PRIMARY KEY (`section_id`, `title`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章章节：文章的正文是单独一块保存的，一个个章节保存' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章章节：文章的正文是单独一块保存的，一个个章节保存' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cms_article_section
@@ -139,17 +295,356 @@ CREATE TABLE `cms_article_section`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article_type`;
 CREATE TABLE `cms_article_type`  (
-  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章分类ID：[1,30000]',
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章分类ID：[0,30000]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[1,32767](cms_article_type.name.type_id)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](cms_article_type.name.type_id)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类名称：[0,16]',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
   PRIMARY KEY (`type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章分类：将文章归类，可选看不同类型的文章' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章分类：将文章归类，可选看不同类型的文章' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cms_article_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for cms_lang
+-- ----------------------------
+DROP TABLE IF EXISTS `cms_lang`;
+CREATE TABLE `cms_lang`  (
+  `lang_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '语言ID',
+  `key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
+  `en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '英文',
+  `zh_cn` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简体中文',
+  `zh_tw` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '繁体中文',
+  `ko` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '韩文',
+  `ja` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日文',
+  PRIMARY KEY (`lang_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'CMS语言包：用于开发站点多国语' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cms_lang
+-- ----------------------------
+INSERT INTO `cms_lang` VALUES (1, 'web_name', 'MM', '超级美眉', '', '', '');
+INSERT INTO `cms_lang` VALUES (2, 'btn_sign_in', 'SignIn', '登录', '', '', '');
+INSERT INTO `cms_lang` VALUES (3, 'btn_sign_up', 'SignUp', '注册', '', '', '');
+INSERT INTO `cms_lang` VALUES (4, 'nav_home', 'Home', '首页', '', '', '');
+INSERT INTO `cms_lang` VALUES (5, 'nav_about', 'About', '关于我们', '', '', '');
+INSERT INTO `cms_lang` VALUES (6, 'nav_product', 'Product', '产品展示', '', '', '');
+INSERT INTO `cms_lang` VALUES (7, 'nav_document', 'Document', '开发文档', '', '', '');
+INSERT INTO `cms_lang` VALUES (8, 'nav_forum', 'Forum', '论坛', '', '', '');
+INSERT INTO `cms_lang` VALUES (9, 'nav_service', 'Service', '技术服务', '', '', '');
+INSERT INTO `cms_lang` VALUES (10, 'nav_contact', 'Contact', '联系方式', '', '', '');
+INSERT INTO `cms_lang` VALUES (11, 'btn_read_more', 'Read More', '查看更多', '', '', '');
+INSERT INTO `cms_lang` VALUES (12, 'btn_more', 'More', '更多', '', '', '');
+INSERT INTO `cms_lang` VALUES (13, 'banner_1', 'Software development actually has a lot of considerations', '软件开发其实有很多注意事项', '', '', '');
+INSERT INTO `cms_lang` VALUES (14, 'banner_2', 'Professional development team and solutions make you worry free', '专业的开发团队和解决方案让您无忧无虑', '', '', '');
+INSERT INTO `cms_lang` VALUES (15, 'banner_3', 'Explore the world of super applications with us', '和我们一起探索超级应用的世界', '', '', '');
+INSERT INTO `cms_lang` VALUES (16, 'title_online_solutions', 'Online solutions', '在线解决方案', '', '', '');
+INSERT INTO `cms_lang` VALUES (17, 'desc_online_solutions', 'Cloud excel is used to provide solutions, which is convenient for cooperation and can be viewed and changed at any time', '采用云excel提供解决方案，协作方便，随时可看可改', '', '', '');
+INSERT INTO `cms_lang` VALUES (18, 'title_team', 'Senior engineer team', '高级工程师团队', '', '', '');
+INSERT INTO `cms_lang` VALUES (19, 'desc_team', 'Collaborative development of technical teams from Huawei, Tencent and other enterprises', '从华为、腾讯等企业出来的技术团队协作开发', '', '', '');
+INSERT INTO `cms_lang` VALUES (20, 'title_document', 'Secondary development document', '二次开发文档', '', '', '');
+INSERT INTO `cms_lang` VALUES (21, 'desc_document', 'Have mature program architecture and perfect development documents', '拥有成熟的程序架构和完善的开发文档', '', '', '');
+INSERT INTO `cms_lang` VALUES (22, 'title_welcome', 'Welcome to our website', '欢迎来到我们网站', '', '', '');
+INSERT INTO `cms_lang` VALUES (23, 'content_welcome_1', 'Maybe you\'ve met a lot of development companies to come to us, but when you see us, you will find that we are your best choice', '也许你看到过许多的开发公司才找到我们，但是当你看到我们之后就会发现，我们就是你最好的选择。', '', '', '');
+INSERT INTO `cms_lang` VALUES (24, 'content_welcome_2', 'Reasonable price is only a feature. What\'s more, our development framework superior to the market after use makes it easier for you to upgrade your application and innovate with the market at any time', '合理的价格只是一个特点。更重要的是，我们的开发框架在使用后优于市场，使您更容易升级应用程序，并随时与市场一起创新', '', '', '');
+INSERT INTO `cms_lang` VALUES (25, 'title_apply', 'Apply for preferential price', '申请优惠价', '', '', '');
+INSERT INTO `cms_lang` VALUES (26, 'input_desc_search', 'Search service or document...', '搜索服务或文档...', '', '', '');
+INSERT INTO `cms_lang` VALUES (27, 'desc_apply', 'Officially start activities in 2021', '2021年正式启动活动', '', '', '');
+INSERT INTO `cms_lang` VALUES (28, 'content_apply', 'If you are our regular customers or introduced by customers, we will give you more favorable prices and give you valuable marketing services', '如果你是我们的老客户，或者是客户介绍过来的，我们将给你更加优惠的价格和赠送你超值的营销服务', '', '', '');
+INSERT INTO `cms_lang` VALUES (29, 'title_form_need', 'Demand consultation', '需求咨询', '', '', '');
+INSERT INTO `cms_lang` VALUES (30, 'desc_form_need', 'Free needs analysis for you', '免费为您分析需求', '', '', '');
+INSERT INTO `cms_lang` VALUES (31, 'btn_submit', 'Submit', '提交', '', '', '');
+INSERT INTO `cms_lang` VALUES (32, 'input_desc_name', 'Please enter your name', '请输入您的姓名', '', '', '');
+INSERT INTO `cms_lang` VALUES (33, 'input_desc_phone', 'Please enter your phone', '请输入您的手机号码', '', '', '');
+INSERT INTO `cms_lang` VALUES (34, 'dev_web', 'Complete DIY<br />Official website', '完成定制<br />企业官网', '', '', '');
+INSERT INTO `cms_lang` VALUES (35, 'dev_blockchain', 'Complete a<br />blockchain app', '完成一款<br />区块链应用', '', '', '');
+INSERT INTO `cms_lang` VALUES (36, 'dev_mall', 'Complete the whole<br />e-commerce platform', '完成整套<br />电商平台', '', '', '');
+INSERT INTO `cms_lang` VALUES (37, 'dev_app', 'Complete large-scale<br />commercial app', '完成大型<br />商业应用', '', '', '');
+INSERT INTO `cms_lang` VALUES (38, 'dev_sns', 'SNS', '社交软件', '', '', '');
+INSERT INTO `cms_lang` VALUES (39, 'dev_platform', 'Electronic platform', '电商平台', '', '', '');
+INSERT INTO `cms_lang` VALUES (40, 'dev_code', 'Code up', '源码升级', '', '', '');
+INSERT INTO `cms_lang` VALUES (41, 'dev_science', 'Science', '科学实验', '', '', '');
+INSERT INTO `cms_lang` VALUES (42, 'dev_finance', 'Finance', '金融理财', '', '', '');
+INSERT INTO `cms_lang` VALUES (43, 'dev_block_chain', 'Block chain', '区块链应用', '', '', '');
+INSERT INTO `cms_lang` VALUES (44, 'dev_manage_system', 'Manage system', '管理系统', '', '', '');
+INSERT INTO `cms_lang` VALUES (45, 'dev_web_ui', 'Web UI', '网页设计', '', '', '');
+INSERT INTO `cms_lang` VALUES (46, 'title_profile', 'Company Profile', '企业简介', '', '', '');
+INSERT INTO `cms_lang` VALUES (47, 'content_profile_1', '', '深圳图灵魔方信息科技有限公司专注于科技信息咨询和移动应用开发领域，主要开发电商、社交、区块链相关应用。“图灵魔方”在应用设计和开发领域是为数不多的拥有自主研发框架和高级技术，能够在业内中更快速开发出优质应用。', '', '', '');
+INSERT INTO `cms_lang` VALUES (48, 'content_profile_2', '', '原来我们只是为其他开发公司所服务，现在我们直接为需求方服务，不仅价格实惠，还更能实现理想的应用效果。', '', '', '');
+INSERT INTO `cms_lang` VALUES (49, 'title_framework', 'MM', '超级美眉', '', '', '');
+INSERT INTO `cms_lang` VALUES (50, 'desc_framework', 'Framework', '应用框架', '', '', '');
+INSERT INTO `cms_lang` VALUES (51, 'content_framework', '', '这是用JavaScript编程语言开发的商业级应用框架，适用于大型商城、中小型游戏、社交软件开发，框架简化了对函数和数据的调用，让开发应用变得更加轻松、灵活。全新的架构体让多人协作开发和升级维护更加容易，是未来理想的选择。', '', '', '');
+INSERT INTO `cms_lang` VALUES (52, 'title_latest_product', 'Latest Product', '最近产品', '', '', '');
+INSERT INTO `cms_lang` VALUES (53, 'title_latest_event', 'Latest event', '最近事件', '', '', '');
+INSERT INTO `cms_lang` VALUES (54, 'btn_view_all', 'View all', '查看全部', '', '', '');
+INSERT INTO `cms_lang` VALUES (55, 'title_about_us', 'About Our Institution', '关于我们机构', '', '', '');
+INSERT INTO `cms_lang` VALUES (56, 'desc_about_us', 'About Our Institution', '关于我们机构的介绍', '', '', '');
+
+-- ----------------------------
+-- Table structure for cms_nav
+-- ----------------------------
+DROP TABLE IF EXISTS `cms_nav`;
+CREATE TABLE `cms_nav`  (
+  `nav_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '导航ID：[0,32767]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '英文名称：[0,32]用于多国语识别',
+  `title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '中文标题：[0,32]用于中文提示',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转链接：[0,255]跳转的链接地址',
+  `style` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '风格样式：[0,255]自定义css样式',
+  `class` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '样式类型：[0,32]绑定的css class',
+  `target` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转方式：[0,32]_blank表示新窗口跳转',
+  `position` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'top' COMMENT '展现位置：[0,125]top顶部、bottom底部、side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开',
+  `device` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '呈现设备：[0,125]在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级导航展开时，才显示该导航(sys_nav.name.nav_id)',
+  PRIMARY KEY (`nav_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'CMS导航：用于管理员自定义应用的导航' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cms_nav
+-- ----------------------------
+INSERT INTO `cms_nav` VALUES (1, 'home', '首页', '/', '', '', '', 'top', '', 0);
+INSERT INTO `cms_nav` VALUES (2, 'about', '关于我们', '/about', '', '', '', 'top', '', 0);
+INSERT INTO `cms_nav` VALUES (3, 'product', '产品展示', '/product', '', '', '', 'top', '', 0);
+INSERT INTO `cms_nav` VALUES (4, 'service', '技术服务', '/service', '', '', '', 'top', '', 0);
+INSERT INTO `cms_nav` VALUES (5, 'contact', '联系方式', '/contact', '', '', '', 'top', '', 0);
+
+-- ----------------------------
+-- Table structure for dev_app
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_app`;
+CREATE TABLE `dev_app`  (
+  `app_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '应用ID：[0,2147483647]',
+  `type_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '应用分类ID：[0,2147483647](dev_app_type.name.type_id)',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '应用名：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]',
+  PRIMARY KEY (`app_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用：用于引导创建应用' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_app
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_app_type
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_app_type`;
+CREATE TABLE `dev_app_type`  (
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '应用分类ID：[0,30000]',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](dev_app_type.name.type_id)',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分类名称：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]',
+  PRIMARY KEY (`type_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用分类：将应用归类，方便选择构建不同的应用' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_app_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_component
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_component`;
+CREATE TABLE `dev_component`  (
+  `page_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '适用页面ID：[0,2147483647](dev_page.name.page_id)',
+  `num` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '使用次数：[0,2147483647]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '组件名称：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]',
+  PRIMARY KEY (`page_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '组件：用于组装成新页面' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_component
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_component_type
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_component_type`;
+CREATE TABLE `dev_component_type`  (
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '页面分类ID：[0,30000]',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](dev_component_type.name.type_id)',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分类名称：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]',
+  PRIMARY KEY (`type_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '组件分类：将组件归类，方便引用不同的组件' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_component_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_page
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_page`;
+CREATE TABLE `dev_page`  (
+  `page_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '页面ID：[0,2147483647]',
+  `group_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '页面分组ID：[0,2147483647](dev_page_group.name.group_id)',
+  `num` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '使用次数：[0,2147483647]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '页面名称：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]',
+  PRIMARY KEY (`page_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '页面：用于构建MVC或MVVM页面' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_page
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_page_group
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_page_group`;
+CREATE TABLE `dev_page_group`  (
+  `group_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '页面分组ID：[0,30000]',
+  `display` int(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `father_id` int(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分组ID：[0,32767](dev_page_group.name.group_id)',
+  `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '适用的应用ID：[0,2147483647](dev_app.name.app_id)',
+  `num` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '使用次数：[0,2147483647]',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分组名称：[0,16]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组描述：[0,255]',
+  PRIMARY KEY (`group_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '页面分组：将文章归类，可选看不同类型的文章' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_page_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_table
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_table`;
+CREATE TABLE `dev_table`  (
+  `table_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '数据表ID：[0,2147483647]',
+  `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '适用的应用ID：[0,2147483647](dev_app.name.app_id)',
+  `group_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '数据表分组ID：[0,2147483647](dev_table_group.name.group_id)',
+  `num` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '使用次数：[0,2147483647]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '表名：[0,32]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]',
+  PRIMARY KEY (`table_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据表：用于构建应用时自动创建表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_table
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_table_field
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_table_field`;
+CREATE TABLE `dev_table_field`  (
+  `field_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '字段ID：[0,2147483647]',
+  `key` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否主键：[0,1]',
+  `fill_zero` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否补零：[0,1]',
+  `not_null` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否非空：[0,1]',
+  `symbol` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否含符号：[0,1]',
+  `decimal` smallint(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '小数点位：[0,99]',
+  `table_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '适用的表ID：[0,2147483647](dev_table.name.table_id)',
+  `num` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '使用次数：[0,2147483647]',
+  `min_length` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最小长度：[0,2147483647]',
+  `max_length` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最大长度：[0,2147483647]',
+  `min` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最小值：[0,2147483647]',
+  `max` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最大值：[0,2147483647]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '字段名：[0,32]',
+  `type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '数据类型：[0,32]',
+  `auto` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '自动：[0,125]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]',
+  `default` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认值：[0,255]',
+  `map` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关联图：[0,255]',
+  PRIMARY KEY (`field_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '开发表字段：用于构建数据表时自动创建字段' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_table_field
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_table_group
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_table_group`;
+CREATE TABLE `dev_table_group`  (
+  `group_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '数据表分组ID：[0,30000]',
+  `display` int(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `father_id` int(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分组ID：[0,32767](dev_table_group.name.group_id)',
+  `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '适用的应用ID：[0,2147483647](dev_app.name.app_id)',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分组名称：[0,16]',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组标题：[0,125]',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组描述：[0,255]',
+  PRIMARY KEY (`group_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据表分组：将数据表分组，方便创造新表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_table_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for dev_template
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_template`;
+CREATE TABLE `dev_template`  (
+  `template_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '模板ID：[0,2147483647]',
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '模板图片：[0,255]',
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件路径：[0,255]',
+  `colors` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支持颜色：[0,255]',
+  `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标签：[0,255]用于标注模板相关标签，多个标签用空格隔开',
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称：[0,64]',
+  `title` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题：[0,64]',
+  PRIMARY KEY (`template_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_template
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mall_ad
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_ad`;
+CREATE TABLE `mall_ad`  (
+  `ad_id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '广告ID：[0,32767]',
+  `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,10000]数值越小，越优先显示',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放城市ID：[0,8388607](sys_address_city)',
+  `area_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放地区：[0,8388607](sys_address_area)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '广告主ID：[0,8388607]表示是谁打的广告(user_account.nickname)',
+  `times_user` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '访客数：[0,2147483647]',
+  `times_max` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '次数上限：[0,2147483647]表示点击或展现达多少次后不再打该广告',
+  `times_show` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '展现量：[0,2147483647]',
+  `times_click` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点击量：[0,2147483647]',
+  `fee` double(5, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用：每次点击或展现、增加访客所需的费用',
+  `fee_max` double(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用上限：表示打广告消费到多少钱后不再打广告',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '广告名称：[0,16]',
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告类型：[0,16]text文字、img图片、video视频、flash交互动画',
+  `location` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投放位置：[0,16]',
+  `fee_way` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付费方式：[0,16]click点击付费、show展现付费、user访客付费',
+  `app` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '展现应用：[0,16]将在指定的应用下才展现广告',
+  `trade` varchar(24) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属行业：[0,24]可以根据不同的行业定制不同的投放',
+  `title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告标题：[0,32]',
+  `device` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '呈现设备：[0,125]在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告描述：[0,255]',
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告图：[0,255]',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转链接：[0,255]',
+  `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]在出现于关键词相关的情况下才打广告，多个关键词用空格分隔',
+  PRIMARY KEY (`ad_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商城广告：' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_ad
 -- ----------------------------
 
 -- ----------------------------
@@ -165,10 +660,52 @@ CREATE TABLE `mall_config`  (
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '变量值：[0,255]',
   `model` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '数据模型：json格式，用于单选、多选模式',
   PRIMARY KEY (`config_id`, `name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商城配置：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商城配置：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_config
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mall_lang
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_lang`;
+CREATE TABLE `mall_lang`  (
+  `lang_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '语言ID：[0,2147483647]',
+  `key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '主键：[0,32]',
+  `en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '英文：[0,255]',
+  `zh_cn` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简体中文：[0,255]',
+  `zh_tw` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '繁体中文：[0,255]',
+  `ko` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '韩文：[0,255]',
+  `ja` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日文：[0,255]',
+  PRIMARY KEY (`lang_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商城语言：用于开发站点多国语' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_lang
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mall_nav
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_nav`;
+CREATE TABLE `mall_nav`  (
+  `nav_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '导航ID：[0,32767]',
+  `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后才可以看到该导航。(0否|1是)',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '英文名称：[0,32]用于多国语识别',
+  `title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '中文标题：[0,32]用于中文提示',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转链接：[0,255]跳转的链接地址',
+  `style` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '风格样式：[0,255]自定义css样式',
+  `class` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '样式类型：[0,32]绑定的css class',
+  `target` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转方式：[0,32]_blank表示新窗口跳转',
+  `position` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'top' COMMENT '展现位置：[0,125]top顶部、bottom底部、side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开',
+  `device` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '呈现设备：[0,125]在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级导航展开时，才显示该导航(mall_nav.name.nav_id)',
+  PRIMARY KEY (`nav_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商城导航：用于管理员自定义应用的导航' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_nav
 -- ----------------------------
 
 -- ----------------------------
@@ -176,20 +713,20 @@ CREATE TABLE `mall_config`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product`;
 CREATE TABLE `mall_product`  (
-  `product_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品id：[1,8388607]',
+  `product_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品id：[0,8388607]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后前台才会显示该产品(0否|1是)',
   `state` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：[0,5](1出售中|2预售中|3已下架|4已删除|5已违规)',
-  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '产品分类ID：[1,1000]用来搜索指定类型的产品(mall_product_type.name)',
+  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '产品分类ID：[0,1000]用来搜索指定类型的产品(mall_product_type.name)',
   `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '排序：[0,10000]决定产品显示的顺序',
-  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[1,10000]该产品所属频道，该频道列表可以看到该产品(mall_product_channel.name)',
-  `shop_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺ID：[1,8388607]该商品所属的店铺(mall_shop.name)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[1,8388607]对于一些地方产品，可以通过该ID筛看(sys_address_city)',
+  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[0,10000]该产品所属频道，该频道列表可以看到该产品(mall_product_channel.name)',
+  `shop_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺ID：[0,8388607]该商品所属的店铺(mall_shop.name)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[0,8388607]对于一些地方产品，可以通过该ID筛看(sys_address_city)',
   `hot` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '热度：[0,1000000000]访问这篇产品的人次',
   `praise` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞次数：[0,1000000000]',
   `price` double(8, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '卖价：[1]',
   `price_old` double(8, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '原价：[1]',
-  `time_create` datetime NOT NULL DEFAULT '1997-01-01 00:00:00' COMMENT '创建时间：',
-  `time_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间：',
+  `time_create` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间：',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间：',
   `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]用于产品和html的<title>标签中',
   `keywords` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,125]用于搜索引擎收录',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]用于产品提纲和搜索引擎收录',
@@ -198,26 +735,28 @@ CREATE TABLE `mall_product`  (
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：产品的主体内容',
   `collecter` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '收藏者：多个收藏者用”,“分隔',
   `brand` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '品牌：[0,18]商品的品牌',
+  `group_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '分组ID：[0,8388607]该商品在店铺的分组(mall_product_group.name)',
+  `sales` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '销量：[0,1000000000]',
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品信息：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品信息：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product
 -- ----------------------------
-INSERT INTO `mall_product` VALUES (1, 1, 2, 2, 100, 1, 1, 130200, 1, 3, 2.50, 8.56, '1997-01-01 00:00:00', '2020-06-23 21:03:02', '商品1', 'cvbjkl', 'cvbnklm', NULL, '', NULL, NULL, NULL);
+INSERT INTO `mall_product` VALUES (1, 1, 2, 2, 100, 1, 1, 130200, 1, 3, 2.50, 8.56, '1997-01-01 00:00:00', '2020-06-23 21:03:02', '商品1', 'cvbjkl', 'cvbnklm', NULL, '', NULL, NULL, NULL, 0, 0);
 
 -- ----------------------------
 -- Table structure for mall_product_augmented
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_augmented`;
 CREATE TABLE `mall_product_augmented`  (
-  `augmented_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '附加产品ID：',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名称：',
-  `group` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品分组',
-  `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '附加价格',
-  `shop_id` mediumint(9) NULL DEFAULT NULL COMMENT '店铺ID',
+  `augmented_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '附加产品ID：[0,2147483647]',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品名称：[0,255]',
+  `group` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品分组：[0,32]',
+  `price` decimal(10, 2) NOT NULL COMMENT '附加价格：',
+  `shop_id` mediumint(9) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺ID：[0,8388607]',
   PRIMARY KEY (`augmented_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '附加商品：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_augmented
@@ -228,48 +767,49 @@ CREATE TABLE `mall_product_augmented`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_channel`;
 CREATE TABLE `mall_product_channel`  (
-  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[1,10000]',
+  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[0,10000]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后才可以看到该频道。(0否|1是)',
   `hide` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否隐藏：[0,1]隐藏非管理员该频道无法查看。(0否|1是)',
   `can_comment` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否可评论：[0,1]不可评论则用户只能看，无法点评。(0否|1是)',
   `display` mediumint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]决定频道显示的先后顺序',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[1,10000]在频道列表操作时，当上级频道展开时，才显示该频道(mall_product_channel.name.channel_id)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[1,8388607]一些地方频道，可以通过该条判断是否可查看(sys_address_city)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级频道展开时，才显示该频道(mall_product_channel.name.channel_id)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[0,8388607]一些地方频道，可以通过该条判断是否可查看(sys_address_city)',
   `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'product' COMMENT '频道类型：[0,16]question问答、info资讯、news新闻、product产品、activity活动',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '频道名称：[2,16]',
   `template` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '风格模板：[0,64]频道和产品都使用的样式',
   `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '频道图标：',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '外链地址：[0,255]如果该频道是跳转到其他网站的情况下，就在该URL上设置',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该频道的作用',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '频道标题：[0,125]',
   PRIMARY KEY (`channel_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品专区：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品专区：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_channel
 -- ----------------------------
-INSERT INTO `mall_product_channel` VALUES (1, 1, 0, 0, 100, 0, 222400, 'info', '美食', '', '', '', '');
-INSERT INTO `mall_product_channel` VALUES (2, 0, 0, 0, 100, 1, 0, 'info', '简餐便当', '', '', '', '');
-INSERT INTO `mall_product_channel` VALUES (3, 0, 0, 0, 100, 0, 0, 'info', '汉堡披萨', '', '', '', '');
-INSERT INTO `mall_product_channel` VALUES (4, 0, 0, 0, 100, 1, 0, 'info', '炸鸡炸串', '', '', '', '');
-INSERT INTO `mall_product_channel` VALUES (5, 0, 0, 0, 100, 1, 0, 'info', '奶茶果汁', '', '', '', '');
+INSERT INTO `mall_product_channel` VALUES (1, 1, 0, 0, 100, 0, 222400, 'info', '美食', '', '', '', '', NULL);
+INSERT INTO `mall_product_channel` VALUES (2, 0, 0, 0, 100, 1, 0, 'info', '简餐便当', '', '', '', '', NULL);
+INSERT INTO `mall_product_channel` VALUES (3, 0, 0, 0, 100, 0, 0, 'info', '汉堡披萨', '', '', '', '', NULL);
+INSERT INTO `mall_product_channel` VALUES (4, 0, 0, 0, 100, 1, 0, 'info', '炸鸡炸串', '', '', '', '', NULL);
+INSERT INTO `mall_product_channel` VALUES (5, 0, 0, 0, 100, 1, 0, 'info', '奶茶果汁', '', '', '', '', NULL);
 
 -- ----------------------------
 -- Table structure for mall_product_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_comment`;
 CREATE TABLE `mall_product_comment`  (
-  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[1,2147483647]',
+  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[0,2147483647]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用则显示该评论(0否|1是)',
   `score` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '评分：[0,5]最低1分、最多5分',
   `display` smallint(3) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示排序：[0,1000]决定显示的顺序',
-  `product_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属产品id：[1,8388607](mall_product.title)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]编辑评论的用户ID(user_account.nickname)',
+  `product_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属产品id：[0,8388607](mall_product.title)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑评论的用户ID(user_account.nickname)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '留言者姓名：[2,16]用于实名回复',
   `tag` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签：[0,64]评论人给的标签，多个标签用空格隔开',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：评论内容',
   `reply` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '评论回复：对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔',
   PRIMARY KEY (`comment_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品评论：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品评论：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_comment
@@ -282,42 +822,43 @@ INSERT INTO `mall_product_comment` VALUES (2, 0, 0, 100, 1, 6, NULL, NULL, NULL,
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_group`;
 CREATE TABLE `mall_product_group`  (
-  `group_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分组ID：[1,30000]',
+  `group_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分组ID：[0,30000]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分组名称：[0,16]',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分组图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分组图标：',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分组描述：[0,255]',
-  `shop_id` mediumint(9) NULL DEFAULT NULL COMMENT '店铺ID：对应每个商家店铺(mall_shop.name)',
+  `shop_id` mediumint(9) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺ID：[0,8388607]对应每个商家店铺(mall_shop.name)',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分组标题：[0,125]',
   PRIMARY KEY (`group_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品分组：用于店铺自定义产品分组' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品分组：用于店铺自定义产品分组' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_group
 -- ----------------------------
-INSERT INTO `mall_product_group` VALUES (34, 100, '爱尚酸菜小鱼', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (35, 100, '小酥肉系列', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (36, 100, '无骨烤鱼饭', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (37, 100, '鱼伴侣（配菜）', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (38, 100, '爱尚必点冒菜', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (39, 100, '新品香锅', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (40, 100, '爱尚特色香锅', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (41, 100, '爱尚有凉菜', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (42, 100, '爱尚酒水饮料', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (43, 100, '米饭单点', '', '', 1);
-INSERT INTO `mall_product_group` VALUES (44, 100, '测试菜', '', '', 1);
+INSERT INTO `mall_product_group` VALUES (34, 100, '爱尚酸菜小鱼', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (35, 100, '小酥肉系列', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (36, 100, '无骨烤鱼饭', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (37, 100, '鱼伴侣（配菜）', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (38, 100, '爱尚必点冒菜', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (39, 100, '新品香锅', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (40, 100, '爱尚特色香锅', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (41, 100, '爱尚有凉菜', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (42, 100, '爱尚酒水饮料', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (43, 100, '米饭单点', '', '', 1, NULL);
+INSERT INTO `mall_product_group` VALUES (44, 100, '测试菜', '', '', 1, NULL);
 
 -- ----------------------------
 -- Table structure for mall_product_property
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_property`;
 CREATE TABLE `mall_product_property`  (
-  `property_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分类ID：[1,30000]',
+  `property_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分类ID：[0,30000]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类名称：[0,16]',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
   PRIMARY KEY (`property_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品属性：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品属性：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_property
@@ -329,69 +870,70 @@ INSERT INTO `mall_product_property` VALUES (1, 100, '食品 ', 'data:image/jpeg;
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_type`;
 CREATE TABLE `mall_product_type`  (
-  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分类ID：[1,30000]',
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '产品分类ID：[0,30000]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[1,32767](mall_product_type.name.type_id)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](mall_product_type.name.type_id)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类名称：[0,16]',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
   PRIMARY KEY (`type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品分类：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品分类：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_product_type
 -- ----------------------------
-INSERT INTO `mall_product_type` VALUES (1, 100, 0, '餐饭', '', '');
-INSERT INTO `mall_product_type` VALUES (2, 100, 1, '蔬菜', '', '');
-INSERT INTO `mall_product_type` VALUES (3, 100, 1, '瓜果', '', '');
-INSERT INTO `mall_product_type` VALUES (4, 100, 1, '肉禽', '', '');
-INSERT INTO `mall_product_type` VALUES (5, 100, 1, '海鲜', '', '');
-INSERT INTO `mall_product_type` VALUES (6, 100, 1, '炖汤', '', '');
-INSERT INTO `mall_product_type` VALUES (7, 100, 1, '主食', '', '');
-INSERT INTO `mall_product_type` VALUES (8, 100, 1, '凉拌', '', '');
-INSERT INTO `mall_product_type` VALUES (9, 100, 1, '五谷', '', '');
-INSERT INTO `mall_product_type` VALUES (10, 100, 1, '酒水', '', '');
-INSERT INTO `mall_product_type` VALUES (11, 100, 1, '糖水', '', '');
-INSERT INTO `mall_product_type` VALUES (12, 100, 1, '甜品', '', '');
-INSERT INTO `mall_product_type` VALUES (13, 100, 1, '点心', '', '');
-INSERT INTO `mall_product_type` VALUES (14, 100, 1, '小吃', '', '');
-INSERT INTO `mall_product_type` VALUES (15, 100, 0, '饮品', '', '');
-INSERT INTO `mall_product_type` VALUES (16, 100, 15, '奶茶', '', '');
-INSERT INTO `mall_product_type` VALUES (17, 100, 15, '果汁', '', '');
-INSERT INTO `mall_product_type` VALUES (18, 100, 15, '咖啡', '', '');
-INSERT INTO `mall_product_type` VALUES (19, 100, 15, '鸡尾酒', '', '');
-INSERT INTO `mall_product_type` VALUES (20, 100, 15, '啤酒', '', '');
-INSERT INTO `mall_product_type` VALUES (21, 100, 15, '白酒', '', '');
-INSERT INTO `mall_product_type` VALUES (22, 100, 15, '红酒', '', '');
-INSERT INTO `mall_product_type` VALUES (23, 100, 15, '洋酒', '', '');
-INSERT INTO `mall_product_type` VALUES (24, 100, 15, '大补酒', '', '');
-INSERT INTO `mall_product_type` VALUES (25, 100, 15, '冰沙', '', '');
-INSERT INTO `mall_product_type` VALUES (26, 100, 0, '特色菜', '', '');
-INSERT INTO `mall_product_type` VALUES (27, 100, 26, '铁板', '', '');
-INSERT INTO `mall_product_type` VALUES (28, 100, 26, '干锅', '', '');
-INSERT INTO `mall_product_type` VALUES (29, 100, 26, '小炒', '', '');
-INSERT INTO `mall_product_type` VALUES (30, 100, 26, '盖浇饭', '', '');
-INSERT INTO `mall_product_type` VALUES (31, 100, 26, '煲仔饭', '', '');
-INSERT INTO `mall_product_type` VALUES (32, 100, 26, '蒸饭', '', '');
-INSERT INTO `mall_product_type` VALUES (33, 100, 26, '水煮', '', '');
+INSERT INTO `mall_product_type` VALUES (1, 100, 0, '餐饭', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (2, 100, 1, '蔬菜', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (3, 100, 1, '瓜果', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (4, 100, 1, '肉禽', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (5, 100, 1, '海鲜', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (6, 100, 1, '炖汤', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (7, 100, 1, '主食', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (8, 100, 1, '凉拌', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (9, 100, 1, '五谷', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (10, 100, 1, '酒水', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (11, 100, 1, '糖水', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (12, 100, 1, '甜品', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (13, 100, 1, '点心', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (14, 100, 1, '小吃', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (15, 100, 0, '饮品', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (16, 100, 15, '奶茶', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (17, 100, 15, '果汁', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (18, 100, 15, '咖啡', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (19, 100, 15, '鸡尾酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (20, 100, 15, '啤酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (21, 100, 15, '白酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (22, 100, 15, '红酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (23, 100, 15, '洋酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (24, 100, 15, '大补酒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (25, 100, 15, '冰沙', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (26, 100, 0, '特色菜', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (27, 100, 26, '铁板', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (28, 100, 26, '干锅', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (29, 100, 26, '小炒', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (30, 100, 26, '盖浇饭', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (31, 100, 26, '煲仔饭', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (32, 100, 26, '蒸饭', '', '', NULL);
+INSERT INTO `mall_product_type` VALUES (33, 100, 26, '水煮', '', '', NULL);
 
 -- ----------------------------
 -- Table structure for mall_shop
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_shop`;
 CREATE TABLE `mall_shop`  (
-  `shop_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '店铺id：[1,8388607]',
+  `shop_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '店铺id：[0,8388607]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后前台才会显示该店铺(0否|1是)',
   `state` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：[0,5](1营业中|2已歇业|3已关店|4已删除|5已违规)',
-  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺分类ID：[1,1000]用来搜索指定类型的店铺(mall_shop_type.name)',
+  `type_id` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺分类ID：[0,1000]用来搜索指定类型的店铺(mall_shop_type.name)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '排序：[0,1000]决定店铺显示的顺序',
-  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[1,10000]该店铺所属频道，该频道列表可以看到该店铺(mall_shop_channel.name)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[1,8388607]对于一些地方店铺，可以通过该ID筛看(sys_address_city.name)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺所属人ID：[1,8388607]即该店铺是属于哪个用户的(user_account.nickname)',
+  `channel_id` smallint(5) UNSIGNED NOT NULL DEFAULT 1 COMMENT '频道ID：[0,10000]该店铺所属频道，该频道列表可以看到该店铺(mall_shop_channel.name)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[0,8388607]对于一些地方店铺，可以通过该ID筛看(sys_address_city.name)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '店铺所属人ID：[0,8388607]即该店铺是属于哪个用户的(user_account.nickname)',
   `hot` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '热度：[0,1000000000]访问这篇店铺的人次',
   `praise` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞次数：[0,1000000000]',
-  `time_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间：',
-  `time_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间：',
+  `time_create` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间：',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间：',
   `name` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题：[0,125]用于店铺和html的<title>标签中',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]用于店铺提纲和搜索引擎收录',
   `keywords` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,64]用于搜索引擎收录',
@@ -399,7 +941,7 @@ CREATE TABLE `mall_shop`  (
   `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签：[0,255]用于标注店铺所属相关内容，多个标签用空格隔开',
   `collecter` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '收藏者：多个收藏者用”,“分隔',
   PRIMARY KEY (`shop_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺信息：用于存储店铺相关的信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺信息：用于存储店铺相关的信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_shop
@@ -411,45 +953,46 @@ INSERT INTO `mall_shop` VALUES (1, 1, 1, 2, 100, 0, 542500, 6, 5, 10, '1997-01-0
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_shop_channel`;
 CREATE TABLE `mall_shop_channel`  (
-  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[1,10000]',
+  `channel_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID：[0,10000]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用后才可以看到该频道(0否|1是)',
   `hide` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否隐藏：[0,1]隐藏非管理员该频道无法查看. 0为不隐藏，1为隐藏(0否|1是)',
   `can_comment` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否可评论：[0,1]不可评论则用户只能看，无法点评。0为不可评论，1为可评论(0否|1是)',
   `display` mediumint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]决定频道显示的先后顺序',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[1,10000]在频道列表操作时，当上级频道展开时，才显示该频道(mall_shop_channel.name.channel_id)',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[1,8388607]一些地方频道，可以通过该条判断是否可查看(sys_address_city.name)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,10000]在频道列表操作时，当上级频道展开时，才显示该频道(mall_shop_channel.name.channel_id)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市：[0,8388607]一些地方频道，可以通过该条判断是否可查看(sys_address_city.name)',
   `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'shop' COMMENT '频道类型：[0,16]question问答、info资讯、news新闻、shop店铺、activity活动',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '频道名称：[2,16]',
   `template` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '风格模板：[0,64]频道和店铺都使用的样式',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '频道图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '频道图标：',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '外链地址：[0,255]如果该频道是跳转到其他网站的情况下，就在该URL上设置',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该频道的作用',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '频道标题：[0,125]',
   PRIMARY KEY (`channel_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺专区：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺专区：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_shop_channel
 -- ----------------------------
-INSERT INTO `mall_shop_channel` VALUES (1, 1, 0, 1, 100, 0, 620300, 'info', '美食区', '', '', '', '');
-INSERT INTO `mall_shop_channel` VALUES (2, 1, 0, 1, 100, 0, 0, 'info', '零食区', '', '', '', '');
+INSERT INTO `mall_shop_channel` VALUES (1, 1, 0, 1, 100, 0, 620300, 'info', '美食区', '', '', '', '', NULL);
+INSERT INTO `mall_shop_channel` VALUES (2, 1, 0, 1, 100, 0, 0, 'info', '零食区', '', '', '', '', NULL);
 
 -- ----------------------------
 -- Table structure for mall_shop_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_shop_comment`;
 CREATE TABLE `mall_shop_comment`  (
-  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[1,2147483647]',
+  `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '评论id：[0,2147483647]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '是否启用：[0,1]启用则显示该评论(0否|是)',
   `score` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '评分：[0,5]最低1分、最多5分',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示排序：[0,1000]决定显示的顺序',
-  `shop_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属店铺id：[1,8388607](mall_shop.name)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]编辑评论的用户ID(user_account.nickname)',
+  `shop_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 1 COMMENT '所属店铺id：[0,8388607](mall_shop.name)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]编辑评论的用户ID(user_account.nickname)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '留言者姓名：[2,16]用于实名回复',
   `tag` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签：[0,64]评论人给的标签，多个标签用空格隔开',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文：评论内容',
   `reply` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '评论回复：对评论人的评论做出的回复。通过form-url格式保存，多个人的回复用换行分隔',
   PRIMARY KEY (`comment_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺评论：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺评论：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_shop_comment
@@ -461,47 +1004,48 @@ INSERT INTO `mall_shop_comment` VALUES (1, 1, 0, 100, 1, 6, NULL, NULL, NULL, NU
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_shop_type`;
 CREATE TABLE `mall_shop_type`  (
-  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '店铺分类ID：[1,30000]',
+  `type_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '店铺分类ID：[0,30000]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
-  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[1,32767](mall_shop_type.name.type_id)',
+  `father_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级分类ID：[0,32767](mall_shop_type.name.type_id)',
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类名称：[0,16]',
-  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：[0,255]',
+  `icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '分类图标：',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类描述：[0,255]',
+  `title` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类标题：[0,125]',
   PRIMARY KEY (`type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺分类：' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺分类：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_shop_type
 -- ----------------------------
-INSERT INTO `mall_shop_type` VALUES (1, 100, 0, '餐饮', '', '');
-INSERT INTO `mall_shop_type` VALUES (2, 100, 1, '中餐', '', '');
-INSERT INTO `mall_shop_type` VALUES (3, 100, 1, '西餐', '', '');
-INSERT INTO `mall_shop_type` VALUES (4, 100, 1, '饮品', '', '');
-INSERT INTO `mall_shop_type` VALUES (5, 100, 1, '面点', '', '');
-INSERT INTO `mall_shop_type` VALUES (6, 100, 1, '汤粉', '', '');
-INSERT INTO `mall_shop_type` VALUES (7, 100, 1, '烧烤', '', '');
-INSERT INTO `mall_shop_type` VALUES (8, 100, 1, '油炸', '', '');
-INSERT INTO `mall_shop_type` VALUES (9, 100, 1, '火锅', '', '');
-INSERT INTO `mall_shop_type` VALUES (10, 100, 1, '小吃', '', '');
-INSERT INTO `mall_shop_type` VALUES (11, 100, 0, '食品', '', '');
+INSERT INTO `mall_shop_type` VALUES (1, 100, 0, '餐饮', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (2, 100, 1, '中餐', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (3, 100, 1, '西餐', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (4, 100, 1, '饮品', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (5, 100, 1, '面点', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (6, 100, 1, '汤粉', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (7, 100, 1, '烧烤', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (8, 100, 1, '油炸', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (9, 100, 1, '火锅', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (10, 100, 1, '小吃', '', '', NULL);
+INSERT INTO `mall_shop_type` VALUES (11, 100, 0, '食品', '', '', NULL);
 
 -- ----------------------------
 -- Table structure for sys_ad
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_ad`;
 CREATE TABLE `sys_ad`  (
-  `ad_id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '广告ID：[1,32767]',
+  `ad_id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '广告ID：[0,32767]',
   `display` smallint(5) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,10000]数值越小，越优先显示',
   `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放城市ID：[0,8388607](sys_address_city)',
   `area_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '投放地区：[0,8388607](sys_address_area)',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '广告主ID：[1,8388607]表示是谁打的广告(user_account.nickname)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '广告主ID：[0,8388607]表示是谁打的广告(user_account.nickname)',
   `times_user` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '访客数：[0,2147483647]',
   `times_max` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '次数上限：[0,2147483647]表示点击或展现达多少次后不再打该广告',
   `times_show` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '展现量：[0,2147483647]',
   `times_click` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点击量：[0,2147483647]',
   `fee` double(5, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用：每次点击或展现、增加访客所需的费用',
   `fee_max` double(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '费用上限：表示打广告消费到多少钱后不再打广告',
-  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '广告名称：[0,16]',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '广告名称：[0,16]',
   `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '广告类型：[0,16]text文字、img图片、video视频、flash交互动画',
   `location` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投放位置：[0,16]',
   `fee_way` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付费方式：[0,16]click点击付费、show展现付费、user访客付费',
@@ -514,7 +1058,7 @@ CREATE TABLE `sys_ad`  (
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '跳转链接：[0,255]',
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键词：[0,255]在出现于关键词相关的情况下才打广告，多个关键词用空格分隔',
   PRIMARY KEY (`ad_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '广告信息：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '广告信息：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_ad
@@ -528,13 +1072,13 @@ INSERT INTO `sys_ad` VALUES (3, 100, 0, 0, 0, 0, 0, 0, 0, 0.00, 0.00, '广告3',
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_address_area`;
 CREATE TABLE `sys_address_area`  (
-  `area_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '地区ID：[1,8388607]',
+  `area_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '地区ID：[0,8388607]',
   `show` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否可见：[0,2](0仅表单可见|1表单和搜索可见|2均可见)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[1,8388607](sys_address_city)',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属城市ID：[0,8388607](sys_address_city)',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '地区名称：[0,16]',
   PRIMARY KEY (`area_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '地区：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '地区：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_address_area
@@ -545,13 +1089,13 @@ CREATE TABLE `sys_address_area`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_address_city`;
 CREATE TABLE `sys_address_city`  (
-  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '城市ID：[1,8388607]',
+  `city_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '城市ID：[0,8388607]',
   `show` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '显示位置：[0,2](0仅表单可见|1表单和搜索可见|2均可见)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
-  `province_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属省份ID：[1,8388607](sys_address_province)',
+  `province_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属省份ID：[0,8388607](sys_address_province)',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '城市名称：[0,16]',
   PRIMARY KEY (`city_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '城市：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '城市：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_address_city
@@ -563,12 +1107,12 @@ INSERT INTO `sys_address_city` VALUES (2, 0, 100, 0, '测试');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_address_province`;
 CREATE TABLE `sys_address_province`  (
-  `province_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '省份ID：[1,8388607]',
+  `province_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '省份ID：[0,8388607]',
   `show` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否可见：[0,2](0仅表单可见|1表单和搜索可见|2均可见)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '省份名称：[0,16]',
   PRIMARY KEY (`province_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '省份：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '省份：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_address_province
@@ -580,15 +1124,15 @@ INSERT INTO `sys_address_province` VALUES (1, 0, 100, '广东省');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_app`;
 CREATE TABLE `sys_app`  (
-  `app_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '应用序号：[1,8388607]',
+  `app_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '应用序号：[0,8388607]',
   `available` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否可用：[0,1]在未审核状态下， 该应用授权为不可用(0否|1是)',
   `encrypt` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '加解密方式：[0,10](1明文模式|2兼容模式|3安全模式)',
   `times_allow` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '每日允许请求次数：[0,32767]用于限制应用每日可授权次数',
   `times_today` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '今日请求次数：[0,32767]用于记录今日请求授权次数，判断授权次数是否超限',
   `max_age` smallint(5) UNSIGNED NOT NULL DEFAULT 1825 COMMENT '有效期时长：[0,32767]授权应用可以使用的时长，超时需重新申请。单位：天',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '持有者ID：[1,8388607]该客户端所有人的ID(user_account.nickname)',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '持有者ID：[0,8388607]该客户端所有人的ID(user_account.nickname)',
   `times_count` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '请求总次数：[0,2147483647]用于记录授权总次数',
-  `time_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '上次使用时间：用于记录上次授权时间，防止频繁操作',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '上次使用时间：用于记录上次授权时间，防止频繁操作',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '应用名称：[0,16]用于用户登陆时显示授权应用',
   `appid` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '应用ID：[0,16]用于应用授权访问时的账号',
   `token` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息访问令牌：[0,32]用于访问应用时验证身份',
@@ -601,7 +1145,7 @@ CREATE TABLE `sys_app`  (
   `scope_not` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '不允许使用的接口：“多个接口用”，“分隔',
   `users` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '授权的用户：',
   PRIMARY KEY (`app_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用信息：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用信息：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_app
@@ -612,14 +1156,14 @@ CREATE TABLE `sys_app`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_app_refresh`;
 CREATE TABLE `sys_app_refresh`  (
-  `refresh_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '刷新Token的ID：[1,2147483647]',
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]表示当前Token绑定的用户uid(user_account.nickname)',
-  `time_create` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '创建时间：用来判断刷新令牌有效期',
-  `time_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间：用来判断是否频繁刷新访问牌',
+  `refresh_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '刷新Token的ID：[0,2147483647]',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]表示当前Token绑定的用户uid(user_account.nickname)',
+  `time_create` datetime(0) NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '创建时间：用来判断刷新令牌有效期',
+  `time_update` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间：用来判断是否频繁刷新访问牌',
   `appid` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '应用ID：[0,16]',
   `refresh_token` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '刷新令牌：[0,32]用来刷新访问牌，保留30天',
   PRIMARY KEY (`refresh_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用刷新：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用刷新：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_app_refresh
@@ -630,15 +1174,15 @@ CREATE TABLE `sys_app_refresh`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config`  (
-  `config_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID：[1,2147483647]',
+  `config_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID：[0,2147483647]',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '变量名：[0,16]',
-  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'string' COMMENT '数据类型：[0,16]string文本型、number数字型、boolean布尔型',
+  `type` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'string' COMMENT '数据类型：[0,16](string,文本型|number,数字型|boolean,布尔型)',
   `title` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量标题：[0,16]可以用中文名',
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量值：[0,255]',
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '变量描述：[0,255]描述该变量的作用',
   `model` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '数据模型：json格式，用于单选、多选模式',
   PRIMARY KEY (`config_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统配置：' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统配置：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_config
@@ -661,7 +1205,7 @@ CREATE TABLE `sys_lang`  (
   `ko` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '韩文',
   `ja` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日文',
   PRIMARY KEY (`lang_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 55 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统语言：用于开发站点多国语' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 55 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统语言：用于开发站点多国语' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_lang
@@ -726,11 +1270,11 @@ INSERT INTO `sys_lang` VALUES (54, 'btn_view_all', 'View all', '查看全部', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_message`;
 CREATE TABLE `sys_message`  (
-  `message_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '消息ID：用于记录和识别消息',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言标题',
-  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '留言内容',
+  `message_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '消息ID：[0,2147483647]用于记录和识别消息',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言标题：[0,255]',
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '留言内容：',
   PRIMARY KEY (`message_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统消息' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统消息：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_message
@@ -795,15 +1339,15 @@ INSERT INTO `sys_nav` VALUES (5, 'contact', '联系方式', '/contact', '', '', 
 -- ----------------------------
 DROP TABLE IF EXISTS `user_account`;
 CREATE TABLE `user_account`  (
-  `user_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID：[1,8388607]用户获取其他与用户相关的数据',
+  `user_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID：[0,8388607]用户获取其他与用户相关的数据',
   `state` smallint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '账户状态：[0,10](1可用|2异常|3已冻结|4已注销)',
   `vip` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '会员级别：[0,10]用于确定用户访问权限',
   `gm` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '管理员级别：[0,10]用于确定用户管理权限',
   `mc` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商家级别：[0,10]用于确定商家用户的管理权限',
-  `group_id` smallint(6) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在用户组：[1,32767]决定用户身份和权限(user_group)',
-  `admin_id` smallint(6) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在管理组：[1,32767]决定用户身份和权限(user_admin)',
-  `referee_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '推荐人ID：[1,8388607]用于推荐注册时积分奖级(user_account.nickname.user_id)',
-  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '上次登录时间：',
+  `group_id` smallint(6) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在用户组：[0,32767]决定用户身份和权限(user_group)',
+  `admin_id` smallint(6) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在管理组：[0,32767]决定用户身份和权限(user_admin)',
+  `referee_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '推荐人ID：[0,8388607]用于推荐注册时积分奖级(user_account.nickname.user_id)',
+  `login_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '上次登录时间：',
   `salt` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '短验证：[0,6]',
   `invite_code` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '邀请注册码：[0,8]随着用户注册而生成',
   `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码：[0,11]用户的手机号码，用于找回密码时或登录时',
@@ -817,30 +1361,53 @@ CREATE TABLE `user_account`  (
   `signature` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个性签名：[0,255]',
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像地址：[0,255]',
   `friends` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '好友：多个好友ID用“,”分隔',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间：',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间：',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户账户：用于保存用户登录信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户账户：用于保存用户登录信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_account
 -- ----------------------------
-INSERT INTO `user_account` VALUES (1, 1, 14, 5, 5, 1, 1, 0, '2020-12-21 14:09:10', 'mm2020', '000000', NULL, 0, 'admin', '管理员', '0cf6066acc83160a6c65282835399c40', '', 0, '127.0.0.1', NULL, NULL, NULL, '2020-11-11 11:10:28');
-INSERT INTO `user_account` VALUES (2, 1, 0, 0, 0, 0, 0, 0, '2020-11-11 11:11:14', '', '', '', 0, 'qiuwenwu', '文武', '', '', 0, '', '', '', '', '2020-11-11 11:10:45');
+INSERT INTO `user_account` VALUES (1, 1, 14, 5, 5, 1, 1, 0, '2021-02-06 15:11:45', 'mm2020', '000000', NULL, 0, 'admin', '管理员', '0cf6066acc83160a6c65282835399c40', '', 0, '127.0.0.1', NULL, NULL, NULL, '2020-11-11 11:10:28');
+INSERT INTO `user_account` VALUES (2, 1, 3, 5, 4, 0, 0, 0, '2021-02-06 13:06:21', 'mm2020', '775825', '', 0, 'wenwu', '文武', '0cf6066acc83160a6c65282835399c40', '', 0, '', '', '', '', '2020-11-11 11:10:45');
+INSERT INTO `user_account` VALUES (3, 1, 1, 2, 3, 0, 0, 0, '2021-02-06 13:06:26', '', '', NULL, 0, 'test', '', '', '', 0, NULL, NULL, NULL, NULL, '2021-01-29 15:15:16');
+
+-- ----------------------------
+-- Table structure for user_address
+-- ----------------------------
+DROP TABLE IF EXISTS `user_address`;
+CREATE TABLE `user_address`  (
+  `address_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '地址ID：[0,8388607]',
+  `province` mediumint(9) UNSIGNED NOT NULL DEFAULT 0 COMMENT '省：[0,8388607]',
+  `city` mediumint(9) UNSIGNED NOT NULL DEFAULT 0 COMMENT '市：[0,8388607]',
+  `area` mediumint(9) UNSIGNED NOT NULL DEFAULT 0 COMMENT '区：[0,8388607]',
+  `sex` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '收件人性别：[0,1](0女|1男)',
+  `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收件人电话：[0,11]',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收件人姓名：[0,32]',
+  `house_number` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '门牌号：[0,125]',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收件地址：[0,255]',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]表示该地址是哪个用户的(user_account.nickname)',
+  PRIMARY KEY (`address_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '收货地址：用于保存用户的收件信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_address
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `user_admin`;
 CREATE TABLE `user_admin`  (
-  `admin_id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理组ID：[1,1000]',
-  `father_id` smallint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[1,32767](user_admin.name.admin_id)',
+  `admin_id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理组ID：[0,1000]',
+  `father_id` smallint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上级ID：[0,32767](user_admin.name.admin_id)',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称：[0,16]',
   `department` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门：[0,12]用于区分管理组织结构',
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该用户组的特点或权限范围',
   `icon` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '图标：用于标识用户组',
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理组：用于判断用户后台管理鉴权' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理组：用于判断用户后台管理鉴权' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_admin
@@ -851,7 +1418,7 @@ CREATE TABLE `user_admin`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_count`;
 CREATE TABLE `user_count`  (
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]',
   `level` smallint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '等级：[0,1000]',
   `iq` smallint(3) UNSIGNED NOT NULL DEFAULT 100 COMMENT 'IQ智商：[80,200]用于激励用户评论和发帖',
   `credit` int(10) UNSIGNED NOT NULL DEFAULT 100 COMMENT '信用度：[0,2147483647]用于评估用户信誉',
@@ -866,9 +1433,9 @@ CREATE TABLE `user_count`  (
   `extcredits7` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '拓展积分7：[0,2147483647]',
   `extcredits8` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '拓展积分8：[0,2147483647]',
   `money` double(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '钱：用于现金业务',
-  `coin` decimal(16, 8) NOT NULL DEFAULT 0.00000000 COMMENT '货币：用于游戏或数字货币业务',
+  `coin` decimal(16, 8) NOT NULL COMMENT '货币：用于游戏或数字货币业务',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户统计：用于统计用户等级、经验、积分等' ROW_FORMAT = FIXED;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户统计：用于统计用户等级、经验、积分等' ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of user_count
@@ -879,10 +1446,10 @@ CREATE TABLE `user_count`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE `user_group`  (
-  `group_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户组ID：[1,8388607]',
+  `group_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户组ID：[0,8388607]',
   `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
   `level` smallint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '等级划分：[0,1000]用于识别级别分组',
-  `next_group_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '下级用户组ID：[1,8388607]决定用户升级后所属用户组(user_group.name.group_id)',
+  `next_group_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '下级用户组ID：[0,8388607]决定用户升级后所属用户组(user_group.name.group_id)',
   `exp` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '升级所需经验：[0,2147483647]用于确定用户的升级',
   `discount` double(3, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '折扣：用于确定用户的消费折扣',
   `bonus` double(3, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '奖励比例：用于确定用户的积分奖励',
@@ -890,8 +1457,9 @@ CREATE TABLE `user_group`  (
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称：[0,16]',
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述：[0,255]描述该用户组的特点或权限范围',
   `icon` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '图标：用于标识用户组',
+  `title` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组标题：[0,125]',
   PRIMARY KEY (`group_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户组：用于用户前端身份和鉴权' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户组：用于用户前端身份和鉴权' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_group
@@ -902,12 +1470,12 @@ CREATE TABLE `user_group`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info`  (
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]',
   `sex` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '性别：[0,2](0未设置|1男|2女)',
   `idcard_state` smallint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '身份实名认证：[0,10](1未认证|2认证中|3认证通过)',
   `age` smallint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '年龄：[0,150]',
-  `province_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '省份ID：[1,2147483647]用户所在地的省份(sys_address_province)',
-  `city_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在城市ID：[1,2147483647](sys_address_city)',
+  `province_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '省份ID：[0,2147483647]用户所在地的省份(sys_address_province)',
+  `city_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '所在城市ID：[0,2147483647](sys_address_city)',
   `birthday` date NOT NULL DEFAULT '1970-01-01' COMMENT '生日：',
   `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名：[2,16]',
   `job` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职业：[0,16]',
@@ -920,7 +1488,7 @@ CREATE TABLE `user_info`  (
   `company_business` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公司经营范围：[0,255]',
   `idcard_img` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '身份证图片：保存json格式',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息：用于保存用户个人信息，如年龄、住址等' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息：用于保存用户个人信息，如年龄、住址等' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_info
@@ -931,15 +1499,15 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_message`;
 CREATE TABLE `user_message`  (
-  `message_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '消息ID：用于记录和识别消息',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言标题',
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '留言内容',
-  `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者手机',
-  `email` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者邮箱',
-  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者姓名',
-  `time_create` timestamp NULL DEFAULT NULL COMMENT '留言时间',
+  `message_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '消息ID：[0,2147483647]用于记录和识别消息',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言标题：[0,255]',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '留言内容：',
+  `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者手机：[0,11]',
+  `email` varchar(125) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者邮箱：[0,125]',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '留言者姓名：[0,16]',
+  `time_create` timestamp(0) NULL DEFAULT NULL COMMENT '留言时间',
   PRIMARY KEY (`message_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户留言' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户留言：' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_message
@@ -982,11 +1550,40 @@ INSERT INTO `user_message` VALUES (35, NULL, '', '15817188815', NULL, 'name', NU
 INSERT INTO `user_message` VALUES (36, NULL, '', '15817188815', NULL, 'ceshi', NULL);
 
 -- ----------------------------
+-- Table structure for user_power
+-- ----------------------------
+DROP TABLE IF EXISTS `user_power`;
+CREATE TABLE `user_power`  (
+  `power_id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '权限ID',
+  `admin_id` smallint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '管理组ID：[0,1000]',
+  `display` smallint(4) UNSIGNED NOT NULL DEFAULT 100 COMMENT '显示顺序：[0,1000]',
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称：[0,16]',
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '路由路径：用来确定访问权限的路由路径',
+  `method` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方法：(GET|POST|ALL)',
+  `user_add` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加权限人',
+  `user_set` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改权限人',
+  `user_del` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除权限人',
+  `user_get` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '查看权限人',
+  `field_set` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改可见字段',
+  `field_add` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '添加可见字段',
+  `field_del` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除可见字段',
+  `field_get` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '查询可见字段',
+  PRIMARY KEY (`power_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理组：用于判断用户后台管理鉴权' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_power
+-- ----------------------------
+INSERT INTO `user_power` VALUES (1, 0, 100, '', '/order/list', NULL, '管理员 录入员', '技术员', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user_power` VALUES (2, 1, 100, '', '/order/edit', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user_power` VALUES (3, 1, 100, '', '/order/dispose', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for user_sns
 -- ----------------------------
 DROP TABLE IF EXISTS `user_sns`;
 CREATE TABLE `user_sns`  (
-  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[1,8388607]',
+  `user_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID：[0,8388607]',
   `qq` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'QQ号：[5,12]',
   `qq_state` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'QQ认证：[0,1](0未认证|1已认证)',
   `wechat` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '微信号：[5,16]',
@@ -998,7 +1595,7 @@ CREATE TABLE `user_sns`  (
   `taobao` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '淘宝账号：[5,10]',
   `taobao_state` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '淘宝认证：[0,1](0未认证|1已认证)',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '社交账户：用于保存用的社交平台账户，方便同步登录' ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '社交账户：用于保存用的社交平台账户，方便同步登录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_sns

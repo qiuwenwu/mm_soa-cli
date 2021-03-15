@@ -1,0 +1,127 @@
+{
+    "name": "mall_product_augmented2",
+    "title": "附加商品",
+    "add": {
+        "body": [
+            "name",
+            "group",
+            "price",
+            "shop_id"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "augmented_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "augmented_id",
+            "name",
+            "price_min",
+            "price_max",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "name",
+            "group",
+            "price",
+            "price_add",
+            "shop_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "augmented_id",
+            "name",
+            "price_min",
+            "price_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "augmented_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "augmented_id",
+            "title": "附加产品ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "产品名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "group",
+            "title": "产品分组",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "price",
+            "title": "附加价格",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_min",
+            "title": "附加价格——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_max",
+            "title": "附加价格——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "shop_id",
+            "title": "店铺ID",
+            "description": "",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索产品名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

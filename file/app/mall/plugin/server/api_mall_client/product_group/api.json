@@ -1,0 +1,12 @@
+{
+    "name": "mall_product_group",
+    "title": "商品分组",
+    "description": "用于店铺自定义产品分组",
+    "path": "/api/mall/product_group",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

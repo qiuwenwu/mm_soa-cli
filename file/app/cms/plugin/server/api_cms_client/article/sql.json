@@ -6,7 +6,7 @@
     "orderby_default": "`display` asc",
     "field_obj": "`article_id`,`available`,`state`,`type_id`,`channel_id`,`user_id`,`city_id`,`hot`,`praise`,`collect_id`,`time_create`,`time_update`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`,`content`,`collecter`",
     "field_default": "`article_id`,`available`,`state`,`type_id`,`display`,`channel_id`,`user_id`,`city_id`,`hot`,`praise`,`collect_id`,`time_create`,`time_update`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`",
-    "method": "get get_obj",
+    "method": "get get_obj sum count",
     "query": {
         "state_min": "`state` >= {0}",
         "state_max": "`state` <= {0}",

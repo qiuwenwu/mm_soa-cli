@@ -1,0 +1,159 @@
+{
+    "name": "mall_product_group2",
+    "title": "商品分组",
+    "add": {
+        "body": [
+            "display",
+            "name",
+            "title",
+            "description",
+            "shop_id",
+            "icon"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "group_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "display",
+            "display_add",
+            "name",
+            "title",
+            "description",
+            "shop_id",
+            "icon"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "group_id",
+            "display_min",
+            "display_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "group_id",
+            "title": "产品分组ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 30000
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "name",
+            "title": "分组名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "title",
+            "title": "分组标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "分组描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "shop_id",
+            "title": "店铺ID",
+            "description": "对应每个商家店铺(mall_shop.name)",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "icon",
+            "title": "分组图标",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索分组名称(name)、分组标题(title)、分组描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

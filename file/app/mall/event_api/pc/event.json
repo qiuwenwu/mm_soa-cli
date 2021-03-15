@@ -1,0 +1,10 @@
+{
+	"target": "/mall*",
+	"name": "mall_pc",
+	"title": "电脑端",
+	"description": "用于访问电脑端的商城页面",
+	"stage": "main",
+	"func_file": "./main.js",
+	"sort": 129,
+	"end": true
+}

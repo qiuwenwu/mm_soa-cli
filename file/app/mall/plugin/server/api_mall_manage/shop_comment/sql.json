@@ -1,0 +1,47 @@
+{
+    "name": "mall_shop_comment2",
+    "title": "店铺评论",
+    "table": "mall_shop_comment",
+    "key": "comment_id",
+    "orderby_default": "`comment_id` desc",
+    "field_obj": "`comment_id`,`available`,`score`,`shop_id`,`user_id`,`name`,`tag`,`content`,`reply`",
+    "field_default": "`comment_id`,`available`,`score`,`display`,`shop_id`,`user_id`,`name`,`tag`",
+    "query": {
+        "score_min": "`score` >= {0}",
+        "score_max": "`score` <= {0}",
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "tag": "`tag` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "reply": "`reply` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%' || `tag` like '%{0}%')"
+    },
+    "update": {
+        "score_add": "`score` = `score` + {0}",
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "shop_id",
+            "title": "所属店铺",
+            "table": "mall_shop",
+            "name": "name"
+        },
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
+    "field_hide": []
+}
