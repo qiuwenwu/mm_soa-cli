@@ -4,9 +4,9 @@
     "table": "dev_table",
     "key": "table_id",
     "orderby_default": "`table_id` desc",
-    "field_obj": "`table_id`,`app_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`,`keywords`",
-    "field_default": "`table_id`,`app_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`,`keywords`",
-    "method": "get get_obj",
+    "field_obj": "`table_id`,`app_id`,`group_id`,`num`,`name`,`title`,`description`,`keywords`",
+    "field_default": "`table_id`,`app_id`,`group_id`,`num`,`name`,`title`,`description`,`keywords`",
+    "method": "get get_obj sum count",
     "query": {
         "num_min": "`num` >= {0}",
         "num_max": "`num` <= {0}",

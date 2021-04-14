@@ -1,84 +1,101 @@
-const fs = require('fs');
-
+const fs = require("fs")
 /**
- * 复制一个文件夹下的文件到另一个文件夹
- * @param src 源文件夹
- * @param dst 目标文件夹
+ * 复制文件
+ * @param {String} from 来源路径
+ * @param {String} to 复制到路径
+ * @param {String} filter 过滤文件或目录
+ * @param {String} type 复制类型，dir目录 或 file文件
  */
-function copyDir(src, dst) {
-	// 读取目录中的所有文件/目录
+async function copy(from, to, filter, type = "dir") {
+	if (!from) {
+		console.error("请输入要复制的文件或目录");
+		return;
+	}
 	try {
-		var paths = fs.readdirSync(src);
-		for (var i = 0; i < paths.length; i++) {
-			var path = paths[i];
-			const _src = src + '/' + path;
-			const _dst = dst + '/' + path;
-			var st = fs.statSync(_src);
-			// 判断是否为文件
-			if (st.isFile()) {
-				// 创建读取流
-				let readable = fs.createReadStream(_src)
-				// 创建写入流
-				let writable = fs.createWriteStream(_dst)
-				// 通过管道来传输流
-				readable.pipe(writable)
+		if(from.indexOf("//") != -1){
+			from = from.replace("//","/");
+		}
+		
+		if(to.indexOf("//") != -1){
+			to = to.replace("//","/");
+		}
+		
+		if (isExist(from)) {
+			if (!to) {
+				console.error("请选择要复制到哪个目录");
+				return;
 			}
-			// 如果是目录则递归调用自身
-			else if (st.isDirectory()) {
-				exists(_src, _dst, copyDir)
+			if (type == "file") {
+				// 进入复制文件
+				copyFile(from, to);
+			} else {
+				// 进入复制目录
+				copyDir(from, to, filter);
 			}
 		}
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 	}
 }
-
-
-// function copyDir(src, dst) {
-// 	// 读取目录中的所有文件/目录
-// 	fs.readdir(src, function(err, paths) {
-// 		if (err) {
-// 			throw err
-// 		}
-// 		paths.forEach(function(path) {
-// 			const _src = src + '/' + path
-// 			const _dst = dst + '/' + path
-// 			let readable;
-// 			let writable
-// 			fs.stat(_src, function(err, st) {
-// 				if (err) {
-// 					throw err
-// 				}
-// 				// 判断是否为文件
-// 				if (st.isFile()) {
-// 					// 创建读取流
-// 					readable = fs.createReadStream(_src)
-// 					// 创建写入流
-// 					writable = fs.createWriteStream(_dst)
-// 					// 通过管道来传输流
-// 					readable.pipe(writable)
-// 				}
-// 				// 如果是目录则递归调用自身
-// 				else if (st.isDirectory()) {
-// 					exists(_src, _dst, copyDir)
-// 				}
-// 			})
-// 		})
-// 	})
-// }
 
 /**
- * 在复制目录前需要判断该目录是否存在，
- * 不存在需要先创建目录
- * @param src
- * @param dst
+ * 复制文件
+ *
+ * @param  {String} from 被复制对象
+ * @param  {String} to   复制对象
  */
-function exists(src, dst) {
-	// 如果路径存在，则返回 true，否则返回 false。
-	if (!fs.existsSync(dst)) {
-		fs.mkdirSync(dst)
-	}
-	copyDir(src, dst);
+function copyFile(from, to) {
+	fs.writeFileSync(to, fs.readFileSync(from));
 }
 
-module.exports = exists;
+/**
+ * 复制目录
+ *
+ * @param  {String} from 被复制对象
+ * @param  {String} to	 复制对象
+ */
+function copyDir(from, to, filter = []) {
+	if (!isExist(to)) {
+		// 创建目录
+		fs.mkdirSync(to);
+	}
+	try {
+		var paths = fs.readdirSync(from);
+		paths.forEach((path) => {
+			if (filter.indexOf(path) === -1) {
+				var src = `${from}/${path}`;
+				var dist = `${to}/${path}`;
+				var stat = fs.statSync(src);
+				try {
+					if (stat.isFile()) {
+						copyFile(src, dist);
+					} else if (stat.isDirectory()) {
+						copyDir(src, dist, filter);
+					}
+				} catch (err) {
+					console.error(err);
+				}
+			}
+		});
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+/**
+ * 判断是否存在
+ * @param  {String} file 
+ * @return {Promise}
+ */
+function isExist(path) {
+	var bl = false;
+	try {
+		fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK);
+		bl = true;
+	} catch (err) {
+		console.error(`${path} 不存在`);
+	}
+	return bl;
+}
+
+module.exports = copy

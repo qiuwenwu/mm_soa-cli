@@ -7,7 +7,6 @@
             "father_id",
             "app_id",
             "num",
-            "rate",
             "title",
             "description"
         ],
@@ -28,8 +27,6 @@
             "display_max",
             "num_min",
             "num_max",
-            "rate_min",
-            "rate_max",
             "name",
             "title",
             "description",
@@ -43,8 +40,6 @@
             "app_id",
             "num",
             "num_add",
-            "rate",
-            "rate_add",
             "name",
             "title",
             "description"
@@ -59,8 +54,6 @@
             "display_max",
             "num_min",
             "num_max",
-            "rate_min",
-            "rate_max",
             "name",
             "title",
             "description",
@@ -163,30 +156,6 @@
             "number": {
                 "max": 2147483647
             }
-        },
-        {
-            "name": "rate",
-            "title": "适用率",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "rate_min",
-            "title": "适用率——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "rate_max",
-            "title": "适用率——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
         },
         {
             "name": "name",

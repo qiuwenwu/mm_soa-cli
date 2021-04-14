@@ -6,7 +6,7 @@
     "orderby_default": "`app_id` desc",
     "field_obj": "`app_id`,`type_id`,`name`,`title`,`description`,`keywords`",
     "field_default": "`app_id`,`type_id`,`name`,`title`,`description`,`keywords`",
-    "method": "get get_obj set",
+    "method": "get get_obj sum count",
     "query": {
         "name": "`name` like '%{0}%'",
         "title": "`title` like '%{0}%'",

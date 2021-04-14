@@ -96,24 +96,6 @@
             "map": ""
         },
         {
-            "name": "rate",
-            "title": "适用率",
-            "description": "",
-            "type": "double",
-            "key": false,
-            "auto": "",
-            "symbol": false,
-            "fill_zero": false,
-            "not_null": 1,
-            "min_length": 0,
-            "max_length": 5,
-            "min": 0,
-            "max": 0,
-            "decimal": 0,
-            "default": "100",
-            "map": ""
-        },
-        {
             "name": "name",
             "title": "分组名称",
             "description": "",

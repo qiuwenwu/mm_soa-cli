@@ -4,8 +4,8 @@
     "table": "dev_page",
     "key": "page_id",
     "orderby_default": "`page_id` desc",
-    "field_obj": "`page_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`",
-    "field_default": "`page_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`",
+    "field_obj": "`page_id`,`group_id`,`num`,`name`,`title`,`description`",
+    "field_default": "`page_id`,`group_id`,`num`,`name`,`title`,`description`",
     "query": {
         "rate_min": "`rate` >= {0}",
         "rate_max": "`rate` <= {0}",

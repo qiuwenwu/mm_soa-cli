@@ -4,9 +4,9 @@
     "table": "dev_page_group",
     "key": "group_id",
     "orderby_default": "`display` asc",
-    "field_obj": "`group_id`,`father_id`,`app_id`,`num`,`rate`,`name`,`title`,`description`",
-    "field_default": "`group_id`,`display`,`father_id`,`app_id`,`num`,`rate`,`name`,`title`,`description`",
-    "method": "get get_obj",
+    "field_obj": "`group_id`,`father_id`,`app_id`,`num`,`name`,`title`,`description`",
+    "field_default": "`group_id`,`display`,`father_id`,`app_id`,`num`,`name`,`title`,`description`",
+    "method": "get get_obj sum count",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",

@@ -35,7 +35,7 @@
 											<router-link :to="o.url">
 												{{ o.title }}
 											</router-link>
-											<i class="icon-close" v-if="o.name !== 'index'" @click="del_tab(o)">×</i>
+											<i class="icon-close" v-if="o.name !== 'index'" @click="del_tab(o)"></i>
 										</div>
 									</div>
 								</mm_view>
@@ -166,13 +166,19 @@
 		border-radius: 50%;
 		background-color: var(--color_border);
 		color: #fff;
-		font-weight: 600;
 		text-align: center;
 		width: 1.125rem;
 		height: 1.125rem;
-		line-height: 1.125rem;
+		line-height: 1;
+		font-weight: 600;
 		display: inline-block;
 		position: relative;
+	}
+	
+	.icon-close::after {
+		content: "×";
+		position: relative;
+		top: 2px;
 	}
 
 	.icon-close:hover {

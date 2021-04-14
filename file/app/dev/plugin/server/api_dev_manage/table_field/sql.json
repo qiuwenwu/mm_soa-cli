@@ -4,8 +4,8 @@
     "table": "dev_table_field",
     "key": "field_id",
     "orderby_default": "`field_id` desc",
-    "field_obj": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`rate`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
-    "field_default": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`rate`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
+    "field_obj": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
+    "field_default": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
     "query": {
         "rate_min": "`rate` >= {0}",
         "rate_max": "`rate` <= {0}",

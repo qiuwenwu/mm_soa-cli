@@ -1,0 +1,20 @@
+{
+    "name": "dev_dict2",
+    "title": "开发字典",
+    "table": "dev_dict",
+    "key": "dict_id",
+    "orderby_default": "`dict_id` desc",
+    "field_obj": "`dict_id`,`zh`,`en`,`times`",
+    "field_default": "`dict_id`,`zh`,`en`,`times`",
+    "query": {
+        "zh": "`zh` like '%{0}%'",
+        "en": "`en` like '%{0}%'",
+        "times_min": "`times` >= {0}",
+        "times_max": "`times` <= {0}"
+    },
+    "update": {
+        "times_add": "`times` = `times` + {0}"
+    },
+    "format": [],
+    "field_hide": []
+}

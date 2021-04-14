@@ -4,9 +4,9 @@
     "table": "dev_table_field",
     "key": "field_id",
     "orderby_default": "`field_id` desc",
-    "field_obj": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`rate`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
-    "field_default": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`rate`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
-    "method": "get get_obj",
+    "field_obj": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
+    "field_default": "`field_id`,`key`,`fill_zero`,`not_null`,`symbol`,`decimal`,`table_id`,`num`,`min_length`,`max_length`,`min`,`max`,`name`,`type`,`auto`,`title`,`description`,`keywords`,`default`,`map`",
+    "method": "get get_obj sum count",
     "query": {
         "decimal_min": "`decimal` >= {0}",
         "decimal_max": "`decimal` <= {0}",

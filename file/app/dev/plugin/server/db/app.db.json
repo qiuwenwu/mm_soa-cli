@@ -46,7 +46,7 @@
             "title": "应用名",
             "description": "",
             "type": "varchar",
-            "key": true,
+            "key": false,
             "auto": "",
             "symbol": false,
             "fill_zero": false,

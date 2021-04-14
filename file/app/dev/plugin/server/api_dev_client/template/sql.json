@@ -6,7 +6,7 @@
     "orderby_default": "`template_id` desc",
     "field_obj": "`template_id`,`img`,`path`,`colors`,`tag`,`name`,`title`",
     "field_default": "`template_id`,`img`,`path`,`colors`,`tag`,`name`,`title`",
-    "method": "get get_obj set",
+    "method": "get get_obj sum count",
     "query": {
         "img": "`img` like '%{0}%'",
         "path": "`path` like '%{0}%'",

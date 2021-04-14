@@ -16,7 +16,7 @@ var dir_to = process.cwd() + "/";
 
 
 var files = "./command/".fullname(dirname).getFile();
-for(var i = 0; i < files.length; i++){
+for (var i = 0; i < files.length; i++) {
 	var file = files[i];
 	require(file);
 }
@@ -26,7 +26,7 @@ console.log('Hello, Welcome to use mm_soa-cli!'.yellow);
 program
 	.version(require('./package').version, '-v, --version')
 	.description('MM manager')
-	// .option('-p, --path <dir>', 'setting project dir')
+// .option('-p, --path <dir>', 'setting project dir')
 
 function prompt_2(options, answers) {
 	console.log('');
@@ -39,7 +39,7 @@ function prompt_2(options, answers) {
 		message: 'confirm create',
 		type: "confirm",
 		default: true
-	}]).then((aws) => {
+	}]).then(async (aws) => {
 		if (!aws.confirm_create) {
 			return;
 		}
@@ -47,12 +47,14 @@ function prompt_2(options, answers) {
 		spinner.start();
 		try {
 			// 复制目录
-			copyFile('./file/'.fullname(dirname), './');
+			await copyFile('./file/'.fullname(dirname), dir_to);
 
 			// 设置package.json
 			var text = (dir_from + 'package.json').loadText();
-			text = text.replaceAll('{name}', answers.name.trim()).replaceAll('{author}', answers.author.trim()).replaceAll(
-				'{version}', answers.version.trim()).replaceAll('{description}', answers.web_description.trim());
+			text = text.replaceAll('{name}', answers.name.trim()).replaceAll('{author}', answers.author.trim())
+				.replaceAll(
+					'{version}', answers.version.trim()).replaceAll('{description}', answers.web_description
+					.trim());
 			(dir_to + 'package.json').saveText(text);
 
 			var option = Object.assign({}, options, answers, aws);
@@ -150,7 +152,7 @@ program
 				name: 'version',
 				message: 'version',
 				type: "input",
-				default: '0.1.0'
+				default: '0.0.1'
 			},
 			{
 				name: 'web_title',
@@ -230,11 +232,13 @@ function save_config(file, option) {
 		'{version}',
 		option.version.trim()).replaceAll('{description}', option.web_description.trim());
 
-	text = text.replaceAll('{user}', option.user).replaceAll('{password}', option.password).replaceAll('{host}', option.host)
+	text = text.replaceAll('{user}', option.user).replaceAll('{password}', option.password).replaceAll('{host}', option
+			.host)
 		.replaceAll('{database}', option.database);
 
 	text = text.replaceAll('{db}', option.db).replaceAll('{cache}', option.cache).replaceAll('{name}', option.name);
-	text = text.replaceAll('{web_title}', option.web_title).replaceAll('{web_language}', option.web_language).replaceAll('{web_description}', option.web_description);
+	text = text.replaceAll('{web_title}', option.web_title).replaceAll('{web_language}', option.web_language)
+		.replaceAll('{web_description}', option.web_description);
 	text = text.replace('3306,', option.port + ',');
 	text = text.replace('"task": true', '"task": ' + option.timed_task);
 	(dir_to + `config/${file}.json`).saveText(text);

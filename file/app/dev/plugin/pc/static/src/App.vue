@@ -16,8 +16,10 @@
 						<mm_row>
 							<mm_col class="col-12">
 								<nav_quick>
-									<button class="btn_link btn_primary hide_phone" @click="fold = !fold"><i class="fa-bars"></i></button>
-									<button class="btn_link btn_primary show_phone" @click="hide = !hide"><i class="fa-bars"></i></button>
+									<button class="btn_link btn_primary hide_phone" @click="fold = !fold"><i
+											class="fa-bars"></i></button>
+									<button class="btn_link btn_primary show_phone" @click="hide = !hide"><i
+											class="fa-bars"></i></button>
 								</nav_quick>
 								<nav_top></nav_top>
 							</mm_col>
@@ -31,11 +33,12 @@
 								<!-- 页签组件 -->
 								<mm_view id="tabs">
 									<div class="mm_tab_head">
-										<div v-for="(o, idx) in nav_cache" :key="idx" :class="{ 'active': o.url === url_now }">
+										<div v-for="(o, idx) in nav_cache" :key="idx"
+											:class="{ 'active': o.url === url_now }">
 											<router-link :to="o.url">
 												{{ o.title }}
 											</router-link>
-											<i class="icon-close" v-if="o.name !== 'index'" @click="del_tab(o)">×</i>
+											<i class="icon-close" v-if="o.name !== 'index'" @click="del_tab(o)"></i>
 										</div>
 									</div>
 								</mm_view>
@@ -53,7 +56,8 @@
 							<div class="mm_col col-12">
 								<div class="info">
 									<div class="fl"><a target="_blank" href="http://bbs.elins.cn">开发者: 超级美眉工作室</a></div>
-									<div class="fr"><a href="tencent://message/?uin=573242395">升级维护联系：573242395@qq.com</a></div>
+									<div class="fr"><a
+											href="tencent://message/?uin=573242395">升级维护联系：573242395@qq.com</a></div>
 								</div>
 							</div>
 						</div>
@@ -166,13 +170,20 @@
 		border-radius: 50%;
 		background-color: var(--color_border);
 		color: #fff;
-		font-weight: 600;
 		text-align: center;
 		width: 1.125rem;
 		height: 1.125rem;
-		line-height: 1.125rem;
+		font-weight: 600;
+		line-height: 1;
 		display: inline-block;
 		position: relative;
+		font-style: normal
+	}
+
+	.icon-close::after {
+		content: "×";
+		position: relative;
+		top: 2px;
 	}
 
 	.icon-close:hover {

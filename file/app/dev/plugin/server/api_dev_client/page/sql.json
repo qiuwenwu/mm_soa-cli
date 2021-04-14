@@ -4,9 +4,9 @@
     "table": "dev_page",
     "key": "page_id",
     "orderby_default": "`page_id` desc",
-    "field_obj": "`page_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`",
-    "field_default": "`page_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`",
-    "method": "get get_obj",
+    "field_obj": "`page_id`,`group_id`,`num`,`name`,`title`,`description`",
+    "field_default": "`page_id`,`group_id`,`num`,`name`,`title`,`description`",
+    "method": "get get_obj sum count",
     "query": {
         "num_min": "`num` >= {0}",
         "num_max": "`num` <= {0}",

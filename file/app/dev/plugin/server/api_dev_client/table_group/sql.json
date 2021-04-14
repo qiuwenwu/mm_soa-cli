@@ -6,7 +6,7 @@
     "orderby_default": "`display` asc",
     "field_obj": "`group_id`,`father_id`,`app_id`,`name`,`title`,`description`",
     "field_default": "`group_id`,`display`,`father_id`,`app_id`,`name`,`title`,`description`",
-    "method": "get get_obj",
+    "method": "get get_obj sum count",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",

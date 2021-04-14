@@ -1,8 +1,8 @@
 {
-    "name": "dev_template",
-    "title": "",
-    "description": "",
-    "path": "/api/dev/template",
+    "name": "dev_dict",
+    "title": "开发字典",
+    "description": "用于检索英文",
+    "path": "/api/dev/dict",
     "method": "GET",
     "cache": 0,
     "client_cache": false,

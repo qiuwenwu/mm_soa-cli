@@ -3,9 +3,7 @@
     "title": "组件",
     "add": {
         "body": [
-            "component_id",
             "num",
-            "rate",
             "title",
             "description"
         ],
@@ -24,8 +22,6 @@
             "page_id",
             "num_min",
             "num_max",
-            "rate_min",
-            "rate_max",
             "name",
             "title",
             "description",
@@ -33,11 +29,8 @@
         ],
         "query_required": [],
         "body": [
-            "component_id",
             "num",
             "num_add",
-            "rate",
-            "rate_add",
             "name",
             "title",
             "description"
@@ -50,8 +43,6 @@
             "page_id",
             "num_min",
             "num_max",
-            "rate_min",
-            "rate_max",
             "name",
             "title",
             "description",
@@ -65,16 +56,6 @@
         ]
     },
     "list": [
-        {
-            "name": "component_id",
-            "title": "组件ID",
-            "description": "",
-            "type": "number",
-            "dataType": "int",
-            "number": {
-                "max": 2147483647
-            }
-        },
         {
             "name": "page_id",
             "title": "适用页面ID",
@@ -114,30 +95,6 @@
             "number": {
                 "max": 2147483647
             }
-        },
-        {
-            "name": "rate",
-            "title": "适用率",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "rate_min",
-            "title": "适用率——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
-        },
-        {
-            "name": "rate_max",
-            "title": "适用率——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "double",
-            "number": {}
         },
         {
             "name": "name",

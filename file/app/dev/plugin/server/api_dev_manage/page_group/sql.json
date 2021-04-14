@@ -4,8 +4,8 @@
     "table": "dev_page_group",
     "key": "group_id",
     "orderby_default": "`group_id` desc",
-    "field_obj": "`group_id`,`father_id`,`app_id`,`num`,`rate`,`name`,`title`,`description`",
-    "field_default": "`group_id`,`display`,`father_id`,`app_id`,`num`,`rate`,`name`,`title`,`description`",
+    "field_obj": "`group_id`,`father_id`,`app_id`,`num`,`name`,`title`,`description`",
+    "field_default": "`group_id`,`display`,`father_id`,`app_id`,`num`,`name`,`title`,`description`",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",

@@ -4,8 +4,8 @@
     "table": "dev_table",
     "key": "table_id",
     "orderby_default": "`table_id` desc",
-    "field_obj": "`table_id`,`app_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`,`keywords`",
-    "field_default": "`table_id`,`app_id`,`group_id`,`num`,`rate`,`name`,`title`,`description`,`keywords`",
+    "field_obj": "`table_id`,`app_id`,`group_id`,`num`,`name`,`title`,`description`,`keywords`",
+    "field_default": "`table_id`,`app_id`,`group_id`,`num`,`name`,`title`,`description`,`keywords`",
     "query": {
         "rate_min": "`rate` >= {0}",
         "rate_max": "`rate` <= {0}",

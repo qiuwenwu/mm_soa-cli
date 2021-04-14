@@ -30,7 +30,7 @@
 		 * 是否输出操作日志
 		 * @type {Boolean}
 		 */
-		"log": true,
+		"log": false,
 		/**
 		 * 进程数, 0为根据CPU核心数创建线程数
 		 * @type {Number}
@@ -66,32 +66,27 @@
 		 * 服务端名称
 		 * @type {String}
 		 */
-		"name": "mm",
+		"name": "{name}",
 		/**
 		 * 服务端中文名
 		 * @type {String}
 		 */
-		"title": "超级美眉",
+		"title": "{web_title}",
 		/**
 		 * 系统使用的语言
 		 * @type {String}
 		 */
-		"lang": "zh",
+		"lang": "{web_language}",
 		/**
 		 * 缓存方式, 选填 redis, cache, memory
 		 * @type {String}
 		 */
-		"cache": "redis",
+		"cache": "{cache}",
 		/**
-		 * 数据存储方式
+		 * 数据存储方式, 选填 mysql, sqlite, sqlserver
 		 * @type {String}
 		 */
-		"db": "mysql",
-		/**
-		 * 数据库管理器
-		 * @type {Boolean}
-		 */
-		"db_admin": true,
+		"db": "{db}",
 		/**
 		 * 是否引用com函数
 		 * @type {Boolean}
@@ -141,7 +136,7 @@
 		 * 服务器地址
 		 * @type {String}
 		 */
-		"host": "127.0.0.1",
+		"host": "{host}",
 		/**
 		 * 端口号
 		 * @type {Number}
@@ -151,17 +146,17 @@
 		 * 用户名
 		 * @type {String}
 		 */
-		"user": "root",
+		"user": "{user}",
 		/**
 		 * 密码
 		 * @type {String}
 		 */
-		"password": "asd123",
+		"password": "{password}",
 		/**
 		 * 数据库名称
 		 * @type {String}
 		 */
-		"database": "mm"
+		"database": "{database}"
 	},
 	/**
 	 * mongo数据库存储配置
@@ -211,8 +206,13 @@
 			"/api/dev_(.*)": {
 				"target": "http://127.0.0.1:10001",
 				"changeOrigin": true,
-				// webscoket转发
-				// "ws": true, 
+				"header": {
+					"apikey": "bfd59291e825b5f2bbf1eb76569f8fe7"
+				}
+			},
+			"/ws(.*)": {
+				"target": "http://127.0.0.1:10001",
+				"changeOrigin": true,
 				"header": {
 					"apikey": "bfd59291e825b5f2bbf1eb76569f8fe7"
 				}
