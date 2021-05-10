@@ -1,5 +1,5 @@
 const Auto_db = require('./auto_db.js');
-const Auto_file = require('./Auto_file.js');
+const Auto_file = require('./auto_file.js');
 
 var auto_db = new Auto_db();
 var auto_file = new Auto_file();

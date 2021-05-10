@@ -1,6 +1,6 @@
 class Auto_db {
 	constructor(arg) {
-
+		
 	}
 }
 

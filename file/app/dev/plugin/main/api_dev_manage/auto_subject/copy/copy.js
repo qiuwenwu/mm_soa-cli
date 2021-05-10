@@ -13,11 +13,11 @@ async function copy(from, to, filter, type = "dir") {
 	}
 	try {
 		if(from.indexOf("//") != -1){
-			from = from.replace("//", "");
+			from = from.replace("//","/");
 		}
 		
 		if(to.indexOf("//") != -1){
-			to = to.replace("//", "");
+			to = to.replace("//","/");
 		}
 		
 		if (isExist(from)) {
@@ -50,10 +50,11 @@ function copyFile(from, to) {
 
 /**
  * 复制目录
+ *
  * @param  {String} from 被复制对象
  * @param  {String} to	 复制对象
  */
-function copyDir(from, to, filter = []) {
+function copyDir(from, to, filter) {
 	if (!isExist(to)) {
 		// 创建目录
 		fs.mkdirSync(to);
@@ -63,7 +64,7 @@ function copyDir(from, to, filter = []) {
 		paths.forEach((path) => {
 			if (filter.indexOf(path) === -1) {
 				var src = `${from}/${path}`;
-				var dist = `${to}/${path}`.replace("//", "/");
+				var dist = `${to}/${path}`;
 				var stat = fs.statSync(src);
 				try {
 					if (stat.isFile()) {
@@ -92,7 +93,7 @@ function isExist(path) {
 		fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK);
 		bl = true;
 	} catch (err) {
-		// console.error(`${path} 不存在`);
+		// 判断目录不存在
 	}
 	return bl;
 }

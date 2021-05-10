@@ -1,0 +1,40 @@
+{
+	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
+	"filter": true,
+	// 校验脚本文件, 可以使用脚本的方式加一步进行校验, 让传参更加安全
+	"func_file": "",
+	// get请求
+	"get": {
+		// 查询参数校验项
+		"query": [""],
+		// 查询必填参数
+		"query_required": []
+	},
+	// post请求
+	"post": {
+		// 查询参数校验项
+		"query": [],
+		// 查询必填参数
+		"query_required": ["order_number"],
+		// 正文参数校验项
+		"body": [],
+		// 正文必填参数
+		"body_required": ["order_number"]
+	},
+	// 校验列表
+	"list": [{
+		// 参数key名
+		"name": "order_number",
+		// 参数中文名
+		"title": "订单号",
+		// 数据类型
+		"type": "string",
+		// 数字类型时设置
+		"string": {
+			// 最小长度
+			"min": 18,
+			// 最大长度
+			"max": 24
+		}
+	}]
+}

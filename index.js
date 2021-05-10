@@ -14,7 +14,6 @@ var dirname = __dirname + "/";
 var dir_from = './template/'.fullname(dirname);
 var dir_to = process.cwd() + "/";
 
-
 var files = "./command/".fullname(dirname).getFile();
 for (var i = 0; i < files.length; i++) {
 	var file = files[i];
@@ -51,7 +50,8 @@ function prompt_2(options, answers) {
 
 			// 设置package.json
 			var text = (dir_from + 'package.json').loadText();
-			text = text.replaceAll('{name}', answers.name.trim()).replaceAll('{author}', answers.author.trim())
+			text = text.replaceAll('{name}', answers.name.trim()).replaceAll('{author}', answers.author
+					.trim())
 				.replaceAll(
 					'{version}', answers.version.trim()).replaceAll('{description}', answers.web_description
 					.trim());
