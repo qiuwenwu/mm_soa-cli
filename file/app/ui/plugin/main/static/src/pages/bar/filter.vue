@@ -22,7 +22,7 @@
 					<mm_row>
 						<mm_col width="100">
 							<mm_view>
-								<bar_filter :func="func_filter" col="1" :list="list">
+								<bar_filter :func="func_filter" :col="1" :list="list">
 								</bar_filter>
 							</mm_view>
 						</mm_col>
@@ -40,7 +40,7 @@
 		data() {
 			return {
 				select: 0,
-				col: "2",
+				col: 2,
 				options: [{
 						name: "1列",
 						value: "1"

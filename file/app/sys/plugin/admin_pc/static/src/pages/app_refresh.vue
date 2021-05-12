@@ -13,7 +13,7 @@
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
-									<mm_list col="3">
+									<mm_list :col="3">
 										<mm_item>
 											<control_select v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'nickname')"
 											 @change="search()" />

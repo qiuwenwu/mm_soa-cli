@@ -13,7 +13,7 @@
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
-									<mm_list col="3">
+									<mm_list :col="3">
 										<mm_item>
 											<mm_input v-model="query.keyword" title="关键词" desc="表名 / 标题 / 描述 / 关键词"
 											 @blur="search()" />

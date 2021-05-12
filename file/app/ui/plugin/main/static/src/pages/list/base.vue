@@ -47,7 +47,7 @@
 		data() {
 			return {
 				select: 0,
-				col: "4",
+				col: 4,
 				list_layout: [
 					"item-lr img-small",
 					"item-ll img-small",
@@ -59,39 +59,39 @@
 				],
 				options: [{
 						name: "1列",
-						value: "1"
+						value: 1
 					},
 					{
 						name: "2列",
-						value: "2"
+						value: 2
 					},
 					{
 						name: "3列",
-						value: "3"
+						value: 3
 					},
 					{
 						name: "4列",
-						value: "4"
+						value: 4
 					},
 					{
 						name: "5列",
-						value: "5"
+						value: 5
 					},
 					{
 						name: "6列",
-						value: "6"
+						value: 6
 					},
 					{
 						name: "8列",
-						value: "8"
+						value: 8
 					},
 					{
 						name: "10列",
-						value: "10"
+						value: 10
 					},
 					{
 						name: "12列",
-						value: "12"
+						value: 12
 					}
 				],
 				list: [{

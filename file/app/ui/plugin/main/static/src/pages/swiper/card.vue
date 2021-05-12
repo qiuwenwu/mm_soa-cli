@@ -26,7 +26,7 @@
 								<template scope="scope">
 									<div class="info">
 										<a :href="scope.row.url">
-											<p>標題:{{scope.row.title}}</p>
+											<p>标题:{{scope.row.title}}</p>
 											<img :src="scope.row.image" alt="">
 										</a>
 									</div>

@@ -24,7 +24,7 @@
 							<mm_card>
 								<div class="card_head">炫彩</div>
 								<div class="card_body">
-									<mm_list col="5">
+									<mm_list :col="5">
 										<mm_item><a href="javascript:void(0)" class="wave linear_red-1"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave linear_red-2"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave linear_yellow-1"></a></mm_item>
@@ -43,7 +43,7 @@
 							<mm_card>
 								<div class="card_head">炫彩(无高光)</div>
 								<div class="card_body">
-									<mm_list col="5">
+									<mm_list :col="5">
 										<mm_item><a href="javascript:void(0)" class="wave linear_red"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave linear_yellow"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave linear_green"></a></mm_item>
@@ -57,7 +57,7 @@
 							<mm_card>
 								<div class="card_head">常规</div>
 								<div class="card_body">
-									<mm_list col="5">
+									<mm_list :col="5">
 										<mm_item><a href="javascript:void(0)" class="wave bg_red"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave bg_yellow"></a></mm_item>
 										<mm_item><a href="javascript:void(0)" class="wave bg_green"></a></mm_item>

@@ -183,7 +183,7 @@
 								<div class="card_head">常见响应式列</div>
 								<div class="card_body">
 
-									<mm_warp><mm_container><mm_row col="1" class="center grid-x">
+									<mm_warp><mm_container><mm_row :col="1" class="center grid-x">
 										<mm_col class="col-lg-2 col-md-3 col-sm-6">
 											<mm_view>1</mm_view>
 										</mm_col>
@@ -261,7 +261,7 @@
 				if (n >= arr.length) {
 					n = arr.length;
 				}
-				return arr[n].toString();
+				return arr[n];
 			}
 		}
 	}

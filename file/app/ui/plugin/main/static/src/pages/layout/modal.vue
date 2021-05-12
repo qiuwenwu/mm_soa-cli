@@ -63,7 +63,7 @@
 			return {
 				show1: false,
 				show2: false,
-				value: "default",
+				value: "left",
 				options: [{
 					name: "默认",
 					value: "default"

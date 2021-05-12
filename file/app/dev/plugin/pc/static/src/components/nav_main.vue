@@ -1,5 +1,5 @@
 <template>
-	<mm_list id="nav_side" col="1">
+	<mm_list id="nav_side" :col="1">
 		<mm_item v-for="(o, idx) in nav.main" :key="idx" :url="o.sub.length > 0 ? '' : o.url" :class="{'active': select == idx }">
 			<div class="btn" @click="select = idx">
 				<mm_icon :src="o.icon" v-if="o.icon"></mm_icon>

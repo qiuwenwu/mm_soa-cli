@@ -36,7 +36,7 @@
 		data() {
 			return {
 				select: 0,
-				col: "2",
+				col: 2,
 				options: [{
 						name: "1列",
 						value: "1"

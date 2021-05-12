@@ -29,7 +29,7 @@
 							<mm_card>
 								<div class="card_head">内容容器</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in content" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -42,7 +42,7 @@
 							<mm_card>
 								<div class="card_head">布局容器</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in layout" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -55,7 +55,7 @@
 							<mm_card>
 								<div class="card_head">控件</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in control" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -73,7 +73,7 @@
 							<mm_card>
 								<div class="card_head">栏</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in bar" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -86,7 +86,7 @@
 							<mm_card>
 								<div class="card_head">列表</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in list" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -99,7 +99,7 @@
 							<mm_card>
 								<div class="card_head">导航</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in nav" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -112,7 +112,7 @@
 							<mm_card>
 								<div class="card_head">轮播</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in swiper" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -125,7 +125,7 @@
 							<mm_card>
 								<div class="card_head">图表</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in chart" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -138,7 +138,7 @@
 							<mm_card>
 								<div class="card_head">拓展</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in expand" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -151,7 +151,7 @@
 							<mm_card>
 								<div class="card_head">表单</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in form" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">
@@ -164,7 +164,7 @@
 							<mm_card>
 								<div class="card_head">表格</div>
 								<div class="card_body">
-									<mm_list col="1" class="item-lr content-right">
+									<mm_list :col="1" class="item-lr content-right">
 										<item_base class="arrow" v-for="(o, idx) in table" :key="idx" :obj="o"
 											:viewmodel="{content:'name'}"
 											:class="{ 'font_success': o.progress == 100, 'font_info': o.progress > 0 && o.progress < 100 }">

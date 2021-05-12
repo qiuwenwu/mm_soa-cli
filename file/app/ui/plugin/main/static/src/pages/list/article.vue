@@ -60,7 +60,7 @@
 			return {
 				border: false,
 				select: 1,
-				col: "1",
+				col: 1,
 				list_layout: [
 					"item-ltb",
 					"item-rtb",

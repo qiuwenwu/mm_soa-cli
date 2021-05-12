@@ -45,7 +45,7 @@
 		data() {
 			return {
 				select: 0,
-				col: "2",
+				col: 2,
 				list_layout: [
 					"item-ltb img-big",
 					"item-rtb img-big",
