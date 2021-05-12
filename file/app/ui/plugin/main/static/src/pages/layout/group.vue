@@ -32,7 +32,7 @@
 									<mm_group>
 										<span>介绍</span>
 										<input type="text" />
-										<mm_btn class="btn_info-x">按钮</mm_btn>
+										<mm_btn class="btn_primary-x">按钮</mm_btn>
 									</mm_group>
 									<br />
 									<mm_group>

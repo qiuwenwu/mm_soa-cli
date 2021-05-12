@@ -13,19 +13,19 @@
 									<dl>
 										<dt>分组名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>分组标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>分组描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>店铺</dt>
 										<dd>
-											<mm_select v-model="form.shop_id" :options="$to_kv(list_shop, 'shop_id', 'name', 0)" />
+											<control_select v-model="form.shop_id" :options="$to_kv(list_shop, 'shop_id', 'name', 0)" />
 										</dd>
 										<dt>分组图标</dt>
 										<dd>

@@ -48,19 +48,19 @@
 											<td>
 												<h4><span>标题四</span></h4>
 											</td>
-											<td><span class="unit">1.125rem</span></td>
+											<td><span class="unit">1rem</span></td>
 										</tr>
 										<tr>
 											<td>
 												<h5><span>标题五</span></h5>
 											</td>
-											<td><span class="unit">1rem</span></td>
+											<td><span class="unit">0.875rem</span></td>
 										</tr>
 										<tr>
 											<td>
 												<h6><span>标题六</span></h6>
 											</td>
-											<td><span class="unit">0.875rem</span></td>
+											<td><span class="unit">0.75rem</span></td>
 										</tr>
 										<tr>
 											<td>
@@ -72,7 +72,7 @@
 											<td>
 												<p><span class="font-small">正文小</span></p>
 											</td>
-											<td><span class="unit">0.75rem</span></td>
+											<td><span class="unit">0.875rem</span></td>
 										</tr>
 									</table>
 								</div>
@@ -85,33 +85,33 @@
 									<table class="table-3">
 										<tr>
 											<td>
-												<img src="/img/logo.png" class="size-huge" />
+												<img src="/img/logo.png" class="size-larger" />
 											</td>
-											<td><span class="unit">4rem</span></td>
+											<td><span class="unit">6rem</span></td>
 										</tr>
 										<tr>
 											<td>
-												<img src="/img/logo.png" class="size-larger" />
+												<img src="/img/logo.png" class="size-big" />
 											</td>
-											<td><span class="unit">3rem</span></td>
+											<td><span class="unit">4.5rem</span></td>
 										</tr>
 										<tr>
 											<td>
 												<img src="/img/logo.png" class="size-base" />
 											</td>
-											<td><span class="unit">2rem</span></td>
+											<td><span class="unit">3rem</span></td>
 										</tr>
 										<tr>
 											<td>
 												<img src="/img/logo.png" class="size-small" />
 											</td>
-											<td><span class="unit">1.5rem</span></td>
+											<td><span class="unit">2rem</span></td>
 										</tr>
 										<tr>
 											<td>
 												<img src="/img/logo.png" class="size-mini" />
 											</td>
-											<td><span class="unit">1.25rem</span></td>
+											<td><span class="unit">1.5rem</span></td>
 										</tr>
 									</table>
 								</div>
@@ -207,11 +207,15 @@
 		width: 100%;
 	}
 
-	#page_design table tr td:last-child {
+	#page_design td:last-child {
 		text-align: right;
-		color: #999;
 		font-size: 1rem;
 		width: 6rem;
+	}
+
+	#page_design .table-1,
+	#page_design .table-2 {
+		color: #999;
 	}
 
 	#page_design .font_color td {

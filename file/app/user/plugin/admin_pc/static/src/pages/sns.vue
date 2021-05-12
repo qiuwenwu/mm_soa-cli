@@ -9,32 +9,32 @@
 								<h5>社交账户</h5>
 							</div>
 							<div class="card_body">
-								<mm_form class="mm_filter">
+								<mm_form class="bar_filter">
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_select v-model="query.qq_state" title="QQ认证" :options="$to_kv(arr_qq_state)" @change="search()" />
+											<control_select v-model="query.qq_state" title="QQ认证" :options="$to_kv(arr_qq_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.wechat_state" title="微信认证" :options="$to_kv(arr_wechat_state)" @change="search()" />
+											<control_select v-model="query.wechat_state" title="微信认证" :options="$to_kv(arr_wechat_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.mm_state" title="MM认证" :options="$to_kv(arr_mm_state)" @change="search()" />
+											<control_select v-model="query.mm_state" title="MM认证" :options="$to_kv(arr_mm_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.baidu_state" title="百度认证" :options="$to_kv(arr_baidu_state)" @change="search()" />
+											<control_select v-model="query.baidu_state" title="百度认证" :options="$to_kv(arr_baidu_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.taobao_state" title="淘宝认证" :options="$to_kv(arr_taobao_state)" @change="search()" />
+											<control_select v-model="query.taobao_state" title="淘宝认证" :options="$to_kv(arr_taobao_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
 								</mm_form>
-								<div class="mm_action">
+								<div class="bar_action">
 									<h5><span>操作</span></h5>
 									<div class="">
 										<mm_btn class="btn_primary-x" url="./sns_form">添加</mm_btn>
@@ -47,34 +47,34 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="QQ号" v-model="query.orderby" field="qq" :func="search"></mm_reverse>
+												<control_reverse title="QQ号" v-model="query.orderby" field="qq" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="QQ认证" v-model="query.orderby" field="qq_state" :func="search"></mm_reverse>
+												<control_reverse title="QQ认证" v-model="query.orderby" field="qq_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="微信号" v-model="query.orderby" field="wechat" :func="search"></mm_reverse>
+												<control_reverse title="微信号" v-model="query.orderby" field="wechat" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="微信认证" v-model="query.orderby" field="wechat_state" :func="search"></mm_reverse>
+												<control_reverse title="微信认证" v-model="query.orderby" field="wechat_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="MM号" v-model="query.orderby" field="mm" :func="search"></mm_reverse>
+												<control_reverse title="MM号" v-model="query.orderby" field="mm" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="MM认证" v-model="query.orderby" field="mm_state" :func="search"></mm_reverse>
+												<control_reverse title="MM认证" v-model="query.orderby" field="mm_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="百度账号" v-model="query.orderby" field="baidu" :func="search"></mm_reverse>
+												<control_reverse title="百度账号" v-model="query.orderby" field="baidu" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="百度认证" v-model="query.orderby" field="baidu_state" :func="search"></mm_reverse>
+												<control_reverse title="百度认证" v-model="query.orderby" field="baidu_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="淘宝账号" v-model="query.orderby" field="taobao" :func="search"></mm_reverse>
+												<control_reverse title="淘宝账号" v-model="query.orderby" field="taobao" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="淘宝认证" v-model="query.orderby" field="taobao_state" :func="search"></mm_reverse>
+												<control_reverse title="淘宝认证" v-model="query.orderby" field="taobao_state" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -90,31 +90,31 @@
 												<span>{{ o.qq }}</span>
 											</td>
 											<td>
-												<mm_switch v-model="o.qq_state" @click.native="set(o)" />
+												<control_switch v-model="o.qq_state" @click.native="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.wechat }}</span>
 											</td>
 											<td>
-												<mm_switch v-model="o.wechat_state" @click.native="set(o)" />
+												<control_switch v-model="o.wechat_state" @click.native="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.mm }}</span>
 											</td>
 											<td>
-												<mm_switch v-model="o.mm_state" @click.native="set(o)" />
+												<control_switch v-model="o.mm_state" @click.native="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.baidu }}</span>
 											</td>
 											<td>
-												<mm_switch v-model="o.baidu_state" @click.native="set(o)" />
+												<control_switch v-model="o.baidu_state" @click.native="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.taobao }}</span>
 											</td>
 											<td>
-												<mm_switch v-model="o.taobao_state" @click.native="set(o)" />
+												<control_switch v-model="o.taobao_state" @click.native="set(o)" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./sns_form?user_id=' + o[field]">修改</mm_btn>
@@ -127,7 +127,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="fl">
-									<mm_select v-model="query.size" :options="$to_size()" @change="search()" />
+									<control_select v-model="query.size" :options="$to_size()" @change="search()" />
 								</div>
 								<div class="fr">
 									<span class="mr">共 {{ count }} 条</span>
@@ -135,7 +135,7 @@
 									<input type="number" class="pager_now" v-model.number="page_now" @blur="goTo(page_now)" @change="page_change" />
 									<span>/{{ page_count }}页</span>
 								</div>
-								<mm_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></mm_pager>
+								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
 							</div>
 						</mm_card>
 					</mm_col>
@@ -151,23 +151,23 @@
 					<dl>
 						<dt>QQ认证</dt>
 						<dd>
-							<mm_select v-model="form.qq_state" :options="$to_kv(arr_qq_state)" />
+							<control_select v-model="form.qq_state" :options="$to_kv(arr_qq_state)" />
 						</dd>
 						<dt>微信认证</dt>
 						<dd>
-							<mm_select v-model="form.wechat_state" :options="$to_kv(arr_wechat_state)" />
+							<control_select v-model="form.wechat_state" :options="$to_kv(arr_wechat_state)" />
 						</dd>
 						<dt>MM认证</dt>
 						<dd>
-							<mm_select v-model="form.mm_state" :options="$to_kv(arr_mm_state)" />
+							<control_select v-model="form.mm_state" :options="$to_kv(arr_mm_state)" />
 						</dd>
 						<dt>百度认证</dt>
 						<dd>
-							<mm_select v-model="form.baidu_state" :options="$to_kv(arr_baidu_state)" />
+							<control_select v-model="form.baidu_state" :options="$to_kv(arr_baidu_state)" />
 						</dd>
 						<dt>淘宝认证</dt>
 						<dd>
-							<mm_select v-model="form.taobao_state" :options="$to_kv(arr_taobao_state)" />
+							<control_select v-model="form.taobao_state" :options="$to_kv(arr_taobao_state)" />
 						</dd>
 					</dl>
 				</div>

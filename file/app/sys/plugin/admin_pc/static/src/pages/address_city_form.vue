@@ -13,15 +13,15 @@
 									<dl>
 										<dt>显示位置</dt>
 										<dd>
-											<mm_select v-model="form.show" :options="$to_kv(arr_show)" />
+											<control_select v-model="form.show" :options="$to_kv(arr_show)" />
 										</dd>
 										<dt>所属省份</dt>
 										<dd>
-											<mm_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
+											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
 										</dd>
 										<dt class="required">城市名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
 										</dd>
 									</dl>

@@ -13,9 +13,9 @@
 			</router-link>
 		</div>
 		<div class="item">
-			<mm_select class="user" v-model="option" :options="options" type="click" :func="select">
+			<control_select class="user" v-model="option" :options="options" type="click" :func="select">
 				<img class="avatar" :src="user.avatar || '/img/avatar.png'" />
-			</mm_select>
+			</control_select>
 		</div>
 		<div class="item">
 			<router-link to="/config" @click="show = false">

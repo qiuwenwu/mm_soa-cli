@@ -127,7 +127,6 @@ async function main(ctx, db) {
 			delete u.create_time;
 			ctx.session.user = u;
 			var user = Object.assign({}, u);
-			delete user.user_id;
 			// 自动生成的uuid是通过IP和浏览器信息加密而成，如果需要解密确认其身份，可再加上user_id加密，自行生成uuid
 			var body = $.ret.body({
 				token: ctx.session.uuid,

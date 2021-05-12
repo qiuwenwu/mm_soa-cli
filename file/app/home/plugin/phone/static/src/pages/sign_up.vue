@@ -3,10 +3,10 @@
 		<main id="root_index"><mm_warp><mm_container><mm_row>
 			<mm_col>
 				<mm_view>
-					<mm_title>
+					<bar_title>
 						<h5>超级美眉</h5>
 						<span class="arrow"></span>
-					</mm_title>
+					</bar_title>
 					<mm_body>
 
 					</mm_body>

@@ -13,11 +13,11 @@
 									<dl>
 										<dt>留言标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>留言内容</dt>
 										<dd>
-											<mm_rich v-model="form.note"></mm_rich>
+											<control_rich v-model="form.note"></control_rich>
 										</dd>
 									</dl>
 								</mm_form>

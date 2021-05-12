@@ -13,80 +13,80 @@
 									<dl>
 										<dt>投放城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt>投放地区</dt>
 										<dd>
-											<mm_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name', 0)" />
+											<control_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name', 0)" />
 										</dd>
 										<dt>广告主</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>访客数</dt>
 										<dd>
-											<mm_number v-model="form.times_user" :min="0" :max="2147483647" />
+											<control_number v-model="form.times_user" :min="0" :max="2147483647" />
 										</dd>
 										<dt>次数上限</dt>
 										<dd>
-											<mm_number v-model="form.times_max" :min="0" :max="2147483647" />
+											<control_number v-model="form.times_max" :min="0" :max="2147483647" />
 										</dd>
 										<dt>展现量</dt>
 										<dd>
-											<mm_number v-model="form.times_show" :min="0" :max="2147483647" />
+											<control_number v-model="form.times_show" :min="0" :max="2147483647" />
 										</dd>
 										<dt>点击量</dt>
 										<dd>
-											<mm_number v-model="form.times_click" :min="0" :max="2147483647" />
+											<control_number v-model="form.times_click" :min="0" :max="2147483647" />
 										</dd>
 										<dt>费用</dt>
 										<dd>
-											<mm_number v-model="form.fee" :min="0" :max="0" />
+											<control_number v-model="form.fee" :min="0" :max="0" />
 										</dd>
 										<dt>费用——最大值</dt>
 										<dd>
-											<mm_number v-model="form.fee_max" :min="0" :max="0" />
+											<control_number v-model="form.fee_max" :min="0" :max="0" />
 										</dd>
 										<dt>费用上限</dt>
 										<dd>
-											<mm_number v-model="form.fee_max" :min="0" :max="0" />
+											<control_number v-model="form.fee_max" :min="0" :max="0" />
 										</dd>
 										<dt class="required">广告名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>广告类型</dt>
 										<dd>
-											<mm_input v-model="form.type" :minlength="0" :maxlength="16" placeholder="text文字 / img图片 / video视频 / flash交互动画" />
+											<control_input v-model="form.type" :minlength="0" :maxlength="16" placeholder="text文字 / img图片 / video视频 / flash交互动画" />
 										</dd>
 										<dt>投放位置</dt>
 										<dd>
-											<mm_input v-model="form.location" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.location" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>付费方式</dt>
 										<dd>
-											<mm_input v-model="form.fee_way" :minlength="0" :maxlength="16" placeholder="click点击付费 / show展现付费 / user访客付费" />
+											<control_input v-model="form.fee_way" :minlength="0" :maxlength="16" placeholder="click点击付费 / show展现付费 / user访客付费" />
 										</dd>
 										<dt>展现应用</dt>
 										<dd>
-											<mm_input v-model="form.app" :minlength="0" :maxlength="16" placeholder="将在指定的应用下才展现广告" />
+											<control_input v-model="form.app" :minlength="0" :maxlength="16" placeholder="将在指定的应用下才展现广告" />
 										</dd>
 										<dt>所属行业</dt>
 										<dd>
-											<mm_input v-model="form.trade" :minlength="0" :maxlength="24" placeholder="可以根据不同的行业定制不同的投放" />
+											<control_input v-model="form.trade" :minlength="0" :maxlength="24" placeholder="可以根据不同的行业定制不同的投放" />
 										</dd>
 										<dt>广告标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="32" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="32" placeholder="" />
 										</dd>
 										<dt>呈现设备</dt>
 										<dd>
-											<mm_input v-model="form.device" :minlength="0" :maxlength="125" placeholder="在什么设备上展示，web_pc / web_pad / web_phone / app_pad / app_phone，多个设备用逗号隔开" />
+											<control_input v-model="form.device" :minlength="0" :maxlength="125" placeholder="在什么设备上展示，web_pc / web_pad / web_phone / app_pad / app_phone，多个设备用逗号隔开" />
 										</dd>
 										<dt>广告描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>广告图</dt>
 										<dd>
@@ -94,11 +94,11 @@
 										</dd>
 										<dt>跳转链接</dt>
 										<dd>
-											<mm_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>关键词</dt>
 										<dd>
-											<mm_input v-model="form.keywords" :minlength="0" :maxlength="255" placeholder="在出现于关键词相关的情况下才打广告，多个关键词用空格分隔" />
+											<control_input v-model="form.keywords" :minlength="0" :maxlength="255" placeholder="在出现于关键词相关的情况下才打广告，多个关键词用空格分隔" />
 										</dd>
 									</dl>
 								</mm_form>

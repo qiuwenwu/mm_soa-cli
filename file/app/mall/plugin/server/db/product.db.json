@@ -240,7 +240,7 @@
             "map": ""
         },
         {
-            "name": "price_old",
+            "name": "price_ago",
             "title": "原价",
             "description": "",
             "type": "double",

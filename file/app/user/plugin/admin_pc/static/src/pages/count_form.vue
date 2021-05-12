@@ -13,63 +13,63 @@
 									<dl>
 										<dt>等级</dt>
 										<dd>
-											<mm_number v-model="form.level" :min="0" :max="1000" />
+											<control_number v-model="form.level" :min="0" :max="1000" />
 										</dd>
 										<dt>IQ智商</dt>
 										<dd>
-											<mm_number v-model="form.iq" :min="80" :max="200" />
+											<control_number v-model="form.iq" :min="80" :max="200" />
 										</dd>
 										<dt>信用度</dt>
 										<dd>
-											<mm_number v-model="form.credit" :min="0" :max="2147483647" />
+											<control_number v-model="form.credit" :min="0" :max="2147483647" />
 										</dd>
 										<dt>积分</dt>
 										<dd>
-											<mm_number v-model="form.credit_points" :min="0" :max="2147483647" />
+											<control_number v-model="form.credit_points" :min="0" :max="2147483647" />
 										</dd>
 										<dt>经验值</dt>
 										<dd>
-											<mm_number v-model="form.exp" :min="0" :max="2147483647" />
+											<control_number v-model="form.exp" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分1</dt>
 										<dd>
-											<mm_number v-model="form.extcredits1" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits1" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分2</dt>
 										<dd>
-											<mm_number v-model="form.extcredits2" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits2" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分3</dt>
 										<dd>
-											<mm_number v-model="form.extcredits3" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits3" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分4</dt>
 										<dd>
-											<mm_number v-model="form.extcredits4" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits4" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分5</dt>
 										<dd>
-											<mm_number v-model="form.extcredits5" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits5" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分6</dt>
 										<dd>
-											<mm_number v-model="form.extcredits6" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits6" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分7</dt>
 										<dd>
-											<mm_number v-model="form.extcredits7" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits7" :min="0" :max="2147483647" />
 										</dd>
 										<dt>拓展积分8</dt>
 										<dd>
-											<mm_number v-model="form.extcredits8" :min="0" :max="2147483647" />
+											<control_number v-model="form.extcredits8" :min="0" :max="2147483647" />
 										</dd>
 										<dt>钱</dt>
 										<dd>
-											<mm_number v-model="form.money" :min="0" :max="0" />
+											<control_number v-model="form.money" :min="0" :max="0" />
 										</dd>
 										<dt>货币</dt>
 										<dd>
-											<mm_number v-model="form.coin" :min="0" :max="0" />
+											<control_number v-model="form.coin" :min="0" :max="0" />
 										</dd>
 									</dl>
 								</mm_form>

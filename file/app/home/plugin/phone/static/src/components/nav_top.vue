@@ -8,9 +8,9 @@
 			<span>消息</span>
 			<span class="msg">{{ msg_count }}</span>
 		</router-link>
-		<mm_select class="user" v-model="option" :options="options" type="click" :func="select">
+		<control_select class="user" v-model="option" :options="options" type="click" :func="select">
 			<mm_icon class="avatar" :src="user.avatar"></mm_icon>
-		</mm_select>
+		</control_select>
 		<router-link to="/">
 			<mm_icon src="<i class='fa-ellipsis-v'></i>"></mm_icon>
 		</router-link>

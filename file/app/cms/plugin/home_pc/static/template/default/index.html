@@ -111,10 +111,10 @@
 										<form>
 											<h2>${lang.title_form_need}</h2>
 											<p>${lang.desc_form_need}</p>
-											<div class="mm_input">
+											<div class="control_input">
 												<input type="text" v-model="form.name" placeholder="${lang.input_desc_name}" required="" />
 											</div>
-											<div class="mm_input">
+											<div class="control_input">
 												<input type="text" v-model="form.phone" placeholder="${lang.input_desc_phone}" required="" />
 											</div>
 											<button type="submit" class="mm_btn btn_primary" @click="submit">${lang.btn_submit}</button>
@@ -264,7 +264,7 @@
 										<nav class="latest_product mm_list list-1">
 											<!--{loop list_product_latest o idx}-->
 											<a href="/article/view?article_id=${o.article_id}" class="mm_item router-link-active">
-												<div class="mm_article">
+												<div class="item_article">
 													<div class="media">
 														<figure class="mm_icon" style="background-image: url(${o.img || '/img/default.png'});">
 														</figure>
@@ -291,7 +291,7 @@
 											<!--{loop list_event_latest o idx}-->
 											<!--{ if(idx < 3) }-->
 											<a href="/article/view?article_id=${o.article_id}" class="mm_item">
-												<div class="mm_article">
+												<div class="item_article">
 													<div class="media">
 														<figure class="mm_icon">
 															<div class="icon">

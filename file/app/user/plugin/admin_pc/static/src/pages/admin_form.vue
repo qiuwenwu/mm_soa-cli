@@ -13,20 +13,20 @@
 									<dl>
 										<dt>上级</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
+											<control_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
 										</dd>
 										<dt class="required">名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>部门</dt>
 										<dd>
-											<mm_input v-model="form.department" :minlength="0" :maxlength="12" placeholder="用于区分管理组织结构" />
+											<control_input v-model="form.department" :minlength="0" :maxlength="12" placeholder="用于区分管理组织结构" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
 										</dd>
 										<dt>图标</dt>
 										<dd>

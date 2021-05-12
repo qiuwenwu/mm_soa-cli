@@ -13,19 +13,19 @@
 									<dl>
 										<dt>产品名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>产品分组</dt>
 										<dd>
-											<mm_input v-model="form.group" :minlength="0" :maxlength="32" placeholder="" />
+											<control_input v-model="form.group" :minlength="0" :maxlength="32" placeholder="" />
 										</dd>
 										<dt>附加价格</dt>
 										<dd>
-											<mm_number v-model="form.price" :min="0" :max="0" />
+											<control_number v-model="form.price" :min="0" :max="0" />
 										</dd>
 										<dt>店铺ID</dt>
 										<dd>
-											<mm_input v-model="form.shop_id" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.shop_id" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>

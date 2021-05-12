@@ -13,82 +13,82 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>状态</dt>
 										<dd>
-											<mm_select v-model="form.state" :options="$to_kv(arr_state)" />
+											<control_select v-model="form.state" :options="$to_kv(arr_state)" />
 										</dd>
 										<dt>文章分类</dt>
 										<dd>
-											<mm_select v-model="form.type_id" :options="$to_kv(list_article_type, 'type_id', 'name', 0)" />
+											<control_select v-model="form.type_id" :options="$to_kv(list_article_type, 'type_id', 'name', 0)" />
 										</dd>
 										<dt>频道</dt>
 										<dd>
-											<mm_select v-model="form.channel_id" :options="$to_kv(list_article_channel, 'channel_id', 'name', 0)" />
+											<control_select v-model="form.channel_id" :options="$to_kv(list_article_channel, 'channel_id', 'name', 0)" />
 										</dd>
 										<dt>用户</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>所属城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt>热度</dt>
 										<dd>
-											<mm_number v-model="form.hot" :min="0" :max="1000000000" />
+											<control_number v-model="form.hot" :min="0" :max="1000000000" />
 										</dd>
 										<dt>点赞次数</dt>
 										<dd>
-											<mm_number v-model="form.praise" :min="0" :max="1000000000" />
+											<control_number v-model="form.praise" :min="0" :max="1000000000" />
 										</dd>
 										<dt>采集规则ID</dt>
 										<dd>
-											<mm_input v-model="form.collect_id" :minlength="0" :maxlength="0" placeholder="如果文章是通过采集的方式获得，那么具有采集ID" />
+											<control_input v-model="form.collect_id" :minlength="0" :maxlength="0" placeholder="如果文章是通过采集的方式获得，那么具有采集ID" />
 										</dd>
 										<dt>语言</dt>
 										<dd>
-											<mm_select v-model="form.lang" :options="$to_kv(arr_lang)" />
+											<control_select v-model="form.lang" :options="$to_kv(arr_lang)" />
 										</dd>
 										<dt>作者</dt>
 										<dd>
-											<mm_input v-model="form.author" :minlength="0" :maxlength="16" placeholder="写出该文章的人" />
+											<control_input v-model="form.author" :minlength="0" :maxlength="16" placeholder="写出该文章的人" />
 										</dd>
 										<dt class="required">标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="用于文章和html的title标签中"
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="用于文章和html的title标签中"
 											 :required="true" />
 										</dd>
 										<dt>关键词</dt>
 										<dd>
-											<mm_input v-model="form.keywords" :minlength="0" :maxlength="125" placeholder="引擎收录" />
+											<control_input v-model="form.keywords" :minlength="0" :maxlength="125" placeholder="引擎收录" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于文章提纲和搜索引擎收录" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于文章提纲和搜索引擎收录" />
 										</dd>
 										<dt>来源</dt>
 										<dd>
-											<mm_input v-model="form.source" :minlength="0" :maxlength="255" placeholder="文章的出处" />
+											<control_input v-model="form.source" :minlength="0" :maxlength="255" placeholder="文章的出处" />
 										</dd>
 										<dt>来源地址</dt>
 										<dd>
-											<mm_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="用于跳转到发布该文章的网站" />
+											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="用于跳转到发布该文章的网站" />
 										</dd>
 										<dt>标签</dt>
 										<dd>
-											<mm_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注文章所属相关内容，多个标签用空格隔开" />
+											<control_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注文章所属相关内容，多个标签用空格隔开" />
 										</dd>
 										<dt>封面图</dt>
 										<dd>
 											<mm_upload_img width="10rem" height="10rem" name="img" type="text" v-model="form.img" />
 										</dd>
-										<dt>正文</dt>
+										<dt class="required">正文</dt>
 										<dd>
-											<mm_rich v-model="form.content"></mm_rich>
+											<control_rich v-model="form.content"></control_rich>
 										</dd>
-										<dt>收藏者</dt>
+										<dt class="required">收藏者</dt>
 										<dd>
 											<mm_textarea v-model="form.collecter" type="text" placeholder="多个收藏者用”,“分隔"></mm_textarea>
 										</dd>

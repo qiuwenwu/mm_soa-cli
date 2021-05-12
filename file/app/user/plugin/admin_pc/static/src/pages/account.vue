@@ -9,49 +9,49 @@
 								<h5>用户账户</h5>
 							</div>
 							<div class="card_body">
-								<mm_form class="mm_filter">
+								<mm_form class="bar_filter">
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称"
+											<control_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.state" title="账户状态" :options="$to_kv(arr_state)" @change="search()" />
+											<control_select v-model="query.state" title="账户状态" :options="$to_kv(arr_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.group_id" title="所在用户组" :options="$to_kv(list_group, 'group_id', 'name')"
+											<control_select v-model="query.group_id" title="所在用户组" :options="$to_kv(list_group, 'group_id', 'name')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.admin_id" title="所在管理组" :options="$to_kv(list_admin, 'admin_id', 'name')"
+											<control_select v-model="query.admin_id" title="所在管理组" :options="$to_kv(list_admin, 'admin_id', 'name')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.referee_id" title="推荐人" :options="$to_kv(list_account, 'user_id', 'nickname')"
+											<control_select v-model="query.referee_id" title="推荐人" :options="$to_kv(list_account, 'user_id', 'nickname')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.phone_state" title="手机认证" :options="$to_kv(arr_phone_state)" @change="search()" />
+											<control_select v-model="query.phone_state" title="手机认证" :options="$to_kv(arr_phone_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.email_state" title="邮箱认证" :options="$to_kv(arr_email_state)" @change="search()" />
+											<control_select v-model="query.email_state" title="邮箱认证" :options="$to_kv(arr_email_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
 								</mm_form>
-								<div class="mm_action">
+								<div class="bar_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
 										<mm_btn class="btn_primary-x" url="./account_form?">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
 									</div>
 									<div class="btn_small">
-										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<control_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></control_file>
 										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
@@ -61,61 +61,61 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="账户状态" v-model="query.orderby" field="state" :func="search"></mm_reverse>
+												<control_reverse title="账户状态" v-model="query.orderby" field="state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="会员级别" v-model="query.orderby" field="vip" :func="search"></mm_reverse>
+												<control_reverse title="会员级别" v-model="query.orderby" field="vip" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="管理员级别" v-model="query.orderby" field="gm" :func="search"></mm_reverse>
+												<control_reverse title="管理员级别" v-model="query.orderby" field="gm" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="商家级别" v-model="query.orderby" field="mc" :func="search"></mm_reverse>
+												<control_reverse title="商家级别" v-model="query.orderby" field="mc" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="所在用户组" v-model="query.orderby" field="group_id" :func="search"></mm_reverse>
+												<control_reverse title="所在用户组" v-model="query.orderby" field="group_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="所在管理组" v-model="query.orderby" field="admin_id" :func="search"></mm_reverse>
+												<control_reverse title="所在管理组" v-model="query.orderby" field="admin_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="推荐人" v-model="query.orderby" field="referee_id" :func="search"></mm_reverse>
+												<control_reverse title="推荐人" v-model="query.orderby" field="referee_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="上次登录时间" v-model="query.orderby" field="login_time" :func="search"></mm_reverse>
+												<control_reverse title="上次登录时间" v-model="query.orderby" field="login_time" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="邀请注册码" v-model="query.orderby" field="invite_code" :func="search"></mm_reverse>
+												<control_reverse title="邀请注册码" v-model="query.orderby" field="invite_code" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="手机号码" v-model="query.orderby" field="phone" :func="search"></mm_reverse>
+												<control_reverse title="手机号码" v-model="query.orderby" field="phone" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="手机认证" v-model="query.orderby" field="phone_state" :func="search"></mm_reverse>
+												<control_reverse title="手机认证" v-model="query.orderby" field="phone_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="用户名" v-model="query.orderby" field="username" :func="search"></mm_reverse>
+												<control_reverse title="用户名" v-model="query.orderby" field="username" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="昵称" v-model="query.orderby" field="nickname" :func="search"></mm_reverse>
+												<control_reverse title="昵称" v-model="query.orderby" field="nickname" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="邮箱" v-model="query.orderby" field="email" :func="search"></mm_reverse>
+												<control_reverse title="邮箱" v-model="query.orderby" field="email" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="邮箱认证" v-model="query.orderby" field="email_state" :func="search"></mm_reverse>
+												<control_reverse title="邮箱认证" v-model="query.orderby" field="email_state" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="上次登录IP" v-model="query.orderby" field="login_ip" :func="search"></mm_reverse>
+												<control_reverse title="上次登录IP" v-model="query.orderby" field="login_ip" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="个性签名" v-model="query.orderby" field="signature" :func="search"></mm_reverse>
+												<control_reverse title="个性签名" v-model="query.orderby" field="signature" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="头像地址" v-model="query.orderby" field="avatar" :func="search"></mm_reverse>
+												<control_reverse title="头像地址" v-model="query.orderby" field="avatar" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="创建时间" v-model="query.orderby" field="create_time" :func="search"></mm_reverse>
+												<control_reverse title="创建时间" v-model="query.orderby" field="create_time" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -193,7 +193,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="fl">
-									<mm_select v-model="query.size" :options="$to_size()" @change="search()" />
+									<control_select v-model="query.size" :options="$to_size()" @change="search()" />
 								</div>
 								<div class="fr">
 									<span class="mr">共 {{ count }} 条</span>
@@ -201,7 +201,7 @@
 									<input type="number" class="pager_now" v-model.number="page_now" @blur="goTo(page_now)" @change="page_change" />
 									<span>/{{ page_count }}页</span>
 								</div>
-								<mm_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></mm_pager>
+								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
 							</div>
 						</mm_card>
 					</mm_col>
@@ -217,27 +217,27 @@
 					<dl>
 						<dt>账户状态</dt>
 						<dd>
-							<mm_select v-model="form.state" :options="$to_kv(arr_state)" />
+							<control_select v-model="form.state" :options="$to_kv(arr_state)" />
 						</dd>
 						<dt>所在用户组</dt>
 						<dd>
-							<mm_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
+							<control_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
 						</dd>
 						<dt>所在管理组</dt>
 						<dd>
-							<mm_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+							<control_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
 						</dd>
 						<dt>推荐人</dt>
 						<dd>
-							<mm_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
 						</dd>
 						<dt>手机认证</dt>
 						<dd>
-							<mm_select v-model="form.phone_state" :options="$to_kv(arr_phone_state)" />
+							<control_select v-model="form.phone_state" :options="$to_kv(arr_phone_state)" />
 						</dd>
 						<dt>邮箱认证</dt>
 						<dd>
-							<mm_select v-model="form.email_state" :options="$to_kv(arr_email_state)" />
+							<control_select v-model="form.email_state" :options="$to_kv(arr_email_state)" />
 						</dd>
 					</dl>
 				</div>

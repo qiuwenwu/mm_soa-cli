@@ -20,7 +20,159 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 				return require(['vue!./pages/design.vue'], resolve);
 			}
 		},
+
+		/* 栏目 */
+		{
+			// 操作栏
+			path: "/bar/action",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/action.vue'], resolve);
+			}
+		},
+		{
+			// 广告栏
+			path: "/bar/ad",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/ad.vue'], resolve);
+			}
+		},
+		{
+			// 购物栏
+			path: "/bar/buy",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/buy.vue'], resolve);
+			}
+		},
+		{
+			// 聊天栏
+			path: "/bar/chat",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/chat.vue'], resolve);
+			}
+		},
+		{
+			// 结算栏
+			path: "/bar/count",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/count.vue'], resolve);
+			}
+		},
+		{
+			// 筛选栏
+			path: "/bar/filter",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/filter.vue'], resolve);
+			}
+		},
+		{
+			// 菜单栏
+			path: "/bar/menu",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/menu.vue'], resolve);
+			}
+		},
+		{
+			// 搜索栏
+			path: "/bar/search",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/search.vue'], resolve);
+			}
+		},
+		{
+			// 排序栏
+			path: "/bar/sort",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/sort.vue'], resolve);
+			}
+		},
+		{
+			// 标签栏
+			path: "/bar/tab",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/tab.vue'], resolve);
+			}
+		},
+		{
+			// 标题栏
+			path: "/bar/title",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/title.vue'], resolve);
+			}
+		},
+		{
+			// 工具栏
+			path: "/bar/tool",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/tool.vue'], resolve);
+			}
+		},
+		{
+			// 用户栏
+			path: "/bar/user",
+			component: function(resolve) {
+				return require(['vue!./pages/bar/user.vue'], resolve);
+			}
+		},
+
+		/* 图表 */
+		{
+			// 条形图
+			path: "/chart/bar",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/bar.vue'], resolve);
+			}
+		},
+		{
+			// 深度图
+			path: "/chart/depth",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/depth.vue'], resolve);
+			}
+		},
+		{
+			// K线图
+			path: "/chart/k",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/k.vue'], resolve);
+			}
+		},
+		{
+			// 折线图
+			path: "/chart/line",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/line.vue'], resolve);
+			}
+		},
+		{
+			// 仪表盘
+			path: "/chart/panel",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/panel.vue'], resolve);
+			}
+		},
+		{
+			// 饼形图
+			path: "/chart/pie",
+			component: function(resolve) {
+				return require(['vue!./pages/chart/pie.vue'], resolve);
+			}
+		},
+
 		/* 内容 */
+		{
+			// 地址选择器
+			path: "/content/address",
+			component: function(resolve) {
+				return require(['vue!./pages/content/address.vue'], resolve);
+			}
+		},
+		{
+			// 日期选择器
+			path: "/content/date",
+			component: function(resolve) {
+				return require(['vue!./pages/content/date.vue'], resolve);
+			}
+		},
 		{
 			// 按钮
 			path: "/content/btn",
@@ -43,26 +195,50 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
-			// 源代码
-			path: "/content/pre",
-			component: function(resolve) {
-				return require(['vue!./pages/content/pre.vue'], resolve);
-			}
-		},
-		{
 			// 颜色
 			path: "/content/color",
 			component: function(resolve) {
 				return require(['vue!./pages/content/color.vue'], resolve);
 			}
 		},
+
+		/* 拓展 */
 		{
-			// 二维码
-			path: "/content/qrcode",
+			// 拖拽拓展
+			path: "/expand/drag",
 			component: function(resolve) {
-				return require(['vue!./pages/content/qrcode.vue'], resolve);
+				return require(['vue!./pages/expand/drag.vue'], resolve);
 			}
 		},
+		{
+			// 支付拓展
+			path: "/expand/pay",
+			component: function(resolve) {
+				return require(['vue!./pages/expand/pay.vue'], resolve);
+			}
+		},
+		{
+			// 源代码拓展
+			path: "/expand/pre",
+			component: function(resolve) {
+				return require(['vue!./pages/expand/pre.vue'], resolve);
+			}
+		},
+		{
+			// 二维码拓展
+			path: "/expand/qrcode",
+			component: function(resolve) {
+				return require(['vue!./pages/expand/qrcode.vue'], resolve);
+			}
+		},
+		{
+			// 精灵拓展
+			path: "/expand/sptite",
+			component: function(resolve) {
+				return require(['vue!./pages/expand/sptite.vue'], resolve);
+			}
+		},
+
 		/* 布局 */
 		{
 			// 块
@@ -100,167 +276,135 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
-			// 精灵
-			path: "/layout/sptite",
-			component: function(resolve) {
-				return require(['vue!./pages/layout/sptite.vue'], resolve);
-			}
-		},
-		{
 			// 表格
 			path: "/layout/table",
 			component: function(resolve) {
 				return require(['vue!./pages/layout/table.vue'], resolve);
 			}
 		},
-		/* 表单 */
+
+		/* 控件 */
 		{
 			// 复选框
-			path: "/form/checkbox",
+			path: "/control/checkbox",
 			component: function(resolve) {
-				return require(['vue!./pages/form/checkbox.vue'], resolve);
+				return require(['vue!./pages/control/checkbox.vue'], resolve);
 			}
 		},
 		{
 			// 输入框
-			path: "/form/input",
+			path: "/control/input",
 			component: function(resolve) {
-				return require(['vue!./pages/form/input.vue'], resolve);
+				return require(['vue!./pages/control/input.vue'], resolve);
 			}
 		},
 		{
 			// 数字框
-			path: "/form/number",
+			path: "/control/number",
 			component: function(resolve) {
-				return require(['vue!./pages/form/number.vue'], resolve);
+				return require(['vue!./pages/control/number.vue'], resolve);
 			}
 		},
 		{
 			// 分页器
-			path: "/form/pager",
+			path: "/control/pager",
 			component: function(resolve) {
-				return require(['vue!./pages/form/pager.vue'], resolve);
+				return require(['vue!./pages/control/pager.vue'], resolve);
 			}
 		},
 		{
 			// 单选框
-			path: "/form/radio",
+			path: "/control/radio",
 			component: function(resolve) {
-				return require(['vue!./pages/form/radio.vue'], resolve);
+				return require(['vue!./pages/control/radio.vue'], resolve);
 			}
 		},
 		{
 			// 反转器
-			path: "/form/reverse",
+			path: "/control/reverse",
 			component: function(resolve) {
-				return require(['vue!./pages/form/reverse.vue'], resolve);
+				return require(['vue!./pages/control/reverse.vue'], resolve);
 			}
 		},
 		{
 			// 选择框
-			path: "/form/select",
+			path: "/control/select",
 			component: function(resolve) {
-				return require(['vue!./pages/form/select.vue'], resolve);
+				return require(['vue!./pages/control/select.vue'], resolve);
 			}
 		},
 		{
 			// 开关
-			path: "/form/switch",
+			path: "/control/switch",
 			component: function(resolve) {
-				return require(['vue!./pages/form/switch.vue'], resolve);
+				return require(['vue!./pages/control/switch.vue'], resolve);
 			}
 		},
 		{
 			// 富文本编辑器
-			path: "/form/rich",
+			path: "/control/rich",
 			component: function(resolve) {
-				return require(['vue!./pages/form/rich.vue'], resolve);
-			}
-		},
-		/* 栏目 */
-		{
-			// 标题栏
-			path: "/bar/title",
-			component: function(resolve) {
-				return require(['vue!./pages/bar/title.vue'], resolve);
+				return require(['vue!./pages/control/rich.vue'], resolve);
 			}
 		},
 		{
-			// 搜索栏
-			path: "/bar/search",
+			// 日期选择器
+			path: "/control/date",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/search.vue'], resolve);
+				return require(['vue!./pages/control/date.vue'], resolve);
 			}
 		},
 		{
-			// 筛选栏
-			path: "/bar/filter",
+			// 地址选择器
+			path: "/control/address",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/filter.vue'], resolve);
+				return require(['vue!./pages/control/address.vue'], resolve);
+			}
+		},
+
+		/* 表单 */
+		{
+			// 注册
+			path: "/form/register",
+			component: function(resolve) {
+				return require(['vue!./pages/form/register.vue'], resolve);
 			}
 		},
 		{
-			// 选项卡栏
-			path: "/bar/tabs",
+			// 登录
+			path: "/form/login",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/tabs.vue'], resolve);
+				return require(['vue!./pages/form/login.vue'], resolve);
 			}
 		},
 		{
-			// 标签栏
-			path: "/bar/tag",
+			// 找回密码
+			path: "/form/forgot",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/tag.vue'], resolve);
+				return require(['vue!./pages/form/forgot.vue'], resolve);
 			}
 		},
 		{
-			// 排序栏
-			path: "/bar/sort",
+			// 修改密码
+			path: "/form/password",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/sort.vue'], resolve);
+				return require(['vue!./pages/form/password.vue'], resolve);
+			}
+		},
+
+		/* 列表 */
+		{
+			// 地址列表
+			path: "/list/address",
+			component: function(resolve) {
+				return require(['vue!./pages/list/address.vue'], resolve);
 			}
 		},
 		{
-			// 统计栏
-			path: "/bar/count",
+			// 分析列表
+			path: "/list/analyse",
 			component: function(resolve) {
-				return require(['vue!./pages/bar/count.vue'], resolve);
-			}
-		},
-		{
-			// 购买栏
-			path: "/bar/buy",
-			component: function(resolve) {
-				return require(['vue!./pages/bar/buy.vue'], resolve);
-			}
-		},
-		{
-			// 操作栏
-			path: "/bar/action",
-			component: function(resolve) {
-				return require(['vue!./pages/bar/action.vue'], resolve);
-			}
-		},
-		{
-			// 聊天栏
-			path: "/bar/chat",
-			component: function(resolve) {
-				return require(['vue!./pages/bar/chat.vue'], resolve);
-			}
-		},
-		/* 列表元素 */
-		{
-			// 基础列表
-			path: "/list/base",
-			component: function(resolve) {
-				return require(['vue!./pages/list/base.vue'], resolve);
-			}
-		},
-		{
-			// 图片列表
-			path: "/list/img",
-			component: function(resolve) {
-				return require(['vue!./pages/list/img.vue'], resolve);
+				return require(['vue!./pages/list/analyse.vue'], resolve);
 			}
 		},
 		{
@@ -271,6 +415,20 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
+			// 基础列表
+			path: "/list/base",
+			component: function(resolve) {
+				return require(['vue!./pages/list/base.vue'], resolve);
+			}
+		},
+		{
+			// 购物车列表
+			path: "/list/cart",
+			component: function(resolve) {
+				return require(['vue!./pages/list/cart.vue'], resolve);
+			}
+		},
+		{
 			// 联系人列表
 			path: "/list/contact",
 			component: function(resolve) {
@@ -278,10 +436,45 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
+			// 结算列表
+			path: "/list/count",
+			component: function(resolve) {
+				return require(['vue!./pages/list/count.vue'], resolve);
+			}
+		},
+		{
+			// 商品列表
+			path: "/list/goods",
+			component: function(resolve) {
+				return require(['vue!./pages/list/goods.vue'], resolve);
+			}
+		},
+		{
+			// 图片列表
+			path: "/list/image",
+			component: function(resolve) {
+				return require(['vue!./pages/list/image.vue'], resolve);
+			}
+		},
+		{
+			// 媒体列表
+			path: "/list/media",
+			component: function(resolve) {
+				return require(['vue!./pages/list/media.vue'], resolve);
+			}
+		},
+		{
 			// 消息列表
 			path: "/list/message",
 			component: function(resolve) {
 				return require(['vue!./pages/list/message.vue'], resolve);
+			}
+		},
+		{
+			// 音乐列表
+			path: "/list/music",
+			component: function(resolve) {
+				return require(['vue!./pages/list/music.vue'], resolve);
 			}
 		},
 		{
@@ -299,10 +492,10 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			}
 		},
 		{
-			// 商品列表
-			path: "/list/goods",
+			// 订单列表
+			path: "/list/order",
 			component: function(resolve) {
-				return require(['vue!./pages/list/goods.vue'], resolve);
+				return require(['vue!./pages/list/order.vue'], resolve);
 			}
 		},
 		{
@@ -326,47 +519,137 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 				return require(['vue!./pages/list/video.vue'], resolve);
 			}
 		},
+
+		/* 导航 */
 		{
-			// 音乐列表
-			path: "/list/music",
+			// 底部导航
+			path: "/nav/bottom",
 			component: function(resolve) {
-				return require(['vue!./pages/list/music.vue'], resolve);
+				return require(['vue!./pages/nav/bottom.vue'], resolve);
 			}
 		},
-		/* slide */
+		{
+			// 主导航
+			path: "/nav/main",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/main.vue'], resolve);
+			}
+		},
+		{
+			// 路径导航
+			path: "/nav/path",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/path.vue'], resolve);
+			}
+		},
+		{
+			// 快捷导航
+			path: "/nav/quick",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/quick.vue'], resolve);
+			}
+		},
+		{
+			// 侧边导航
+			path: "/nav/side",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/side.vue'], resolve);
+			}
+		},
+		{
+			// 顶部导航
+			path: "/nav/top",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/top.vue'], resolve);
+			}
+		},
+		{
+			// 用户导航
+			path: "/nav/user",
+			component: function(resolve) {
+				return require(['vue!./pages/nav/user.vue'], resolve);
+			}
+		},
+
+		/* 轮播 */
 		{
 			// 卡片轮播
-			path: "/slide/card",
+			path: "/swiper/card",
 			component: function(resolve) {
-				return require(['vue!./pages/slide/card.vue'], resolve);
+				return require(['vue!./pages/swiper/card.vue'], resolve);
+			}
+		},
+		{
+			// 旋转卡片轮播
+			path: "/swiper/rotate_card",
+			component: function(resolve) {
+				return require(['vue!./pages/swiper/rotate_card.vue'], resolve);
 			}
 		},
 		{
 			// 图片轮播
-			path: "/slide/img",
+			path: "/swiper/image",
 			component: function(resolve) {
-				return require(['vue!./pages/slide/img.vue'], resolve);
-			}
-		},
-		{
-			// 文本轮播
-			path: "/slide/text",
-			component: function(resolve) {
-				return require(['vue!./pages/slide/text.vue'], resolve);
-			}
-		},
-		{
-			// 页面轮播
-			path: "/slide/page",
-			component: function(resolve) {
-				return require(['vue!./pages/slide/page.vue'], resolve);
+				return require(['vue!./pages/swiper/image.vue'], resolve);
 			}
 		},
 		{
 			// 菜单轮播
-			path: "/slide/menu",
+			path: "/swiper/menu",
 			component: function(resolve) {
-				return require(['vue!./pages/slide/menu.vue'], resolve);
+				return require(['vue!./pages/swiper/menu.vue'], resolve);
+			}
+		},
+		{
+			// 页面轮播
+			path: "/swiper/page",
+			component: function(resolve) {
+				return require(['vue!./pages/swiper/page.vue'], resolve);
+			}
+		},
+		{
+			// 页面竖方向轮播
+			path: "/swiper/vertical_page",
+			component: function(resolve) {
+				return require(['vue!./pages/swiper/vertical_page.vue'], resolve);
+			}
+		},
+		{
+			// 文本轮播
+			path: "/swiper/text",
+			component: function(resolve) {
+				return require(['vue!./pages/swiper/text.vue'], resolve);
+			}
+		},
+
+
+		/* 表格 */
+		{
+			// 货币表格
+			path: "/table/coin",
+			component: function(resolve) {
+				return require(['vue!./pages/table/coin.vue'], resolve);
+			}
+		},
+		{
+			// 股票表格
+			path: "/table/stock",
+			component: function(resolve) {
+				return require(['vue!./pages/table/stock.vue'], resolve);
+			}
+		},
+		{
+			// 挂单表格
+			path: "/table/resting_order",
+			component: function(resolve) {
+				return require(['vue!./pages/table/resting_order.vue'], resolve);
+			}
+		},
+		{
+			// 买卖表格
+			path: "/table/buy_sell",
+			component: function(resolve) {
+				return require(['vue!./pages/table/buy_sell.vue'], resolve);
 			}
 		},
 		{
@@ -375,6 +658,7 @@ define(["Vue", "VueRouter"], function(Vue, VueRouter) {
 			redirect: "/404"
 		}
 	];
+
 	var router = new VueRouter({
 		mode: "history",
 		base: "/ui",

@@ -13,16 +13,16 @@
 									<dl>
 										<dt>用户</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt class="required">应用ID</dt>
 										<dd>
-											<mm_input v-model="form.appid" :minlength="0" :maxlength="16" placeholder=""
+											<control_input v-model="form.appid" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt class="required">刷新令牌</dt>
 										<dd>
-											<mm_input v-model="form.refresh_token" :minlength="0" :maxlength="32" placeholder="用来刷新访问牌，保留30天"
+											<control_input v-model="form.refresh_token" :minlength="0" :maxlength="32" placeholder="用来刷新访问牌，保留30天"
 											 :required="true" />
 										</dd>
 									</dl>

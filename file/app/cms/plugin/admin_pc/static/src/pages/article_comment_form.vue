@@ -13,31 +13,31 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>评分</dt>
 										<dd>
-											<mm_number v-model="form.score" :min="0" :max="5" />
+											<control_number v-model="form.score" :min="0" :max="5" />
 										</dd>
 										<dt>所属文章</dt>
 										<dd>
-											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
+											<control_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
 										</dd>
 										<dt>用户</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>留言者姓名</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="0" placeholder="用于实名回复" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="0" placeholder="用于实名回复" />
 										</dd>
 										<dt>标签</dt>
 										<dd>
-											<mm_input v-model="form.tag" :minlength="0" :maxlength="64" placeholder="评论人给的标签，多个标签用空格隔开" />
+											<control_input v-model="form.tag" :minlength="0" :maxlength="64" placeholder="评论人给的标签，多个标签用空格隔开" />
 										</dd>
 										<dt>正文</dt>
 										<dd>
-											<mm_rich v-model="form.content"></mm_rich>
+											<control_rich v-model="form.content"></control_rich>
 										</dd>
 										<dt>评论回复</dt>
 										<dd>

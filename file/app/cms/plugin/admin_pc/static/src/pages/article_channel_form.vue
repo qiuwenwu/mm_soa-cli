@@ -13,40 +13,40 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>是否隐藏</dt>
 										<dd>
-											<mm_switch v-model="form.hide" />
+											<control_switch v-model="form.hide" />
 										</dd>
 										<dt>是否可评论</dt>
 										<dd>
-											<mm_switch v-model="form.can_comment" />
+											<control_switch v-model="form.can_comment" />
 										</dd>
 										<dt>上级</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name', 0)" />
+											<control_select v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name', 0)" />
 										</dd>
 										<dt>所属城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt class="required">频道名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="0" placeholder=""
+											<control_input v-model="form.name" :minlength="0" :maxlength="0" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>风格模板</dt>
 										<dd>
-											<mm_input v-model="form.template" :minlength="0" :maxlength="64" placeholder="频道和文章都使用的样式" />
+											<control_input v-model="form.template" :minlength="0" :maxlength="64" placeholder="频道和文章都使用的样式" />
 										</dd>
 										<dt>频道标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该频道的作用" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该频道的作用" />
 										</dd>
 										<dt>频道图标</dt>
 										<dd>
@@ -54,7 +54,7 @@
 										</dd>
 										<dt>外链地址</dt>
 										<dd>
-											<mm_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="如果该频道是跳转到其他网站的情况下，就在该URL上设置" />
+											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="如果该频道是跳转到其他网站的情况下，就在该URL上设置" />
 										</dd>
 									</dl>
 								</mm_form>

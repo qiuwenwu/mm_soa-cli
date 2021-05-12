@@ -23,7 +23,7 @@
 						<mm_col width="100">
 							<mm_card>
 								<div class="card_head">
-									<h5>通过父级改变列数 <mm_btn class="btn_info" @click.native="add()">{{ col }}列</mm_btn>
+									<h5>通过父级改变列数 <mm_btn class="btn_primary" @click.native="add()">{{ col }}列</mm_btn>
 									</h5>
 								</div>
 								<div class="card_body">
@@ -70,7 +70,7 @@
 						</mm_col>
 						<mm_col width="100">
 							<mm_card>
-								<div class="card_head">自适应列数 <mm_btn class="btn_info" @click.native="add_num()">{{ num }}列</mm_btn>
+								<div class="card_head">自适应列数 <mm_btn class="btn_primary" @click.native="add_num()">{{ num }}列</mm_btn>
 								</div>
 								<div class="card_body">
 									<mm_list class="center list-x list-auto">

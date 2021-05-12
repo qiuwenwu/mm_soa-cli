@@ -13,53 +13,53 @@
 									<dl>
 										<dt>是否可用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>加解密方式</dt>
 										<dd>
-											<mm_select v-model="form.encrypt" :options="$to_kv(arr_encrypt)" />
+											<control_select v-model="form.encrypt" :options="$to_kv(arr_encrypt)" />
 										</dd>
 										<dt>每日允许请求次数</dt>
 										<dd>
-											<mm_number v-model="form.times_allow" :min="0" :max="32767" />
+											<control_number v-model="form.times_allow" :min="0" :max="32767" />
 										</dd>
 										<dt>今日请求次数</dt>
 										<dd>
-											<mm_number v-model="form.times_today" :min="0" :max="32767" />
+											<control_number v-model="form.times_today" :min="0" :max="32767" />
 										</dd>
 										<dt>有效期时长</dt>
 										<dd>
-											<mm_number v-model="form.max_age" :min="0" :max="32767" />
+											<control_number v-model="form.max_age" :min="0" :max="32767" />
 										</dd>
 										<dt>持有者</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>请求总次数</dt>
 										<dd>
-											<mm_number v-model="form.times_count" :min="0" :max="2147483647" />
+											<control_number v-model="form.times_count" :min="0" :max="2147483647" />
 										</dd>
 										<dt class="required">应用名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="用于用户登陆时显示授权应用"
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="用于用户登陆时显示授权应用"
 											 :required="true" />
 										</dd>
 										<dt class="required">应用ID</dt>
 										<dd>
-											<mm_input v-model="form.appid" :minlength="0" :maxlength="16" placeholder="用于应用授权访问时的账号"
+											<control_input v-model="form.appid" :minlength="0" :maxlength="16" placeholder="用于应用授权访问时的账号"
 											 :required="true" />
 										</dd>
 										<dt>消息访问令牌</dt>
 										<dd>
-											<mm_input v-model="form.token" :minlength="0" :maxlength="32" placeholder="用于访问应用时验证身份" />
+											<control_input v-model="form.token" :minlength="0" :maxlength="32" placeholder="用于访问应用时验证身份" />
 										</dd>
 										<dt>消息加密钥匙</dt>
 										<dd>
-											<mm_input v-model="form.encoding_aes_key" :minlength="0" :maxlength="0" placeholder="用于给应用发送消息时的加密钥匙" />
+											<control_input v-model="form.encoding_aes_key" :minlength="0" :maxlength="0" placeholder="用于给应用发送消息时的加密钥匙" />
 										</dd>
 										<dt class="required">应用密钥</dt>
 										<dd>
-											<mm_input v-model="form.appsecret" :minlength="0" :maxlength="64" placeholder="用于应用授权访问时的密码"
+											<control_input v-model="form.appsecret" :minlength="0" :maxlength="64" placeholder="用于应用授权访问时的密码"
 											 :required="true" />
 										</dd>
 										<dt>应用图标</dt>
@@ -68,7 +68,7 @@
 										</dd>
 										<dt>消息访问地址</dt>
 										<dd>
-											<mm_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="当接收到用户所发消息后回访该地址" />
+											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="当接收到用户所发消息后回访该地址" />
 										</dd>
 										<dt>访问绑定IP</dt>
 										<dd>

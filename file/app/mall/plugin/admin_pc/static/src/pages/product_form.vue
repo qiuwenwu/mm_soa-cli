@@ -13,67 +13,67 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>状态</dt>
 										<dd>
-											<mm_select v-model="form.state" :options="$to_kv(arr_state)" />
+											<control_select v-model="form.state" :options="$to_kv(arr_state)" />
 										</dd>
 										<dt>产品分类</dt>
 										<dd>
-											<mm_select v-model="form.type_id" :options="$to_kv(list_product_type, 'type_id', 'name', 0)" />
+											<control_select v-model="form.type_id" :options="$to_kv(list_product_type, 'type_id', 'name', 0)" />
 										</dd>
 										<dt>频道</dt>
 										<dd>
-											<mm_select v-model="form.channel_id" :options="$to_kv(list_product_channel, 'channel_id', 'name', 0)" />
+											<control_select v-model="form.channel_id" :options="$to_kv(list_product_channel, 'channel_id', 'name', 0)" />
 										</dd>
 										<dt>店铺</dt>
 										<dd>
-											<mm_select v-model="form.shop_id" :options="$to_kv(list_shop, 'shop_id', 'name', 0)" />
+											<control_select v-model="form.shop_id" :options="$to_kv(list_shop, 'shop_id', 'name', 0)" />
 										</dd>
 										<dt>分组</dt>
 										<dd>
-											<mm_select v-model="form.group_id" :options="$to_kv(list_product_group, 'group_id', 'name', 0)" />
+											<control_select v-model="form.group_id" :options="$to_kv(list_product_group, 'group_id', 'name', 0)" />
 										</dd>
 										<dt>所属城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt>热度</dt>
 										<dd>
-											<mm_number v-model="form.hot" :min="0" :max="1000000000" />
+											<control_number v-model="form.hot" :min="0" :max="1000000000" />
 										</dd>
 										<dt>点赞次数</dt>
 										<dd>
-											<mm_number v-model="form.praise" :min="0" :max="1000000000" />
+											<control_number v-model="form.praise" :min="0" :max="1000000000" />
 										</dd>
 										<dt>销量</dt>
 										<dd>
-											<mm_number v-model="form.sales" :min="0" :max="1000000000" />
+											<control_number v-model="form.sales" :min="0" :max="1000000000" />
 										</dd>
 										<dt>卖价</dt>
 										<dd>
-											<mm_number v-model="form.price" :min="1" :max="0" />
+											<control_number v-model="form.price" :min="1" :max="0" />
 										</dd>
 										<dt>原价</dt>
 										<dd>
-											<mm_number v-model="form.price_old" :min="1" :max="0" />
+											<control_number v-model="form.price_ago" :min="1" :max="0" />
 										</dd>
 										<dt>标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="用于产品和html的&#60;title&#62;标签中" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="用于产品和html的&#60;title&#62;标签中" />
 										</dd>
 										<dt>关键词</dt>
 										<dd>
-											<mm_input v-model="form.keywords" :minlength="0" :maxlength="125" placeholder="引擎收录" />
+											<control_input v-model="form.keywords" :minlength="0" :maxlength="125" placeholder="引擎收录" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于产品提纲和搜索引擎收录" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于产品提纲和搜索引擎收录" />
 										</dd>
 										<dt>标签</dt>
 										<dd>
-											<mm_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注产品所属相关内容，多个标签用空格隔开" />
+											<control_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注产品所属相关内容，多个标签用空格隔开" />
 										</dd>
 										<dt>封面图</dt>
 										<dd>
@@ -81,7 +81,7 @@
 										</dd>
 										<dt>正文</dt>
 										<dd>
-											<mm_rich v-model="form.content"></mm_rich>
+											<control_rich v-model="form.content"></control_rich>
 										</dd>
 										<dt>收藏者</dt>
 										<dd>
@@ -89,7 +89,7 @@
 										</dd>
 										<dt>品牌</dt>
 										<dd>
-											<mm_input v-model="form.brand" :minlength="0" :maxlength="18" placeholder="商品的品牌" />
+											<control_input v-model="form.brand" :minlength="0" :maxlength="18" placeholder="商品的品牌" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -136,7 +136,7 @@
 					"praise": 0,
 					"sales": 0,
 					"price": 0,
-					"price_old": 0,
+					"price_ago": 0,
 					"title": '',
 					"keywords": '',
 					"description": '',

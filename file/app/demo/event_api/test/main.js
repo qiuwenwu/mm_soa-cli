@@ -11,6 +11,7 @@ api.update('demo/');
  * @return {Object} 执行结果
  */
 async function main(ctx, db) {
+	console.log(Object.keys(ctx));
 	db.tpl = new $.Tpl();
 	db.tpl.viewBag.app = "mm";
 	return api.run(ctx, db);

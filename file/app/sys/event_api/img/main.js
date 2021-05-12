@@ -16,7 +16,7 @@ async function main(ctx, db) {
 	for (var k in body) {
 		var data = body[k];
 		if (data && typeof(data) === 'string') {
-			if (k.indexOf('img') !== -1 || k.indexOf('image') !== -1 || k.indexOf('icon') !== -1) {
+			if (k.indexOf('img') !== -1 || k.indexOf('image') !== -1 || k.indexOf('icon') !== -1 ||  k.indexOf('avatar') !== -1) {
 				if (data.indexOf('data:') === 0) {
 					var extension = data.between('image/', ';');
 					data = data.replace(/^data:image\/\w+;base64,/, "");

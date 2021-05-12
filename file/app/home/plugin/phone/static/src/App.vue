@@ -10,9 +10,9 @@
 	import nav_main from './components/nav_main.vue'
 	import nav_quick from './components/nav_quick.vue'
 	import nav_float from './components/nav_float.vue'
-	import mm_drag from '/src/components/expand/mm_drag.vue'
+	import expand_drag from '/src/components/expand/expand_drag.vue'
 	
-	Vue.component('mm_drag', mm_drag);
+	Vue.component('expand_drag', expand_drag);
 	
 	export default {
 		components: {
@@ -255,11 +255,6 @@
 		font-size: 14px;
 	}
 
-	.card_body {
-		position: relative;
-		padding: 0.5rem 1rem 1rem 1rem;
-	}
-
 	.mm_col>.mm_view,
 	[class*=mm_col_]>.mm_view {
 		background: #fff;
@@ -267,7 +262,7 @@
 		box-shadow: 0 0.25rem 0.5rem 0 rgba(7, 17, 27, 0.1);
 	}
 
-	.mm_view>.mm_title {
+	.mm_view>.bar_title {
 		line-height: 2.5rem;
 		padding: 0 0 0 1.5rem;
 		min-height: 2.5rem;
@@ -276,12 +271,12 @@
 		background: #fdfdfd;
 	}
 
-	.mm_view>.mm_title .title {
+	.mm_view>.bar_title .title {
 		font-weight: 600;
 		color: #38f;
 	}
 
-	.mm_view>.mm_title .arrow::after {
+	.mm_view>.bar_title .arrow::after {
 		right: 1.5rem;
 		transform: translateY(-50%) rotate(45deg);
 	}
@@ -302,7 +297,7 @@
 	}
 
 
-	.mm_pager .active {
+	.control_pager .active {
 		border-color: #38f;
 	}
 
@@ -337,11 +332,11 @@
 		padding: 0 0.5rem;
 	}
 
-	.form_search .mm_select {
+	.form_search .control_select {
 		display: inline-block;
 	}
 
-	.form_search .mm_select select {
+	.form_search .control_select select {
 		height: 1.5rem;
 		line-height: 1.5rem;
 		padding-top: 0;
@@ -367,8 +362,8 @@
 		/* line-height: 1.5rem; */
 	}
 
-	.mm_input .title,
-	.mm_number .title {
+	.control_input .title,
+	.control_number .title {
 		min-width: 6.5rem;
 	}
 
@@ -386,7 +381,7 @@
 		font-family: ;
 	}
 
-	.mm_title .btn_link {
+	.bar_title .btn_link {
 		font-size: 1rem;
 		color: #999;
 		float: right;

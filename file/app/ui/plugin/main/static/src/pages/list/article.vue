@@ -21,15 +21,31 @@
 			<mm_warp>
 				<mm_container>
 					<mm_row>
+						<mm_col width="33">
+							<mm_view>
+								<control_select v-model="col" :options="options"></control_select>
+							</mm_view>
+						</mm_col>
+						<mm_col width="33">
+							<mm_view>
+								<mm_btn class="btn_primary" @click.native="set_layout()">切换排版方式</mm_btn>
+							</mm_view>
+						</mm_col>
+						<mm_col width="33">
+							<mm_view>
+								<button class="btn_primary" @click="border = !border"><span v-if="border">无</span><span
+										v-else>加</span>边框</button>
+							</mm_view>
+						</mm_col>
 						<mm_col width="100">
-							<mm_card>
+							<mm_view class="card">
 								<div class="card_head">样式一</div>
 								<div class="card_body">
-									<mm_list col="2" class="list_article">
-										<mm_article v-for="(o, k) in list" :key="k" :obj="o"></mm_article>
-									</mm_list>
+									<list_article :col="col" :list="list"
+										:class="list_layout[select] + (border ? ' icon-x icon-radius' : '')">
+									</list_article>
 								</div>
-							</mm_card>
+							</mm_view>
 						</mm_col>
 					</mm_row>
 				</mm_container>
@@ -42,12 +58,61 @@
 	export default {
 		data() {
 			return {
-				list: [{
-					title: "标题",
-					description: "描述",
-					keywords: "关键词",
-					time: "2020-01-11 10:00:11"
-				}]
+				border: false,
+				select: 1,
+				col: "1",
+				list_layout: [
+					"item-ltb",
+					"item-rtb",
+					"item-tb"
+				],
+				options: [{
+						name: "1列",
+						value: "1"
+					},
+					{
+						name: "2列",
+						value: "2"
+					},
+					{
+						name: "3列",
+						value: "3"
+					},
+					{
+						name: "4列",
+						value: "4"
+					},
+					{
+						name: "5列",
+						value: "5"
+					},
+					{
+						name: "6列",
+						value: "6"
+					},
+					{
+						name: "8列",
+						value: "8"
+					},
+					{
+						name: "10列",
+						value: "10"
+					},
+					{
+						name: "12列",
+						value: "12"
+					}
+				],
+				list: undefined
+			}
+		},
+		methods: {
+			set_layout() {
+				if (this.select < this.list_layout.length - 1) {
+					this.select++;
+				} else {
+					this.select = 0;
+				}
 			}
 		}
 	}

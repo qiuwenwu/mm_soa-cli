@@ -13,21 +13,21 @@
 									<dl>
 										<dt>对应文章</dt>
 										<dd>
-											<mm_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
+											<control_select v-model="form.article_id" :options="$to_kv(list_article, 'article_id', 'title', 0)" />
 										</dd>
 										<dt class="required">章节标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder=""
+											<control_input v-model="form.title" :minlength="0" :maxlength="255" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt class="required">章节标签</dt>
 										<dd>
-											<mm_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder=""
+											<control_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>章节内容</dt>
 										<dd>
-											<mm_rich v-model="form.content"></mm_rich>
+											<control_rich v-model="form.content"></control_rich>
 										</dd>
 										<dt>章节图片</dt>
 										<dd>

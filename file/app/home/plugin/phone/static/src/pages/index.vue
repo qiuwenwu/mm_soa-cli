@@ -7,7 +7,7 @@
 						<h5>超级美眉</h5>
 					</header>
 					<mm_body>
-						<mm_drag style="width: 3rem; height: 3rem; background: #FC3274;" />
+						<expand_drag style="width: 3rem; height: 3rem; background: #FC3274;" />
 					</mm_body>
 				</mm_view>
 			</mm_col>

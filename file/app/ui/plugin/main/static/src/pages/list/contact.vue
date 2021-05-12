@@ -1,6 +1,6 @@
 <template>
-	<!-- 联系人 -->
-	<mm_page id="page_contact">
+	<!-- 基础 -->
+	<mm_page id="page_base">
 		<header>
 			<mm_warp>
 				<mm_container>
@@ -8,7 +8,7 @@
 						<mm_col width="100">
 							<mm_view url="/">
 								<h3>
-									<span>联系人</span>
+									<span>联系人列表</span>
 									<span class="fr">&lt; 返回</span></router-link>
 								</h3>
 							</mm_view>
@@ -22,9 +22,18 @@
 				<mm_container>
 					<mm_row>
 						<mm_col width="100">
-							<div class="list_contact">
-								<mm_contact v-for="(o, k) in list" :key="k" :obj="o"></mm_contact>
-							</div>
+							<mm_view>
+								<control_select v-model="col" :options="options"></control_select>
+								<mm_btn class="btn_primary" @click.native="set_layout()">切换排版方式</mm_btn>
+							</mm_view>
+						</mm_col>
+						<mm_col width="100">
+							<mm_card>
+								<div class="card_body">
+									<list_contact :col="col" :list="list" :class="'list-x ' + list_layout[select]">
+									</list_contact>
+								</div>
+							</mm_card>
 						</mm_col>
 					</mm_row>
 				</mm_container>
@@ -37,7 +46,59 @@
 	export default {
 		data() {
 			return {
-				list: [{}]
+				select: 1,
+				col: "2",
+				list_layout: [
+					"item-lr img-small",
+					"item-ltb img-base" 
+				],
+				options: [{
+						name: "1列",
+						value: "1"
+					},
+					{
+						name: "2列",
+						value: "2"
+					},
+					{
+						name: "3列",
+						value: "3"
+					},
+					{
+						name: "4列",
+						value: "4"
+					},
+					{
+						name: "5列",
+						value: "5"
+					},
+					{
+						name: "6列",
+						value: "6"
+					},
+					{
+						name: "8列",
+						value: "8"
+					},
+					{
+						name: "10列",
+						value: "10"
+					},
+					{
+						name: "12列",
+						value: "12"
+					}
+				],
+				list: undefined
+			}
+		},
+		methods: {
+			set_layout() {
+				if (this.select < this.list_layout.length - 1) {
+					this.select++;
+				} else {
+					this.select = 0;
+				}
 			}
 		}
 	}

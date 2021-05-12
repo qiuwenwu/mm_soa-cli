@@ -15,7 +15,7 @@
             "praise",
             "sales",
             "price",
-            "price_old",
+            "price_ago",
             "title",
             "keywords",
             "description",
@@ -49,8 +49,8 @@
             "sales_max",
             "price_min",
             "price_max",
-            "price_old_min",
-            "price_old_max",
+            "price_ago_min",
+            "price_ago_max",
             "title",
             "keywords",
             "description",
@@ -78,8 +78,8 @@
             "sales_add",
             "price",
             "price_add",
-            "price_old",
-            "price_old_add",
+            "price_ago",
+            "price_ago_add",
             "title",
             "keywords",
             "description",
@@ -108,8 +108,8 @@
             "sales_max",
             "price_min",
             "price_max",
-            "price_old_min",
-            "price_old_max",
+            "price_ago_min",
+            "price_ago_max",
             "time_create_min",
             "time_create_max",
             "time_update_min",
@@ -380,7 +380,7 @@
             }
         },
         {
-            "name": "price_old",
+            "name": "price_ago",
             "title": "原价",
             "description": "",
             "type": "number",
@@ -390,7 +390,7 @@
             }
         },
         {
-            "name": "price_old_min",
+            "name": "price_ago_min",
             "title": "原价——最小值",
             "description": "",
             "type": "number",
@@ -400,7 +400,7 @@
             }
         },
         {
-            "name": "price_old_max",
+            "name": "price_ago_max",
             "title": "原价——最大值",
             "description": "",
             "type": "number",

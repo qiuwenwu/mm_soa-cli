@@ -162,6 +162,24 @@
 </script>
 
 <style>
+	.card_body .mm_form {
+		margin: 1rem;
+	}
+	.card_body .mm_table {
+		margin: 1rem;
+	}
+	.card_body .bar_action {
+		margin: 0 1rem;
+	}
+	.card_foot .fr{
+		margin-right: 1rem;
+	}
+	.card_foot .fl{
+		margin-left: 1rem;
+	}
+	.control_pager {
+		margin: 1rem 0;
+	}
 	.icon-close {
 		border-radius: 50%;
 		background-color: var(--color_border);
@@ -179,6 +197,7 @@
 		content: "×";
 		position: relative;
 		top: 2px;
+		left: -1px;
 	}
 
 	.icon-close:hover {
@@ -196,29 +215,24 @@
 		margin-top: 4.5rem;
 	}
 
-	.card_body {
-		position: relative;
-		padding: var(--padding_mini) var(--padding_base);
-	}
-
-	.mm_filter {
+	.bar_filter {
 		display: flex;
 		padding-bottom: .5rem;
 		margin-bottom: 1rem;
 		border-bottom: 1px solid rgba(51, 136, 255, .25);
 	}
 
-	.mm_filter .mm_list {
+	.bar_filter .mm_list {
 		align-items: center;
 	}
 
-	.mm_filter .mm_item {
+	.bar_filter .mm_item {
 		min-width: 20rem;
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
 	}
 
-	.mm_filter>.title {
+	.bar_filter>.title {
 		flex: 1;
 		position: relative;
 		border-right: 2px solid #DBDBDB;
@@ -229,7 +243,7 @@
 		min-height: 2rem;
 	}
 
-	.mm_filter>.title h5 {
+	.bar_filter>.title h5 {
 		position: absolute;
 		width: 100%;
 		left: 0;
@@ -244,42 +258,42 @@
 		min-width: auto !important;
 	}
 
-	.mm_filter button:first-child {
+	.bar_filter button:first-child {
 		margin-left: 1rem;
 	}
 
 	@media (max-width: 576px) {
-		.mm_filter {
+		.bar_filter {
 			display: block;
 		}
 
-		.mm_pager,
-		[class*=mm_pager_] {
+		.control_pager,
+		[class*=control_pager_] {
 			float: none;
 			clear: both;
 			padding: 0.5rem 0;
 		}
 	}
 
-	.mm_action {
+	.bar_action {
 		margin: 1rem 0 .5rem 0;
 	}
 
-	.mm_action>h5 {
+	.bar_action>h5 {
 		float: left;
 		line-height: 2rem;
 	}
 
-	.mm_action .btns {
+	.bar_action .btns {
 		float: right;
 	}
 
-	.mm_action .btn_small {
+	.bar_action .btn_small {
 		padding: 0 2.5rem;
 		margin-right: auto;
 	}
 
-	.mm_action .btn_small .mm_btn {
+	.bar_action .btn_small .mm_btn {
 		font-size: 0.625rem;
 		height: 1.5rem;
 		line-height: 1.5rem;
@@ -289,8 +303,8 @@
 		top: 0.25rem
 	}
 
-	.mm_action::before,
-	.mm_action::after {
+	.bar_action::before,
+	.bar_action::after {
 		content: "";
 		display: block;
 		clear: both;

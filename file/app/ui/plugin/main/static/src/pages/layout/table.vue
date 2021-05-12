@@ -22,8 +22,8 @@
 					<mm_row>
 						<mm_col width="100">
 							<mm_view>
-								<mm_btn class="btn_info" @click.native="small = !small">切换大小</mm_btn>
-								<mm_btn class="btn_info" @click.native="invert = !invert">反色</mm_btn>
+								<mm_btn class="btn_primary" @click.native="small = !small">切换大小</mm_btn>
+								<mm_btn class="btn_primary" @click.native="invert = !invert">反色</mm_btn>
 							</mm_view>
 						</mm_col>
 						<mm_col width="100">

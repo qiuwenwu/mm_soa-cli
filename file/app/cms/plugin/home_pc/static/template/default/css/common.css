@@ -69,13 +69,13 @@ input:invalid {
 	height: 2rem;
 }
 
-.mm_search {
+.bar_search {
 	margin: 0 1rem;
 	position: relative;
 	display: inline-block !important;
 }
 
-.mm_search input {
+.bar_search input {
 	height: 2.5rem;
 	line-height: 2.5rem;
 	border: 1px solid var(--color_border);
@@ -83,13 +83,14 @@ input:invalid {
 	padding: 0 1rem;
 }
 
-.mm_search button {
+.bar_search button {
 	position: absolute;
 	top: 50%;
-	right: 1rem;
+	right: 0.5rem;
 	transform: translateY(-50%);
 	font-size: 1rem;
 	border: none;
+	padding:0 0.5rem;
 }
 
 #nav_top {

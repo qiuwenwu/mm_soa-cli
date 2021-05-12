@@ -13,44 +13,44 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt class="required">英文名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="32" placeholder="用于多国语识别"
+											<control_input v-model="form.name" :minlength="0" :maxlength="32" placeholder="用于多国语识别"
 											 :required="true" />
 										</dd>
 										<dt>中文标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="32" placeholder="用于中文提示" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="32" placeholder="用于中文提示" />
 										</dd>
 										<dt>跳转链接</dt>
 										<dd>
-											<mm_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="跳转的链接地址" />
+											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="跳转的链接地址" />
 										</dd>
 										<dt>风格样式</dt>
 										<dd>
-											<mm_input v-model="form.style" :minlength="0" :maxlength="255" placeholder="自定义css样式" />
+											<control_input v-model="form.style" :minlength="0" :maxlength="255" placeholder="自定义css样式" />
 										</dd>
 										<dt>样式类型</dt>
 										<dd>
-											<mm_input v-model="form.class" :minlength="0" :maxlength="32" placeholder="绑定的css class" />
+											<control_input v-model="form.class" :minlength="0" :maxlength="32" placeholder="绑定的css class" />
 										</dd>
 										<dt>跳转方式</dt>
 										<dd>
-											<mm_input v-model="form.target" :minlength="0" :maxlength="32" placeholder="_blank表示新窗口跳转" />
+											<control_input v-model="form.target" :minlength="0" :maxlength="32" placeholder="_blank表示新窗口跳转" />
 										</dd>
 										<dt>展现位置</dt>
 										<dd>
-											<mm_input v-model="form.position" :minlength="0" :maxlength="125" placeholder="top顶部 / bottom底部 / side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开" />
+											<control_input v-model="form.position" :minlength="0" :maxlength="125" placeholder="top顶部 / bottom底部 / side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开" />
 										</dd>
 										<dt>呈现设备</dt>
 										<dd>
-											<mm_input v-model="form.device" :minlength="0" :maxlength="125" placeholder="在什么设备上展示，web_pc / web_pad / web_phone / app_pad / app_phone，多个设备用逗号隔开" />
+											<control_input v-model="form.device" :minlength="0" :maxlength="125" placeholder="在什么设备上展示，web_pc / web_pad / web_phone / app_pad / app_phone，多个设备用逗号隔开" />
 										</dd>
 										<dt>上级</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_nav, 'nav_id', 'name', 0)" />
+											<control_select v-model="form.father_id" :options="$to_kv(list_nav, 'nav_id', 'name', 0)" />
 										</dd>
 									</dl>
 								</mm_form>

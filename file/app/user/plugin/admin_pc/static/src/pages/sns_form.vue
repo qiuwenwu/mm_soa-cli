@@ -13,43 +13,43 @@
 									<dl>
 										<dt>QQ号</dt>
 										<dd>
-											<mm_input v-model="form.qq" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.qq" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>QQ认证</dt>
 										<dd>
-											<mm_switch v-model="form.qq_state" />
+											<control_switch v-model="form.qq_state" />
 										</dd>
 										<dt>微信号</dt>
 										<dd>
-											<mm_input v-model="form.wechat" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.wechat" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>微信认证</dt>
 										<dd>
-											<mm_switch v-model="form.wechat_state" />
+											<control_switch v-model="form.wechat_state" />
 										</dd>
 										<dt>MM号</dt>
 										<dd>
-											<mm_input v-model="form.mm" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.mm" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>MM认证</dt>
 										<dd>
-											<mm_switch v-model="form.mm_state" />
+											<control_switch v-model="form.mm_state" />
 										</dd>
 										<dt>百度账号</dt>
 										<dd>
-											<mm_input v-model="form.baidu" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.baidu" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>百度认证</dt>
 										<dd>
-											<mm_switch v-model="form.baidu_state" />
+											<control_switch v-model="form.baidu_state" />
 										</dd>
 										<dt>淘宝账号</dt>
 										<dd>
-											<mm_input v-model="form.taobao" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.taobao" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>淘宝认证</dt>
 										<dd>
-											<mm_switch v-model="form.taobao_state" />
+											<control_switch v-model="form.taobao_state" />
 										</dd>
 									</dl>
 								</mm_form>

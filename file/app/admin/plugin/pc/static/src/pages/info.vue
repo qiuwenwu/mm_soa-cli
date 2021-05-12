@@ -13,7 +13,7 @@
 									<dl>
 										<dt>昵称</dt>
 										<dd>
-											<mm_input v-model="form.nickname" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.nickname" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>头像地址</dt>
 										<dd>
@@ -21,15 +21,15 @@
 										</dd>
 										<dt>手机号码</dt>
 										<dd>
-											<mm_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="用户的手机号码，用于找回密码时或登录时" />
+											<control_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="用户的手机号码，用于找回密码时或登录时" />
 										</dd>
 										<dt>邮箱</dt>
 										<dd>
-											<mm_input v-model="form.email" :minlength="0" :maxlength="64" placeholder="用户的邮箱，用于找回密码时或登录时" />
+											<control_input v-model="form.email" :minlength="0" :maxlength="64" placeholder="用户的邮箱，用于找回密码时或登录时" />
 										</dd>
 										<dt>个性签名</dt>
 										<dd>
-											<mm_input v-model="form.signature" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.signature" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>

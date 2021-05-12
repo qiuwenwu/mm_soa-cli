@@ -9,17 +9,17 @@
 								<h5>商品分类</h5>
 							</div>
 							<div class="card_body">
-								<mm_form class="mm_filter">
+								<mm_form class="bar_filter">
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="分类名称 / 分类标题 / 分类描述"
+											<control_input v-model="query.keyword" title="关键词" desc="分类名称 / 分类标题 / 分类描述"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.father_id" title="上级分类" :options="$to_kv(list_product_type, 'type_id', 'name')"
+											<control_select v-model="query.father_id" title="上级分类" :options="$to_kv(list_product_type, 'type_id', 'name')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
@@ -27,14 +27,14 @@
 										</mm_item>
 									</mm_list>
 								</mm_form>
-								<div class="mm_action">
+								<div class="bar_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
 										<mm_btn class="btn_primary-x" url="./product_type_form?">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
 									</div>
 									<div class="btn_small">
-										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<control_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></control_file>
 										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
@@ -45,19 +45,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></mm_reverse>
+												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="上级分类" v-model="query.orderby" field="father_id" :func="search"></mm_reverse>
+												<control_reverse title="上级分类" v-model="query.orderby" field="father_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="分类名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
+												<control_reverse title="分类名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="分类标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
+												<control_reverse title="分类标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="分类描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
+												<control_reverse title="分类描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -77,13 +77,13 @@
 												<span>{{ get_name(list_product_type, o.father_id, 'type_id', 'name') }}</span>
 											</td>
 											<td>
-												<mm_input :auto="true" v-model="o.name" @blur="set(o)" />
+												<control_input :auto="true" v-model="o.name" @blur="set(o)" />
 											</td>
 											<td>
-												<mm_input :auto="true" v-model="o.title" @blur="set(o)" />
+												<control_input :auto="true" v-model="o.title" @blur="set(o)" />
 											</td>
 											<td>
-												<mm_input :auto="true" v-model="o.description" @blur="set(o)" />
+												<control_input :auto="true" v-model="o.description" @blur="set(o)" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./product_type_form?type_id=' + o[field]">修改</mm_btn>
@@ -108,7 +108,7 @@
 					<dl>
 						<dt>上级分类</dt>
 						<dd>
-							<mm_select v-model="form.father_id" :options="$to_kv(list_product_type, 'type_id', 'name')" />
+							<control_select v-model="form.father_id" :options="$to_kv(list_product_type, 'type_id', 'name')" />
 						</dd>
 					</dl>
 				</div>

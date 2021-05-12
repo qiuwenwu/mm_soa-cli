@@ -13,40 +13,40 @@
 									<dl>
 										<dt>等级划分</dt>
 										<dd>
-											<mm_number v-model="form.level" :min="0" :max="1000" />
+											<control_number v-model="form.level" :min="0" :max="1000" />
 										</dd>
 										<dt>下级用户组</dt>
 										<dd>
-											<mm_select v-model="form.next_group_id" :options="$to_kv(list_group, 'group_id', 'name', 0)" />
+											<control_select v-model="form.next_group_id" :options="$to_kv(list_group, 'group_id', 'name', 0)" />
 										</dd>
 										<dt>升级所需经验</dt>
 										<dd>
-											<mm_number v-model="form.exp" :min="0" :max="2147483647" />
+											<control_number v-model="form.exp" :min="0" :max="2147483647" />
 										</dd>
 										<dt>折扣</dt>
 										<dd>
-											<mm_number v-model="form.discount" :min="0" :max="0" />
+											<control_number v-model="form.discount" :min="0" :max="0" />
 										</dd>
 										<dt>奖励比例</dt>
 										<dd>
-											<mm_number v-model="form.bonus" :min="0" :max="0" />
+											<control_number v-model="form.bonus" :min="0" :max="0" />
 										</dd>
 										<dt>应用</dt>
 										<dd>
-											<mm_input v-model="form.app" :minlength="0" :maxlength="12" placeholder="用于区分用户组使用范围，cms内容管理系统 / bbs社区 / mall商城" />
+											<control_input v-model="form.app" :minlength="0" :maxlength="12" placeholder="用于区分用户组使用范围，cms内容管理系统 / bbs社区 / mall商城" />
 										</dd>
 										<dt class="required">名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
 										</dd>
 										<dt>分组标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
 										</dd>
 										<dt>图标</dt>
 										<dd>

@@ -13,23 +13,23 @@
 									<dl>
 										<dt>留言标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>留言内容</dt>
 										<dd>
-											<mm_rich v-model="form.content"></mm_rich>
+											<control_rich v-model="form.content"></control_rich>
 										</dd>
 										<dt>留言者手机</dt>
 										<dd>
-											<mm_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="" />
+											<control_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="" />
 										</dd>
 										<dt>留言者邮箱</dt>
 										<dd>
-											<mm_input v-model="form.email" :minlength="0" :maxlength="125" placeholder="" />
+											<control_input v-model="form.email" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>留言者姓名</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>

@@ -13,23 +13,23 @@
 									<dl>
 										<dt>性别</dt>
 										<dd>
-											<mm_select v-model="form.sex" :options="$to_kv(arr_sex)" />
+											<control_select v-model="form.sex" :options="$to_kv(arr_sex)" />
 										</dd>
 										<dt>身份实名认证</dt>
 										<dd>
-											<mm_select v-model="form.idcard_state" :options="$to_kv(arr_idcard_state)" />
+											<control_select v-model="form.idcard_state" :options="$to_kv(arr_idcard_state)" />
 										</dd>
 										<dt>年龄</dt>
 										<dd>
-											<mm_number v-model="form.age" :min="0" :max="150" />
+											<control_number v-model="form.age" :min="0" :max="150" />
 										</dd>
 										<dt>省份</dt>
 										<dd>
-											<mm_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
+											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
 										</dd>
 										<dt>所在城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt>生日</dt>
 										<dd>
@@ -37,39 +37,39 @@
 										</dd>
 										<dt>姓名</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="0" placeholder="" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt>职业</dt>
 										<dd>
-											<mm_input v-model="form.job" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.job" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>毕业学校</dt>
 										<dd>
-											<mm_input v-model="form.school" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.school" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>所学专业</dt>
 										<dd>
-											<mm_input v-model="form.major" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.major" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>身份证号</dt>
 										<dd>
-											<mm_input v-model="form.idcard" :minlength="0" :maxlength="64" placeholder="" />
+											<control_input v-model="form.idcard" :minlength="0" :maxlength="64" placeholder="" />
 										</dd>
 										<dt>公司地址</dt>
 										<dd>
-											<mm_input v-model="form.company_address" :minlength="0" :maxlength="125" placeholder="用户当前就职的公司地址" />
+											<control_input v-model="form.company_address" :minlength="0" :maxlength="125" placeholder="用户当前就职的公司地址" />
 										</dd>
 										<dt>详细地址</dt>
 										<dd>
-											<mm_input v-model="form.address" :minlength="0" :maxlength="255" placeholder="用户居住地的详细地址" />
+											<control_input v-model="form.address" :minlength="0" :maxlength="255" placeholder="用户居住地的详细地址" />
 										</dd>
 										<dt>工作范围</dt>
 										<dd>
-											<mm_input v-model="form.job_scope" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.job_scope" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>公司经营范围</dt>
 										<dd>
-											<mm_input v-model="form.company_business" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.company_business" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>身份证图片</dt>
 										<dd>

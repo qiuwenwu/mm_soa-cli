@@ -13,47 +13,47 @@
 									<dl>
 										<dt>是否启用</dt>
 										<dd>
-											<mm_switch v-model="form.available" />
+											<control_switch v-model="form.available" />
 										</dd>
 										<dt>状态</dt>
 										<dd>
-											<mm_select v-model="form.state" :options="$to_kv(arr_state)" />
+											<control_select v-model="form.state" :options="$to_kv(arr_state)" />
 										</dd>
 										<dt>店铺分类</dt>
 										<dd>
-											<mm_select v-model="form.type_id" :options="$to_kv(list_shop_type, 'type_id', 'name', 0)" />
+											<control_select v-model="form.type_id" :options="$to_kv(list_shop_type, 'type_id', 'name', 0)" />
 										</dd>
 										<dt>频道</dt>
 										<dd>
-											<mm_select v-model="form.channel_id" :options="$to_kv(list_shop_channel, 'channel_id', 'name', 0)" />
+											<control_select v-model="form.channel_id" :options="$to_kv(list_shop_channel, 'channel_id', 'name', 0)" />
 										</dd>
 										<dt>所属城市</dt>
 										<dd>
-											<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
 										</dd>
 										<dt>店铺所属人</dt>
 										<dd>
-											<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
 										</dd>
 										<dt>热度</dt>
 										<dd>
-											<mm_number v-model="form.hot" :min="0" :max="1000000000" />
+											<control_number v-model="form.hot" :min="0" :max="1000000000" />
 										</dd>
 										<dt>点赞次数</dt>
 										<dd>
-											<mm_number v-model="form.praise" :min="0" :max="1000000000" />
+											<control_number v-model="form.praise" :min="0" :max="1000000000" />
 										</dd>
 										<dt>标题</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="125" placeholder="用于店铺和html的&#60;title&#62;标签中" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="125" placeholder="用于店铺和html的&#60;title&#62;标签中" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于店铺提纲和搜索引擎收录" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="用于店铺提纲和搜索引擎收录" />
 										</dd>
 										<dt>关键词</dt>
 										<dd>
-											<mm_input v-model="form.keywords" :minlength="0" :maxlength="64" placeholder="引擎收录" />
+											<control_input v-model="form.keywords" :minlength="0" :maxlength="64" placeholder="引擎收录" />
 										</dd>
 										<dt>封面图</dt>
 										<dd>
@@ -61,7 +61,7 @@
 										</dd>
 										<dt>标签</dt>
 										<dd>
-											<mm_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注店铺所属相关内容，多个标签用空格隔开" />
+											<control_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder="用于标注店铺所属相关内容，多个标签用空格隔开" />
 										</dd>
 										<dt>收藏者</dt>
 										<dd>

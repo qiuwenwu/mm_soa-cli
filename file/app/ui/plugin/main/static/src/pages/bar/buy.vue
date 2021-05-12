@@ -1,16 +1,16 @@
 <template>
-	<mm_page id="page_buy">
+	<mm_page id="page_chat">
 		<header>
 			<mm_warp>
 				<mm_container>
 					<mm_row>
 						<mm_col width="100">
-							<mm_card url="/">
+							<mm_view url="/">
 								<h3>
-									<span>购物栏</span>
+									<span>购买栏</span>
 									<span class="fr">&lt; 返回</span></router-link>
 								</h3>
-							</mm_card>
+							</mm_view>
 						</mm_col>
 					</mm_row>
 				</mm_container>
@@ -21,7 +21,8 @@
 				<mm_container>
 					<mm_row>
 						<mm_col width="100">
-							<mm_card :func="func"></mm_card>
+							<bar_buy :func="func_buy" :list="list">
+							</bar_buy>
 						</mm_col>
 					</mm_row>
 				</mm_container>
@@ -33,11 +34,52 @@
 <script>
 	export default {
 		data() {
-			return {}
+			return {
+				select: 0,
+				col: "2",
+				options: [{
+						name: "1列",
+						value: "1"
+					},
+					{
+						name: "2列",
+						value: "2"
+					},
+					{
+						name: "3列",
+						value: "3"
+					},
+					{
+						name: "4列",
+						value: "4"
+					},
+					{
+						name: "5列",
+						value: "5"
+					},
+					{
+						name: "6列",
+						value: "6"
+					},
+					{
+						name: "8列",
+						value: "8"
+					},
+					{
+						name: "10列",
+						value: "10"
+					},
+					{
+						name: "12列",
+						value: "12"
+					}
+				],
+				list: undefined
+			}
 		},
-		methods: {
-			func(name, param1, param2) {
-
+		methods:{
+			func_buy(o){
+				console.log(o)
 			}
 		}
 	}

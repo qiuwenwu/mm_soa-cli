@@ -13,11 +13,11 @@
 									<dl>
 										<dt>新密码</dt>
 										<dd>
-											<mm_input type="password" v-model="form.password" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input type="password" v-model="form.password" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>确认密码</dt>
 										<dd>
-											<mm_input type="password" v-model="form.confirm_password" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input type="password" v-model="form.confirm_password" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>

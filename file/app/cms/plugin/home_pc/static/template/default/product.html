@@ -47,7 +47,7 @@
 				padding: .5rem;
 			}
 
-			#list_product .mm_img {
+			#list_product .item_image {
 				border-radius: 0.25rem;
 				background: #fff;
 				overflow: hidden;
@@ -98,6 +98,9 @@
 			#search_plane dl {
 				margin: 0 1rem;
 				border-bottom: 1px solid #e5e5e5;
+			}
+			#search_plane dl:last-child {
+				border-bottom: none;
 			}
 			
 			#search_plane dt {
@@ -239,13 +242,13 @@
 										<h5><span>排序：</span></h5>
 										<ul>
 											<li>
-												<mm_reverse title="热度" v-model="query.orderby" field="hot" :func="search"></mm_reverse>
+												<control_reverse title="热度" v-model="query.orderby" field="hot" :func="search"></control_reverse>
 											</li>
 											<li>
-												<mm_reverse title="发布时间" v-model="query.orderby" field="time_create" :func="search"></mm_reverse>
+												<control_reverse title="发布时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
 											</li>
 											<li>
-												<mm_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></mm_reverse>
+												<control_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
 											</li>
 										</ul>
 									</div>
@@ -276,10 +279,10 @@
 								<div class="col-12">
 									<nav class="list_img item-tb mm_list" id="list_product" v-show="display === 1">
 										<a v-for="o in list_new" href="o.url || ./product?''" class="mm_item col-lg-3 col-md-4 col-sm-6" url="/">
-											<div class="mm_img">
+											<div class="item_image">
 												<div class="media">
 													<figure class="mm_icon">
-														<img :src="o.img || '/img/default.png'" alt="图片" οnerrοr="/img/default.png" mode="mode">
+														<img :src="o.img || '/img/default.png'" alt="图片" οnerrοr="/img/default.png">
 														<figcaption></figcaption>
 													</figure>
 												</div>

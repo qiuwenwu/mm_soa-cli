@@ -1,8 +1,0 @@
-{
-	"path": "/ws/chat",
-	"name": "chat",
-	"title": "示例websocket",
-	"description": "用来测试",
-	"func_file": "./index.js",
-	"interval": 1000
-}

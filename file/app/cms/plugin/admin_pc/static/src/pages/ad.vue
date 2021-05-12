@@ -9,25 +9,25 @@
 								<h5>CMS广告</h5>
 							</div>
 							<div class="card_body">
-								<mm_form class="mm_filter">
+								<mm_form class="bar_filter">
 									<div class="title">
 										<h5><span>筛选条件</span></h5>
 									</div>
 									<mm_list col="3">
 										<mm_item>
-											<mm_input v-model="query.keyword" title="关键词" desc="广告名称 / 广告标题 / 广告描述 / 关键词"
+											<control_input v-model="query.keyword" title="关键词" desc="广告名称 / 广告标题 / 广告描述 / 关键词"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.city_id" title="投放城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
+											<control_select v-model="query.city_id" title="投放城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.area_id" title="投放地区" :options="$to_kv(list_address_area, 'area_id', 'name')"
+											<control_select v-model="query.area_id" title="投放地区" :options="$to_kv(list_address_area, 'area_id', 'name')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_select v-model="query.user_id" title="广告主" :options="$to_kv(list_account, 'user_id', 'nickname')"
+											<control_select v-model="query.user_id" title="广告主" :options="$to_kv(list_account, 'user_id', 'nickname')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
@@ -35,14 +35,14 @@
 										</mm_item>
 									</mm_list>
 								</mm_form>
-								<div class="mm_action">
+								<div class="bar_action">
 									<h5><span>操作</span></h5>
 									<div class="btns">
 										<mm_btn class="btn_primary-x" url="./ad_form?">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
 									</div>
 									<div class="btn_small">
-										<mm_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></mm_file>
+										<control_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></control_file>
 										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
@@ -52,73 +52,73 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<mm_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></mm_reverse>
+												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="投放城市" v-model="query.orderby" field="city_id" :func="search"></mm_reverse>
+												<control_reverse title="投放城市" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="投放地区" v-model="query.orderby" field="area_id" :func="search"></mm_reverse>
+												<control_reverse title="投放地区" v-model="query.orderby" field="area_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告主" v-model="query.orderby" field="user_id" :func="search"></mm_reverse>
+												<control_reverse title="广告主" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="访客数" v-model="query.orderby" field="times_user" :func="search"></mm_reverse>
+												<control_reverse title="访客数" v-model="query.orderby" field="times_user" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="次数上限" v-model="query.orderby" field="times_max" :func="search"></mm_reverse>
+												<control_reverse title="次数上限" v-model="query.orderby" field="times_max" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="展现量" v-model="query.orderby" field="times_show" :func="search"></mm_reverse>
+												<control_reverse title="展现量" v-model="query.orderby" field="times_show" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="点击量" v-model="query.orderby" field="times_click" :func="search"></mm_reverse>
+												<control_reverse title="点击量" v-model="query.orderby" field="times_click" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="费用" v-model="query.orderby" field="fee" :func="search"></mm_reverse>
+												<control_reverse title="费用" v-model="query.orderby" field="fee" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="费用——最大值" v-model="query.orderby" field="fee_max" :func="search"></mm_reverse>
+												<control_reverse title="费用——最大值" v-model="query.orderby" field="fee_max" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="费用上限" v-model="query.orderby" field="fee_max" :func="search"></mm_reverse>
+												<control_reverse title="费用上限" v-model="query.orderby" field="fee_max" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告名称" v-model="query.orderby" field="name" :func="search"></mm_reverse>
+												<control_reverse title="广告名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告类型" v-model="query.orderby" field="type" :func="search"></mm_reverse>
+												<control_reverse title="广告类型" v-model="query.orderby" field="type" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="投放位置" v-model="query.orderby" field="location" :func="search"></mm_reverse>
+												<control_reverse title="投放位置" v-model="query.orderby" field="location" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="付费方式" v-model="query.orderby" field="fee_way" :func="search"></mm_reverse>
+												<control_reverse title="付费方式" v-model="query.orderby" field="fee_way" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="展现应用" v-model="query.orderby" field="app" :func="search"></mm_reverse>
+												<control_reverse title="展现应用" v-model="query.orderby" field="app" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="所属行业" v-model="query.orderby" field="trade" :func="search"></mm_reverse>
+												<control_reverse title="所属行业" v-model="query.orderby" field="trade" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告标题" v-model="query.orderby" field="title" :func="search"></mm_reverse>
+												<control_reverse title="广告标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="呈现设备" v-model="query.orderby" field="device" :func="search"></mm_reverse>
+												<control_reverse title="呈现设备" v-model="query.orderby" field="device" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告描述" v-model="query.orderby" field="description" :func="search"></mm_reverse>
+												<control_reverse title="广告描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="广告图" v-model="query.orderby" field="img" :func="search"></mm_reverse>
+												<control_reverse title="广告图" v-model="query.orderby" field="img" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="跳转链接" v-model="query.orderby" field="url" :func="search"></mm_reverse>
+												<control_reverse title="跳转链接" v-model="query.orderby" field="url" :func="search"></control_reverse>
 											</th>
 											<th>
-												<mm_reverse title="关键词" v-model="query.orderby" field="keywords" :func="search"></mm_reverse>
+												<control_reverse title="关键词" v-model="query.orderby" field="keywords" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -208,7 +208,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="fl">
-									<mm_select v-model="query.size" :options="$to_size()" @change="search()" />
+									<control_select v-model="query.size" :options="$to_size()" @change="search()" />
 								</div>
 								<div class="fr">
 									<span class="mr">共 {{ count }} 条</span>
@@ -216,7 +216,7 @@
 									<input type="number" class="pager_now" v-model.number="page_now" @blur="goTo(page_now)" @change="page_change" />
 									<span>/{{ page_count }}页</span>
 								</div>
-								<mm_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></mm_pager>
+								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
 							</div>
 						</mm_card>
 					</mm_col>
@@ -232,15 +232,15 @@
 					<dl>
 						<dt>投放城市</dt>
 						<dd>
-							<mm_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
+							<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
 						</dd>
 						<dt>投放地区</dt>
 						<dd>
-							<mm_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name')" />
+							<control_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name')" />
 						</dd>
 						<dt>广告主</dt>
 						<dd>
-							<mm_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
 						</dd>
 					</dl>
 				</div>

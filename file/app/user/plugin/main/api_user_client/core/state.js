@@ -18,12 +18,10 @@ async function main(ctx, db) {
 				var type = typeof(u);
 				if (type === "string") {
 					var o = u.toJson();
-					delete o.user.user_id;
 					return $.ret.body(o.user);
 				} else if (type === "object") {
 					if (Object.keys(u).length > 0) {
 						var o = Object.assign({}, u);
-						delete o.user.user_id;
 						return $.ret.body(o.user);
 					}
 				}

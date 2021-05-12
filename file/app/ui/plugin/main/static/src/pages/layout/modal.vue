@@ -23,13 +23,13 @@
 						<mm_col width="100">
 							<mm_view>
 								<h5>点击按钮测试</h5>
-								<mm_btn class="btn_info" @click.native="show1 = !show1, show2 = false">带遮罩 {{ show1 }}</mm_btn>
-								<mm_btn class="btn_info" @click.native="show2 = !show2, show1 = false">不带遮罩 {{ show2 }}</mm_btn>
+								<mm_btn class="btn_primary" @click.native="show1 = !show1, show2 = false">带遮罩 {{ show1 }}</mm_btn>
+								<mm_btn class="btn_primary" @click.native="show2 = !show2, show1 = false">不带遮罩 {{ show2 }}</mm_btn>
 							</mm_view>
 
 							<mm_view>
 								<h5>出入场方式 {{ value }}</h5>
-								<mm_radio v-model="value" :options="options"></mm_radio>
+								<control_radio v-model="value" :options="options"></control_radio>
 							</mm_view>
 						</mm_col>
 					</mm_row>

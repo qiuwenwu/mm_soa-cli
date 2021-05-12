@@ -17,9 +17,6 @@
 </script>
 
 <style>
-	body {
-		background: #fff;
-	}
 	main {
 		padding: 2rem 0;
 		padding-top: 5rem !important;
@@ -38,9 +35,5 @@
 	header h3 .fr {
 		font-weight: normal;
 		font-size: 0.75rem;
-	}
-	
-	.card_body {
-		padding: 1rem;
 	}
 </style>

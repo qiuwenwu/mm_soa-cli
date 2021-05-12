@@ -68,14 +68,14 @@ require({
 			'templateVar': '__template__'
 		}
 	}
-}, ['Vue', 'mm_sdk', 'mm_vue', 'store', 'router', 'ui', 'clipboard', 'vuedraggable', 'vue!/src/components/form/mm_rich.vue','vue!./App.vue'], function(Vue, mm_sdk, mm_vue, store, router,
-	ui, clipboard, vuedraggable, mm_rich, app) {
+}, ['Vue', 'mm_sdk', 'mm_vue', 'store', 'router', 'ui', 'clipboard', 'vuedraggable', 'vue!/src/components/control/control_rich.vue','vue!./App.vue'], function(Vue, mm_sdk, mm_vue, store, router,
+	ui, clipboard, vuedraggable, control_rich, app) {
 	// 开启调试模式
 	Vue.config.debug = true;
 	// 使用UI组件
 	Vue.config.devtools = true;
 	
-	Vue.component('mm_rich', mm_rich);
+	Vue.component('control_rich', control_rich);
 	Vue.component('draggable', vuedraggable);
 	Vue.use(mm_vue);
 	Vue.use(ui);

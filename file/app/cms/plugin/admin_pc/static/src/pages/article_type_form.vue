@@ -13,19 +13,19 @@
 									<dl>
 										<dt>上级分类</dt>
 										<dd>
-											<mm_select v-model="form.father_id" :options="$to_kv(list_article_type, 'type_id', 'name', 0)" />
+											<control_select v-model="form.father_id" :options="$to_kv(list_article_type, 'type_id', 'name', 0)" />
 										</dd>
 										<dt>分类名称</dt>
 										<dd>
-											<mm_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 										<dt>分类标题</dt>
 										<dd>
-											<mm_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 										<dt>分类描述</dt>
 										<dd>
-											<mm_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="" />
 										</dd>
 										<dt>分类图标</dt>
 										<dd>
