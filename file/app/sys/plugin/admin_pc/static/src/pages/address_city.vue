@@ -73,7 +73,7 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_address_province, o.province_id, 'province_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_province, o.province_id, 'province_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ o.name }}</span>

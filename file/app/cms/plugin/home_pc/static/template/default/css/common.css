@@ -65,7 +65,6 @@ input:invalid {
 	color: #fff;
 	margin-right: 1rem;
 	border-radius: 0.25rem;
-	line-height: 2rem;
 	height: 2rem;
 }
 
@@ -218,17 +217,16 @@ input:invalid {
 	font-weight: 600;
 }
 
-.mm_page>header~main {
-	margin-top: 6rem;
+.mm_page>.header~main {
+	padding-top: 6rem;
 	margin-bottom: 0;
 }
 
 .mm_page>footer {
-	position: relative;
 	margin-top: 5rem;
 }
 
-.mm_page>footer .mm_warp {
+.mm_page>.footer .mm_warp {
 	color: #fff;
 	background: #002147 !important;
 }

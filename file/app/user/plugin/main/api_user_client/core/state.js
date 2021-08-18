@@ -8,7 +8,7 @@ async function main(ctx, db) {
 	// 获取请求参数
 	if (ctx.session.user) {
 		var user = Object.assign({}, ctx.session.user);
-		delete user.user_id;
+		// delete user.user_id;
 		return $.ret.body(user);
 	} else {
 		var token = ctx.headers[$.dict.token];

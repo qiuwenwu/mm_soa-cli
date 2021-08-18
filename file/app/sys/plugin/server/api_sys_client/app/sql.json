@@ -5,8 +5,8 @@
     "key": "app_id",
     "orderby_default": "`app_id` desc",
     "field_obj": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`icon`,`url`,`bind_ip`,`scope`,`scope_not`,`users`",
-    "field_default": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`url`",
-    "method": "get get_obj",
+    "field_default": "`app_id`,`available`,`encrypt`,`times_allow`,`times_today`,`max_age`,`user_id`,`times_count`,`time_update`,`name`,`appid`,`token`,`encoding_aes_key`,`appsecret`,`icon`,`url`,`bind_ip`,`scope`,`scope_not`,`users`",
+    "method": "get get_obj sum count",
     "query": {
         "appid": "`appid` like '%{0}%'",
         "appsecret": "`appsecret` like '%{0}%'",

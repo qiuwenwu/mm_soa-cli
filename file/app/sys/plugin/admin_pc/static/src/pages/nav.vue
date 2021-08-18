@@ -112,7 +112,7 @@
 												<span>{{ o.device }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_nav, o.father_id, 'nav_id', 'name') }}</span>
+												<span>{{ $get_name(list_nav, o.father_id, 'nav_id', 'name') }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./nav_form?nav_id=' + o[field]">修改</mm_btn>

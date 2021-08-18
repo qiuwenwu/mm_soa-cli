@@ -1,0 +1,49 @@
+{
+    "name": "user_power2",
+    "title": "管理组",
+    "table": "user_power",
+    "key": "power_id",
+    "orderby_default": "`power_id` desc",
+    "field_obj": "`power_id`,`admin_id`,`name`,`path`,`method`,`user_add`,`user_set`,`user_del`,`user_get`,`field_set`,`field_add`,`field_del`,`field_get`",
+    "field_default": "`power_id`,`admin_id`,`display`,`name`,`path`,`method`,`user_add`,`user_set`,`user_del`,`user_get`,`field_set`,`field_add`,`field_del`,`field_get`",
+    "query": {
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "path": "`path` like '%{0}%'",
+        "method": "`method` like '%{0}%'",
+        "user_add": "`user_add` like '%{0}%'",
+        "user_set": "`user_set` like '%{0}%'",
+        "user_del": "`user_del` like '%{0}%'",
+        "user_get": "`user_get` like '%{0}%'",
+        "field_set": "`field_set` like '%{0}%'",
+        "field_add": "`field_add` like '%{0}%'",
+        "field_del": "`field_del` like '%{0}%'",
+        "field_get": "`field_get` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "method",
+            "title": "方法",
+            "list": [
+                {
+                    "name": "GET",
+                    "value": "GET"
+                },
+                {
+                    "name": "POST",
+                    "value": "POST"
+                },
+                {
+                    "name": "ALL",
+                    "value": "ALL"
+                }
+            ]
+        }
+    ],
+    "field_hide": []
+}

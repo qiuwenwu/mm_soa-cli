@@ -1,0 +1,111 @@
+{
+    "name": "dev_dict2",
+    "title": "开发字典",
+    "add": {
+        "body": [
+            "en",
+            "times"
+        ],
+        "body_required": [
+            "zh"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "dict_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "dict_id",
+            "times_min",
+            "times_max"
+        ],
+        "query_required": [],
+        "body": [
+            "zh",
+            "en",
+            "times",
+            "times_add"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "dict_id",
+            "times_min",
+            "times_max"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "dict_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "dict_id",
+            "title": "字典ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "zh",
+            "title": "中文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "en",
+            "title": "英文",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "times",
+            "title": "使用次数",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "times_min",
+            "title": "使用次数——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "times_max",
+            "title": "使用次数——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        }
+    ]
+}

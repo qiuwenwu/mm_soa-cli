@@ -1,7 +1,6 @@
-var config = "./oauth.json".loadJson(__dirname);
 const Oauth = require("./oauth.js");
 
-var oauth = new Oauth(config);
+var oauth = new Oauth();
 
 /**
  * 接口主函数
@@ -11,8 +10,7 @@ var oauth = new Oauth(config);
  */
 async function main(ctx, db) {
 	// 获取请求参数
-	var req = ctx.request;
-	return oauth.run(req.path, req.query, db);
+	return oauth.run(db, ctx);
 };
 
 exports.main = main;

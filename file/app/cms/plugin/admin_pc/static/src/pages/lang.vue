@@ -6,7 +6,7 @@
 					<mm_col class="col-12">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>CMS语言</h5>
+								<h5>CMS语言包</h5>
 							</div>
 							<div class="card_body">
 								<mm_form class="bar_filter">
@@ -110,7 +110,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 					</dl>
 				</div>

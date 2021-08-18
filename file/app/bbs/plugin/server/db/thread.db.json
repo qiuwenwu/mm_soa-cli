@@ -244,7 +244,7 @@
             "title": "标题",
             "description": "用于主题和html的<title>标签中",
             "type": "varchar",
-            "key": true,
+            "key": false,
             "auto": "",
             "symbol": false,
             "fill_zero": false,

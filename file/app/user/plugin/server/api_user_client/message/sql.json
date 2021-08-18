@@ -6,7 +6,7 @@
     "orderby_default": "`message_id` desc",
     "field_obj": "`message_id`,`title`,`content`,`phone`,`email`,`name`,`time_create`",
     "field_default": "`message_id`,`title`,`phone`,`email`,`name`,`time_create`",
-    "method": "get get_obj",
+    "method": "get get_obj avg sum count",
     "query": {
         "content": "`content` like '%{0}%'",
         "email": "`email` like '%{0}%'",

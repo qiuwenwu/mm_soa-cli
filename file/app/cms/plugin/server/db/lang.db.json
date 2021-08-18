@@ -1,5 +1,5 @@
 {
-    "title": "CMS语言",
+    "title": "CMS语言包",
     "description": "用于开发站点多国语",
     "name": "cms_lang",
     "table": "cms_lang",

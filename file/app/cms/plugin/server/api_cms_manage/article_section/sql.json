@@ -5,7 +5,7 @@
     "key": "section_id",
     "orderby_default": "`section_id` desc",
     "field_obj": "`section_id`,`article_id`,`title`,`tag`,`content`,`img`",
-    "field_default": "`section_id`,`display`,`article_id`,`title`,`tag`",
+    "field_default": "`section_id`,`display`,`article_id`,`title`,`tag`,`img`",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",

@@ -18,22 +18,6 @@
         "show_add": "`show` = `show` + {0}",
         "display_add": "`display` = `display` + {0}"
     },
-    "format": [
-        {
-            "key": "show",
-            "title": "显示位置",
-            "list": [
-                "仅表单可见",
-                "表单和搜索可见",
-                "均可见"
-            ]
-        },
-        {
-            "key": "province_id",
-            "title": "所属省份",
-            "table": "sys_address_province",
-            "name": "name"
-        }
-    ],
+    "format": [],
     "field_hide": []
 }

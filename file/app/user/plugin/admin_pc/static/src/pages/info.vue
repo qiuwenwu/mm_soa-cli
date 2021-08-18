@@ -98,6 +98,9 @@
 											<th>
 												<control_reverse title="公司经营范围" v-model="query.orderby" field="company_business" :func="search"></control_reverse>
 											</th>
+											<th>
+												<control_reverse title="身份证图片" v-model="query.orderby" field="idcard_img" :func="search"></control_reverse>
+											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
@@ -116,10 +119,10 @@
 												<span>{{ o.age }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_address_province, o.province_id, 'province_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_province, o.province_id, 'province_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ $to_time(o.birthday, 'yyyy-MM-dd') }}</span>
@@ -152,6 +155,9 @@
 												<span>{{ o.company_business }}</span>
 											</td>
 											<td>
+												<img class="idcard_img" :src="o.idcard_img" alt="身份证图片" />
+											</td>
+											<td>
 												<mm_btn class="btn_primary" :url="'./info_form?user_id=' + o[field]">修改</mm_btn>
 												<mm_btn class="btn_warning" @click.native="del_show(o, field)">删除</mm_btn>
 											</td>
@@ -182,7 +188,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>性别</dt>
 						<dd>
@@ -250,6 +256,10 @@
 					'age_min': 0,
 					// 年龄——最大值
 					'age_max': 0,
+					// 省份ID
+					'province_id': '',
+					// 所在城市ID
+					'city_id': '',
 					// 生日——开始时间
 					'birthday_min': '',
 					// 生日——结束时间

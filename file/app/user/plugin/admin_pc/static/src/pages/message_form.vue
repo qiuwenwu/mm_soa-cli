@@ -57,7 +57,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/user/message?",
+				url_add: "/apis/user/message?method=add",
+				url_set: "/apis/user/message?method=set",
 				url_get_obj: "/apis/user/message?method=get_obj",
 				field: "message_id",
 				query: {

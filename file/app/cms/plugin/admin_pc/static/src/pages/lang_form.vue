@@ -6,7 +6,7 @@
 					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>{{ form[field] ? '修改' : '创建' }}CMS语言</h5>
+								<h5>{{ form[field] ? '修改' : '创建' }}CMS语言包</h5>
 							</div>
 							<div class="card_body">
 								<mm_form>
@@ -62,7 +62,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/lang?",
+				url_add: "/apis/cms/lang?method=add",
+				url_set: "/apis/cms/lang?method=set",
 				url_get_obj: "/apis/cms/lang?method=get_obj",
 				field: "lang_id",
 				query: {

@@ -25,7 +25,7 @@
 											<control_input v-model="form.tag" :minlength="0" :maxlength="255" placeholder=""
 											 :required="true" />
 										</dd>
-										<dt>章节内容</dt>
+										<dt class="required">章节内容</dt>
 										<dd>
 											<control_rich v-model="form.content"></control_rich>
 										</dd>
@@ -59,7 +59,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/article_section?",
+				url_add: "/apis/cms/article_section?method=add",
+				url_set: "/apis/cms/article_section?method=set",
 				url_get_obj: "/apis/cms/article_section?method=get_obj",
 				field: "section_id",
 				query: {

@@ -1,6 +1,6 @@
 {
     "name": "cms_lang",
-    "title": "CMS语言",
+    "title": "CMS语言包",
     "description": "用于开发站点多国语",
     "path": "/api/cms/lang",
     "method": "GET",

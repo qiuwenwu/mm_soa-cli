@@ -33,17 +33,19 @@ async function main(ctx, db) {
 	var username = by["username"];
 
 	// 判断用户是否已存在
-	var count = await db.countObj({
+	var count = await db.count({
 		username
 	});
+	
+	
 	if (count > 0) {
 		return $.ret.bl(false, '注册失败，用户名已存在！');
 	}
 
 	var p = by["password"];
-	var pass = p.md5();
-	var salt = pass.substring(0, 6);
-	var password = (pass + salt).md5();
+	// var pass = p.md5();
+	var salt = p.substring(0, 6);
+	var password = (p + salt).md5();
 
 	var invite_code = await getCode(db, username, password);
 

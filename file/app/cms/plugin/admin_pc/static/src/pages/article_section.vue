@@ -55,6 +55,9 @@
 											<th>
 												<control_reverse title="章节标签" v-model="query.orderby" field="tag" :func="search"></control_reverse>
 											</th>
+											<th>
+												<control_reverse title="章节图片" v-model="query.orderby" field="img" :func="search"></control_reverse>
+											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
@@ -67,13 +70,16 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_article, o.article_id, 'article_id', 'title') }}</span>
+												<span>{{ $get_name(list_article, o.article_id, 'article_id', 'title') }}</span>
 											</td>
 											<td>
 												<span>{{ o.title }}</span>
 											</td>
 											<td>
 												<span>{{ o.tag }}</span>
+											</td>
+											<td>
+												<img class="img" :src="o.img" alt="章节图片" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./article_section_form?section_id=' + o[field]">修改</mm_btn>
@@ -106,7 +112,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>对应文章</dt>
 						<dd>

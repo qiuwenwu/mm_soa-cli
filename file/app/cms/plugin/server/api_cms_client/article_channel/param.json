@@ -10,10 +10,10 @@
             "father_id",
             "city_id",
             "template",
-            "title",
             "description",
             "icon",
-            "url"
+            "url",
+            "title"
         ],
         "body_required": [
             "name"
@@ -34,8 +34,8 @@
             "display_min",
             "display_max",
             "name",
-            "title",
             "description",
+            "title",
             "keyword"
         ],
         "query_required": [],
@@ -49,10 +49,10 @@
             "city_id",
             "name",
             "template",
-            "title",
             "description",
             "icon",
-            "url"
+            "url",
+            "title"
         ],
         "body_required": [],
         "body_not": []
@@ -65,9 +65,11 @@
             "can_comment",
             "display_min",
             "display_max",
+            "father_id",
+            "city_id",
             "name",
-            "title",
             "description",
+            "title",
             "keyword"
         ],
         "query_required": []
@@ -188,16 +190,6 @@
             }
         },
         {
-            "name": "title",
-            "title": "频道标题",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 125
-            }
-        },
-        {
             "name": "description",
             "title": "描述",
             "description": "描述该频道的作用",
@@ -227,9 +219,19 @@
             }
         },
         {
+            "name": "title",
+            "title": "频道标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索频道名称(name)、频道标题(title)、描述(description)",
+            "description": "用于搜索频道名称(name)、描述(description)、频道标题(title)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

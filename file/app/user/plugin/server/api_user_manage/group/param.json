@@ -10,7 +10,6 @@
             "discount",
             "bonus",
             "app",
-            "title",
             "description",
             "icon"
         ],
@@ -38,7 +37,6 @@
             "bonus_min",
             "bonus_max",
             "name",
-            "title",
             "description",
             "keyword"
         ],
@@ -57,7 +55,6 @@
             "bonus_add",
             "app",
             "name",
-            "title",
             "description",
             "icon"
         ],
@@ -71,6 +68,7 @@
             "display_max",
             "level_min",
             "level_max",
+            "next_group_id",
             "exp_min",
             "exp_max",
             "discount_min",
@@ -78,7 +76,6 @@
             "bonus_min",
             "bonus_max",
             "name",
-            "title",
             "description",
             "keyword"
         ],
@@ -158,7 +155,7 @@
         {
             "name": "next_group_id",
             "title": "下级用户组ID",
-            "description": "决定用户升级后所属用户组(user_group.name.group_id)",
+            "description": "决定用户升级后所属用户组",
             "type": "number",
             "dataType": "mediumint",
             "number": {
@@ -255,23 +252,13 @@
         },
         {
             "name": "name",
-            "title": "名称",
+            "title": "用户名称",
             "description": "",
             "type": "string",
             "dataType": "varchar",
             "string": {
                 "max": 16,
                 "notEmpty": true
-            }
-        },
-        {
-            "name": "title",
-            "title": "分组标题",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 125
             }
         },
         {
@@ -295,7 +282,7 @@
         {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索名称(name)、分组标题(title)、描述(description)",
+            "description": "用于搜索用户名称(name)、描述(description)",
             "type": "string",
             "dataType": "varchar",
             "string": {}

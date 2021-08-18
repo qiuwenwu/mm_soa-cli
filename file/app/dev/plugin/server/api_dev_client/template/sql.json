@@ -1,0 +1,22 @@
+{
+    "name": "dev_template",
+    "title": "",
+    "table": "dev_template",
+    "key": "template_id",
+    "orderby_default": "`template_id` desc",
+    "field_obj": "`template_id`,`img`,`path`,`colors`,`tag`,`name`,`title`",
+    "field_default": "`template_id`,`img`,`path`,`colors`,`tag`,`name`,`title`",
+    "method": "get get_obj sum count",
+    "query": {
+        "img": "`img` like '%{0}%'",
+        "path": "`path` like '%{0}%'",
+        "colors": "`colors` like '%{0}%'",
+        "tag": "`tag` like '%{0}%'",
+        "name": "`name` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "keyword": "(`tag` like '%{0}%' || `name` like '%{0}%' || `title` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {},
+    "format": []
+}

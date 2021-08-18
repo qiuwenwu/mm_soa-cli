@@ -59,7 +59,7 @@
 						var url = _this.$redirect();
 						_this.$router.push(url);
 					} else if (res.error) {
-						$.toast(res.error.message);
+						_this.$toast(res.error.message);
 					}
 				});
 			}

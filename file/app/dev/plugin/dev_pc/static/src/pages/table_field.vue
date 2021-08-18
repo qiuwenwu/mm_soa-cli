@@ -127,7 +127,7 @@
 												<span>{{ o.decimal }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_table, o.table_id, 'table_id', 'name') }}</span>
+												<span>{{ $get_name(list_table, o.table_id, 'table_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ o.num }}</span>

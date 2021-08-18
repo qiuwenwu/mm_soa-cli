@@ -1,0 +1,12 @@
+{
+    "name": "dev_app_type",
+    "title": "应用分类",
+    "description": "将应用归类，方便选择构建不同的应用",
+    "path": "/api/dev/app_type",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

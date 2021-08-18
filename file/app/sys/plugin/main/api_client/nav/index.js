@@ -10,7 +10,7 @@ async function main(ctx, db) {
 	var scope = query['scope'] || 'admin';
 	
 	var nav = $.nav_admin(scope);
-	// console.log("导航", scope, nav);
+	
 	if (query['update']) {
 		nav.update();
 		return $.ret.bl(true, '更新成功');

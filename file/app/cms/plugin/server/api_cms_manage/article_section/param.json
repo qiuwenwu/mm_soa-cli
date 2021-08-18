@@ -5,12 +5,12 @@
         "body": [
             "display",
             "article_id",
-            "content",
             "img"
         ],
         "body_required": [
             "title",
-            "tag"
+            "tag",
+            "content"
         ]
     },
     "del": {
@@ -47,6 +47,7 @@
             "section_id",
             "display_min",
             "display_max",
+            "article_id",
             "title",
             "tag",
             "content",
@@ -132,15 +133,17 @@
             "title": "章节内容",
             "description": "",
             "type": "string",
-            "dataType": "text",
-            "string": {}
+            "dataType": "longtext",
+            "string": {
+                "notEmpty": true
+            }
         },
         {
             "name": "img",
             "title": "章节图片",
             "description": "",
             "type": "string",
-            "dataType": "text",
+            "dataType": "varchar",
             "string": {}
         },
         {

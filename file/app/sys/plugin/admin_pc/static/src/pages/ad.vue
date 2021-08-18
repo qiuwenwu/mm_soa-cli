@@ -132,13 +132,13 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_address_area, o.area_id, 'area_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_area, o.area_id, 'area_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
 											</td>
 											<td>
 												<span>{{ o.times_user }}</span>

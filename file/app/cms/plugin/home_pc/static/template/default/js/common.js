@@ -303,7 +303,7 @@ var mixin_page = {
 			var msg = this.events("submit_check", pm);
 			var ret;
 			if (msg) {
-				this.toast(msg);
+				this.$toast(msg);
 			} else {
 				ret = this.events("submit_main", pm, func);
 			}
@@ -321,7 +321,7 @@ var mixin_page = {
 			var msg = this.events("upload_check", pm);
 			var ret;
 			if (msg) {
-				this.toast(msg);
+				this.$toast(msg);
 			} else {
 				ret = this.events("upload_main", pm, func);
 			}
@@ -333,7 +333,7 @@ var mixin_page = {
 		 * @param {Number} longTime 显示时长
 		 */
 		toast: function toast(text, longTime) {
-			this.$.toast(text, longTime ? longTime : 2000);
+			this.$toast(text, longTime ? longTime : 2000);
 		},
 		/**
 		 * @description 添加数据
@@ -348,11 +348,11 @@ var mixin_page = {
 			this.$post(url, value, function(json) {
 				_this.events("add_after", json, func);
 				if (json.result) {
-					$.toast(json.result.tip);
+					_this.$toast(json.result.tip);
 				} else if (json.error) {
-					$.toast(json.error.message);
+					_this.$toast(json.error.message);
 				} else {
-					$.toast('添加失败! 原因:是服务器连接失败!');
+					_this.$toast('添加失败! 原因:是服务器连接失败!');
 				}
 			});
 		},
@@ -370,11 +370,11 @@ var mixin_page = {
 			this.$get(url, query, function(json) {
 				_this.events("del_after", json, func);
 				if (json.result) {
-					$.toast(json.result.tip);
+					_this.$toast(json.result.tip);
 				} else if (json.error) {
-					$.toast(json.error.message);
+					_this.$toast(json.error.message);
 				} else {
-					$.toast('删除失败! 原因:是服务器连接失败!');
+					_this.$toast('删除失败! 原因:是服务器连接失败!');
 				}
 			});
 		},
@@ -402,11 +402,11 @@ var mixin_page = {
 			this.$post(this.toUrl(this.query_set, url), value, function(json, status) {
 				_this.events("set_after", json, func);
 				if (json.result) {
-					$.toast(json.result.tip);
+					_this.$toast(json.result.tip);
 				} else if (json.error) {
-					$.toast(json.error.message);
+					_this.$toast(json.error.message);
 				} else {
-					$.toast('修改失败! 原因:是服务器连接失败!');
+					_this.$toast('修改失败! 原因:是服务器连接失败!');
 				}
 			});
 		},
@@ -512,7 +512,7 @@ var mixin_page = {
 				} else if (json.error) {
 					console.log(json.error.message);
 				} else {
-					_this.toast("服务器连接失败！");
+					_this.$toast("服务器连接失败！");
 				}
 			});
 		},
@@ -553,7 +553,7 @@ var mixin_page = {
 				} else if (json.error) {
 					console.log(json.error.message);
 				} else {
-					_this.toast("服务器连接失败！");
+					_this.$toast("服务器连接失败！");
 				}
 			});
 		},
@@ -704,11 +704,11 @@ var mixin_page = {
 				var _this = this;
 				this.$post(url, param, function(json, status) {
 					if (json.result) {
-						_this.toast(json.result.tip);
+						_this.$toast(json.result.tip);
 					} else if (json.error) {
-						_this.toast(json.error.message);
+						_this.$toast(json.error.message);
 					} else {
-						_this.toast("服务器连接失败！");
+						_this.$toast("服务器连接失败！");
 					}
 					_this.events("submit_after", json, func);
 				});
@@ -819,7 +819,7 @@ var mixin_page = {
 				param = this.form;
 			}
 			if (msg) {
-				this.toast(msg);
+				this.$toast(msg);
 			} else {
 				this.uploading = 0;
 				var _this = this;
@@ -836,11 +836,11 @@ var mixin_page = {
 		 */
 		upload_after: function upload_after(json, func) {
 			if (json.result) {
-				this.toast(json.result.tip);
+				this.$toast(json.result.tip);
 			} else if (json.error) {
-				this.toast(json.error.message);
+				this.$toast(json.error.message);
 			} else {
-				this.toast("服务器连接失败！");
+				this.$toast("服务器连接失败！");
 			}
 			if (func) {
 				func();
@@ -935,7 +935,7 @@ var mixin_page = {
 		 * @param {String} name 名
 		 * @param {String} span 分隔符
 		 */
-		get_name(list, arr_str, key, name, span) {
+		$get_name(list, arr_str, key, name, span) {
 			if (!name) {
 				name = "name";
 			}

@@ -6,125 +6,106 @@
 	// get请求
 	"get": {
 		// 查询参数校验项
-		"query": ["uid", "name", "username", "phone", "email"],
+		"query": ["client_id", "client_secret", "redirect_uri", "scope", "state", "code", "access_token",
+			"refresh_token", "open_id"
+		],
 		// 查询必填参数
 		"query_required": []
 	},
 	// post请求
 	"post": {
 		// 查询参数校验项
-		"query": ["uid", "name", "username", "phone", "email"],
+		"query": [],
 		// 查询必填参数
 		"query_required": [],
 		// 正文参数校验项
-		"body": ["age", "headImg", "birthday", "password", "confirm_password", "pay_password"],
+		"body": ["client_id", "client_secret", "redirect_uri", "scope", "state", "code", "access_token",
+			"refresh_token", "open_id"
+		],
 		// 正文必填参数
 		"body_required": []
 	},
 	// 校验列表
 	"list": [{
-			// 参数key名
-			"name": "uid",
-			// 参数中文名
-			"title": "用户ID",
-			// 数据类型
-			"type": "number",
-			// 数字类型时设置
-			"number": {
-				// 最小数值
-				"min": 1
-			},
-			// 分隔参数，允许传多个值，为空则限制1个值
-			"splitter": "|"
-		}, {
-			"name": "name",
-			"title": "姓名",
-			"type": "string",
-			// 字符串类型时设置
-			"string": {
-				// 格式
-				"format": "ch",
-				// 传值范围，字符串时为限制字符长度
-				"range": [2, 6]
-			},
-			"splitter": "|"
-		},
-		{
-			"name": "age",
-			"title": "年龄",
-			"type": "number",
-			"number": {
-				// 传值范围，数字时为最小值和最大值
-				"range": [1, 150]
-			}
-		},
-		{
-			"name": "headImg",
-			"title": "头像",
-			"type": "string",
-			"string": {
-				// 拓展名，用于传媒体（图片、音频、视频）时
-				"extension": "png|gif|jpg|jpeg|bmp"
-			}
-		},
-		{
-			"name": "birthday",
-			"title": "生日",
-			"type": "string",
-			"string": {
-				"format": "dateISO"
-			}
-		},
-		{
-			"name": "username",
-			"title": "用户名",
-			"type": "string",
-			"string": {
-				"format": "username"
-			}
-		},
-		{
-			"name": "password",
-			"title": "密码",
-			"type": "string",
-			"string": {
-				"format": "password",
-				"different": "username"
-			}
-		},
-		{
-			"name": "phone",
-			"title": "手机",
-			"type": "string",
-			"string": {
-				"format": "phone"
-			}
-		},
-		{
-			"name": "email",
-			"title": "邮箱",
-			"type": "string",
-			"string": {
-				"format": "email"
-			}
-		},
-		{
-			"name": "pay_password",
-			"title": "支付密码",
-			"type": "string",
-			"string": {
-				"format": "num",
-				"different": "password"
-			}
-		},
-		{
-			"name": "confirm_password",
-			"title": "确认密码",
-			"type": "string",
-			"string": {
-				"format": "password",
-				"identical": "password"
-			}
-		}
-	]
+		// 参数key名
+		"name": "client_id",
+		// 参数中文名
+		"title": "应用ID",
+		// 描述
+		"desction": "填写第三方的AppID",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "redirect_uri",
+		// 参数中文名
+		"title": "回调URL",
+		// 描述
+		"desction": "用于校验、登录成功后的回调跳转地址",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "scope",
+		// 参数中文名
+		"title": "授权域",
+		// 描述
+		"desction": "从第三方申请的，用户允许的授权功能范围",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "state",
+		// 参数中文名
+		"title": "回调状态",
+		// 描述
+		"desction": "用来校验识别是否非法操作",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "client_secret",
+		// 参数中文名
+		"title": "应用secret",
+		// 描述
+		"desction": "应用密钥，用来获取临时访问牌token",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "code",
+		// 参数中文名
+		"title": "授权访问码",
+		// 描述
+		"desction": "临时授权，用来换取临时访问牌token",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "access_token",
+		// 参数中文名
+		"title": "访问牌token",
+		// 描述
+		"desction": "临时访问牌，用来获取用户信息等",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "refresh_token",
+		// 参数中文名
+		"title": "刷新访问牌token",
+		// 描述
+		"desction": "用来刷新临时访问牌，重新获取token",
+		// 数据类型
+		"type": "string"
+	}, {
+		// 参数key名
+		"name": "open_id",
+		// 参数中文名
+		"title": "用户开放ID",
+		// 描述
+		"desction": "用来识别获取用户信息",
+		// 数据类型
+		"type": "string"
+	}]
 }

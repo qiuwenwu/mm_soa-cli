@@ -75,7 +75,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "user_group.name.group_id"
+            "map": ""
         },
         {
             "name": "exp",
@@ -151,7 +151,7 @@
         },
         {
             "name": "name",
-            "title": "名称",
+            "title": "用户名称",
             "description": "",
             "type": "varchar",
             "key": false,
@@ -165,24 +165,6 @@
             "max": 0,
             "decimal": 0,
             "default": "",
-            "map": ""
-        },
-        {
-            "name": "title",
-            "title": "分组标题",
-            "description": "",
-            "type": "varchar",
-            "key": false,
-            "auto": "",
-            "symbol": false,
-            "fill_zero": false,
-            "not_null": 0,
-            "min_length": 0,
-            "max_length": 125,
-            "min": 0,
-            "max": 0,
-            "decimal": 0,
-            "default": null,
             "map": ""
         },
         {
@@ -216,7 +198,7 @@
             "min_length": 0,
             "max_length": 0,
             "min": 0,
-            "max": 0,
+            "max": 255,
             "decimal": 0,
             "default": null,
             "map": ""

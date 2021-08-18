@@ -67,7 +67,7 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ get_name(list_app_type, o.type_id, 'type_id', 'name') }}</span>
+												<span>{{ $get_name(list_app_type, o.type_id, 'type_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ o.name }}</span>

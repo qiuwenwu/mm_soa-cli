@@ -90,7 +90,7 @@
 										</dd>
 										<dt class="required">收藏者</dt>
 										<dd>
-											<mm_textarea v-model="form.collecter" type="text" placeholder="多个收藏者用”,“分隔"></mm_textarea>
+											<control_textarea v-model="form.collecter" type="text" placeholder="多个收藏者用”,“分隔"></control_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -118,7 +118,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/article?",
+				url_add: "/apis/cms/article?method=add",
+				url_set: "/apis/cms/article?method=set",
 				url_get_obj: "/apis/cms/article?method=get_obj",
 				field: "article_id",
 				query: {

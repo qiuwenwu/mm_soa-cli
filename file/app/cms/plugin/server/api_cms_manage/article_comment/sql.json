@@ -5,7 +5,7 @@
     "key": "comment_id",
     "orderby_default": "`comment_id` desc",
     "field_obj": "`comment_id`,`available`,`score`,`article_id`,`user_id`,`name`,`tag`,`content`,`reply`",
-    "field_default": "`comment_id`,`available`,`score`,`display`,`article_id`,`user_id`,`name`,`tag`",
+    "field_default": "`comment_id`,`available`,`score`,`display`,`article_id`,`user_id`,`name`,`tag`,`reply`",
     "query": {
         "score_min": "`score` >= {0}",
         "score_max": "`score` <= {0}",

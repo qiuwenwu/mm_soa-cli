@@ -18,32 +18,33 @@ async function main(ctx, db) {
 	if (!password) {
 		return $.ret.error(30002, "密码(password)不能为空");
 	}
-	var list = [];
+	var user;
 	// 获取登录方式
 	var method = params["method"];
 	// $.log.debug('登录方式', method);
 	if (!method) {
 		// 如果登录方式默认，则用常规登录方式
 		db.table = "user_account";
+		db.key = "user_id";
 	
 		var username = params["username"];
 		if (username) {
 			// 使用用户名登录
-			list = await db.get({
+			user = await db.getObj({
 				username
 			});
 		} else {
 			var email = params["email"];
 			if (email) {
 				// 使用邮箱登录
-				list = await db.get({
+				user = await db.getObj({
 					email
 				});
 			} else {
 				var phone = params["phone"];
 				if (phone) {
 					// 使用手机号码登录
-					list = await db.get({
+					user = await db.getObj({
 						phone
 					});
 				} else {
@@ -99,44 +100,73 @@ async function main(ctx, db) {
 		if (arr.length > 0) {
 			var o = arr[0];
 			db.table = "user_user";
-			list = await db.get({
+			user = await db.getObj({
 				user_id: o.user_id
 			});
 		}
 	}
-	if (list.length === 0) {
+	if (!user) {
 		return $.ret.error(10000, '账号不存在');
 	} else {
-		var u = list[0];
-	
+		
 		// 判断密码是否正确
-		var pass = (password + u.salt).md5();
-		if (u.password !== pass) {
+		var pass = (password + user.salt).md5();
+		if (user.password !== pass) {
 			return $.ret.error(31000, '密码不正确');
 		} else {
 			var ip = ctx.ip.replace('::ffff:', '');
 			// 记录当前登录所用的IP地址
 			db.set({
-				user_id: u.user_id
+				user_id: user.user_id
 			}, {
 				login_ip: ip
 			});
-	
+			var info = params.info;
+			if(info)
+			{
+				var json_info = JSON.parse(info);
+				user.nickname = json_info.nickName;
+				user.avatar = json_info.avatarUrl;
+			}
+			var u = Object.assign({}, user);
 			delete u.password;
 			delete u.salt;
 			delete u.create_time;
-			ctx.session.user = u;
-			var user = Object.assign({}, u);
+			ctx.session.user = user;
+			// var user = Object.assign({}, u);
 			// 自动生成的uuid是通过IP和浏览器信息加密而成，如果需要解密确认其身份，可再加上user_id加密，自行生成uuid
 			var body = $.ret.body({
 				token: ctx.session.uuid,
 				user: user,
 				ip: ip
 			});
+			bind(db,params,user);
 			// $.log.debug('入场', body);
 			return body
 		}
 	}
 };
+
+async function bind(db,body,user){
+	var open_id = body.open_id;
+	var user_id = user.user_id;
+	if(open_id){
+		var way = body.way || "wechat";
+		db.table = way + "_info";
+		var info = await db.getObj({open_id});
+		if(info){
+			var obj = {
+				user_id,
+				open_id,
+				info: body.info
+			}
+			db.set({open_id},obj);
+		}else{
+			db.add({user_id,open_id,info:body.info});
+		}
+		return user;
+	}
+}
+
 
 exports.main = main;

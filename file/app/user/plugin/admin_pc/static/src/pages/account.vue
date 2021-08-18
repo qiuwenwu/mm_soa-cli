@@ -115,6 +115,9 @@
 												<control_reverse title="头像地址" v-model="query.orderby" field="avatar" :func="search"></control_reverse>
 											</th>
 											<th>
+												<control_reverse title="好友" v-model="query.orderby" field="friends" :func="search"></control_reverse>
+											</th>
+											<th>
 												<control_reverse title="创建时间" v-model="query.orderby" field="create_time" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -138,13 +141,13 @@
 												<span>{{ o.mc }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_group, o.group_id, 'group_id', 'name') }}</span>
+												<span>{{ $get_name(list_group, o.group_id, 'group_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_admin, o.admin_id, 'admin_id', 'name') }}</span>
+												<span>{{ $get_name(list_admin, o.admin_id, 'admin_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_account, o.referee_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.referee_id, 'user_id', 'nickname') }}</span>
 											</td>
 											<td>
 												<span>{{ $to_time(o.login_time, 'yyyy-MM-dd hh:mm') }}</span>
@@ -180,6 +183,9 @@
 												<img class="avatar" :src="o.avatar" alt="头像地址" />
 											</td>
 											<td>
+												<span>{{ o.friends }}</span>
+											</td>
+											<td>
 												<span>{{ $to_time(o.create_time, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
@@ -213,7 +219,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>账户状态</dt>
 						<dd>
@@ -293,6 +299,12 @@
 					'mc_min': 0,
 					// 商家级别——最大值
 					'mc_max': 0,
+					// 所在用户组
+					'group_id': '',
+					// 所在管理组
+					'admin_id': '',
+					// 推荐人ID
+					'referee_id': '',
 					// 上次登录时间——开始时间
 					'login_time_min': '',
 					// 上次登录时间——结束时间

@@ -40,10 +40,6 @@
 										<dd>
 											<control_input v-model="form.template" :minlength="0" :maxlength="64" placeholder="频道和文章都使用的样式" />
 										</dd>
-										<dt>频道标题</dt>
-										<dd>
-											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
-										</dd>
 										<dt>描述</dt>
 										<dd>
 											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该频道的作用" />
@@ -55,6 +51,10 @@
 										<dt>外链地址</dt>
 										<dd>
 											<control_input v-model="form.url" :minlength="0" :maxlength="255" placeholder="如果该频道是跳转到其他网站的情况下，就在该URL上设置" />
+										</dd>
+										<dt>频道标题</dt>
+										<dd>
+											<control_input v-model="form.title" :minlength="0" :maxlength="125" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -82,7 +82,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/article_channel?",
+				url_add: "/apis/cms/article_channel?method=add",
+				url_set: "/apis/cms/article_channel?method=set",
 				url_get_obj: "/apis/cms/article_channel?method=get_obj",
 				field: "channel_id",
 				query: {
@@ -97,10 +98,10 @@
 					"city_id": 0,
 					"name": '',
 					"template": '',
-					"title": '',
 					"description": '',
 					"icon": '',
 					"url": '',
+					"title": '',
 				},
 				// 是否启用
 				'arr_available':["否","是"],

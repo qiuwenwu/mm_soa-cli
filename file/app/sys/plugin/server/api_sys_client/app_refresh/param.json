@@ -32,6 +32,7 @@
     "get": {
         "query": [
             "refresh_id",
+            "user_id",
             "time_create_min",
             "time_create_max",
             "time_update_min",

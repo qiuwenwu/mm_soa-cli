@@ -1,0 +1,163 @@
+{
+    "name": "dev_component",
+    "title": "组件",
+    "add": {
+        "body": [
+            "type_id",
+            "page_id",
+            "num",
+            "title",
+            "description"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "component_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "component_id",
+            "num_min",
+            "num_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "type_id",
+            "page_id",
+            "num",
+            "num_add",
+            "name",
+            "title",
+            "description"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "component_id",
+            "num_min",
+            "num_max",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "component_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "component_id",
+            "title": "组件ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "type_id",
+            "title": "组件分类ID",
+            "description": "(dev_component_type)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 30000
+            }
+        },
+        {
+            "name": "page_id",
+            "title": "适用的页面",
+            "description": "(dev_page)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num",
+            "title": "使用次数",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num_min",
+            "title": "使用次数——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num_max",
+            "title": "使用次数——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "组件名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索组件名称(name)、标题(title)、描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

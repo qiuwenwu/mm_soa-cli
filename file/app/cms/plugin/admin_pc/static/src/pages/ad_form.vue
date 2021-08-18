@@ -126,7 +126,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/ad?",
+				url_add: "/apis/cms/ad?method=add",
+				url_set: "/apis/cms/ad?method=set",
 				url_get_obj: "/apis/cms/ad?method=get_obj",
 				field: "ad_id",
 				query: {

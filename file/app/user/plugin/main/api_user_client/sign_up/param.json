@@ -23,8 +23,8 @@
 			"title": "密码",
 			"type": "string",
 			"string": {
-				"min": 5,
-				"max": 16,
+				"min": 32,
+				"max": 32,
 				"format": "password",
 				"different": "username"
 			}

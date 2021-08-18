@@ -72,6 +72,8 @@
             "idcard_state_max",
             "age_min",
             "age_max",
+            "province_id",
+            "city_id",
             "birthday_min",
             "birthday_max",
             "name",

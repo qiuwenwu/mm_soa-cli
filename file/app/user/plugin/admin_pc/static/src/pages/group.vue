@@ -15,12 +15,8 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="名称 / 分组标题 / 描述"
+											<control_input v-model="query.keyword" title="关键词" desc="用户名称 / 描述"
 											 @blur="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.next_group_id" title="下级用户组" :options="$to_kv(list_group, 'group_id', 'name')"
-											 @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -50,7 +46,7 @@
 												<control_reverse title="等级划分" v-model="query.orderby" field="level" :func="search"></control_reverse>
 											</th>
 											<th>
-												<control_reverse title="下级用户组" v-model="query.orderby" field="next_group_id" :func="search"></control_reverse>
+												<control_reverse title="下级用户组ID" v-model="query.orderby" field="next_group_id" :func="search"></control_reverse>
 											</th>
 											<th>
 												<control_reverse title="升级所需经验" v-model="query.orderby" field="exp" :func="search"></control_reverse>
@@ -65,13 +61,13 @@
 												<control_reverse title="应用" v-model="query.orderby" field="app" :func="search"></control_reverse>
 											</th>
 											<th>
-												<control_reverse title="名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="分组标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
+												<control_reverse title="用户名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th>
 												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											</th>
+											<th>
+												<control_reverse title="图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -88,7 +84,7 @@
 												<span>{{ o.level }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_group, o.next_group_id, 'group_id', 'name') }}</span>
+												<span>{{ o.next_group_id }}</span>
 											</td>
 											<td>
 												<span>{{ o.exp }}</span>
@@ -106,10 +102,10 @@
 												<span>{{ o.name }}</span>
 											</td>
 											<td>
-												<span>{{ o.title }}</span>
+												<span>{{ o.description }}</span>
 											</td>
 											<td>
-												<span>{{ o.description }}</span>
+												<img class="icon" :src="o.icon" alt="图标" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./group_form?group_id=' + o[field]">修改</mm_btn>
@@ -142,12 +138,8 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
-						<dt>下级用户组</dt>
-						<dd>
-							<control_select v-model="form.next_group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
-						</dd>
 					</dl>
 				</div>
 				<div class="card_foot">
@@ -194,6 +186,8 @@
 					'level_min': 0,
 					// 等级划分——最大值
 					'level_max': 0,
+					// 下级用户组ID
+					'next_group_id': 0,
 					// 升级所需经验——最小值
 					'exp_min': 0,
 					// 升级所需经验——最大值
@@ -206,10 +200,8 @@
 					'bonus_min': 0,
 					// 奖励比例——最大值
 					'bonus_max': 0,
-					// 名称
+					// 用户名称
 					'name': '',
-					// 分组标题
-					'title': '',
 					// 描述
 					'description': '',
 					// 关键词
@@ -220,35 +212,13 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
-				// 下级用户组
-				'list_group':[],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
-			/**
-			 * 获取下级用户组
-			 * @param {query} 查询条件
-			 */
-			get_group(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "group_id,name"
-					};
-				}
-				this.$get('~/apis/user/group?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_group.clear();
-						_this.list_group.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取下级用户组
-			this.get_group();
 		}
 	}
 </script>

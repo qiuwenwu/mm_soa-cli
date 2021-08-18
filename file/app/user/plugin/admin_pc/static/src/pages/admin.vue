@@ -15,12 +15,8 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="名称 / 描述"
+											<control_input v-model="query.keyword" title="关键词" desc="管理组名称 / 描述"
 											 @blur="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.father_id" title="上级" :options="$to_kv(list_admin, 'admin_id', 'name')"
-											 @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -44,19 +40,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
 											<th>
-												<control_reverse title="上级" v-model="query.orderby" field="father_id" :func="search"></control_reverse>
-											</th>
-											<th>
 												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
 											<th>
-												<control_reverse title="名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
+												<control_reverse title="分类" v-model="query.orderby" field="type" :func="search"></control_reverse>
 											</th>
 											<th>
-												<control_reverse title="部门" v-model="query.orderby" field="department" :func="search"></control_reverse>
+												<control_reverse title="管理组名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th>
 												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											</th>
+											<th>
+												<control_reverse title="图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -67,19 +63,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ get_name(list_admin, o.father_id, 'admin_id', 'name') }}</span>
+												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
+												<span>{{ o.type }}</span>
 											</td>
 											<td>
 												<span>{{ o.name }}</span>
 											</td>
 											<td>
-												<span>{{ o.department }}</span>
+												<span>{{ o.description }}</span>
 											</td>
 											<td>
-												<span>{{ o.description }}</span>
+												<img class="icon" :src="o.icon" alt="图标" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./admin_form?admin_id=' + o[field]">修改</mm_btn>
@@ -112,12 +108,8 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
-						<dt>上级</dt>
-						<dd>
-							<control_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
-						</dd>
 					</dl>
 				</div>
 				<div class="card_foot">
@@ -160,7 +152,7 @@
 					'display_min': 0,
 					// 显示顺序——最大值
 					'display_max': 0,
-					// 名称
+					// 管理组名称
 					'name': '',
 					// 描述
 					'description': '',
@@ -172,35 +164,13 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
-				// 上级
-				'list_admin':[],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
-			/**
-			 * 获取上级
-			 * @param {query} 查询条件
-			 */
-			get_admin(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "admin_id,name,father_id"
-					};
-				}
-				this.$get('~/apis/user/admin?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_admin.clear();
-						_this.list_admin.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取上级
-			this.get_admin();
 		}
 	}
 </script>

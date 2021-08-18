@@ -10,7 +10,7 @@
 					<nav_side></nav_side>
 				</mm_warp>
 			</mm_side>
-			<header :style="'width: calc(100% -' + width + 'px)'">
+			<header class="header" :style="'width: calc(100% -' + width + 'px)'">
 				<mm_warp>
 					<mm_container>
 						<mm_row>
@@ -186,8 +186,8 @@
 		background: #fff;
 	}
 
-	.mm_page>header~main {
-		margin-top: 4.5rem;
+	.mm_page>.header~main {
+		padding-top: 4.5rem;
 	}
 	
 	.mm_filter {
@@ -285,7 +285,7 @@
 		clear: both;
 	}
 
-	.mm_page>footer .mm_warp {
+	.mm_page>.footer .mm_warp {
 		line-height: 2rem;
 	}
 

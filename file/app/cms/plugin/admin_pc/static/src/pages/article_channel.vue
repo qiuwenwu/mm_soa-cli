@@ -15,28 +15,28 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="频道名称 / 频道标题 / 描述"
-											 @blur="search()" />
+											<control_input v-model="query.keyword" title="关键词" desc="频道名称 / 描述 / 频道标题"
+											  />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.available" title="是否启用" :options="$to_kv(arr_available)" @change="search()" />
+											<control_select v-model="query.available" title="是否启用" :options="$to_kv(arr_available)" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.hide" title="是否隐藏" :options="$to_kv(arr_hide)" @change="search()" />
+											<control_select v-model="query.hide" title="是否隐藏" :options="$to_kv(arr_hide)" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.can_comment" title="是否可评论" :options="$to_kv(arr_can_comment)" @change="search()" />
+											<control_select v-model="query.can_comment" title="是否可评论" :options="$to_kv(arr_can_comment)" />
 										</mm_item>
 										<mm_item>
 											<control_select v-model="query.father_id" title="上级" :options="$to_kv(list_article_channel, 'channel_id', 'name')"
-											 @change="search()" />
+											 />
 										</mm_item>
 										<mm_item>
 											<control_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
-											 @change="search()" />
+											 />
 										</mm_item>
 										<mm_item>
-											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
+											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();">重置</mm_btn>
 										</mm_item>
 									</mm_list>
 								</mm_form>
@@ -82,13 +82,16 @@
 												<control_reverse title="风格模板" v-model="query.orderby" field="template" :func="search"></control_reverse>
 											</th>
 											<th>
-												<control_reverse title="频道标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
-											</th>
-											<th>
 												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
 											<th>
+												<control_reverse title="频道图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
+											</th>
+											<th>
 												<control_reverse title="外链地址" v-model="query.orderby" field="url" :func="search"></control_reverse>
+											</th>
+											<th>
+												<control_reverse title="频道标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -114,10 +117,10 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_article_channel, o.father_id, 'channel_id', 'name') }}</span>
+												<span>{{ $get_name(list_article_channel, o.father_id, 'channel_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
 												<control_input :auto="true" v-model="o.name" @blur="set(o)" />
@@ -126,13 +129,16 @@
 												<control_input :auto="true" v-model="o.template" @blur="set(o)" />
 											</td>
 											<td>
-												<control_input :auto="true" v-model="o.title" @blur="set(o)" />
-											</td>
-											<td>
 												<control_input :auto="true" v-model="o.description" @blur="set(o)" />
 											</td>
 											<td>
+												<img class="icon" :src="o.icon" alt="频道图标" />
+											</td>
+											<td>
 												<control_input :auto="true" v-model="o.url" @blur="set(o)" />
+											</td>
+											<td>
+												<control_input :auto="true" v-model="o.title" @blur="set(o)" />
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./article_channel_form?channel_id=' + o[field]">修改</mm_btn>
@@ -153,7 +159,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>是否启用</dt>
 						<dd>
@@ -225,10 +231,10 @@
 					'display_max': 0,
 					// 频道名称
 					'name': '',
-					// 频道标题
-					'title': '',
 					// 描述
 					'description': '',
+					// 频道标题
+					'title': '',
 					// 关键词
 					'keyword': '',
 					//排序
@@ -288,6 +294,15 @@
 					}
 				});
 			},
+			/**
+			 * 获取列表之前
+			 * @param {Object} param 参数
+			 */
+			get_list_before(param){
+				delete param.page;
+				param.size = "0";
+				return param;
+			}
 		},
 		created() {
 			// 获取上级

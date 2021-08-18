@@ -358,11 +358,11 @@
 					submit() {
 						$.http.post("/api/user/message?method=add", this.form, function(res) {
 							if (res.result) {
-								$.toast(res.result.tip);
+								_this.$toast(res.result.tip);
 							} else if (res.error) {
-								$.toast(res.error.message);
+								_this.$toast(res.error.message);
 							} else {
-								$.toast("服务器连接失败！");
+								_this.$toast("服务器连接失败！");
 							}
 						});
 					}

@@ -76,7 +76,7 @@
         {
             "name": "available",
             "title": "是否启用",
-            "description": "启用后才可以看到该导航。(0否|1是)",
+            "description": "启用后才可以看到。(0否|1是)",
             "type": "number",
             "dataType": "tinyint",
             "number": {

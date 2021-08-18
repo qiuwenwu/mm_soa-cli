@@ -116,7 +116,7 @@
 		float: right;
 	}
 
-	.mm_page>header {
+	.header {
 		height: 2.5rem;
 		min-height: 2.5rem;
 		background: #24292e;
@@ -282,8 +282,6 @@
 	}
 
 	.mm_table .mm_btn {
-		height: 1.5rem;
-		line-height: 1.5rem;
 		padding-left: 0.75rem;
 		padding-right: 0.75rem;
 		margin-right: .5rem;

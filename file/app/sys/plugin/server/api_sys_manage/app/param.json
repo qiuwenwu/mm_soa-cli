@@ -89,6 +89,7 @@
             "times_today_max",
             "max_age_min",
             "max_age_max",
+            "user_id",
             "times_count_min",
             "times_count_max",
             "time_update_min",

@@ -10,7 +10,7 @@
 					<nav_side></nav_side>
 				</mm_warp>
 			</mm_side>
-			<header :style="'width: calc(100% -' + width + 'px)'">
+			<header class="header" :style="'width: calc(100% -' + width + 'px)'">
 				<mm_warp>
 					<mm_container>
 						<mm_row>
@@ -211,8 +211,8 @@
 		background: #fff;
 	}
 
-	.mm_page>header~main {
-		margin-top: 4.5rem;
+	.mm_page>.header~main {
+		padding-top: 4.5rem;
 	}
 
 	.bar_filter {
@@ -295,12 +295,8 @@
 
 	.bar_action .btn_small .mm_btn {
 		font-size: 0.625rem;
-		height: 1.5rem;
-		line-height: 1.5rem;
-		padding-left: var(--padding_mini);
-		padding-right: var(--padding_mini);
+		padding: var(--padding_mini) var(--padding_small);
 		position: relative;
-		top: 0.25rem
 	}
 
 	.bar_action::before,
@@ -310,7 +306,7 @@
 		clear: both;
 	}
 
-	.mm_page>footer .mm_warp {
+	.mm_page>.footer .mm_warp {
 		line-height: 2rem;
 	}
 

@@ -1,5 +1,5 @@
 // 使用api管理器
-var api = $.api_admin('bbs_manage', 'bbs_manage');
+var api = $.api_admin('bbs_manage', '论坛管理端');
 // 首次启动更新api接口;
 api.update();
 

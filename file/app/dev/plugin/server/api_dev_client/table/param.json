@@ -1,0 +1,177 @@
+{
+    "name": "dev_table",
+    "title": "数据表",
+    "add": {
+        "body": [
+            "app_id",
+            "group_id",
+            "num",
+            "title",
+            "description",
+            "keywords"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "table_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "table_id",
+            "num_min",
+            "num_max",
+            "name",
+            "title",
+            "description",
+            "keywords",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "app_id",
+            "group_id",
+            "num",
+            "num_add",
+            "name",
+            "title",
+            "description",
+            "keywords"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "table_id",
+            "num_min",
+            "num_max",
+            "name",
+            "title",
+            "description",
+            "keywords",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "table_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "table_id",
+            "title": "数据表ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "app_id",
+            "title": "适用的应用ID",
+            "description": "(dev_app.name.app_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "group_id",
+            "title": "数据表分组ID",
+            "description": "(dev_table_group.name.group_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num",
+            "title": "使用次数",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num_min",
+            "title": "使用次数——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "num_max",
+            "title": "使用次数——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "表名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "description",
+            "title": "描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keywords",
+            "title": "关键词",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索表名(name)、标题(title)、描述(description)、关键词(keywords)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

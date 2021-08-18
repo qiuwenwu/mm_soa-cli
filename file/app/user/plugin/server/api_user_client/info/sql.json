@@ -5,8 +5,8 @@
     "key": "user_id",
     "orderby_default": "`user_id` desc",
     "field_obj": "`user_id`,`sex`,`idcard_state`,`age`,`province_id`,`city_id`,`birthday`,`name`,`job`,`school`,`major`,`idcard`,`company_address`,`address`,`job_scope`,`company_business`,`idcard_img`",
-    "field_default": "`user_id`,`sex`,`idcard_state`,`age`,`province_id`,`city_id`,`birthday`,`name`,`job`,`school`,`major`,`idcard`,`company_address`,`address`,`job_scope`,`company_business`",
-    "method": "get get_obj",
+    "field_default": "`user_id`,`sex`,`idcard_state`,`age`,`province_id`,`city_id`,`birthday`,`name`,`job`,`school`,`major`,`idcard`,`company_address`,`address`,`job_scope`,`company_business`,`idcard_img`",
+    "method": "get get_obj avg sum count",
     "query": {
         "address": "`address` like '%{0}%'",
         "age_min": "`age` >= {0}",

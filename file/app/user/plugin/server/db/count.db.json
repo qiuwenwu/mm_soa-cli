@@ -290,7 +290,7 @@
             "min": 0,
             "max": 0,
             "decimal": 8,
-            "default": "0.00000000",
+            "default": "0",
             "map": ""
         }
     ]

@@ -101,7 +101,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/user/info?",
+				url_add: "/apis/user/info?method=add",
+				url_set: "/apis/user/info?method=set",
 				url_get_obj: "/apis/user/info?method=get_obj",
 				field: "user_id",
 				query: {

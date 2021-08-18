@@ -4,8 +4,8 @@
     "table": "cms_article_channel",
     "key": "channel_id",
     "orderby_default": "`channel_id` desc",
-    "field_obj": "`channel_id`,`available`,`hide`,`can_comment`,`father_id`,`city_id`,`name`,`template`,`title`,`description`,`icon`,`url`",
-    "field_default": "`channel_id`,`available`,`hide`,`can_comment`,`display`,`father_id`,`city_id`,`name`,`template`,`title`,`description`,`url`",
+    "field_obj": "`channel_id`,`available`,`hide`,`can_comment`,`father_id`,`city_id`,`name`,`template`,`description`,`icon`,`url`,`title`",
+    "field_default": "`channel_id`,`available`,`hide`,`can_comment`,`display`,`father_id`,`city_id`,`name`,`template`,`description`,`icon`,`url`,`title`",
     "query": {
         "display_min": "`display` >= {0}",
         "display_max": "`display` <= {0}",
@@ -14,7 +14,7 @@
         "description": "`description` like '%{0}%'",
         "icon": "`icon` like '%{0}%'",
         "url": "`url` like '%{0}%'",
-        "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')",
+        "keyword": "(`name` like '%{0}%' || `description` like '%{0}%' || `title` like '%{0}%')",
         "title": "`title` like '%{0}%'"
     },
     "update": {

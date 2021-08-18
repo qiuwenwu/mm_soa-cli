@@ -97,7 +97,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/user/count?",
+				url_add: "/apis/user/count?method=add",
+				url_set: "/apis/user/count?method=set",
 				url_get_obj: "/apis/user/count?method=get_obj",
 				field: "user_id",
 				query: {

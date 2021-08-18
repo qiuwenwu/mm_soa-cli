@@ -63,6 +63,7 @@
             "area_max",
             "sex",
             "name",
+            "user_id",
             "keyword"
         ],
         "query_required": []

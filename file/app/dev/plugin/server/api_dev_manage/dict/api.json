@@ -1,0 +1,18 @@
+{
+    "name": "dev_dict_manage",
+    "title": "开发字典",
+    "description": "用于检索英文",
+    "path": "/apis/dev/dict",
+    "method": "ALL",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true,
+    "oauth": {
+        "scope": true,
+        "signIn": true,
+        "gm": 2,
+        "user_admin": []
+    }
+}

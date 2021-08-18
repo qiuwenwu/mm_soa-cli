@@ -5,7 +5,7 @@
     "key": "user_id",
     "orderby_default": "`user_id` desc",
     "field_obj": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`",
-    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`create_time`",
+    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`,`create_time`",
     "query": {
         "avatar": "`avatar` like '%{0}%'",
         "create_time_min": "`create_time` >= '{0}'",

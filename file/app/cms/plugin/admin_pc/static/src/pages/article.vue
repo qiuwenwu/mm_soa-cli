@@ -142,19 +142,19 @@
 												<span v-bind:class="arr_color[o.state]">{{arr_state[o.state] }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_article_type, o.type_id, 'type_id', 'name') }}</span>
+												<span>{{ $get_name(list_article_type, o.type_id, 'type_id', 'name') }}</span>
 											</td>
 											<td>
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_article_channel, o.channel_id, 'channel_id', 'name') }}</span>
+												<span>{{ $get_name(list_article_channel, o.channel_id, 'channel_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ o.hot }}</span>
@@ -229,7 +229,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>是否启用</dt>
 						<dd>

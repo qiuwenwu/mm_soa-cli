@@ -1,5 +1,5 @@
-[{
-		"name": "wechat",
+{
+	"wechat": {
 		"client_id": "",
 		"client_secret": "",
 		"token": "",
@@ -15,8 +15,23 @@
 			"open_id": "openid"
 		}
 	},
-	{
-		"name": "qq",
+	"wechat_mini": {
+		"client_id": "",
+		"client_secret": "",
+		"token": "",
+		"scope": "snsapi_userinfo",
+		"url_code": "https://open.weixin.qq.com/connect/oauth2/authorize?appid={client_id}&redirect_uri={redirect_uri}&response_type=code&scope={scope}&state={state}#wechat_redirect",
+		"url_token": "https://api.weixin.qq.com/sns/jscode2session?appid={client_id}&secret={client_secret}&js_code={code}&grant_type=authorization_code",
+		"url_user_info": "https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={open_id}&lang=zh_CN",
+		"url_check_token": "https://api.weixin.qq.com/sns/auth?access_token={access_token}&openid={open_id}",
+		"url_refresh_token": "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={client_id}&grant_type=refresh_token&refresh_token={refresh_token}",
+		"dict": {
+			"client_id": "appid",
+			"client_secret": "appsecret",
+			"open_id": "openid"
+		}
+	},
+	"qq": {
 		"client_id": "",
 		"client_secret": "",
 		"scope": "get_user_info",
@@ -30,8 +45,7 @@
 			"access_token": "client_secret"
 		}
 	},
-	{
-		"name": "taobao",
+	"taobao": {
 		"client_id": "",
 		"client_secret": "",
 		"url_code": "https://oauth.taobao.com/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}&view=web",
@@ -44,8 +58,7 @@
 			"open_id": "taobao_user_id"
 		}
 	},
-	{
-		"name": "sina",
+	"sina": {
 		"client_id": "",
 		"client_secret": "",
 		"url_code": "",
@@ -54,8 +67,7 @@
 		"url_check_token": "",
 		"url_refresh_token": ""
 	},
-	{
-		"name": "github",
+	"github": {
 		"client_id": "",
 		"client_secret": "",
 		"url_code": "",
@@ -64,8 +76,7 @@
 		"url_check_token": "",
 		"url_refresh_token": ""
 	},
-	{
-		"name": "gitee",
+	"gitee": {
 		"client_id": "",
 		"client_secret": "",
 		"url_code": "",
@@ -74,4 +85,4 @@
 		"url_check_token": "",
 		"url_refresh_token": ""
 	}
-]
+}

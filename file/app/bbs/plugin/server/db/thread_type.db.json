@@ -126,7 +126,7 @@
             "min_length": 0,
             "max_length": 0,
             "min": 0,
-            "max": 255,
+            "max": 0,
             "decimal": 0,
             "default": null,
             "map": ""

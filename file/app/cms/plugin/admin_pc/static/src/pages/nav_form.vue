@@ -78,7 +78,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/cms/nav?",
+				url_add: "/apis/cms/nav?method=add",
+				url_set: "/apis/cms/nav?method=set",
 				url_get_obj: "/apis/cms/nav?method=get_obj",
 				field: "nav_id",
 				query: {

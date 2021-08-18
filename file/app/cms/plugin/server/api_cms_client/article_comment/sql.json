@@ -5,8 +5,8 @@
     "key": "comment_id",
     "orderby_default": "`display` asc",
     "field_obj": "`comment_id`,`available`,`score`,`article_id`,`user_id`,`name`,`tag`,`content`,`reply`",
-    "field_default": "`comment_id`,`available`,`score`,`display`,`article_id`,`user_id`,`name`,`tag`",
-    "method": "get get_obj",
+    "field_default": "`comment_id`,`available`,`score`,`display`,`article_id`,`user_id`,`name`,`tag`,`reply`",
+    "method": "get get_obj avg sum count",
     "query": {
         "score_min": "`score` >= {0}",
         "score_max": "`score` <= {0}",

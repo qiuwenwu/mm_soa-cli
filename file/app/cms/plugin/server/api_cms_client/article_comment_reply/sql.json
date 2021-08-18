@@ -1,0 +1,47 @@
+{
+    "name": "cms_article_comment_reply",
+    "title": "文章评论",
+    "table": "cms_article_comment_reply",
+    "key": "reply_id",
+    "orderby_default": "`display` asc",
+    "field_obj": "`reply_id`,`available`,`score`,`comment_id`,`user_id`,`name`,`tag`,`content`",
+    "field_default": "`reply_id`,`available`,`score`,`display`,`comment_id`,`user_id`,`name`,`tag`",
+    "method": "get get_obj avg sum count",
+    "query": {
+        "score_min": "`score` >= {0}",
+        "score_max": "`score` <= {0}",
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "tag": "`tag` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%' || `tag` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {
+        "score_add": "`score` = `score` + {0}",
+        "display_add": "`display` = `display` + {0}"
+    },
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "comment_id",
+            "title": "所属评论",
+            "table": "cms_article_comment",
+            "name": "name"
+        },
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ]
+}

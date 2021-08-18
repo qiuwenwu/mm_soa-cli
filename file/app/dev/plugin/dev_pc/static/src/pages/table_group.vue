@@ -77,10 +77,10 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ get_name(list_table_group, o.father_id, 'group_id', 'name') }}</span>
+												<span>{{ $get_name(list_table_group, o.father_id, 'group_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ get_name(list_app, o.app_id, 'app_id', 'name') }}</span>
+												<span>{{ $get_name(list_app, o.app_id, 'app_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ o.name }}</span>

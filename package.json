@@ -1,6 +1,6 @@
 {
 	"name": "mm_soa-cli",
-	"version": "1.1.7",
+	"version": "1.1.8",
 	"description": "这是用来构建mm_soa服务端用的脚手架工具，用于快速搭建自动化智能网站",
 	"main": "index.js",
 	"bin": {
@@ -33,7 +33,7 @@
 		"commander": "^6.2.0",
 		"download-git-repo": "^3.0.2",
 		"inquirer": "^7.3.3",
-		"mm_expand": "^1.4.9",
+		"mm_expand": "^1.5.1",
 		"ora": "^5.1.0"
 	}
 }

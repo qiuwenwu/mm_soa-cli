@@ -1,0 +1,244 @@
+{
+    "name": "user_power",
+    "title": "管理组",
+    "add": {
+        "body": [
+            "admin_id",
+            "display",
+            "path",
+            "method",
+            "user_add",
+            "user_set",
+            "user_del",
+            "user_get",
+            "field_set",
+            "field_add",
+            "field_del",
+            "field_get"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "power_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "power_id",
+            "display_min",
+            "display_max",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "admin_id",
+            "display",
+            "display_add",
+            "name",
+            "path",
+            "method",
+            "user_add",
+            "user_set",
+            "user_del",
+            "user_get",
+            "field_set",
+            "field_add",
+            "field_del",
+            "field_get"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "power_id",
+            "admin_id",
+            "display_min",
+            "display_max",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "power_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "power_id",
+            "title": "权限ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 9999
+            }
+        },
+        {
+            "name": "admin_id",
+            "title": "管理组ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display",
+            "title": "显示顺序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "显示顺序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "显示顺序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 1000
+            }
+        },
+        {
+            "name": "name",
+            "title": "名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "path",
+            "title": "路由路径",
+            "description": "用来确定访问权限的路由路径",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "method",
+            "title": "方法",
+            "description": "(GET|POST|ALL)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "user_add",
+            "title": "添加权限人",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "user_set",
+            "title": "修改权限人",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "user_del",
+            "title": "删除权限人",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "user_get",
+            "title": "查看权限人",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "field_set",
+            "title": "修改可见字段",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "field_add",
+            "title": "添加可见字段",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "field_del",
+            "title": "删除可见字段",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "field_get",
+            "title": "查询可见字段",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

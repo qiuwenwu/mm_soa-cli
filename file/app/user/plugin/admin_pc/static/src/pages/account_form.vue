@@ -87,7 +87,7 @@
 										</dd>
 										<dt>好友</dt>
 										<dd>
-											<mm_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔"></mm_textarea>
+											<control_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔"></control_textarea>
 										</dd>
 									</dl>
 								</mm_form>
@@ -115,7 +115,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/user/account?",
+				url_add: "/apis/user/account?method=add",
+				url_set: "/apis/user/account?method=set",
 				url_get_obj: "/apis/user/account?method=get_obj",
 				field: "user_id",
 				query: {

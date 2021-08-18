@@ -18,16 +18,6 @@
         "show_add": "`show` = `show` + {0}",
         "display_add": "`display` = `display` + {0}"
     },
-    "format": [
-        {
-            "key": "show",
-            "title": "是否可见",
-            "list": [
-                "仅表单可见",
-                "表单和搜索可见",
-                "均可见"
-            ]
-        }
-    ],
+    "format": [],
     "field_hide": []
 }

@@ -59,6 +59,8 @@
             "score_max",
             "display_min",
             "display_max",
+            "article_id",
+            "user_id",
             "name",
             "tag",
             "content",

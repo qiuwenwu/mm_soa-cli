@@ -11,18 +11,14 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>上级</dt>
+										<dt>分类</dt>
 										<dd>
-											<control_select v-model="form.father_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
+											<control_input v-model="form.type" :minlength="0" :maxlength="12" placeholder="用于区分用户组使用范围" />
 										</dd>
-										<dt class="required">名称</dt>
+										<dt class="required">管理组名称</dt>
 										<dd>
 											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
 											 :required="true" />
-										</dd>
-										<dt>部门</dt>
-										<dd>
-											<control_input v-model="form.department" :minlength="0" :maxlength="12" placeholder="用于区分管理组织结构" />
 										</dd>
 										<dt>描述</dt>
 										<dd>
@@ -58,7 +54,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/user/admin?",
+				url_add: "/apis/user/admin?method=add",
+				url_set: "/apis/user/admin?method=set",
 				url_get_obj: "/apis/user/admin?method=get_obj",
 				field: "admin_id",
 				query: {
@@ -66,39 +63,16 @@
 				},
 				form: {
 					"admin_id": 0,
-					"father_id": 0,
+					"type": '',
 					"name": '',
-					"department": '',
 					"description": '',
 					"icon": '',
 				},
-				// 上级
-				'list_admin':[],
 			}
 		},
 		methods: {
-			/**
-			 * 获取上级
-			 * @param {query} 查询条件
-			 */
-			get_admin(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "admin_id,name,father_id"
-					};
-				}
-				this.$get('~/apis/user/admin?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_admin.clear();
-						_this.list_admin.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取上级
-			this.get_admin();
 		}
 	}
 </script>

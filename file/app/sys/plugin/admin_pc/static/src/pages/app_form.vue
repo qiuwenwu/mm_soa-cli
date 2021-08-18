@@ -72,19 +72,19 @@
 										</dd>
 										<dt>访问绑定IP</dt>
 										<dd>
-											<mm_textarea v-model="form.bind_ip" type="text" placeholder="网站授权时确认重定向网址为已授权IP"></mm_textarea>
+											<control_textarea v-model="form.bind_ip" type="text" placeholder="网站授权时确认重定向网址为已授权IP"></control_textarea>
 										</dd>
 										<dt>允许使用的接口</dt>
 										<dd>
-											<mm_textarea v-model="form.scope" type="text" placeholder="多个接口用”，“分隔"></mm_textarea>
+											<control_textarea v-model="form.scope" type="text" placeholder="多个接口用”，“分隔"></control_textarea>
 										</dd>
 										<dt>不允许使用的接口</dt>
 										<dd>
-											<mm_textarea v-model="form.scope_not" type="text" placeholder="“多个接口用”，“分隔"></mm_textarea>
+											<control_textarea v-model="form.scope_not" type="text" placeholder="“多个接口用”，“分隔"></control_textarea>
 										</dd>
 										<dt>授权的用户</dt>
 										<dd>
-											<mm_textarea v-model="form.users" type="text" placeholder=""></mm_textarea>
+											<control_textarea v-model="form.users" type="text" placeholder=""></control_textarea>
 										</dd>
 									</dl>
 								</mm_form>

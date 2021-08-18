@@ -8,7 +8,7 @@ async function main(ctx, db) {
 	// 获取请求参数
 	if (ctx.session.user) {
 		var user = Object.assign({}, ctx.session.user);
-		delete user.user_id;
+		// delete user.user_id;
 		return $.ret.body(user);
 	} else {
 		var token = ctx.headers[$.dict.token];
@@ -18,12 +18,12 @@ async function main(ctx, db) {
 				var type = typeof(u);
 				if (type === "string") {
 					var o = u.toJson();
-					delete o.user.user_id;
+					// delete o.user.user_id;
 					return $.ret.body(o.user);
 				} else if (type === "object") {
 					if (Object.keys(u).length > 0) {
 						var o = Object.assign({}, u);
-						delete o.user.user_id;
+						// delete o.user.user_id;
 						return $.ret.body(o.user);
 					}
 				}
