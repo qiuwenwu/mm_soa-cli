@@ -272,7 +272,7 @@
             "min": 0,
             "max": 0,
             "decimal": 0,
-            "default": "",
+            "default": "未命名",
             "map": ""
         },
         {
@@ -417,6 +417,24 @@
             "max": 0,
             "decimal": 0,
             "default": "CURRENT_TIMESTAMP",
+            "map": ""
+        },
+        {
+            "name": "wallet_address",
+            "title": "钱包地址",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 0,
+            "min_length": 0,
+            "max_length": 70,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": null,
             "map": ""
         }
     ]

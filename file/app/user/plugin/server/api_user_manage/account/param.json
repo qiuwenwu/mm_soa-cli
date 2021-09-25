@@ -18,7 +18,8 @@
             "login_ip",
             "signature",
             "avatar",
-            "friends"
+            "friends",
+            "wallet_address"
         ],
         "body_required": [
             "salt",
@@ -79,7 +80,8 @@
             "login_ip",
             "signature",
             "avatar",
-            "friends"
+            "friends",
+            "wallet_address"
         ],
         "body_required": [],
         "body_not": []
@@ -511,6 +513,16 @@
             "string": {
                 "notEmpty": true,
                 "format": "datetime"
+            }
+        },
+        {
+            "name": "wallet_address",
+            "title": "钱包地址",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 70
             }
         },
         {

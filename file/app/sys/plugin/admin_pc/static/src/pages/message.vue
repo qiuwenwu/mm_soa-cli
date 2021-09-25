@@ -39,8 +39,17 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_title">
 												<control_reverse title="留言标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
+											</th>
+											<th class="th_note">
+												<control_reverse title="留言内容" v-model="query.orderby" field="note" :func="search"></control_reverse>
+											</th>
+											<th class="th_time_create">
+												<control_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
+											</th>
+											<th class="th_time_update">
+												<control_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -52,6 +61,15 @@
 											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.title }}</span>
+											</td>
+											<td>
+												<span>{{ o.note }}</span>
+											</td>
+											<td>
+												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
+											</td>
+											<td>
+												<span>{{ $to_time(o.time_update, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./message_form?message_id=' + o[field]">修改</mm_btn>
@@ -84,7 +102,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 					</dl>
 				</div>
@@ -126,6 +144,14 @@
 					'message_id': 0,
 					// 留言标题
 					'title': '',
+					// 创建时间——开始时间
+					'time_create_min': '',
+					// 创建时间——结束时间
+					'time_create_max': '',
+					// 更新时间——开始时间
+					'time_update_min': '',
+					// 更新时间——结束时间
+					'time_update_max': '',
 					// 关键词
 					'keyword': '',
 					//排序

@@ -1,0 +1,63 @@
+{
+	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
+	"filter": true,
+	// get请求
+	"get": {
+		// 正文必填参数
+		"query_required": ["username", "password", "confirm_password", "phone", "code"]
+	},
+	// post请求
+	"post": {
+		// 正文必填参数
+		"body_required": ["username", "password", "confirm_password", "phone", "code"]
+	},
+	// 校验列表
+	"list": [{
+			"name": "username",
+			"title": "用户名",
+			"type": "string",
+			"string": {
+				"format": "username"
+			}
+		},
+		{
+			"name": "password",
+			"title": "密码",
+			"type": "string",
+			"string": {
+				"format": "password",
+				"different": "username"
+			}
+		},
+		{
+			"name": "phone",
+			"title": "手机",
+			"type": "string",
+			"string": {
+				"format": "phone"
+			}
+		},
+		{
+			"name": "code",
+			"title": "验证码",
+			"type": "string"
+		},
+		{
+			"name": "email",
+			"title": "邮箱",
+			"type": "string",
+			"string": {
+				"format": "email"
+			}
+		},
+		{
+			"name": "confirm_password",
+			"title": "确认密码",
+			"type": "string",
+			"string": {
+				"format": "password",
+				"identical": "password"
+			}
+		}
+	]
+}

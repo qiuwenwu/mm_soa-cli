@@ -39,19 +39,19 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_title">
 												<control_reverse title="留言标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_phone">
 												<control_reverse title="留言者手机" v-model="query.orderby" field="phone" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_email">
 												<control_reverse title="留言者邮箱" v-model="query.orderby" field="email" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="留言者姓名" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_time_create">
 												<control_reverse title="留言时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>

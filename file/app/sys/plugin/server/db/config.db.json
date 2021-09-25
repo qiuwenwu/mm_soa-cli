@@ -28,7 +28,7 @@
             "title": "变量名",
             "description": "",
             "type": "varchar",
-            "key": false,
+            "key": true,
             "auto": "",
             "symbol": false,
             "fill_zero": false,
@@ -58,6 +58,24 @@
             "decimal": 0,
             "default": "string",
             "map": "string,文本型|number,数字型|boolean,布尔型"
+        },
+        {
+            "name": "control",
+            "title": "控件类型",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 32,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": "",
+            "map": "input,输入框|number,数字框|select,选择框|checkbox,复选框|switch,开关|textarea,多文本框|radio,单选框"
         },
         {
             "name": "title",

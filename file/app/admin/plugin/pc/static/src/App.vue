@@ -46,7 +46,7 @@
 			</header>
 
 			<router-view :style="'width: calc(100% -' + width + 'px)'"></router-view>
-			<footer :style="'width: calc(100% -' + width + 'px)'">
+			<!-- <footer :style="'width: calc(100% -' + width + 'px)'">
 				<div class="mm_warp" id="copyright">
 					<div class="mm_container">
 						<div class="mm_row">
@@ -59,7 +59,7 @@
 						</div>
 					</div>
 				</div>
-			</footer>
+			</footer> -->
 			<div class="mm_modal hide">
 				<div class="popup"></div>
 				<div class="mask"></div>

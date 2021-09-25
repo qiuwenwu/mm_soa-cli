@@ -39,19 +39,19 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_display">
 												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_type">
 												<control_reverse title="分类" v-model="query.orderby" field="type" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="管理组名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_description">
 												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_icon">
 												<control_reverse title="图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>

@@ -30,6 +30,28 @@
             }
         },
         {
+            "name": "user_address",
+            "path": "/user/address",
+            "component": "/user/admin_pc/src/pages/address.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "user_address_form",
+            "path": "/user/address_form",
+            "component": "/user/admin_pc/src/pages/address_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
             "name": "user_admin",
             "path": "/user/admin",
             "component": "/user/admin_pc/src/pages/admin.vue",
@@ -138,6 +160,50 @@
                 "gm": 2,
                 "user_admin": []
             }
+        },
+        {
+            "name": "user_power",
+            "path": "/user/power",
+            "component": "/user/admin_pc/src/pages/power.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "user_power_form",
+            "path": "/user/power_form",
+            "component": "/user/admin_pc/src/pages/power_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "user_sns",
+            "path": "/user/sns",
+            "component": "/user/admin_pc/src/pages/sns.vue",
+            "level": 3,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
+        },
+        {
+            "name": "user_sns_form",
+            "path": "/user/sns_form",
+            "component": "/user/admin_pc/src/pages/sns_form.vue",
+            "level": 4,
+            "oauth": {
+                "signIn": true,
+                "gm": 2,
+                "user_admin": []
+            }
         }
     ],
     "top": [],
@@ -159,6 +225,12 @@
                     "show": false,
                     "name": "user_account",
                     "url": "/user/account"
+                },
+                {
+                    "title": "收货地址",
+                    "show": false,
+                    "name": "user_address",
+                    "url": "/user/address"
                 },
                 {
                     "title": "管理组",
@@ -189,6 +261,18 @@
                     "show": false,
                     "name": "user_message",
                     "url": "/user/message"
+                },
+                {
+                    "title": "管理组",
+                    "show": false,
+                    "name": "user_power",
+                    "url": "/user/power"
+                },
+                {
+                    "title": "社交账户",
+                    "show": false,
+                    "name": "user_sns",
+                    "url": "/user/sns"
                 }
             ]
         }

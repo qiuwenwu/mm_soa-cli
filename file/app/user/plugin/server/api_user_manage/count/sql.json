@@ -36,7 +36,8 @@
         "level_min": "`level` >= {0}",
         "level_max": "`level` <= {0}",
         "money_min": "`money` >= {0}",
-        "money_max": "`money` <= {0}"
+        "money_max": "`money` <= {0}",
+        "keyword": "`user_id` in (SELECT `user_id` FROM `user_account` WHERE `nickname` LIKE '%{0}%' OR `phone` LIKE '%{0}%' OR `wallet_address` LIKE '%{0}%')"
     },
     "update": {
         "coin_add": "`coin` = `coin` + {0}",

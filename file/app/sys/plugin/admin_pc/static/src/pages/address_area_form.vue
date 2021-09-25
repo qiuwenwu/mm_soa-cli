@@ -13,11 +13,11 @@
 									<dl>
 										<dt>是否可见</dt>
 										<dd>
-											<control_select v-model="form.show" :options="$to_kv(arr_show)" />
+											<control_number v-model="form.show" :min="0" :max="2" />
 										</dd>
-										<dt>所属城市</dt>
+										<dt>所属城市ID</dt>
 										<dd>
-											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_input v-model="form.city_id" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt class="required">地区名称</dt>
 										<dd>
@@ -50,7 +50,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/address_area?",
+				url_add: "/apis/sys/address_area?method=add",
+				url_set: "/apis/sys/address_area?method=set",
 				url_get_obj: "/apis/sys/address_area?method=get_obj",
 				field: "area_id",
 				query: {
@@ -62,35 +63,11 @@
 					"city_id": 0,
 					"name": '',
 				},
-				// 是否可见
-				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
-				// 所属城市
-				'list_address_city':[],
 			}
 		},
 		methods: {
-			/**
-			 * 获取所属城市
-			 * @param {query} 查询条件
-			 */
-			get_address_city(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "city_id,name"
-					};
-				}
-				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_address_city.clear();
-						_this.list_address_city.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取所属城市
-			this.get_address_city();
 		}
 	}
 </script>

@@ -49,47 +49,62 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_available">
 												<control_reverse title="是否可用" v-model="query.orderby" field="available" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_encrypt">
 												<control_reverse title="加解密方式" v-model="query.orderby" field="encrypt" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_times_allow">
 												<control_reverse title="每日允许请求次数" v-model="query.orderby" field="times_allow" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_times_today">
 												<control_reverse title="今日请求次数" v-model="query.orderby" field="times_today" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_max_age">
 												<control_reverse title="有效期时长" v-model="query.orderby" field="max_age" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_user_id">
 												<control_reverse title="持有者" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_times_count">
 												<control_reverse title="请求总次数" v-model="query.orderby" field="times_count" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_time_update">
 												<control_reverse title="上次使用时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="应用名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_appid">
 												<control_reverse title="应用ID" v-model="query.orderby" field="appid" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_token">
 												<control_reverse title="消息访问令牌" v-model="query.orderby" field="token" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_encoding_aes_key">
 												<control_reverse title="消息加密钥匙" v-model="query.orderby" field="encoding_aes_key" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_appsecret">
 												<control_reverse title="应用密钥" v-model="query.orderby" field="appsecret" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_icon">
+												<control_reverse title="应用图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
+											</th>
+											<th class="th_url">
 												<control_reverse title="消息访问地址" v-model="query.orderby" field="url" :func="search"></control_reverse>
+											</th>
+											<th class="th_bind_ip">
+												<control_reverse title="访问绑定IP" v-model="query.orderby" field="bind_ip" :func="search"></control_reverse>
+											</th>
+											<th class="th_scope">
+												<control_reverse title="允许使用的接口" v-model="query.orderby" field="scope" :func="search"></control_reverse>
+											</th>
+											<th class="th_scope_not">
+												<control_reverse title="不允许使用的接口" v-model="query.orderby" field="scope_not" :func="search"></control_reverse>
+											</th>
+											<th class="th_users">
+												<control_reverse title="授权的用户" v-model="query.orderby" field="users" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -103,7 +118,7 @@
 												<control_switch v-model="o.available" @click.native="set(o)" />
 											</td>
 											<td>
-												<span>{{arr_encrypt[o.encrypt] }}</span>
+												<span>{{ $get_name(arr_encrypt, o.encrypt, 'value') }}</span>
 											</td>
 											<td>
 												<span>{{ o.times_allow }}</span>
@@ -139,7 +154,22 @@
 												<span>{{ o.appsecret }}</span>
 											</td>
 											<td>
+												<img class="icon" :src="o.icon" alt="应用图标" />
+											</td>
+											<td>
 												<span>{{ o.url }}</span>
+											</td>
+											<td>
+												<span>{{ o.bind_ip }}</span>
+											</td>
+											<td>
+												<span>{{ o.scope }}</span>
+											</td>
+											<td>
+												<span>{{ o.scope_not }}</span>
+											</td>
+											<td>
+												<span>{{ o.users }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./app_form?app_id=' + o[field]">修改</mm_btn>
@@ -172,7 +202,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>是否可用</dt>
 						<dd>
@@ -242,6 +272,8 @@
 					'max_age_min': 0,
 					// 有效期时长——最大值
 					'max_age_max': 0,
+					// 持有者ID
+					'user_id': '',
 					// 请求总次数——最小值
 					'times_count_min': 0,
 					// 请求总次数——最大值

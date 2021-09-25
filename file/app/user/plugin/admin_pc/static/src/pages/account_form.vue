@@ -29,15 +29,15 @@
 										</dd>
 										<dt>所在用户组</dt>
 										<dd>
-											<control_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name', 0)" />
+											<control_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name', '0')" />
 										</dd>
 										<dt>所在管理组</dt>
 										<dd>
-											<control_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name', 0)" />
+											<control_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name', '0')" />
 										</dd>
 										<dt>推荐人</dt>
 										<dd>
-											<control_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
 										</dd>
 										<dt>上次登录时间</dt>
 										<dd>
@@ -88,6 +88,10 @@
 										<dt>好友</dt>
 										<dd>
 											<control_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔"></control_textarea>
+										</dd>
+										<dt>钱包地址</dt>
+										<dd>
+											<control_input v-model="form.wallet_address" :minlength="0" :maxlength="70" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -143,6 +147,7 @@
 					"signature": '',
 					"avatar": '',
 					"friends": '',
+					"wallet_address": '',
 				},
 				// 账户状态
 				'arr_state':["","可用","异常","已冻结","已注销"],

@@ -25,11 +25,11 @@
 										</dd>
 										<dt>省份</dt>
 										<dd>
-											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
+											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', '0')" />
 										</dd>
 										<dt>所在城市</dt>
 										<dd>
-											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', '0')" />
 										</dd>
 										<dt>生日</dt>
 										<dd>

@@ -1,0 +1,16 @@
+{
+    "name": "user_invite_log",
+    "title": "邀请记录",
+    "description": "用于获取用户的邀请记录",
+    "path": "/api/user/invite_log",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "func_file": "./index.js",
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true,
+    "oauth": {
+        "signIn": true
+    }
+}

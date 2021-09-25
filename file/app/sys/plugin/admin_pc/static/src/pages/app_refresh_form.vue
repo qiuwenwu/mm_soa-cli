@@ -13,7 +13,7 @@
 									<dl>
 										<dt>用户</dt>
 										<dd>
-											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
 										</dd>
 										<dt class="required">应用ID</dt>
 										<dd>
@@ -51,7 +51,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/app_refresh?",
+				url_add: "/apis/sys/app_refresh?method=add",
+				url_set: "/apis/sys/app_refresh?method=set",
 				url_get_obj: "/apis/sys/app_refresh?method=get_obj",
 				field: "refresh_id",
 				query: {

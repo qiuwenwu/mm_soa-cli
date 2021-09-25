@@ -3,9 +3,6 @@
     "title": "收货地址",
     "add": {
         "body": [
-            "province",
-            "city",
-            "area",
             "sex",
             "phone",
             "name",
@@ -13,7 +10,11 @@
             "address",
             "user_id"
         ],
-        "body_required": []
+        "body_required": [
+            "province",
+            "city",
+            "area"
+        ]
     },
     "del": {
         "query": [],
@@ -24,12 +25,6 @@
     "set": {
         "query": [
             "address_id",
-            "province_min",
-            "province_max",
-            "city_min",
-            "city_max",
-            "area_min",
-            "area_max",
             "sex",
             "name",
             "keyword"
@@ -37,11 +32,8 @@
         "query_required": [],
         "body": [
             "province",
-            "province_add",
             "city",
-            "city_add",
             "area",
-            "area_add",
             "sex",
             "phone",
             "name",
@@ -55,12 +47,6 @@
     "get": {
         "query": [
             "address_id",
-            "province_min",
-            "province_max",
-            "city_min",
-            "city_max",
-            "area_min",
-            "area_max",
             "sex",
             "name",
             "user_id",
@@ -83,90 +69,33 @@
             "name": "province",
             "title": "省",
             "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "province_min",
-            "title": "省——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "province_max",
-            "title": "省——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 9,
+                "notEmpty": true
             }
         },
         {
             "name": "city",
             "title": "市",
             "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "city_min",
-            "title": "市——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "city_max",
-            "title": "市——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 9,
+                "notEmpty": true
             }
         },
         {
             "name": "area",
             "title": "区",
             "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "area_min",
-            "title": "区——最小值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "area_max",
-            "title": "区——最大值",
-            "description": "",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 9,
+                "notEmpty": true
             }
         },
         {

@@ -15,6 +15,10 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
+											<control_input v-model="query.keyword" title="关键词" desc="手机号 / 昵称 / 钱包地址"
+											 @blur="search()" />
+										</mm_item>
+										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
@@ -35,49 +39,49 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_level">
 												<control_reverse title="等级" v-model="query.orderby" field="level" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_iq">
 												<control_reverse title="IQ智商" v-model="query.orderby" field="iq" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_credit">
 												<control_reverse title="信用度" v-model="query.orderby" field="credit" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_credit_points">
 												<control_reverse title="积分" v-model="query.orderby" field="credit_points" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_exp">
 												<control_reverse title="经验值" v-model="query.orderby" field="exp" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits1">
 												<control_reverse title="拓展积分1" v-model="query.orderby" field="extcredits1" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits2">
 												<control_reverse title="拓展积分2" v-model="query.orderby" field="extcredits2" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits3">
 												<control_reverse title="拓展积分3" v-model="query.orderby" field="extcredits3" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits4">
 												<control_reverse title="拓展积分4" v-model="query.orderby" field="extcredits4" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits5">
 												<control_reverse title="拓展积分5" v-model="query.orderby" field="extcredits5" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits6">
 												<control_reverse title="拓展积分6" v-model="query.orderby" field="extcredits6" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits7">
 												<control_reverse title="拓展积分7" v-model="query.orderby" field="extcredits7" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_extcredits8">
 												<control_reverse title="拓展积分8" v-model="query.orderby" field="extcredits8" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_money">
 												<control_reverse title="钱" v-model="query.orderby" field="money" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_coin">
 												<control_reverse title="货币" v-model="query.orderby" field="coin" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>

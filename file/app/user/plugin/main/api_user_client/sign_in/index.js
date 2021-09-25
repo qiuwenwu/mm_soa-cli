@@ -26,22 +26,24 @@ async function main(ctx, db) {
 		// 如果登录方式默认，则用常规登录方式
 		db.table = "user_account";
 		db.key = "user_id";
-	
-		var username = params["username"];
+
+		var {
+			username,
+			email,
+			phone
+		} = params;
 		if (username) {
 			// 使用用户名登录
 			user = await db.getObj({
 				username
 			});
 		} else {
-			var email = params["email"];
 			if (email) {
 				// 使用邮箱登录
 				user = await db.getObj({
 					email
 				});
 			} else {
-				var phone = params["phone"];
 				if (phone) {
 					// 使用手机号码登录
 					user = await db.getObj({
@@ -108,7 +110,7 @@ async function main(ctx, db) {
 	if (!user) {
 		return $.ret.error(10000, '账号不存在');
 	} else {
-		
+
 		// 判断密码是否正确
 		var pass = (password + user.salt).md5();
 		if (user.password !== pass) {
@@ -122,8 +124,7 @@ async function main(ctx, db) {
 				login_ip: ip
 			});
 			var info = params.info;
-			if(info)
-			{
+			if (info) {
 				var json_info = JSON.parse(info);
 				user.nickname = json_info.nickName;
 				user.avatar = json_info.avatarUrl;
@@ -138,31 +139,39 @@ async function main(ctx, db) {
 			var body = $.ret.body({
 				token: ctx.session.uuid,
 				user: user,
-				ip: ip
+				ip
 			});
-			bind(db,params,user);
+			bind(db, params, user);
 			// $.log.debug('入场', body);
 			return body
 		}
 	}
 };
 
-async function bind(db,body,user){
+async function bind(db, body, user) {
 	var open_id = body.open_id;
 	var user_id = user.user_id;
-	if(open_id){
+	if (open_id) {
 		var way = body.way || "wechat";
 		db.table = way + "_info";
-		var info = await db.getObj({open_id});
-		if(info){
+		var info = await db.getObj({
+			open_id
+		});
+		if (info) {
 			var obj = {
 				user_id,
 				open_id,
 				info: body.info
 			}
-			db.set({open_id},obj);
-		}else{
-			db.add({user_id,open_id,info:body.info});
+			db.set({
+				open_id
+			}, obj);
+		} else {
+			db.add({
+				user_id,
+				open_id,
+				info: body.info
+			});
 		}
 		return user;
 	}

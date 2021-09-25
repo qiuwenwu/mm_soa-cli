@@ -33,7 +33,7 @@
 										</dd>
 										<dt>持有者</dt>
 										<dd>
-											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
 										</dd>
 										<dt>请求总次数</dt>
 										<dd>
@@ -112,7 +112,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/app?",
+				url_add: "/apis/sys/app?method=add",
+				url_set: "/apis/sys/app?method=set",
 				url_get_obj: "/apis/sys/app?method=get_obj",
 				field: "app_id",
 				query: {

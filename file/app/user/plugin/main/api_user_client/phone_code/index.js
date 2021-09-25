@@ -5,40 +5,14 @@ class Phone_code {
 	 */
 	constructor(config) {
 		this.config = {
-			// 短信发送地址
-			url: "https://gyytz.market.alicloudapi.com/sms/smsSend?",
-			// 阿里云appcode
-			appcode: "51126b682bdb4d12bcb1eb0909fd5ec0",
 			// 验证码有效时长
 			expires: 15,
-			// 修改密码
-			model_password: {
-				mobile: "15817188815",
-				param: "123456",
-				smsSignId: "2e65b1bb3d054466b82f0c9d125465e2",
-				templateId: "8166a0ae27b7499fa8bdda1ed12a07bd"
-			},
-			// 重置密码
-			model_forgot: {
-				mobile: "15817188815",
-				param: "123456,15",
-				smsSignId: "2e65b1bb3d054466b82f0c9d125465e2",
-				templateId: "29833afb9ae94f21a3f66af908d54627"
-			},
-			// 注册账号
-			model_sign_up: {
-				mobile: "15817188815",
-				param: "123456,15",
-				smsSignId: "2e65b1bb3d054466b82f0c9d125465e2",
-				templateId: "a09602b817fd47e59e7c6e603d3f088d"
-			},
-			// 绑定手机
-			model_bind: {
-				mobile: "15817188815",
-				param: "123456,15",
-				smsSignId: "2e65b1bb3d054466b82f0c9d125465e2",
-				templateId: "ea66d14c664649a69a19a6b47ba028db"
-			}
+			// 短信发送地址
+			url: "http://api.smsbao.com/sms?u=${username}&p=${password}&m=${phone}&c=${content}",
+			// 用户名
+			username: "31772309",
+			// 密码
+			password: "asd123"
 		}
 	}
 }
@@ -79,41 +53,65 @@ Phone_code.prototype.new_code = async function(key) {
  * @return {Object} 返回发送结果
  */
 Phone_code.prototype.send = async function(method, phone) {
-	var config = this.config;
-	var model = config["model_" + method];
-	var http = new $.Http();
+	var {
+		username,
+		password,
+		expires,
+		url
+	} = this.config;
 	var key = "code_" + method + "_" + phone;
 	var value = await $.cache.get(key);
 	var code;
 	if (value) {
 		var obj = JSON.parse(value);
-		if (obj.time.toTime().addSeconds(config.expires * 60) < new Date()) {
-			return $.ret.bl(false, "验证码已过期！");
+		if (obj.time.toTime().addSeconds(expires * 60) < new Date()) {
+			code = await this.new_code(key);
 		} else {
-			code = obj.code;
+			return $.ret.bl(true, "发送成功！");
 		}
 	} else {
 		code = await this.new_code(key);
 	}
 	if (code) {
-		var param = "**code**:" + code + ",**minute**:" + config.expires;
-		var query = Object.assign({}, model, {
-			param,
-			mobile: phone
-		});
-		var url = $.toUrl(query, config.url);
-		// console.log(url);
-		var web = await http.post(url, {}, {
-			Authorization: "APPCODE " + config.appcode
-		}, "json");
-		// console.log(web);
-		if (web.body) {
-			console.log(web.body);
-			var json = web.body.toJson();
-			if (json.msg === "成功") {
+		password = password.md5();
+		var content = encodeURIComponent(`【奥卡商城】您的验证码为${code}，在${expires}分钟内有效。`);
+		var u = eval("`" + url + "`");
+		var http = new $.Http();
+		var web = await http.get(u);
+		var errno = web.body;
+		if (errno) {
+			errno = Number(errno);
+			if (errno == 0) {
 				return $.ret.bl(true, "发送成功！");
 			} else {
-				return $.ret.error(Number(json.code), json.msg);
+				var meaage = "";
+				switch (errno) {
+					case -1:
+						meaage = "参数不全"
+						break
+					case -2:
+						meaage = "服务器空间不支持,请确认支持curl或者fsocket，联系您的空间商解决或者更换空间！"
+						break
+					case 30:
+						meaage = "密码";
+						break;
+					case 40:
+						meaage = "账号不存在";
+						break;
+					case 41:
+						meaage = "余额不足";
+						break;
+					case 43:
+						meaage = "IP地址受限";
+						break;
+					case 50:
+						meaage = "内容含有敏感词";
+						break;
+					case 51:
+						meaage = "手机号码不正确";
+						break;
+				}
+				return $.ret.error(11000 + errno, meaage);
 			}
 		} else {
 			return $.ret.error(10000, "请求短信服务端失败！");
@@ -124,22 +122,38 @@ Phone_code.prototype.send = async function(method, phone) {
 };
 
 /**
+ * 发送验证码
+ * @param {String} phone 手机号码
+ * @param {Object} db 数据库管理器
+ * @return {Object} 执行结果
+ */
+Phone_code.prototype.set_delivery_address = async function(phone, db, username) {
+	var user = await db.getObj({
+		username
+	});
+	if (user) {
+		return $.ret.bl(false, "用户已存在！");
+	}
+	return await this.send("set_delivery_address", phone);
+};
+
+/**
  * 注册
  * @param {String} phone 手机号码
  * @param {Object} db 数据库管理器
  * @return {Object} 执行结果
  */
 Phone_code.prototype.sign_up = async function(phone, db, username) {
-	var obj = await db.getObj({
+	var user = await db.getObj({
 		username
 	});
-	if (obj) {
+	if (user) {
 		return $.ret.bl(false, "用户已存在！");
 	} else {
-		obj = await db.getObj({
+		user = await db.getObj({
 			phone
 		});
-		if (obj) {
+		if (user) {
 			return $.ret.bl(false, "该手机号码已绑定其他账户！");
 		}
 	}
@@ -153,7 +167,18 @@ Phone_code.prototype.sign_up = async function(phone, db, username) {
  * @return {Object} 执行结果
  */
 Phone_code.prototype.forgot = async function(phone, db, username) {
-	return $.ret.bl(true, "重置发送验证码成功！");
+	var user = await db.getObj({
+		username
+	});
+	if (!user) {
+		return $.ret.error(10000, "用户不存在！");
+	} else {
+		if (user.phone !== phone) {
+			return $.ret.error(30000, "用户所绑定的手机号不一致！");
+		}
+		phone = user.phone;
+	}
+	return await this.send("forgot", phone);
 };
 
 /**
@@ -174,7 +199,15 @@ Phone_code.prototype.password = async function(phone, db, username) {
  * @return {Object} 执行结果
  */
 Phone_code.prototype.bind = async function(phone, db, username) {
-	return $.ret.bl(true, "绑定发送验证码成功！");
+	var user = await db.getObj({
+		username
+	});
+	if (!user) {
+		return $.ret.error(10000, "用户不存在！");
+	} else {
+		phone = user.phone;
+	}
+	return await this.send("bind", phone);
 };
 
 /**

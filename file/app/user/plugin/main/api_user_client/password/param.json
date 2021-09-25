@@ -24,6 +24,15 @@
 	// 校验列表
 	"list": [
 		{
+			"name": "password_old",
+			"title": "原密码",
+			"type": "string",
+			"string": {
+				"format": "password",
+				"different": "username"
+			}
+		},
+		{
 			"name": "password",
 			"title": "新密码",
 			"type": "string",

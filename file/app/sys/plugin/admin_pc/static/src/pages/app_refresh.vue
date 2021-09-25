@@ -39,19 +39,19 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_user_id">
 												<control_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_time_create">
 												<control_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_time_update">
 												<control_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_appid">
 												<control_reverse title="应用ID" v-model="query.orderby" field="appid" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_refresh_token">
 												<control_reverse title="刷新令牌" v-model="query.orderby" field="refresh_token" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -108,7 +108,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>用户</dt>
 						<dd>
@@ -152,6 +152,8 @@
 					size: 10,
 					// 刷新Token的ID
 					'refresh_id': 0,
+					// 用户ID
+					'user_id': '',
 					// 创建时间——开始时间
 					'time_create_min': '',
 					// 创建时间——结束时间

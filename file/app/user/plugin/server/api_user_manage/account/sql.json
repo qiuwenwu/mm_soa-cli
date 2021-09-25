@@ -4,8 +4,8 @@
     "table": "user_account",
     "key": "user_id",
     "orderby_default": "`user_id` desc",
-    "field_obj": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`",
-    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`,`create_time`",
+    "field_obj": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`,`wallet_address`",
+    "field_default": "`user_id`,`state`,`vip`,`gm`,`mc`,`group_id`,`admin_id`,`referee_id`,`login_time`,`invite_code`,`phone`,`phone_state`,`username`,`nickname`,`email`,`email_state`,`login_ip`,`signature`,`avatar`,`friends`,`create_time`,`wallet_address`",
     "query": {
         "avatar": "`avatar` like '%{0}%'",
         "create_time_min": "`create_time` >= '{0}'",
@@ -34,7 +34,8 @@
         "username": "`username` like '%{0}%'",
         "vip_min": "`vip` >= {0}",
         "vip_max": "`vip` <= {0}",
-        "keyword": "(`username` like '%{0}%' || `nickname` like '%{0}%')"
+        "keyword": "(`username` like '%{0}%' || `nickname` like '%{0}%' || `wallet_address` like '%{0}%')",
+        "wallet_address": "`wallet_address` like '%{0}%'"
     },
     "update": {
         "email_state_add": "`email_state` = `email_state` + {0}",

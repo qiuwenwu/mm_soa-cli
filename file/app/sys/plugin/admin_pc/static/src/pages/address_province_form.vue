@@ -13,7 +13,7 @@
 									<dl>
 										<dt>是否可见</dt>
 										<dd>
-											<control_select v-model="form.show" :options="$to_kv(arr_show)" />
+											<control_number v-model="form.show" :min="0" :max="2" />
 										</dd>
 										<dt class="required">省份名称</dt>
 										<dd>
@@ -46,7 +46,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/address_province?",
+				url_add: "/apis/sys/address_province?method=add",
+				url_set: "/apis/sys/address_province?method=set",
 				url_get_obj: "/apis/sys/address_province?method=get_obj",
 				field: "province_id",
 				query: {
@@ -57,8 +58,6 @@
 					"show": 0,
 					"name": '',
 				},
-				// 是否可见
-				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
 			}
 		},
 		methods: {

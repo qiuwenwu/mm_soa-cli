@@ -4,13 +4,17 @@
     "table": "sys_message",
     "key": "message_id",
     "orderby_default": "`message_id` desc",
-    "field_obj": "`message_id`,`title`,`note`",
-    "field_default": "`message_id`,`title`,`note`",
-    "method": "get get_obj sum count",
+    "field_obj": "`message_id`,`title`,`note`,`time_create`,`time_update`",
+    "field_default": "`message_id`,`title`,`note`,`time_create`,`time_update`",
+    "method": "del get get_obj avg sum count",
     "query": {
         "note": "`note` like '%{0}%'",
         "title": "`title` like '%{0}%'",
-        "keyword": "(`title` like '%{0}%')"
+        "keyword": "(`title` like '%{0}%')",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'"
     },
     "query_default": {},
     "update": {},

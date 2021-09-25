@@ -11,13 +11,20 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
+										<dt>原密码</dt>
+										<dd>
+											<control_input type="password" v-model="form.password_old" :minlength="0"
+												:maxlength="16" placeholder="" />
+										</dd>
 										<dt>新密码</dt>
 										<dd>
-											<control_input type="password" v-model="form.password" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input type="password" v-model="form.password" :minlength="0"
+												:maxlength="16" placeholder="" />
 										</dd>
 										<dt>确认密码</dt>
 										<dd>
-											<control_input type="password" v-model="form.confirm_password" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input type="password" v-model="form.confirm_password"
+												:minlength="0" :maxlength="16" placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>
@@ -55,20 +62,21 @@
 			}
 		},
 		methods: {
-			get_form(){
+			get_form() {
 				var _this = this;
-				this.$get(this.url_get_obj, null, function(res){
-					if(res.result && res.result.obj){
+				this.$get(this.url_get_obj, null, function(res) {
+					if (res.result && res.result.obj) {
 						$.push(_this.form, res.result.obj);
 					}
 				});
 			},
-			submit_before(param){
+			submit_before(param) {
 				param.password = param.password.md5();
 				param.confirm_password = param.confirm_password.md5();
+				param.password_old = param.password_old.md5();
 				return param;
 			},
-			submit_after(res, status){
+			submit_after(res, status) {
 				this.$router.push('/sign_in')
 			}
 		},

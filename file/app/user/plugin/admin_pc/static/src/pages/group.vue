@@ -39,34 +39,34 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_display">
 												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_level">
 												<control_reverse title="等级划分" v-model="query.orderby" field="level" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_next_group_id">
 												<control_reverse title="下级用户组ID" v-model="query.orderby" field="next_group_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_exp">
 												<control_reverse title="升级所需经验" v-model="query.orderby" field="exp" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_discount">
 												<control_reverse title="折扣" v-model="query.orderby" field="discount" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_bonus">
 												<control_reverse title="奖励比例" v-model="query.orderby" field="bonus" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_app">
 												<control_reverse title="应用" v-model="query.orderby" field="app" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="用户名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_description">
 												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_icon">
 												<control_reverse title="图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>

@@ -19,9 +19,6 @@
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.show" title="是否可见" :options="$to_kv(arr_show)" @change="search()" />
-										</mm_item>
-										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
@@ -42,13 +39,13 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_show">
 												<control_reverse title="是否可见" v-model="query.orderby" field="show" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_display">
 												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="省份名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -60,7 +57,7 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{arr_show[o.show] }}</span>
+												<span>{{ o.show }}</span>
 											</td>
 											<td>
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
@@ -99,12 +96,8 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
-						<dt>是否可见</dt>
-						<dd>
-							<control_select v-model="form.show" :options="$to_kv(arr_show)" />
-						</dd>
 					</dl>
 				</div>
 				<div class="card_foot">
@@ -144,9 +137,9 @@
 					// 省份ID
 					'province_id': 0,
 					// 是否可见——最小值
-					'show_min': '',
+					'show_min': 0,
 					// 是否可见——最大值
-					'show_max': '',
+					'show_max': 0,
 					// 显示顺序——最小值
 					'display_min': 0,
 					// 显示顺序——最大值
@@ -161,8 +154,6 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
-				// 是否可见
-				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
 				// 视图模型
 				vm: {}
 			}

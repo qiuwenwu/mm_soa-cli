@@ -22,6 +22,9 @@
 											<control_select v-model="query.type" title="数据类型" :options="$to_kv(arr_type)" @change="search()" />
 										</mm_item>
 										<mm_item>
+											<control_select v-model="query.control" title="控件类型" :options="$to_kv(arr_control)" @change="search()" />
+										</mm_item>
+										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
@@ -40,22 +43,27 @@
 								<mm_table type="2">
 									<thead class="table-sm">
 										<tr>
-											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="变量名" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_type">
 												<control_reverse title="数据类型" v-model="query.orderby" field="type" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_control">
+												<control_reverse title="控件类型" v-model="query.orderby" field="control" :func="search"></control_reverse>
+											</th>
+											<th class="th_title">
 												<control_reverse title="变量标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_value">
 												<control_reverse title="变量值" v-model="query.orderby" field="value" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_description">
 												<control_reverse title="变量描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											</th>
+											<th class="th_model">
+												<control_reverse title="数据模型" v-model="query.orderby" field="model" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -63,22 +71,30 @@
 									<tbody>
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
-											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.name }}</span>
 											</td>
 											<td>
-												<span>{{arr_type[o.type] }}</span>
+												<control_select v-model="o.type" :options="$to_kv(arr_type)" @change.native="set(o)" />
+											</td>
+											<td>
+												<control_select v-model="o.control" :options="$to_kv(arr_control)" @change.native="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.title }}</span>
 											</td>
 											<td>
-												<span>{{ o.value }}</span>
+												<control_com v-if="o.control == 'number'" tag="number" v-model="o.value" @change="set(o)" />
+												<control_com v-else-if="o.control == 'select'" tag="select" v-model="o.value" :mod="o.model" @change="set(o)" />
+												<control_com v-else-if="o.control == 'checkbox' || o.control == 'radio'" :tag="o.control" v-model="o.value" :mod="o.model" @change="set(o)" />
+												<control_com v-else :auto="true" :tag="o.control" v-model="o.value" @change="set(o)" />
 											</td>
 											<td>
 												<span>{{ o.description }}</span>
+											</td>
+											<td>
+												<span>{{ o.model }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./config_form?config_id=' + o[field]">修改</mm_btn>
@@ -88,18 +104,6 @@
 									</tbody>
 									<!-- </draggable> -->
 								</mm_table>
-							</div>
-							<div class="card_foot">
-								<div class="fl">
-									<control_select v-model="query.size" :options="$to_size()" @change="search()" />
-								</div>
-								<div class="fr">
-									<span class="mr">共 {{ count }} 条</span>
-									<span>当前</span>
-									<input type="number" class="pager_now" v-model.number="page_now" @blur="goTo(page_now)" @change="page_change" />
-									<span>/{{ page_count }}页</span>
-								</div>
-								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
 							</div>
 						</mm_card>
 					</mm_col>
@@ -111,11 +115,15 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>数据类型</dt>
 						<dd>
 							<control_select v-model="form.type" :options="$to_kv(arr_type)" />
+						</dd>
+						<dt>控件类型</dt>
+						<dd>
+							<control_select v-model="form.control" :options="$to_kv(arr_control)" />
 						</dd>
 					</dl>
 				</div>
@@ -131,10 +139,14 @@
 </template>
 
 <script>
+	import control_com from '/src/components/control/control_com.vue';
 	import mixin from '/src/mixins/page.js';
 
 	export default {
 		mixins: [mixin],
+		components: {
+			control_com
+		},
 		data() {
 			return {
 				// 列表请求地址
@@ -150,9 +162,9 @@
 				// 查询条件
 				query: {
 					//页码
-					page: 1,
+					page: 0,
 					//页面大小
-					size: 10,
+					size: '0',
 					// 配置ID
 					'config_id': 0,
 					// 变量名
@@ -171,11 +183,22 @@
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
 				// 数据类型
 				'arr_type':[{"name":"文本型","value":"string"},{"name":"数字型","value":"number"},{"name":"布尔型","value":"boolean"}],
+				// 控件类型
+				'arr_control':[{"name":"输入框","value":"input"},{"name":"数字框","value":"number"},{"name":"选择框","value":"select"},{"name":"复选框","value":"checkbox"},{"name":"开关","value":"switch"},{"name":"多文本框","value":"textarea"},{"name":"单选框","value":"radio"}],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
+			/**
+			 * 获取列表之前
+			 * @param {Object} param 参数
+			 */
+			get_list_before(param){
+				delete param.page;
+				param.size = "0";
+				return param;
+			}
 		},
 		created() {
 		}

@@ -8,8 +8,10 @@
 							<span class="h5">后台管理系统</span>
 						</bar_title>
 						<mm_form class="pc" id="form_account">
-							<control_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱"></control_input>
-							<control_input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成" @keyup.enter.native="sign_in()"></control_input>
+							<control_input title="账号" type="text" v-model="form.account" desc="用户名/手机/邮箱">
+							</control_input>
+							<control_input title="密码" type="password" v-model="form.password" desc="由6-12位英文+数字符号组成"
+								@keyup.enter.native="sign_in()"></control_input>
 							<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
 							<control_switch title="记住账户" v-model="remember_me"></control_switch>
 						</mm_form>
@@ -161,15 +163,17 @@
 		-webkit-filter: brightness(-1);
 		filter: brightness(-1);
 	}
-	
+
 	@media (max-width: 576px) {
 		#account_sign_in .btn_primary {
 			float: none;
-			width: calc( 100% - 2rem);
+			width: calc(100% - 2rem);
 		}
-		#account_sign_in .control_switch { 
-			width: calc( 100% - 2rem);
+
+		#account_sign_in .control_switch {
+			width: calc(100% - 2rem);
 		}
+
 		#account_sign_in {
 			min-width: auto;
 		}

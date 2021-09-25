@@ -20,6 +20,10 @@
 										<dd>
 											<control_select v-model="form.type" :options="$to_kv(arr_type)" />
 										</dd>
+										<dt class="required">控件类型</dt>
+										<dd>
+											<control_select v-model="form.control" :options="$to_kv(arr_control)" />
+										</dd>
 										<dt>变量标题</dt>
 										<dd>
 											<control_input v-model="form.title" :minlength="0" :maxlength="16" placeholder="可以用中文名" />
@@ -62,7 +66,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/config?",
+				url_add: "/apis/sys/config?method=add",
+				url_set: "/apis/sys/config?method=set",
 				url_get_obj: "/apis/sys/config?method=get_obj",
 				field: "config_id",
 				query: {
@@ -72,6 +77,7 @@
 					"config_id": 0,
 					"name": '',
 					"type": '',
+					"control": '',
 					"title": '',
 					"value": '',
 					"description": '',
@@ -79,6 +85,8 @@
 				},
 				// 数据类型
 				'arr_type':[{"name":"文本型","value":"string"},{"name":"数字型","value":"number"},{"name":"布尔型","value":"boolean"}],
+				// 控件类型
+				'arr_control':[{"name":"输入框","value":"input"},{"name":"数字框","value":"number"},{"name":"选择框","value":"select"},{"name":"复选框","value":"checkbox"},{"name":"开关","value":"switch"},{"name":"多文本框","value":"textarea"},{"name":"单选框","value":"radio"}],
 			}
 		},
 		methods: {

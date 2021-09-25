@@ -18,7 +18,10 @@
         "name": "`name` like '%{0}%'",
         "house_number": "`house_number` like '%{0}%'",
         "address": "`address` like '%{0}%'",
-        "keyword": "(`name` like '%{0}%')"
+        "keyword": "(`name` like '%{0}%')",
+        "province": "`province` like '%{0}%'",
+        "city": "`city` like '%{0}%'",
+        "area": "`area` like '%{0}%'"
     },
     "query_default": {
         "user_id": "`user_id` = {user_id}"

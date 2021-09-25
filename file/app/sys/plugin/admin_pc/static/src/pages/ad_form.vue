@@ -13,15 +13,15 @@
 									<dl>
 										<dt>投放城市</dt>
 										<dd>
-											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', 0)" />
+											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', '0')" />
 										</dd>
 										<dt>投放地区</dt>
 										<dd>
-											<control_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name', 0)" />
+											<control_select v-model="form.area_id" :options="$to_kv(list_address_area, 'area_id', 'name', '0')" />
 										</dd>
 										<dt>广告主</dt>
 										<dd>
-											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', 0)" />
+											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
 										</dd>
 										<dt>访客数</dt>
 										<dd>
@@ -126,7 +126,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/ad?",
+				url_add: "/apis/sys/ad?method=add",
+				url_set: "/apis/sys/ad?method=set",
 				url_get_obj: "/apis/sys/ad?method=get_obj",
 				field: "ad_id",
 				query: {

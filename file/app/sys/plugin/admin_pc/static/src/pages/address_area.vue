@@ -19,13 +19,6 @@
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.show" title="是否可见" :options="$to_kv(arr_show)" @change="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
-											 @change="search()" />
-										</mm_item>
-										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
 										</mm_item>
 									</mm_list>
@@ -46,16 +39,16 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_show">
 												<control_reverse title="是否可见" v-model="query.orderby" field="show" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_display">
 												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
 											</th>
-											<th>
-												<control_reverse title="所属城市" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
+											<th class="th_city_id">
+												<control_reverse title="所属城市ID" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="地区名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -67,13 +60,13 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{arr_show[o.show] }}</span>
+												<span>{{ o.show }}</span>
 											</td>
 											<td>
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ o.city_id }}</span>
 											</td>
 											<td>
 												<span>{{ o.name }}</span>
@@ -109,16 +102,8 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
-						<dt>是否可见</dt>
-						<dd>
-							<control_select v-model="form.show" :options="$to_kv(arr_show)" />
-						</dd>
-						<dt>所属城市</dt>
-						<dd>
-							<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
-						</dd>
 					</dl>
 				</div>
 				<div class="card_foot">
@@ -158,13 +143,15 @@
 					// 地区ID
 					'area_id': 0,
 					// 是否可见——最小值
-					'show_min': '',
+					'show_min': 0,
 					// 是否可见——最大值
-					'show_max': '',
+					'show_max': 0,
 					// 显示顺序——最小值
 					'display_min': 0,
 					// 显示顺序——最大值
 					'display_max': 0,
+					// 所属城市ID
+					'city_id': 0,
 					// 地区名称
 					'name': '',
 					// 关键词
@@ -175,37 +162,13 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
-				// 是否可见
-				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
-				// 所属城市
-				'list_address_city':[],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
-			/**
-			 * 获取所属城市
-			 * @param {query} 查询条件
-			 */
-			get_address_city(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "city_id,name"
-					};
-				}
-				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_address_city.clear();
-						_this.list_address_city.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取所属城市
-			this.get_address_city();
 		}
 	}
 </script>

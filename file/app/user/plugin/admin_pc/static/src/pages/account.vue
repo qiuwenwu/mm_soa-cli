@@ -15,7 +15,7 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称"
+											<control_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称 / 钱包地址"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -60,65 +60,68 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_state">
 												<control_reverse title="账户状态" v-model="query.orderby" field="state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_vip">
 												<control_reverse title="会员级别" v-model="query.orderby" field="vip" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_gm">
 												<control_reverse title="管理员级别" v-model="query.orderby" field="gm" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_mc">
 												<control_reverse title="商家级别" v-model="query.orderby" field="mc" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_group_id">
 												<control_reverse title="所在用户组" v-model="query.orderby" field="group_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_admin_id">
 												<control_reverse title="所在管理组" v-model="query.orderby" field="admin_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_referee_id">
 												<control_reverse title="推荐人" v-model="query.orderby" field="referee_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_login_time">
 												<control_reverse title="上次登录时间" v-model="query.orderby" field="login_time" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_invite_code">
 												<control_reverse title="邀请注册码" v-model="query.orderby" field="invite_code" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_phone">
 												<control_reverse title="手机号码" v-model="query.orderby" field="phone" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_phone_state">
 												<control_reverse title="手机认证" v-model="query.orderby" field="phone_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_username">
 												<control_reverse title="用户名" v-model="query.orderby" field="username" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_nickname">
 												<control_reverse title="昵称" v-model="query.orderby" field="nickname" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_email">
 												<control_reverse title="邮箱" v-model="query.orderby" field="email" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_email_state">
 												<control_reverse title="邮箱认证" v-model="query.orderby" field="email_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_login_ip">
 												<control_reverse title="上次登录IP" v-model="query.orderby" field="login_ip" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_signature">
 												<control_reverse title="个性签名" v-model="query.orderby" field="signature" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_avatar">
 												<control_reverse title="头像地址" v-model="query.orderby" field="avatar" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_friends">
 												<control_reverse title="好友" v-model="query.orderby" field="friends" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_create_time">
 												<control_reverse title="创建时间" v-model="query.orderby" field="create_time" :func="search"></control_reverse>
+											</th>
+											<th class="th_wallet_address">
+												<control_reverse title="钱包地址" v-model="query.orderby" field="wallet_address" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -159,7 +162,7 @@
 												<span>{{ o.phone }}</span>
 											</td>
 											<td>
-												<span>{{arr_phone_state[o.phone_state] }}</span>
+												<span>{{ $get_name(arr_phone_state, o.phone_state, 'value') }}</span>
 											</td>
 											<td>
 												<span>{{ o.username }}</span>
@@ -171,7 +174,7 @@
 												<span>{{ o.email }}</span>
 											</td>
 											<td>
-												<span>{{arr_email_state[o.email_state] }}</span>
+												<span>{{ $get_name(arr_email_state, o.email_state, 'value') }}</span>
 											</td>
 											<td>
 												<span>{{ o.login_ip }}</span>
@@ -187,6 +190,9 @@
 											</td>
 											<td>
 												<span>{{ $to_time(o.create_time, 'yyyy-MM-dd hh:mm') }}</span>
+											</td>
+											<td>
+												<span>{{ o.wallet_address }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./account_form?user_id=' + o[field]">修改</mm_btn>

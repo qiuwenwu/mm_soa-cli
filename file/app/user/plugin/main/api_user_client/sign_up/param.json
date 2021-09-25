@@ -5,7 +5,7 @@
 	"file": "",
 	"post": {
 		"body": [],
-		"body_required": ["username", "password", "confirm_password"]
+		"body_required": ["username", "password", "confirm_password", "phone", "code"]
 	},
 	"list": [
 		{
@@ -37,6 +37,24 @@
 				"format": "password",
 				"identical": "password"
 			}
+		},
+		{
+			"name": "phone",
+			"title": "手机号码",
+			"type": "string",
+			"string": {
+				"format": "phone"
+			}
+		},
+		{
+			"name": "code",
+			"title": "短信验证码",
+			"type": "string"
+		},
+		{
+			"name": "invite_code",
+			"title": "邀请码",
+			"type": "string"
 		}
 	]
 }

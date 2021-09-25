@@ -53,52 +53,52 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_sex">
 												<control_reverse title="性别" v-model="query.orderby" field="sex" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_idcard_state">
 												<control_reverse title="身份实名认证" v-model="query.orderby" field="idcard_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_age">
 												<control_reverse title="年龄" v-model="query.orderby" field="age" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_province_id">
 												<control_reverse title="省份" v-model="query.orderby" field="province_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_city_id">
 												<control_reverse title="所在城市" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_birthday">
 												<control_reverse title="生日" v-model="query.orderby" field="birthday" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_name">
 												<control_reverse title="姓名" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_job">
 												<control_reverse title="职业" v-model="query.orderby" field="job" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_school">
 												<control_reverse title="毕业学校" v-model="query.orderby" field="school" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_major">
 												<control_reverse title="所学专业" v-model="query.orderby" field="major" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_idcard">
 												<control_reverse title="身份证号" v-model="query.orderby" field="idcard" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_company_address">
 												<control_reverse title="公司地址" v-model="query.orderby" field="company_address" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_address">
 												<control_reverse title="详细地址" v-model="query.orderby" field="address" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_job_scope">
 												<control_reverse title="工作范围" v-model="query.orderby" field="job_scope" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_company_business">
 												<control_reverse title="公司经营范围" v-model="query.orderby" field="company_business" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_idcard_img">
 												<control_reverse title="身份证图片" v-model="query.orderby" field="idcard_img" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -110,10 +110,10 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{arr_sex[o.sex] }}</span>
+												<span>{{ $get_name(arr_sex, o.sex, 'value') }}</span>
 											</td>
 											<td>
-												<span>{{arr_idcard_state[o.idcard_state] }}</span>
+												<span>{{ $get_name(arr_idcard_state, o.idcard_state, 'value') }}</span>
 											</td>
 											<td>
 												<span>{{ o.age }}</span>

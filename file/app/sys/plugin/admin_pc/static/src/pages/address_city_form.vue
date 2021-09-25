@@ -11,13 +11,13 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>显示位置</dt>
+										<dt>是否可见</dt>
 										<dd>
-											<control_select v-model="form.show" :options="$to_kv(arr_show)" />
+											<control_number v-model="form.show" :min="0" :max="2" />
 										</dd>
-										<dt>所属省份</dt>
+										<dt>所属省份ID</dt>
 										<dd>
-											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', 0)" />
+											<control_input v-model="form.province_id" :minlength="0" :maxlength="0" placeholder="" />
 										</dd>
 										<dt class="required">城市名称</dt>
 										<dd>
@@ -50,7 +50,8 @@
 		components: {},
 		data() {
 			return {
-				url: "/apis/sys/address_city?",
+				url_add: "/apis/sys/address_city?method=add",
+				url_set: "/apis/sys/address_city?method=set",
 				url_get_obj: "/apis/sys/address_city?method=get_obj",
 				field: "city_id",
 				query: {
@@ -62,35 +63,11 @@
 					"province_id": 0,
 					"name": '',
 				},
-				// 显示位置
-				'arr_show':["仅表单可见","表单和搜索可见","均可见"],
-				// 所属省份
-				'list_address_province':[],
 			}
 		},
 		methods: {
-			/**
-			 * 获取所属省份
-			 * @param {query} 查询条件
-			 */
-			get_address_province(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "province_id,name"
-					};
-				}
-				this.$get('~/apis/sys/address_province?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_address_province.clear();
-						_this.list_address_province.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取所属省份
-			this.get_address_province();
 		}
 	}
 </script>

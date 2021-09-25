@@ -58,6 +58,42 @@
             "decimal": 0,
             "default": null,
             "map": ""
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "datetime",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 0,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": "CURRENT_TIMESTAMP",
+            "map": ""
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "timestamp",
+            "key": false,
+            "auto": "on update CURRENT_TIMESTAMP",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 0,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": "CURRENT_TIMESTAMP",
+            "map": ""
         }
     ]
 }

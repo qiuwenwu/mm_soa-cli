@@ -10,7 +10,8 @@
         ],
         "body_required": [
             "name",
-            "type"
+            "type",
+            "control"
         ]
     },
     "del": {
@@ -31,6 +32,7 @@
         "body": [
             "name",
             "type",
+            "control",
             "title",
             "value",
             "description",
@@ -79,6 +81,17 @@
             "dataType": "varchar",
             "string": {
                 "max": 16,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "control",
+            "title": "控件类型",
+            "description": "(input,输入框|number,数字框|select,选择框|checkbox,复选框|switch,开关|textarea,多文本框|radio,单选框)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
                 "notEmpty": true
             }
         },
