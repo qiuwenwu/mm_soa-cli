@@ -1,0 +1,19 @@
+{
+    "name": "dev_order_field_manage",
+    "title": "定制字段",
+    "description": "",
+    "path": "/apis/dev/order_field",
+    "method": "ALL",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "func_file": "./index.js",
+    "check_param": true,
+    "oauth": {
+        "scope": true,
+        "signIn": true,
+        "gm": 2,
+        "user_admin": []
+    }
+}

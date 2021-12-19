@@ -3,10 +3,10 @@
     "title": "系统消息",
     "description": "",
     "path": "/api/sys/message",
-    "method": "ALL",
+    "method": "GET",
     "cache": 0,
     "client_cache": false,
-	"func_file": "./index.js",
+    "func_file": "./index.js",
     "param_path": "./param.json",
     "sql_path": "./sql.json",
     "check_param": true

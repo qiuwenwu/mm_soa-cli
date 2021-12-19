@@ -47,6 +47,9 @@
 											<th class="th_name">
 												<control_reverse title="变量名" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
+											<th class="th_group">
+												<control_reverse title="分组" v-model="query.orderby" field="group" :func="search"></control_reverse>
+											</th>
 											<th class="th_type">
 												<control_reverse title="数据类型" v-model="query.orderby" field="type" :func="search"></control_reverse>
 											</th>
@@ -62,9 +65,6 @@
 											<th class="th_description">
 												<control_reverse title="变量描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
 											</th>
-											<th class="th_model">
-												<control_reverse title="数据模型" v-model="query.orderby" field="model" :func="search"></control_reverse>
-											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
@@ -74,6 +74,9 @@
 											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.name }}</span>
+											</td>
+											<td>
+												<span>{{ o.group }}</span>
 											</td>
 											<td>
 												<control_select v-model="o.type" :options="$to_kv(arr_type)" @change.native="set(o)" />
@@ -92,9 +95,6 @@
 											</td>
 											<td>
 												<span>{{ o.description }}</span>
-											</td>
-											<td>
-												<span>{{ o.model }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./config_form?config_id=' + o[field]">修改</mm_btn>

@@ -28,7 +28,7 @@
 										</dd>
 										<dt>收件人性别</dt>
 										<dd>
-											<control_switch v-model="form.sex" />
+											<control_select v-model="form.sex" :options="$to_kv(arr_sex)" />
 										</dd>
 										<dt>收件人电话</dt>
 										<dd>
@@ -48,14 +48,14 @@
 										</dd>
 										<dt>用户</dt>
 										<dd>
-											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
+											<control_select type="list" v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</dd>
 									</dl>
 								</mm_form>
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 					"user_id": 0,
 				},
 				// 收件人性别
-				'arr_sex':["女","男"],
+				'arr_sex':["","女","男"],
 				// 用户
 				'list_account':[],
 			}
@@ -110,7 +110,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

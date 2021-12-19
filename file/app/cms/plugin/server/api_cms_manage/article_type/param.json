@@ -5,6 +5,7 @@
         "body": [
             "display",
             "father_id",
+            "show",
             "name",
             "description",
             "icon",
@@ -23,6 +24,7 @@
             "type_id",
             "display_min",
             "display_max",
+            "show",
             "name",
             "description",
             "title",
@@ -33,6 +35,7 @@
             "display",
             "display_add",
             "father_id",
+            "show",
             "name",
             "description",
             "icon",
@@ -47,12 +50,18 @@
             "display_min",
             "display_max",
             "father_id",
+            "show",
             "name",
             "description",
             "title",
             "keyword"
         ],
         "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "type_id"
+        ]
     },
     "list": [
         {
@@ -106,6 +115,16 @@
             }
         },
         {
+            "name": "show",
+            "title": "显示",
+            "description": "(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
             "name": "name",
             "title": "分类名称",
             "description": "",
@@ -151,10 +170,5 @@
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "type_id"
-        ]
-    }
+    ]
 }

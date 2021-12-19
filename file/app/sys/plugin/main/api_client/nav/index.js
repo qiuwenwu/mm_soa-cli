@@ -8,9 +8,7 @@ async function main(ctx, db) {
 	var req = ctx.request;
 	var query = req.query;
 	var scope = query['scope'] || 'admin';
-	
 	var nav = $.nav_admin(scope);
-	
 	if (query['update']) {
 		nav.update();
 		return $.ret.bl(true, '更新成功');

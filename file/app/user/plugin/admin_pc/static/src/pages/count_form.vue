@@ -11,10 +11,6 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>用户ID</dt>
-										<dd>
-											<span>{{ query.user_id }}</span>
-										</dd>
 										<dt>等级</dt>
 										<dd>
 											<control_number v-model="form.level" :min="0" :max="1000" />
@@ -80,7 +76,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>

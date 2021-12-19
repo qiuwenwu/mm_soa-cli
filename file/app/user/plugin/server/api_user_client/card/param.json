@@ -1,0 +1,314 @@
+{
+    "name": "user_card",
+    "title": "卡券包",
+    "add": {
+        "body": [
+            "user_id",
+            "name",
+            "mall_id",
+            "icon",
+            "price_factor",
+            "price_reduction",
+            "state"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "card_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "card_id",
+            "name",
+            "price_factor_min",
+            "price_factor_max",
+            "price_reduction_min",
+            "price_reduction_max",
+            "state_min",
+            "state_max",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "user_id",
+            "name",
+            "mall_id",
+            "icon",
+            "price_factor",
+            "price_factor_add",
+            "price_reduction",
+            "price_reduction_add",
+            "state",
+            "state_add"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "card_id",
+            "user_id",
+            "name",
+            "mall_id",
+            "price_factor_min",
+            "price_factor_max",
+            "price_reduction_min",
+            "price_reduction_max",
+            "state_min",
+            "state_max",
+            "time_control_min",
+            "time_control_max",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "card_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "card_id",
+            "title": "卡片ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "mall_id",
+            "title": "商城ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "icon",
+            "title": "图标",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "price_factor",
+            "title": "条件金额",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_factor_min",
+            "title": "条件金额——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_factor_max",
+            "title": "条件金额——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_reduction",
+            "title": "减免金额",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_reduction_min",
+            "title": "减免金额——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "price_reduction_max",
+            "title": "减免金额——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "state",
+            "title": "状态",
+            "description": "(1未使用|2已使用|3已过期|4有异常)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "state_min",
+            "title": "状态——最小值",
+            "description": "(1未使用|2已使用|3已过期|4有异常)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "state_max",
+            "title": "状态——最大值",
+            "description": "(1未使用|2已使用|3已过期|4有异常)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "time_control",
+            "title": "控制时间",
+            "description": "状态改变时间",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_control_min",
+            "title": "控制时间——开始时间",
+            "description": "状态改变时间",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_control_max",
+            "title": "控制时间——结束时间",
+            "description": "状态改变时间",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "创建时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "创建时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

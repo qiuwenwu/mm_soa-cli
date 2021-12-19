@@ -1,7 +1,7 @@
 var test_msg = {
 	"from_user": "小明",
 	"to_user": "小白",
-	"create_time": new Date().stamp(),
+	"time_create": new Date().stamp(),
 	"content": "你好"
 };
 
@@ -13,7 +13,7 @@ var test_msg = {
  */
 exports.main = async function(body, ws, request) {
 	$.log.info('收到客户端推送数据', body);
-	test_msg["create_time"] = new Date().stamp();
+	test_msg["time_create"] = new Date().stamp();
 	this.send(JSON.stringify([body.params]));
 	console.log(request);
 	// console.log("客户端", this.clients[Object.keys(this.clients)[0]].length);

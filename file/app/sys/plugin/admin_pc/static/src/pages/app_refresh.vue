@@ -15,8 +15,7 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_select v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'nickname')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -63,7 +62,7 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'phone') || o.user_id }}</span>
 											</td>
 											<td>
 												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
@@ -112,7 +111,7 @@
 					<dl>
 						<dt>用户</dt>
 						<dd>
-							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
 						</dd>
 					</dl>
 				</div>
@@ -183,7 +182,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

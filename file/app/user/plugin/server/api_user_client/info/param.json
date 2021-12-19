@@ -4,8 +4,8 @@
     "add": {
         "body": [
             "sex",
-            "idcard_state",
             "age",
+            "idcard_state",
             "province_id",
             "city_id",
             "name",
@@ -17,7 +17,10 @@
             "address",
             "job_scope",
             "company_business",
-            "idcard_img"
+            "img_idcard_front",
+            "img_idcard_back",
+            "img_hand_held",
+            "note"
         ],
         "body_required": []
     },
@@ -32,10 +35,10 @@
             "user_id",
             "sex_min",
             "sex_max",
-            "idcard_state_min",
-            "idcard_state_max",
             "age_min",
             "age_max",
+            "idcard_state_min",
+            "idcard_state_max",
             "name",
             "keyword"
         ],
@@ -43,10 +46,10 @@
         "body": [
             "sex",
             "sex_add",
-            "idcard_state",
-            "idcard_state_add",
             "age",
             "age_add",
+            "idcard_state",
+            "idcard_state_add",
             "province_id",
             "city_id",
             "name",
@@ -58,7 +61,10 @@
             "address",
             "job_scope",
             "company_business",
-            "idcard_img"
+            "img_idcard_front",
+            "img_idcard_back",
+            "img_hand_held",
+            "note"
         ],
         "body_required": [],
         "body_not": []
@@ -68,10 +74,10 @@
             "user_id",
             "sex_min",
             "sex_max",
-            "idcard_state_min",
-            "idcard_state_max",
             "age_min",
             "age_max",
+            "idcard_state_min",
+            "idcard_state_max",
             "province_id",
             "city_id",
             "birthday_min",
@@ -80,6 +86,11 @@
             "keyword"
         ],
         "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "user_id"
+        ]
     },
     "list": [
         {
@@ -123,36 +134,6 @@
             }
         },
         {
-            "name": "idcard_state",
-            "title": "身份实名认证",
-            "description": "(1未认证|2认证中|3认证通过)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10
-            }
-        },
-        {
-            "name": "idcard_state_min",
-            "title": "身份实名认证——最小值",
-            "description": "(1未认证|2认证中|3认证通过)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10
-            }
-        },
-        {
-            "name": "idcard_state_max",
-            "title": "身份实名认证——最大值",
-            "description": "(1未认证|2认证中|3认证通过)",
-            "type": "number",
-            "dataType": "smallint",
-            "number": {
-                "max": 10
-            }
-        },
-        {
             "name": "age",
             "title": "年龄",
             "description": "",
@@ -180,6 +161,36 @@
             "dataType": "smallint",
             "number": {
                 "max": 150
+            }
+        },
+        {
+            "name": "idcard_state",
+            "title": "身份实名认证",
+            "description": "(1未认证|2认证中|3认证通过|4驳回)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10
+            }
+        },
+        {
+            "name": "idcard_state_min",
+            "title": "身份实名认证——最小值",
+            "description": "(1未认证|2认证中|3认证通过|4驳回)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10
+            }
+        },
+        {
+            "name": "idcard_state_max",
+            "title": "身份实名认证——最大值",
+            "description": "(1未认证|2认证中|3认证通过|4驳回)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10
             }
         },
         {
@@ -329,12 +340,44 @@
             }
         },
         {
-            "name": "idcard_img",
-            "title": "身份证图片",
-            "description": "保存json格式",
+            "name": "img_idcard_front",
+            "title": "身份证正面",
+            "description": "",
             "type": "string",
-            "dataType": "text",
-            "string": {}
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img_idcard_back",
+            "title": "身份证反面",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img_hand_held",
+            "title": "手持身份证",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "note",
+            "title": "备注",
+            "description": "用于驳回审核认证时",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
         },
         {
             "name": "keyword",
@@ -344,10 +387,5 @@
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "user_id"
-        ]
-    }
+    ]
 }

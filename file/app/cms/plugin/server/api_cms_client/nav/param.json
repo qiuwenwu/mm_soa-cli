@@ -1,130 +1,188 @@
 {
-	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
-	"filter": true,
-	// 校验脚本文件, 可以使用脚本的方式加一步进行校验, 让传参更加安全
-	"func_file": "",
-	// get请求
-	"get": {
-		// 查询参数校验项
-		"query": ["uid", "name", "username", "phone", "email"],
-		// 查询必填参数
-		"query_required": []
-	},
-	// post请求
-	"post": {
-		// 查询参数校验项
-		"query": ["uid", "name", "username", "phone", "email"],
-		// 查询必填参数
-		"query_required": [],
-		// 正文参数校验项
-		"body": ["age", "headImg", "birthday", "password", "confirm_password", "pay_password"],
-		// 正文必填参数
-		"body_required": []
-	},
-	// 校验列表
-	"list": [{
-			// 参数key名
-			"name": "uid",
-			// 参数中文名
-			"title": "用户ID",
-			// 数据类型
-			"type": "number",
-			// 数字类型时设置
-			"number": {
-				// 最小数值
-				"min": 1
-			},
-			// 分隔参数，允许传多个值，为空则限制1个值
-			"splitter": "|"
-		}, {
-			"name": "name",
-			"title": "姓名",
-			"type": "string",
-			// 字符串类型时设置
-			"string": {
-				// 格式
-				"format": "ch",
-				// 传值范围，字符串时为限制字符长度
-				"range": [2, 6]
-			},
-			"splitter": "|"
-		},
-		{
-			"name": "age",
-			"title": "年龄",
-			"type": "number",
-			"number": {
-				// 传值范围，数字时为最小值和最大值
-				"range": [1, 150]
-			}
-		},
-		{
-			"name": "headImg",
-			"title": "头像",
-			"type": "string",
-			"string": {
-				// 拓展名，用于传媒体（图片、音频、视频）时
-				"extension": "png|gif|jpg|jpeg|bmp"
-			}
-		},
-		{
-			"name": "birthday",
-			"title": "生日",
-			"type": "string",
-			"string": {
-				"format": "dateISO"
-			}
-		},
-		{
-			"name": "username",
-			"title": "用户名",
-			"type": "string",
-			"string": {
-				"format": "username"
-			}
-		},
-		{
-			"name": "password",
-			"title": "密码",
-			"type": "string",
-			"string": {
-				"format": "password",
-				"different": "username"
-			}
-		},
-		{
-			"name": "phone",
-			"title": "手机",
-			"type": "string",
-			"string": {
-				"format": "phone"
-			}
-		},
-		{
-			"name": "email",
-			"title": "邮箱",
-			"type": "string",
-			"string": {
-				"format": "email"
-			}
-		},
-		{
-			"name": "pay_password",
-			"title": "支付密码",
-			"type": "string",
-			"string": {
-				"format": "num",
-				"different": "password"
-			}
-		},
-		{
-			"name": "confirm_password",
-			"title": "确认密码",
-			"type": "string",
-			"string": {
-				"format": "password",
-				"identical": "password"
-			}
-		}
-	]
+    "name": "cms_nav",
+    "title": "CMS导航",
+    "add": {
+        "body": [
+            "available",
+            "title",
+            "url",
+            "style",
+            "class",
+            "target",
+            "position",
+            "device",
+            "father_id"
+        ],
+        "body_required": [
+            "name"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "nav_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "nav_id",
+            "available",
+            "name",
+            "title",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "available",
+            "name",
+            "title",
+            "url",
+            "style",
+            "class",
+            "target",
+            "position",
+            "device",
+            "father_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "nav_id",
+            "available",
+            "name",
+            "title",
+            "father_id",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "nav_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "nav_id",
+            "title": "导航ID",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "available",
+            "title": "是否启用",
+            "description": "启用后才可以看到。(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "name",
+            "title": "英文名称",
+            "description": "用于多国语识别",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "中文标题",
+            "description": "用于中文提示",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "url",
+            "title": "跳转链接",
+            "description": "跳转的链接地址",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "format": "url"
+            }
+        },
+        {
+            "name": "style",
+            "title": "风格样式",
+            "description": "自定义css样式",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "class",
+            "title": "样式类型",
+            "description": "绑定的css class",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "target",
+            "title": "跳转方式",
+            "description": "_blank表示新窗口跳转",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "position",
+            "title": "展现位置",
+            "description": "top顶部、bottom底部、side侧边，main主要，quick快捷，menu菜单，多个位置用逗号隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "device",
+            "title": "呈现设备",
+            "description": "在什么设备上展示，web_pc、web_pad、web_phone、app_pad、app_phone，多个设备用逗号隔开",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125
+            }
+        },
+        {
+            "name": "father_id",
+            "title": "上级ID",
+            "description": "在频道列表操作时，当上级导航展开时，才显示该导航(cms_nav.name.nav_id)",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 10000
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索英文名称(name)、中文标题(title)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
 }

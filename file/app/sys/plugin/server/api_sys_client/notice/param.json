@@ -1,0 +1,170 @@
+{
+    "name": "sys_notice",
+    "title": "系统公告",
+    "add": {
+        "body": [
+            "broadcast"
+        ],
+        "body_required": [
+            "title",
+            "content"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "notice_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "notice_id",
+            "title",
+            "content",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "broadcast",
+            "title",
+            "content"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "notice_id",
+            "title",
+            "content",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "notice_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "notice_id",
+            "title": "公告id",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "broadcast",
+            "title": "广播频道",
+            "description": "(无|首页|社区|资产|应用)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "title",
+            "title": "标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 125,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "content",
+            "title": "正文",
+            "description": "",
+            "type": "string",
+            "dataType": "longtext",
+            "string": {
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "创建时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "创建时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索标题(title)、正文(content)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

@@ -53,6 +53,7 @@
             "available",
             "name",
             "title",
+            "father_id",
             "keyword"
         ],
         "query_required": []

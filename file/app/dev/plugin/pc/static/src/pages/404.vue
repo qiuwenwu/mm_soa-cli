@@ -5,7 +5,7 @@
 				<h1>404</h1>
 				<div class="mm_grid">
 					<div class="mm_col col-12 col-md-6">
-						<h2>超级美眉</h2>
+						<h2>飞鸟云算力</h2>
 					</div>
 					<div class="mm_col col-12 col-md-6">
 						<div class="bg_no">

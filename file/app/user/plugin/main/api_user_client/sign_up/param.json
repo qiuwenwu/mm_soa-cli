@@ -5,7 +5,8 @@
 	"file": "",
 	"post": {
 		"body": [],
-		"body_required": ["username", "password", "confirm_password", "phone", "code"]
+		"body_required": ["username", "password", "confirm_password", "phone", "code"
+		]
 	},
 	"list": [
 		{

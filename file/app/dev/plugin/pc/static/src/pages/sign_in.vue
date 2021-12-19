@@ -13,7 +13,7 @@
 							<mm_btn class="btn_primary wave linear_blue-1" @click.native="sign_in()">登录</mm_btn>
 							<mm_switch title="记住账户" v-model="remember_me"></mm_switch>
 						</mm_form>
-						<p class="copyright"><span>@ 超级美眉工作室</span></p>
+						<p class="copyright"><span>@ 飞鸟云算力工作室</span></p>
 					</mm_view>
 				</mm_col>
 			</mm_row>

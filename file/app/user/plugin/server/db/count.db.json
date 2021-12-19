@@ -21,7 +21,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": ""
+            "map": "user_account.nickname"
         },
         {
             "name": "level",
@@ -290,7 +290,7 @@
             "min": 0,
             "max": 0,
             "decimal": 8,
-            "default": "0",
+            "default": "0.00000000",
             "map": ""
         }
     ]

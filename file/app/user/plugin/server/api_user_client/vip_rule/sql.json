@@ -1,0 +1,47 @@
+{
+    "name": "user_vip_rule",
+    "title": "",
+    "table": "user_vip_rule",
+    "key": "vip_id",
+    "orderby_default": "`vip_id` desc",
+    "field_obj": "`vip_id`,`lv`,`available`,`name`,`info`,`up_product`,`invite_people`,`achievement`,`team_prize`,`time_create`,`time_update`",
+    "field_default": "`vip_id`,`lv`,`available`,`name`,`info`,`up_product`,`invite_people`,`achievement`,`team_prize`,`time_create`,`time_update`",
+    "method": "get get_obj avg sum count",
+    "query": {
+        "lv_min": "`lv` >= {0}",
+        "lv_max": "`lv` <= {0}",
+        "name": "`name` like '%{0}%'",
+        "info": "`info` like '%{0}%'",
+        "up_product_min": "`up_product` >= {0}",
+        "up_product_max": "`up_product` <= {0}",
+        "invite_people_min": "`invite_people` >= {0}",
+        "invite_people_max": "`invite_people` <= {0}",
+        "achievement_min": "`achievement` >= {0}",
+        "achievement_max": "`achievement` <= {0}",
+        "team_prize_min": "`team_prize` >= {0}",
+        "team_prize_max": "`team_prize` <= {0}",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {
+        "lv_add": "`lv` = `lv` + {0}",
+        "up_product_add": "`up_product` = `up_product` + {0}",
+        "invite_people_add": "`invite_people` = `invite_people` + {0}",
+        "achievement_add": "`achievement` = `achievement` + {0}",
+        "team_prize_add": "`team_prize` = `team_prize` + {0}"
+    },
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        }
+    ]
+}

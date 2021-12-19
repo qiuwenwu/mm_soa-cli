@@ -3,7 +3,7 @@
 		<mm_warp>
 			<mm_container>
 				<mm_row>
-					<mm_col>
+					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
 								<h5>{{ form[field] ? '修改' : '创建' }}社交账户</h5>
@@ -56,7 +56,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -77,7 +77,8 @@
 		components: {},
 		data() {
 			return {
-				url_submit: "/apis/user/sns?",
+				url_add: "/apis/user/sns?method=add",
+				url_set: "/apis/user/sns?method=set",
 				url_get_obj: "/apis/user/sns?method=get_obj",
 				field: "user_id",
 				query: {
@@ -97,15 +98,15 @@
 					"taobao_state": 0,
 				},
 				// QQ认证
-				'arr_qq_state': [ '未认证' , '已认证' ],
+				'arr_qq_state':["未认证","已认证"],
 				// 微信认证
-				'arr_wechat_state': [ '未认证' , '已认证' ],
+				'arr_wechat_state':["未认证","已认证"],
 				// MM认证
-				'arr_mm_state': [ '未认证' , '已认证' ],
+				'arr_mm_state':["未认证","已认证"],
 				// 百度认证
-				'arr_baidu_state': [ '未认证' , '已认证' ],
+				'arr_baidu_state':["未认证","已认证"],
 				// 淘宝认证
-				'arr_taobao_state': [ '未认证' , '已认证' ],
+				'arr_taobao_state':["未认证","已认证"],
 			}
 		},
 		methods: {

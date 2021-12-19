@@ -4,8 +4,8 @@
 			<mm_container>
 				<mm_row>
 					<mm_col class="col-12">
-						<mm_card>
-							<div class="card_head arrow">
+						<mm_card :class="{ 'hide_filter': !show_filter }">
+							<div class="card_head arrow" @click="show_filter = !show_filter">
 								<h5>文章频道</h5>
 							</div>
 							<div class="card_body">
@@ -15,25 +15,17 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="频道名称 / 描述 / 频道标题"
-											  />
+											<control_input v-model="query.keyword" title="关键词" desc="频道标题 / 描述"
+											@blur="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.available" title="是否启用" :options="$to_kv(arr_available)" />
+											<control_select v-model="query.available" title="是否启用" :options="$to_kv(arr_available)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.hide" title="是否隐藏" :options="$to_kv(arr_hide)" />
+											<control_select v-model="query.hide" title="是否隐藏" :options="$to_kv(arr_hide)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.can_comment" title="是否可评论" :options="$to_kv(arr_can_comment)" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.father_id" title="上级" :options="$to_kv(list_article_channel, 'channel_id', 'name')"
-											 />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
-											 />
+											<control_select type="list" v-model="query.father_id" title="上级" :options="$to_kv(list_article_channel, 'channel_id', 'name')" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();">重置</mm_btn>
@@ -57,41 +49,26 @@
 											<th class="th_open"></th>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
-												<control_reverse title="是否启用" v-model="query.orderby" field="available" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="是否隐藏" v-model="query.orderby" field="hide" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="是否可评论" v-model="query.orderby" field="can_comment" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="上级" v-model="query.orderby" field="father_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="所属城市" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="频道名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="风格模板" v-model="query.orderby" field="template" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
-											</th>
-											<th>
+											<th class="td_icon">
 												<control_reverse title="频道图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
 											</th>
-											<th>
-												<control_reverse title="外链地址" v-model="query.orderby" field="url" :func="search"></control_reverse>
-											</th>
-											<th>
+											<th class="td_title">
 												<control_reverse title="频道标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
+											</th>
+											<th class="td_available">
+												<control_reverse title="是否启用" v-model="query.orderby" field="available" :func="search"></control_reverse>
+											</th>
+											<th class="td_hide">
+												<control_reverse title="是否隐藏" v-model="query.orderby" field="hide" :func="search"></control_reverse>
+											</th>
+											<th class="td_description">
+												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											</th>
+											<th class="td_display">
+												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
+											</th>
+											<th class="td_father_id">
+												<control_reverse title="上级" v-model="query.orderby" field="father_id" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -105,40 +82,25 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
+												<img class="icon" :src="o.icon" alt="频道图标" />
+											</td>
+											<td>
+												<control_input :auto="true" v-model="o.title" @blur="set(o)" />
+											</td>
+											<td>
 												<control_switch v-model="o.available" @click.native="set(o)" />
 											</td>
 											<td>
 												<control_switch v-model="o.hide" @click.native="set(o)" />
 											</td>
 											<td>
-												<control_switch v-model="o.can_comment" @click.native="set(o)" />
+												<control_input :auto="true" v-model="o.description" @blur="set(o)" />
 											</td>
 											<td>
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ $get_name(list_article_channel, o.father_id, 'channel_id', 'name') }}</span>
-											</td>
-											<td>
-												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
-											</td>
-											<td>
-												<control_input :auto="true" v-model="o.name" @blur="set(o)" />
-											</td>
-											<td>
-												<control_input :auto="true" v-model="o.template" @blur="set(o)" />
-											</td>
-											<td>
-												<control_input :auto="true" v-model="o.description" @blur="set(o)" />
-											</td>
-											<td>
-												<img class="icon" :src="o.icon" alt="频道图标" />
-											</td>
-											<td>
-												<control_input :auto="true" v-model="o.url" @blur="set(o)" />
-											</td>
-											<td>
-												<control_input :auto="true" v-model="o.title" @blur="set(o)" />
+												<span>{{ $get_name(list_article_channel, o.father_id, 'channel_id', 'title') }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./article_channel_form?channel_id=' + o[field]">修改</mm_btn>
@@ -169,17 +131,9 @@
 						<dd>
 							<control_select v-model="form.hide" :options="$to_kv(arr_hide)" />
 						</dd>
-						<dt>是否可评论</dt>
-						<dd>
-							<control_select v-model="form.can_comment" :options="$to_kv(arr_can_comment)" />
-						</dd>
 						<dt>上级</dt>
 						<dd>
-							<control_select v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name')" />
-						</dd>
-						<dt>所属城市</dt>
-						<dd>
-							<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
+								<control_select type="list" v-model="form.father_id" :options="$to_kv(list_article_channel, 'channel_id', 'name')" />
 						</dd>
 					</dl>
 				</div>
@@ -219,22 +173,20 @@
 					size: '0',
 					// 频道ID
 					'channel_id': 0,
+					// 频道标题
+					'title': '',
 					// 是否启用
 					'available': '',
 					// 是否隐藏
 					'hide': '',
-					// 是否可评论
-					'can_comment': '',
+					// 描述
+					'description': '',
 					// 显示顺序——最小值
 					'display_min': 0,
 					// 显示顺序——最大值
 					'display_max': 0,
-					// 频道名称
-					'name': '',
-					// 描述
-					'description': '',
-					// 频道标题
-					'title': '',
+					// 上级ID
+					'father_id': '',
 					// 关键词
 					'keyword': '',
 					//排序
@@ -247,12 +199,8 @@
 				'arr_available':["否","是"],
 				// 是否隐藏
 				'arr_hide':["否","是"],
-				// 是否可评论
-				'arr_can_comment':["否","是"],
 				// 上级
 				'list_article_channel':[],
-				// 所属城市
-				'list_address_city':[],
 				// 视图模型
 				vm: {}
 			}
@@ -266,31 +214,13 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "channel_id,name,father_id"
+						field: "channel_id,title,father_id"
 					};
 				}
 				this.$get('~/apis/cms/article_channel?size=0', query, function(json) {
 					if (json.result) {
 						_this.list_article_channel .clear();
 						_this.list_article_channel .addList(json.result.list)
-					}
-				});
-			},
-			/**
-			 * 获取所属城市
-			 * @param {query} 查询条件
-			 */
-			get_address_city(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "city_id,name"
-					};
-				}
-				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_address_city .clear();
-						_this.list_address_city .addList(json.result.list)
 					}
 				});
 			},
@@ -307,8 +237,6 @@
 		created() {
 			// 获取上级
 			this.get_article_channel();
-			// 获取所属城市
-			this.get_address_city();
 		},
 		computed: {
 			list_new() {

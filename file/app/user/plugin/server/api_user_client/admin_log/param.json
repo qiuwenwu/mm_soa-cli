@@ -1,0 +1,226 @@
+{
+    "name": "user_admin_log",
+    "title": "管理日志",
+    "add": {
+        "body": [
+            "user_id"
+        ],
+        "body_required": [
+            "username",
+            "url",
+            "title",
+            "content",
+            "ip",
+            "useragent"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "log_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "log_id",
+            "username",
+            "title",
+            "content",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "user_id",
+            "username",
+            "url",
+            "title",
+            "content",
+            "ip",
+            "useragent"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "log_id",
+            "user_id",
+            "username",
+            "title",
+            "content",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "log_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "log_id",
+            "title": "日志ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "管理员ID",
+            "description": "(user_account.nickname)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "username",
+            "title": "管理员名字",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 30,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "url",
+            "title": "操作接口",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "format": "url",
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "title",
+            "title": "日志标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 100,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "content",
+            "title": "内容",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "ip",
+            "title": "IP",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 50,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "useragent",
+            "title": "User-Agent",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "创建时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "创建时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索管理员名字(username)、日志标题(title)、内容(content)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

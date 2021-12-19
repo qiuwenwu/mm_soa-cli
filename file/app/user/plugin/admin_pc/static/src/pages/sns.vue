@@ -36,9 +36,13 @@
 								</mm_form>
 								<div class="bar_action">
 									<h5><span>操作</span></h5>
-									<div class="">
-										<mm_btn class="btn_primary-x" url="./sns_form">添加</mm_btn>
+									<div class="btns">
+										<mm_btn class="btn_primary-x" url="./sns_form?">添加</mm_btn>
 										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+									</div>
+									<div class="btn_small">
+										<control_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></control_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
@@ -46,34 +50,34 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
+											<th class="th_qq">
 												<control_reverse title="QQ号" v-model="query.orderby" field="qq" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_qq_state">
 												<control_reverse title="QQ认证" v-model="query.orderby" field="qq_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_wechat">
 												<control_reverse title="微信号" v-model="query.orderby" field="wechat" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_wechat_state">
 												<control_reverse title="微信认证" v-model="query.orderby" field="wechat_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_mm">
 												<control_reverse title="MM号" v-model="query.orderby" field="mm" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_mm_state">
 												<control_reverse title="MM认证" v-model="query.orderby" field="mm_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_baidu">
 												<control_reverse title="百度账号" v-model="query.orderby" field="baidu" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_baidu_state">
 												<control_reverse title="百度认证" v-model="query.orderby" field="baidu_state" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_taobao">
 												<control_reverse title="淘宝账号" v-model="query.orderby" field="taobao" :func="search"></control_reverse>
 											</th>
-											<th>
+											<th class="th_taobao_state">
 												<control_reverse title="淘宝认证" v-model="query.orderby" field="taobao_state" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
@@ -82,10 +86,8 @@
 									<tbody>
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
-											<th scope="row"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
-											<td>
-												<span>{{ o.user_id }}</span>
-											</td>
+											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+											<td>{{ o[field] }}</td>
 											<td>
 												<span>{{ o.qq }}</span>
 											</td>
@@ -147,7 +149,7 @@
 				<div class="card_head">
 					<h5>批量修改</h5>
 				</div>
-				<div class="card_body">
+				<div class="card_body pa">
 					<dl>
 						<dt>QQ认证</dt>
 						<dd>
@@ -193,6 +195,8 @@
 				url_get_list: "/apis/user/sns",
 				url_del: "/apis/user/sns?method=del&",
 				url_set: "/apis/user/sns?method=set&",
+				url_import: "/apis/user/sns?method=import&",
+				url_export: "/apis/user/sns?method=export&",
 				field: "user_id",
 				query_set: {
 					"user_id": ""
@@ -222,15 +226,15 @@
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
 				// QQ认证
-				'arr_qq_state': [ '未认证' , '已认证' ],
+				'arr_qq_state':["未认证","已认证"],
 				// 微信认证
-				'arr_wechat_state': [ '未认证' , '已认证' ],
+				'arr_wechat_state':["未认证","已认证"],
 				// MM认证
-				'arr_mm_state': [ '未认证' , '已认证' ],
+				'arr_mm_state':["未认证","已认证"],
 				// 百度认证
-				'arr_baidu_state': [ '未认证' , '已认证' ],
+				'arr_baidu_state':["未认证","已认证"],
 				// 淘宝认证
-				'arr_taobao_state': [ '未认证' , '已认证' ],
+				'arr_taobao_state':["未认证","已认证"],
 				// 视图模型
 				vm: {}
 			}

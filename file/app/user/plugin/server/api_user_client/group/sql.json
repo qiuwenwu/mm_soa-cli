@@ -1,11 +1,11 @@
 {
     "name": "user_group",
-    "title": "用户组",
+    "title": "会员组表",
     "table": "user_group",
     "key": "group_id",
-    "orderby_default": "`display` asc",
-    "field_obj": "`group_id`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`description`,`icon`",
-    "field_default": "`group_id`,`display`,`level`,`next_group_id`,`exp`,`discount`,`bonus`,`app`,`name`,`description`,`icon`",
+    "orderby_default": "`group_id` desc",
+    "field_obj": "`group_id`,`name`,`rules`,`createtime`,`updatetime`,`status`",
+    "field_default": "`group_id`,`name`,`rules`,`createtime`,`updatetime`,`status`",
     "method": "get get_obj avg sum count",
     "query": {
         "app": "`app` like '%{0}%'",
@@ -22,8 +22,15 @@
         "level_min": "`level` >= {0}",
         "level_max": "`level` <= {0}",
         "name": "`name` like '%{0}%'",
-        "keyword": "(`name` like '%{0}%' || `description` like '%{0}%')",
-        "title": "`title` like '%{0}%'"
+        "keyword": "(`name` like '%{0}%')",
+        "title": "`title` like '%{0}%'",
+        "rules": "`rules` like '%{0}%'",
+        "createtime_min": "`createtime` >= {0}",
+        "createtime_max": "`createtime` <= {0}",
+        "updatetime_min": "`updatetime` >= {0}",
+        "updatetime_max": "`updatetime` <= {0}",
+        "status_min": "`status` >= {0}",
+        "status_max": "`status` <= {0}"
     },
     "query_default": {},
     "update": {
@@ -31,7 +38,10 @@
         "discount_add": "`discount` = `discount` + {0}",
         "display_add": "`display` = `display` + {0}",
         "exp_add": "`exp` = `exp` + {0}",
-        "level_add": "`level` = `level` + {0}"
+        "level_add": "`level` = `level` + {0}",
+        "createtime_add": "`createtime` = `createtime` + {0}",
+        "updatetime_add": "`updatetime` = `updatetime` + {0}",
+        "status_add": "`status` = `status` + {0}"
     },
     "format": []
 }

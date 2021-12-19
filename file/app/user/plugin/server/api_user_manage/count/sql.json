@@ -56,6 +56,13 @@
         "level_add": "`level` = `level` + {0}",
         "money_add": "`money` = `money` + {0}"
     },
-    "format": [],
+    "format": [
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
     "field_hide": []
 }

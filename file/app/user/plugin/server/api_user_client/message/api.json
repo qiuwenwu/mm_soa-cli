@@ -1,12 +1,13 @@
 {
     "name": "user_message",
     "title": "用户留言",
-    "description": "用于记录用提交的留言信息",
+    "description": "",
     "path": "/api/user/message",
-    "method": "GET",
+    "method": "ALL",
     "cache": 0,
     "client_cache": false,
     "param_path": "./param.json",
+	"func_file": "./index.js",
     "sql_path": "./sql.json",
     "check_param": true
 }

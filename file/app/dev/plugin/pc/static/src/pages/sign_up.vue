@@ -3,7 +3,7 @@
 		<mm_col>
 			<mm_view>
 				<mm_title>
-					<h5>超级美眉</h5>
+					<h5>飞鸟云算力</h5>
 					<span class="arrow"></span>
 				</mm_title>
 				<mm_body>

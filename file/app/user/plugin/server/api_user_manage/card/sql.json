@@ -1,0 +1,45 @@
+{
+    "name": "user_card2",
+    "title": "卡券包",
+    "table": "user_card",
+    "key": "card_id",
+    "orderby_default": "`card_id` desc",
+    "field_obj": "`card_id`,`user_id`,`name`,`mall_id`,`icon`,`price_factor`,`price_reduction`,`state`,`time_control`",
+    "field_default": "`card_id`,`user_id`,`name`,`mall_id`,`icon`,`price_factor`,`price_reduction`,`state`,`time_control`,`time_create`,`time_update`",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "icon": "`icon` like '%{0}%'",
+        "price_factor_min": "`price_factor` >= {0}",
+        "price_factor_max": "`price_factor` <= {0}",
+        "price_reduction_min": "`price_reduction` >= {0}",
+        "price_reduction_max": "`price_reduction` <= {0}",
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "time_control_min": "`time_control` >= '{0}'",
+        "time_control_max": "`time_control` <= '{0}'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {
+        "price_factor_add": "`price_factor` = `price_factor` + {0}",
+        "price_reduction_add": "`price_reduction` = `price_reduction` + {0}",
+        "state_add": "`state` = `state` + {0}"
+    },
+    "format": [
+        {
+            "key": "state",
+            "title": "状态",
+            "list": [
+                "",
+                "未使用",
+                "已使用",
+                "已过期",
+                "有异常"
+            ]
+        }
+    ],
+    "field_hide": []
+}

@@ -1,0 +1,40 @@
+{
+    "name": "user_team",
+    "title": "",
+    "table": "user_team",
+    "key": "team_id",
+    "orderby_default": "`team_id` desc",
+    "field_obj": "`team_id`,`user_id`,`referee_id`,`servants`,`branchs`,`time_create`,`time_update`",
+    "field_default": "`team_id`,`user_id`,`referee_id`,`servants`,`branchs`,`time_create`,`time_update`",
+    "method": "get get_obj avg sum count",
+    "query": {
+        "servants": "`servants` like '%{0}%'",
+        "branchs": "`branchs` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'"
+    },
+    "query_default": {
+        "user_id": "`user_id` = {user_id}"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
+    "filter": {
+        "table": "table",
+        "page": "page",
+        "size": "size",
+        "method": "method",
+        "orderby": "orderby",
+        "field": "field",
+        "count_ret": "count_ret",
+        "user_id": "user_id"
+    }
+}

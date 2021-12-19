@@ -1,0 +1,94 @@
+{
+    "name": "dev_order_auth2",
+    "title": "定制授权",
+    "add": {
+        "body": [
+            "name",
+            "order_id",
+            "power"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "auth_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "auth_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "name",
+            "order_id",
+            "power"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "auth_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "auth_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "auth_id",
+            "title": "用户组ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "组名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "order_id",
+            "title": "订单ID",
+            "description": "用于识别是哪个订单的用户组",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "power",
+            "title": "授权集合",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "string": {}
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索组名(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

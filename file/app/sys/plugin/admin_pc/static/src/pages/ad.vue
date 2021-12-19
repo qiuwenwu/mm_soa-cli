@@ -27,7 +27,7 @@
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.user_id" title="广告主" :options="$to_kv(list_account, 'user_id', 'nickname')"
+											<control_select v-model="query.user_id" title="广告主" :options="$to_kv(list_account, 'user_id', 'phone')"
 											 @change="search()" />
 										</mm_item>
 										<mm_item>
@@ -132,13 +132,13 @@
 												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
 											</td>
 											<td>
-												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
+												<span>{{ get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ $get_name(list_address_area, o.area_id, 'area_id', 'name') }}</span>
+												<span>{{ get_name(list_address_area, o.area_id, 'area_id', 'name') }}</span>
 											</td>
 											<td>
-												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
 											</td>
 											<td>
 												<span>{{ o.times_user }}</span>
@@ -198,7 +198,7 @@
 												<span>{{ o.keywords }}</span>
 											</td>
 											<td>
-												<mm_btn class="btn_primary" :url="'./ad_form?ad_id=' + o[field]">修改</mm_btn>
+												<mm_btn class="btn_primary" :url="`./ad_form?ad_id=` + o[field]">修改</mm_btn>
 												<mm_btn class="btn_warning" @click.native="del_show(o, field)">删除</mm_btn>
 											</td>
 										</tr>
@@ -240,7 +240,7 @@
 						</dd>
 						<dt>广告主</dt>
 						<dd>
-							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
 						</dd>
 					</dl>
 				</div>
@@ -269,6 +269,7 @@
 				url_import: "/apis/sys/ad?method=import&",
 				url_export: "/apis/sys/ad?method=export&",
 				field: "ad_id",
+				page_name: "ad",
 				query_set: {
 					"ad_id": ""
 				},
@@ -379,7 +380,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

@@ -25,8 +25,7 @@
 											<control_select v-model="query.encrypt" title="加解密方式" :options="$to_kv(arr_encrypt)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.user_id" title="持有者" :options="$to_kv(list_account, 'user_id', 'nickname')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.user_id" title="持有者" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -130,7 +129,7 @@
 												<span>{{ o.max_age }}</span>
 											</td>
 											<td>
-												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'phone') || o.user_id }}</span>
 											</td>
 											<td>
 												<span>{{ o.times_count }}</span>
@@ -214,7 +213,7 @@
 						</dd>
 						<dt>持有者</dt>
 						<dd>
-							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
 						</dd>
 					</dl>
 				</div>
@@ -311,7 +310,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

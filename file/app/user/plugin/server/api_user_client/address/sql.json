@@ -21,7 +21,9 @@
         "keyword": "(`name` like '%{0}%')",
         "province": "`province` like '%{0}%'",
         "city": "`city` like '%{0}%'",
-        "area": "`area` like '%{0}%'"
+        "area": "`area` like '%{0}%'",
+        "sex_min": "`sex` >= {0}",
+        "sex_max": "`sex` <= {0}"
     },
     "query_default": {
         "user_id": "`user_id` = {user_id}"
@@ -29,7 +31,8 @@
     "update": {
         "province_add": "`province` = `province` + {0}",
         "city_add": "`city` = `city` + {0}",
-        "area_add": "`area` = `area` + {0}"
+        "area_add": "`area` = `area` + {0}",
+        "sex_add": "`sex` = `sex` + {0}"
     },
     "format": [
         {

@@ -3,6 +3,11 @@
     "title": "用户留言",
     "add": {
         "body": [
+            "user_id",
+            "img",
+            "img_2",
+            "img_3",
+            "type",
             "title",
             "content",
             "phone",
@@ -27,6 +32,11 @@
         ],
         "query_required": [],
         "body": [
+            "user_id",
+            "img",
+            "img_2",
+            "img_3",
+            "type",
             "title",
             "content",
             "phone",
@@ -39,14 +49,22 @@
     "get": {
         "query": [
             "message_id",
+            "user_id",
             "title",
             "content",
             "name",
             "time_create_min",
             "time_create_max",
+            "time_update_min",
+            "time_update_max",
             "keyword"
         ],
         "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "message_id"
+        ]
     },
     "list": [
         {
@@ -57,6 +75,56 @@
             "dataType": "int",
             "number": {
                 "max": 2147483647
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "(user_account.phone.user_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "img",
+            "title": "图片",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img_2",
+            "title": "图片2",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img_3",
+            "title": "图片3",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "type",
+            "title": "类型",
+            "description": "(平台|账号|订单|支付|其他)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
             }
         },
         {
@@ -143,6 +211,39 @@
             }
         },
         {
+            "name": "time_update",
+            "title": "最后更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "最后更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "最后更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
             "name": "keyword",
             "title": "关键词",
             "description": "用于搜索留言标题(title)、留言内容(content)、留言者姓名(name)",
@@ -150,10 +251,5 @@
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "message_id"
-        ]
-    }
+    ]
 }

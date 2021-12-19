@@ -1,6 +1,6 @@
 {
     "name": "cms_article_comment_reply2",
-    "title": "文章评论",
+    "title": "文章评论回复",
     "add": {
         "body": [
             "available",
@@ -165,7 +165,7 @@
         {
             "name": "user_id",
             "title": "用户ID",
-            "description": "编辑评论的用户ID(user_account.nickname)",
+            "description": "编辑评论的用户ID(user_account.phone)",
             "type": "number",
             "dataType": "mediumint",
             "number": {

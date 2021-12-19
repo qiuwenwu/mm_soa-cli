@@ -1,4 +1,5 @@
 
+var sql = $.mysql_admin('sys', __dirname);
 var api = $.api_admin('demo', '测试用');
 // 首次启动更新api接口;
 api.update('demo/');
@@ -14,6 +15,7 @@ async function main(ctx, db) {
 	console.log(Object.keys(ctx));
 	db.tpl = new $.Tpl();
 	db.tpl.viewBag.app = "mm";
+	$.push(db, sql.db(), true);
 	return api.run(ctx, db);
 };
 exports.main = main;

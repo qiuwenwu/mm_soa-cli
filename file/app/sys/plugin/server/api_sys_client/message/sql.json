@@ -6,7 +6,7 @@
     "orderby_default": "`message_id` desc",
     "field_obj": "`message_id`,`title`,`note`,`time_create`,`time_update`",
     "field_default": "`message_id`,`title`,`note`,`time_create`,`time_update`",
-    "method": "del get get_obj avg sum count",
+    "method": "get get_obj avg sum count",
     "query": {
         "note": "`note` like '%{0}%'",
         "title": "`title` like '%{0}%'",

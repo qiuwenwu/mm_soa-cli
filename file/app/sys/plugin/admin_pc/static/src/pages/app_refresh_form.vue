@@ -13,7 +13,7 @@
 									<dl>
 										<dt>用户</dt>
 										<dd>
-											<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
+											<control_select type="list" v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</dd>
 										<dt class="required">应用ID</dt>
 										<dd>
@@ -77,7 +77,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

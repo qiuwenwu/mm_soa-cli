@@ -1,0 +1,15 @@
+{
+    "name": "upload_file",
+    "title": "上传文件",
+    "description": "用于上传文件",
+    "path": "/upload/file",
+    "type": "api",
+    "func_file": "./index.js",
+    "func_name": "",
+    "method": "POST",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "",
+    "check_param": true
+}

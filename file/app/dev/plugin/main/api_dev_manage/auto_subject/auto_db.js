@@ -1,8 +1,3 @@
-// 加载数据库模块
-const {
-	Mysql
-} = require("mm_mysql");
-
 // 创建表
 const create_table = require("./db/create_table.js");
 
@@ -103,7 +98,7 @@ async function ready(db, db_name) {
 	// 创建新数据库
 	var bl = await db.run("create database " + db_name + ";");
 	// 连接数据库
-	var mysql = new Mysql(db_name, __dirname);
+	var mysql = $.mysql_admin(db_name, __dirname);
 	mysql.config = {
 		// 服务器地址
 		host: cg.host,

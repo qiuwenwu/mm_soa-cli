@@ -1,6 +1,6 @@
 {
     "name": "user_group_manage",
-    "title": "用户组",
+    "title": "会员组表",
     "description": "用于用户前端身份和鉴权",
     "path": "/apis/user/group",
     "method": "ALL",

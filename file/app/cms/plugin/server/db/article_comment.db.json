@@ -111,7 +111,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "user_account.nickname"
+            "map": "user_account.phone"
         },
         {
             "name": "name",

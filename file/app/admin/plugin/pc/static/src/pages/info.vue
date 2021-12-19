@@ -36,7 +36,7 @@
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -75,7 +75,6 @@
 				var _this = this;
 				this.$get(this.url_get_obj, null, function(res){
 					if(res.result && res.result.obj){
-						console.log(_this.form, res.result.obj);
 						$.push(_this.form, res.result.obj);
 					}
 				});

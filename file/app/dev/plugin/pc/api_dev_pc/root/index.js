@@ -15,9 +15,9 @@ async function main(ctx, db) {
 	// 过滤静态文件
 	if (p.indexOf('.') === -1) {
 		var model = {
-			title: "超级美眉——开发者",
-			description: "超级美眉mm_koa版服务端框架是一个高并发、分布式服务端框架, 适用于开发中小型商城、游戏、saas平台",
-			keywords: "超级美眉 mm_koa 高并发 异步 服务端 分布式 框架 商城 游戏 saas async",
+			title: "飞鸟云算力——开发者",
+			description: "飞鸟云算力mm_koa版服务端框架是一个高并发、分布式服务端框架, 适用于开发中小型商城、游戏、saas平台",
+			keywords: "飞鸟云算力 mm_koa 高并发 异步 服务端 分布式 框架 商城 游戏 saas async",
 			content: ""
 		};
 

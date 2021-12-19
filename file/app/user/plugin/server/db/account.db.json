@@ -150,6 +150,24 @@
             "map": "user_account.nickname.user_id"
         },
         {
+            "name": "service_fee",
+            "title": "管理费",
+            "description": "",
+            "type": "double",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 16,
+            "min": 0,
+            "max": 0,
+            "decimal": 8,
+            "default": "0.00000000",
+            "map": ""
+        },
+        {
             "name": "login_time",
             "title": "上次登录时间",
             "description": "",
@@ -402,7 +420,7 @@
             "map": ""
         },
         {
-            "name": "create_time",
+            "name": "time_create",
             "title": "创建时间",
             "description": "",
             "type": "timestamp",
@@ -431,6 +449,24 @@
             "not_null": 0,
             "min_length": 0,
             "max_length": 70,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": null,
+            "map": ""
+        },
+        {
+            "name": "password_pay",
+            "title": "支付密码",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 0,
+            "min_length": 0,
+            "max_length": 32,
             "min": 0,
             "max": 0,
             "decimal": 0,

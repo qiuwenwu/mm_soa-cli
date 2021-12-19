@@ -1,0 +1,32 @@
+{
+    "name": "user_admin_log2",
+    "title": "管理日志",
+    "table": "user_admin_log",
+    "key": "log_id",
+    "orderby_default": "`log_id` desc",
+    "field_obj": "`log_id`,`user_id`,`username`,`url`,`title`,`content`,`ip`,`useragent`",
+    "field_default": "`log_id`,`user_id`,`username`,`url`,`title`,`ip`,`useragent`,`time_create`,`time_update`",
+    "query": {
+        "username": "`username` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "ip": "`ip` like '%{0}%'",
+        "useragent": "`useragent` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "keyword": "(`username` like '%{0}%' || `title` like '%{0}%')"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "user_id",
+            "title": "管理员",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
+    "field_hide": []
+}

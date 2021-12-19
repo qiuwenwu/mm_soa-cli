@@ -1,0 +1,36 @@
+{
+	// 是否启用过滤, 启用过滤后, 不符合的参数会被过滤掉
+	"filter": true,
+	// get请求
+	"get": {
+		// 查询必填参数
+		"query_required": ["user_id", "apikey"]
+	},
+	// 校验列表
+	"list": [{
+			// 参数key名
+			"name": "user_id",
+			// 参数中文名
+			"title": "用户ID",
+			// 数据类型
+			"type": "number",
+			// 数字类型时设置
+			"number": {
+				// 最小数值
+				"min": 1
+			},
+			// 分隔参数，允许传多个值，为空则限制1个值
+			"splitter": "|"
+		}, {
+			"name": "apikey",
+			"title": "应用密钥",
+			"type": "string",
+			// 字符串类型时设置
+			"string": {
+				// 传值范围，字符串时为限制字符长度
+				"range": [8, 64]
+			},
+			"splitter": "|"
+		}
+	]
+}

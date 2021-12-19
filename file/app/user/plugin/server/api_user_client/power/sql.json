@@ -21,7 +21,8 @@
         "field_add": "`field_add` like '%{0}%'",
         "field_del": "`field_del` like '%{0}%'",
         "field_get": "`field_get` like '%{0}%'",
-        "keyword": "(`name` like '%{0}%')"
+        "keyword": "(`name` like '%{0}%')",
+        "way": "`way` like '%{0}%'"
     },
     "query_default": {},
     "update": {

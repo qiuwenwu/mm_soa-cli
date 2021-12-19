@@ -1,6 +1,6 @@
 {
     "name": "cms_article_comment_reply2",
-    "title": "文章评论",
+    "title": "文章评论回复",
     "table": "cms_article_comment_reply",
     "key": "reply_id",
     "orderby_default": "`reply_id` desc",
@@ -39,7 +39,7 @@
             "key": "user_id",
             "title": "用户",
             "table": "user_account",
-            "name": "nickname"
+            "name": "phone"
         }
     ],
     "field_hide": []

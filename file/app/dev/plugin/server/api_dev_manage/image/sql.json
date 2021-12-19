@@ -1,0 +1,92 @@
+{
+    "name": "dev_image2",
+    "title": "图片素材",
+    "table": "dev_image",
+    "key": "image_id",
+    "orderby_default": "`image_id` desc",
+    "field_obj": "`image_id`,`device`,`type`,`color`,`img`,`user_id`,`theme_id`",
+    "field_default": "`image_id`,`device`,`type`,`color`,`img`,`user_id`,`theme_id`",
+    "query": {
+        "device": "`device` like '%{0}%'",
+        "type": "`type` like '%{0}%'",
+        "color": "`color` like '%{0}%'",
+        "img": "`img` like '%{0}%'"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "device",
+            "title": "设备",
+            "list": [
+                {
+                    "name": "pc",
+                    "value": "pc"
+                },
+                {
+                    "name": "pad",
+                    "value": "pad"
+                },
+                {
+                    "name": "phone",
+                    "value": "phone"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "title": "类型",
+            "list": [
+                {
+                    "name": "轮播图",
+                    "value": "轮播图"
+                },
+                {
+                    "name": "背景图",
+                    "value": "背景图"
+                }
+            ]
+        },
+        {
+            "key": "color",
+            "title": "颜色",
+            "list": [
+                {
+                    "name": "红",
+                    "value": "红"
+                },
+                {
+                    "name": "橙",
+                    "value": "橙"
+                },
+                {
+                    "name": "黄",
+                    "value": "黄"
+                },
+                {
+                    "name": "绿",
+                    "value": "绿"
+                },
+                {
+                    "name": "青",
+                    "value": "青"
+                },
+                {
+                    "name": "蓝",
+                    "value": "蓝"
+                },
+                {
+                    "name": "紫",
+                    "value": "紫"
+                }
+            ]
+        },
+        {
+            "key": "theme_id",
+            "title": "主题",
+            "table": "dev_theme",
+            "name": "name",
+            "id": "theme_id"
+        }
+    ],
+    "field_hide": []
+}

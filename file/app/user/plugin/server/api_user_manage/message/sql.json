@@ -4,8 +4,8 @@
     "table": "user_message",
     "key": "message_id",
     "orderby_default": "`message_id` desc",
-    "field_obj": "`message_id`,`title`,`content`,`phone`,`email`,`name`",
-    "field_default": "`message_id`,`title`,`phone`,`email`,`name`,`time_create`",
+    "field_obj": "`message_id`,`user_id`,`img`,`img_2`,`img_3`,`type`,`title`,`content`,`phone`,`email`,`name`",
+    "field_default": "`message_id`,`user_id`,`img`,`img_2`,`img_3`,`type`,`title`,`phone`,`email`,`name`,`time_create`,`time_update`",
     "query": {
         "content": "`content` like '%{0}%'",
         "email": "`email` like '%{0}%'",
@@ -14,9 +14,49 @@
         "title": "`title` like '%{0}%'",
         "keyword": "(`title` like '%{0}%' || `name` like '%{0}%')",
         "time_create_min": "`time_create` >= '{0}'",
-        "time_create_max": "`time_create` <= '{0}'"
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "img": "`img` like '%{0}%'",
+        "img_2": "`img_2` like '%{0}%'",
+        "img_3": "`img_3` like '%{0}%'",
+        "type": "`type` like '%{0}%'"
     },
     "update": {},
-    "format": [],
+    "format": [
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "phone",
+            "id": "user_id"
+        },
+        {
+            "key": "type",
+            "title": "类型",
+            "list": [
+                {
+                    "name": "平台",
+                    "value": "平台"
+                },
+                {
+                    "name": "账号",
+                    "value": "账号"
+                },
+                {
+                    "name": "订单",
+                    "value": "订单"
+                },
+                {
+                    "name": "支付",
+                    "value": "支付"
+                },
+                {
+                    "name": "其他",
+                    "value": "其他"
+                }
+            ]
+        }
+    ],
     "field_hide": []
 }

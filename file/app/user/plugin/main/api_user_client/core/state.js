@@ -7,9 +7,11 @@
 async function main(ctx, db) {
 	// 获取请求参数
 	if (ctx.session.user) {
-		var user = Object.assign({}, ctx.session.user);
-		// delete user.user_id;
-		return $.ret.body(user);
+		var o = Object.assign({}, ctx.session.user);
+		delete o.salt;
+		o.password_pay = o.password_pay ? "******" : "";
+		o.password = o.password ? "******" : "";
+		return $.ret.body(o);
 	} else {
 		var token = ctx.headers[$.dict.token];
 		if (token) {
@@ -17,12 +19,18 @@ async function main(ctx, db) {
 			if (u) {
 				var type = typeof(u);
 				if (type === "string") {
-					var o = u.toJson();
-					return $.ret.body(o.user);
+					var o = Object.assign({}, u.toJson());
+					delete o.salt;
+					o.password_pay = o.password_pay ? "******" : "";
+					o.password = o.password ? "******" : "";
+					return $.ret.body(o);
 				} else if (type === "object") {
 					if (Object.keys(u).length > 0) {
 						var o = Object.assign({}, u);
-						return $.ret.body(o.user);
+						delete o.salt;
+						o.password_pay = o.password_pay ? "******" : "";
+						o.password = o.password ? "******" : "";
+						return $.ret.body(o);
 					}
 				}
 			}

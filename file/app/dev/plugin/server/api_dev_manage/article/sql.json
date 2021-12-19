@@ -1,0 +1,87 @@
+{
+    "name": "dev_article2",
+    "title": "文章",
+    "table": "dev_article",
+    "key": "article_id",
+    "orderby_default": "`article_id` desc",
+    "field_obj": "`article_id`,`state`,`type`,`user_id`,`hits`,`praise`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`,`content`,`app`",
+    "field_default": "`article_id`,`state`,`type`,`display`,`user_id`,`hits`,`praise`,`time_create`,`time_update`,`lang`,`author`,`title`,`keywords`,`description`,`source`,`url`,`tag`,`img`,`app`",
+    "query": {
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "type": "`type` like '%{0}%'",
+        "display_min": "`display` >= {0}",
+        "display_max": "`display` <= {0}",
+        "hits_min": "`hits` >= {0}",
+        "hits_max": "`hits` <= {0}",
+        "praise": "`praise` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "lang": "`lang` like '%{0}%'",
+        "author": "`author` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "keywords": "`keywords` like '%{0}%'",
+        "description": "`description` like '%{0}%'",
+        "source": "`source` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "tag": "`tag` like '%{0}%'",
+        "img": "`img` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "app": "`app` like '%{0}%'",
+        "keyword": "(`title` like '%{0}%' || `keywords` like '%{0}%' || `description` like '%{0}%' || `tag` like '%{0}%')"
+    },
+    "update": {
+        "state_add": "`state` = `state` + {0}",
+        "display_add": "`display` = `display` + {0}",
+        "hits_add": "`hits` = `hits` + {0}"
+    },
+    "format": [
+        {
+            "key": "state",
+            "title": "状态",
+            "list": [
+                "",
+                "正常",
+                "推荐",
+                "认证",
+                "违规",
+                "官方"
+            ]
+        },
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        },
+        {
+            "key": "lang",
+            "title": "语言",
+            "list": [
+                {
+                    "name": "zh_cn",
+                    "value": "zh_cn"
+                },
+                {
+                    "name": "en",
+                    "value": "en"
+                },
+                {
+                    "name": "zh_tw",
+                    "value": "zh_tw"
+                },
+                {
+                    "name": "ko",
+                    "value": "ko"
+                },
+                {
+                    "name": "ja",
+                    "value": "ja"
+                }
+            ]
+        }
+    ],
+    "field_hide": []
+}

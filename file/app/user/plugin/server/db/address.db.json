@@ -172,7 +172,7 @@
             "title": "用户ID",
             "description": "表示该地址是哪个用户的",
             "type": "mediumint",
-            "key": false,
+            "key": true,
             "auto": "",
             "symbol": false,
             "fill_zero": false,

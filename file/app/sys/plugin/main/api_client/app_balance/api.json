@@ -1,0 +1,18 @@
+{
+    "name": "sys_app_balance",
+    "title": "第三方查询用户余额",
+    "description": "用于第三方应用查询本应用的用户余额",
+    "path": "/api/sys/app_balance",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "func_file": "./index.js",
+    "check_param": true,
+	// 参数配置路径, 用于校验API请求参数是否正确, 同时显示在API文档中 
+	"param_path": "./param.json",
+	/* 授权协议 */
+	"oauth": {
+		// 是否需要登录, true表示需要登录才能访问该接口
+		"signIn": false
+	}
+}

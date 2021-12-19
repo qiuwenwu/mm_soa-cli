@@ -1,0 +1,63 @@
+{
+    "title": "主题分类",
+    "description": "",
+    "name": "dev_theme",
+    "table": "dev_theme",
+    "key": "theme_id",
+    "fields": [
+        {
+            "name": "theme_id",
+            "title": "主题分类ID",
+            "description": "",
+            "type": "int",
+            "key": true,
+            "auto": "auto_increment",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 11,
+            "min": 0,
+            "max": 30000,
+            "decimal": 0,
+            "default": "0",
+            "map": ""
+        },
+        {
+            "name": "father_id",
+            "title": "上级主题ID",
+            "description": "",
+            "type": "int",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 11,
+            "min": 0,
+            "max": 32767,
+            "decimal": 0,
+            "default": "0",
+            "map": "dev_theme.name.theme_id"
+        },
+        {
+            "name": "name",
+            "title": "主题名称",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 0,
+            "min_length": 0,
+            "max_length": 16,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": null,
+            "map": ""
+        }
+    ]
+}

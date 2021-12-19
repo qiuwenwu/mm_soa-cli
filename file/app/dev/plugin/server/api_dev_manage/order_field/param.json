@@ -1,0 +1,377 @@
+{
+    "name": "dev_order_field2",
+    "title": "定制字段",
+    "add": {
+        "body": [
+            "table_id",
+            "name",
+            "title",
+            "type",
+            "drop_down_table",
+            "drop_down_field",
+            "drop_down_diy",
+            "from_user_table",
+            "unique",
+            "can_sort",
+            "can_query",
+            "is_type_show",
+            "user_group",
+            "display",
+            "session_read",
+            "compute",
+            "tip_start",
+            "tip_way",
+            "tip_end",
+            "count_chart",
+            "is_img_list",
+            "is_show_collect",
+            "description"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "field_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "field_id",
+            "name",
+            "title",
+            "can_sort",
+            "can_query",
+            "is_type_show",
+            "display_min",
+            "display_max",
+            "session_read",
+            "is_img_list",
+            "is_show_collect",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "table_id",
+            "name",
+            "title",
+            "type",
+            "drop_down_table",
+            "drop_down_field",
+            "drop_down_diy",
+            "from_user_table",
+            "unique",
+            "can_sort",
+            "can_query",
+            "is_type_show",
+            "user_group",
+            "display",
+            "display_add",
+            "session_read",
+            "compute",
+            "tip_start",
+            "tip_way",
+            "tip_end",
+            "count_chart",
+            "is_img_list",
+            "is_show_collect",
+            "description"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "field_id",
+            "name",
+            "title",
+            "can_sort",
+            "can_query",
+            "is_type_show",
+            "display_min",
+            "display_max",
+            "session_read",
+            "is_img_list",
+            "is_show_collect",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "field_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "field_id",
+            "title": "字段ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "table_id",
+            "title": "对应表ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "字段名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "title",
+            "title": "表列标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "type",
+            "title": "类型",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "drop_down_table",
+            "title": "下拉表",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "drop_down_field",
+            "title": "下拉字段",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "drop_down_diy",
+            "title": "下拉自定义",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "from_user_table",
+            "title": "读自用户表",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "unique",
+            "title": "唯一标识",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "can_sort",
+            "title": "能否排序",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "can_query",
+            "title": "可以查询",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "is_type_show",
+            "title": "是否分类展示",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "user_group",
+            "title": "用户组",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "display",
+            "title": "排序",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "display_min",
+            "title": "排序——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "display_max",
+            "title": "排序——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "session_read",
+            "title": "从session读取",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "compute",
+            "title": "计算",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "tip_start",
+            "title": "提醒开始",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "tip_way",
+            "title": "提醒方式",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "tip_end",
+            "title": "提醒结束",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "count_chart",
+            "title": "统计图类值",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "is_img_list",
+            "title": "是否在图片列表展示",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "is_show_collect",
+            "title": "是否显示收藏",
+            "description": "",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "description",
+            "title": "表列描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索字段名(name)、表列标题(title)、表列描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

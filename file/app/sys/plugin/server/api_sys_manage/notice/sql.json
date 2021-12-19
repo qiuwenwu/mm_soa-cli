@@ -1,0 +1,49 @@
+{
+    "name": "sys_notice2",
+    "title": "系统公告",
+    "table": "sys_notice",
+    "key": "notice_id",
+    "orderby_default": "`notice_id` desc",
+    "field_obj": "`notice_id`,`broadcast`,`title`,`content`",
+    "field_default": "`notice_id`,`broadcast`,`title`,`time_create`,`time_update`",
+    "query": {
+        "broadcast": "`broadcast` like '%{0}%'",
+        "title": "`title` like '%{0}%'",
+        "content": "`content` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "keyword": "(`title` like '%{0}%')"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "broadcast",
+            "title": "广播频道",
+            "list": [
+                {
+                    "name": "无",
+                    "value": "无"
+                },
+                {
+                    "name": "首页",
+                    "value": "首页"
+                },
+                {
+                    "name": "社区",
+                    "value": "社区"
+                },
+                {
+                    "name": "资产",
+                    "value": "资产"
+                },
+                {
+                    "name": "应用",
+                    "value": "应用"
+                }
+            ]
+        }
+    ],
+    "field_hide": []
+}

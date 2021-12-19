@@ -1,0 +1,63 @@
+{
+    "title": "支付类型",
+    "description": "",
+    "name": "user_pay_type",
+    "table": "user_pay_type",
+    "key": "type_id",
+    "fields": [
+        {
+            "name": "type_id",
+            "title": "分类ID",
+            "description": "",
+            "type": "int",
+            "key": true,
+            "auto": "auto_increment",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 10,
+            "min": 0,
+            "max": 2147483647,
+            "decimal": 0,
+            "default": "0",
+            "map": ""
+        },
+        {
+            "name": "name",
+            "title": "名称",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 0,
+            "min_length": 0,
+            "max_length": 32,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": null,
+            "map": ""
+        },
+        {
+            "name": "url",
+            "title": "地址",
+            "description": "",
+            "type": "varchar",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 0,
+            "min_length": 0,
+            "max_length": 255,
+            "min": 0,
+            "max": 0,
+            "decimal": 0,
+            "default": null,
+            "map": ""
+        }
+    ]
+}

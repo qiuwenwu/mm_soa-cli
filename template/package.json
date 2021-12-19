@@ -4,11 +4,11 @@
 	"description": "{description}",
 	"main": "server.js",
 	"scripts": {
-		"dev": "./node_modules/.bin/cross-env NODE_ENV=development PORT=5000 nodemon server.js",
-		"test": "./node_modules/.bin/cross-env NODE_ENV=test nodemon server.js",
-		"pro": "./node_modules/.bin/cross-env NODE_ENV=production node server.js",
-		"start": "./node_modules/.bin/cross-env NODE_ENV=local node server.js",
-		"local": "./node_modules/.bin/cross-env NODE_ENV=local node server.js"
+		"dev": "cross-env NODE_ENV=development PORT=5000 nodemon server.js",
+		"test": "cross-env NODE_ENV=test nodemon server.js",
+		"pro": "cross-env NODE_ENV=production node server.js",
+		"start": "cross-env NODE_ENV=local node server.js",
+		"local": "cross-env NODE_ENV=local node server.js"
 	},
 	"repository": {
 		"type": "git",

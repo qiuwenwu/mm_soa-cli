@@ -54,6 +54,11 @@
         ],
         "query_required": []
     },
+    "get_obj": {
+        "query_required": [
+            "address_id"
+        ]
+    },
     "list": [
         {
             "name": "address_id",
@@ -167,10 +172,5 @@
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "address_id"
-        ]
-    }
+    ]
 }

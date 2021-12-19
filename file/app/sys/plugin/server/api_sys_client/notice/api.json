@@ -1,0 +1,12 @@
+{
+    "name": "sys_notice",
+    "title": "系统公告",
+    "description": "",
+    "path": "/api/sys/notice",
+    "method": "GET",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true
+}

@@ -1,0 +1,17 @@
+{
+    "name": "user_pay_type2",
+    "title": "支付类型",
+    "table": "user_pay_type",
+    "key": "type_id",
+    "orderby_default": "`type_id` desc",
+    "field_obj": "`type_id`,`name`,`url`",
+    "field_default": "`type_id`,`name`,`url`",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "url": "`url` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

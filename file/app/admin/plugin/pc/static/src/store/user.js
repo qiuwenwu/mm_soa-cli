@@ -4,6 +4,7 @@ define(function() {
 	return {
 		state: function state() {
 			return {
+				"user_id": 0,
 				"token": "",
 				"username": "",
 				"referee_id": 0,

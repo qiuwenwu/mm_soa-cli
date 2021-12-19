@@ -4,8 +4,8 @@
 			<mm_container>
 				<mm_row>
 					<mm_col class="col-12">
-						<mm_card>
-							<div class="card_head arrow">
+						<mm_card :class="{ 'hide_filter': !show_filter }">
+							<div class="card_head arrow" @click="show_filter = !show_filter">
 								<h5>用户账户</h5>
 							</div>
 							<div class="card_body">
@@ -15,32 +15,37 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称 / 钱包地址"
-											 @blur="search()" />
+											<control_input v-model="query.keyword" title="关键词" desc="用户名 / 昵称"
+												@blur="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.state" title="账户状态" :options="$to_kv(arr_state)" @change="search()" />
+											<control_select v-model="query.state" title="账户状态"
+												:options="$to_kv(arr_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.group_id" title="所在用户组" :options="$to_kv(list_group, 'group_id', 'name')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.group_id" title="所在用户组"
+												:options="$to_kv(list_group, 'group_id', 'name')" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.admin_id" title="所在管理组" :options="$to_kv(list_admin, 'admin_id', 'name')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.admin_id" title="所在管理组"
+												:options="$to_kv(list_admin, 'admin_id', 'name')" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.referee_id" title="推荐人" :options="$to_kv(list_account, 'user_id', 'nickname')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.referee_id" title="推荐人"
+												:options="$to_kv(list_account, 'user_id', 'nickname')"
+												@change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.phone_state" title="手机认证" :options="$to_kv(arr_phone_state)" @change="search()" />
+											<control_select v-model="query.phone_state" title="手机认证"
+												:options="$to_kv(arr_phone_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.email_state" title="邮箱认证" :options="$to_kv(arr_email_state)" @change="search()" />
+											<control_select v-model="query.email_state" title="邮箱认证"
+												:options="$to_kv(arr_email_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
+											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">
+												重置</mm_btn>
 										</mm_item>
 									</mm_list>
 								</mm_form>
@@ -48,58 +53,71 @@
 									<h5><span>操作</span></h5>
 									<div class="btns">
 										<mm_btn class="btn_primary-x" url="./account_form?">添加</mm_btn>
-										<mm_btn @click.native="show = true" class="btn_primary-x" v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
+										<mm_btn @click.native="show = true" class="btn_primary-x"
+											v-bind:class="{ 'disabled': !selects }">批量修改</mm_btn>
 									</div>
 									<div class="btn_small">
-										<control_file class="btn_default-x" type="excel" :func="import_db" v-if="url_import"></control_file>
-										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出</mm_btn>
+										<control_file class="btn_default-x" type="excel" :func="import_db"
+											v-if="url_import"></control_file>
+										<mm_btn class="btn_default-x" @click.native="export_db()" v-if="url_export">导出
+										</mm_btn>
 									</div>
 								</div>
 								<mm_table type="2">
 									<thead class="table-sm">
 										<tr>
-											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
+											<th class="th_selected"><input type="checkbox" :checked="select_state"
+													@click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
+											<th class="th_nickname">
+												<control_reverse title="昵称" v-model="query.orderby" field="nickname"
+													:func="search"></control_reverse>
+											</th>
+											<th class="th_phone">
+												<control_reverse title="手机号码" v-model="query.orderby" field="phone"
+													:func="search"></control_reverse>
+											</th>
 											<th class="th_state">
-												<control_reverse title="账户状态" v-model="query.orderby" field="state" :func="search"></control_reverse>
+												<control_reverse title="账户状态" v-model="query.orderby" field="state"
+													:func="search"></control_reverse>
 											</th>
-											<th class="th_vip">
+											<!-- <th class="th_vip">
 												<control_reverse title="会员级别" v-model="query.orderby" field="vip" :func="search"></control_reverse>
-											</th>
+											</th> -->
 											<th class="th_gm">
-												<control_reverse title="管理员级别" v-model="query.orderby" field="gm" :func="search"></control_reverse>
+												<control_reverse title="管理员级别" v-model="query.orderby" field="gm"
+													:func="search"></control_reverse>
 											</th>
 											<th class="th_mc">
-												<control_reverse title="商家级别" v-model="query.orderby" field="mc" :func="search"></control_reverse>
+												<control_reverse title="商家级别" v-model="query.orderby" field="mc"
+													:func="search"></control_reverse>
 											</th>
-											<th class="th_group_id">
+											<!-- <th class="th_group_id">
 												<control_reverse title="所在用户组" v-model="query.orderby" field="group_id" :func="search"></control_reverse>
 											</th>
 											<th class="th_admin_id">
 												<control_reverse title="所在管理组" v-model="query.orderby" field="admin_id" :func="search"></control_reverse>
-											</th>
+											</th> -->
 											<th class="th_referee_id">
-												<control_reverse title="推荐人" v-model="query.orderby" field="referee_id" :func="search"></control_reverse>
+												<control_reverse title="推荐人" v-model="query.orderby" field="referee_id"
+													:func="search"></control_reverse>
+											</th>
+											<th class="th_service_fee">
+												<control_reverse title="管理费" v-model="query.orderby" field="service_fee"
+													:func="search"></control_reverse>
 											</th>
 											<th class="th_login_time">
-												<control_reverse title="上次登录时间" v-model="query.orderby" field="login_time" :func="search"></control_reverse>
+												<control_reverse title="上次登录时间" v-model="query.orderby"
+													field="login_time" :func="search"></control_reverse>
 											</th>
-											<th class="th_invite_code">
+											<!-- <th class="th_invite_code">
 												<control_reverse title="邀请注册码" v-model="query.orderby" field="invite_code" :func="search"></control_reverse>
-											</th>
-											<th class="th_phone">
-												<control_reverse title="手机号码" v-model="query.orderby" field="phone" :func="search"></control_reverse>
-											</th>
-											<th class="th_phone_state">
+											</th> -->
+											<!-- 	<th class="th_phone_state">
 												<control_reverse title="手机认证" v-model="query.orderby" field="phone_state" :func="search"></control_reverse>
-											</th>
-											<th class="th_username">
-												<control_reverse title="用户名" v-model="query.orderby" field="username" :func="search"></control_reverse>
-											</th>
-											<th class="th_nickname">
-												<control_reverse title="昵称" v-model="query.orderby" field="nickname" :func="search"></control_reverse>
-											</th>
-											<th class="th_email">
+											</th> -->
+
+											<!-- <th class="th_email">
 												<control_reverse title="邮箱" v-model="query.orderby" field="email" :func="search"></control_reverse>
 											</th>
 											<th class="th_email_state">
@@ -117,26 +135,35 @@
 											<th class="th_friends">
 												<control_reverse title="好友" v-model="query.orderby" field="friends" :func="search"></control_reverse>
 											</th>
-											<th class="th_create_time">
-												<control_reverse title="创建时间" v-model="query.orderby" field="create_time" :func="search"></control_reverse>
+											<th class="th_time_create">
+												<control_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
 											</th>
 											<th class="th_wallet_address">
 												<control_reverse title="钱包地址" v-model="query.orderby" field="wallet_address" :func="search"></control_reverse>
-											</th>
+											</th> -->
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
 									<tbody>
 										<!-- <draggable v-model="list" tag="tbody" @change="sort_change"> -->
-										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
-											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
+										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}"
+											@click="selected(idx)">
+											<th class="th_selected"><input type="checkbox"
+													:checked="select_has(o[field])" @click="select_change(o[field])" />
+											</th>
 											<td>{{ o[field] }}</td>
+											<td>
+												<span>{{ o.nickname }}</span>
+											</td>
+											<td>
+												<span>{{ o.phone }}</span>
+											</td>
 											<td>
 												<span v-bind:class="arr_color[o.state]">{{arr_state[o.state] }}</span>
 											</td>
-											<td>
+											<!-- <td>
 												<span>{{ o.vip }}</span>
-											</td>
+											</td> -->
 											<td>
 												<span>{{ o.gm }}</span>
 											</td>
@@ -144,37 +171,31 @@
 												<span>{{ o.mc }}</span>
 											</td>
 											<td>
+												<span>{{ $get_name(list_account, o.referee_id, "user_id", "phone") }}</span>
+											</td>
+											<!-- <td>
 												<span>{{ $get_name(list_group, o.group_id, 'group_id', 'name') }}</span>
 											</td>
 											<td>
 												<span>{{ $get_name(list_admin, o.admin_id, 'admin_id', 'name') }}</span>
-											</td>
+											</td> -->
 											<td>
-												<span>{{ $get_name(list_account, o.referee_id, 'user_id', 'nickname') }}</span>
+												<span>{{ o.service_fee }}</span>
 											</td>
 											<td>
 												<span>{{ $to_time(o.login_time, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
-											<td>
+											<!-- <td>
 												<span>{{ o.invite_code }}</span>
-											</td>
-											<td>
-												<span>{{ o.phone }}</span>
-											</td>
-											<td>
-												<span>{{ $get_name(arr_phone_state, o.phone_state, 'value') }}</span>
-											</td>
-											<td>
-												<span>{{ o.username }}</span>
-											</td>
-											<td>
-												<span>{{ o.nickname }}</span>
-											</td>
-											<td>
+											</td> -->
+											<!-- <td>
+												<span>{{arr_phone_state[o.phone_state] }}</span>
+											</td> -->
+											<!-- <td>
 												<span>{{ o.email }}</span>
 											</td>
 											<td>
-												<span>{{ $get_name(arr_email_state, o.email_state, 'value') }}</span>
+												<span>{{arr_email_state[o.email_state] }}</span>
 											</td>
 											<td>
 												<span>{{ o.login_ip }}</span>
@@ -189,14 +210,16 @@
 												<span>{{ o.friends }}</span>
 											</td>
 											<td>
-												<span>{{ $to_time(o.create_time, 'yyyy-MM-dd hh:mm') }}</span>
+												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
 												<span>{{ o.wallet_address }}</span>
-											</td>
+											</td> -->
 											<td>
-												<mm_btn class="btn_primary" :url="'./account_form?user_id=' + o[field]">修改</mm_btn>
-												<mm_btn class="btn_warning" @click.native="del_show(o, field)">删除</mm_btn>
+												<mm_btn class="btn_primary" :url="'./account_form?user_id=' + o[field]">
+													修改</mm_btn>
+												<mm_btn class="btn_warning" @click.native="del_show(o, field)">删除
+												</mm_btn>
 											</td>
 										</tr>
 									</tbody>
@@ -210,10 +233,12 @@
 								<div class="fr">
 									<span class="mr">共 {{ count }} 条</span>
 									<span>当前</span>
-									<input type="number" class="pager_now" v-model.number="page_now" @blur="goTo(page_now)" @change="page_change" />
+									<input type="number" class="pager_now" v-model.number="page_now"
+										@blur="goTo(page_now)" @change="page_change" />
 									<span>/{{ page_count }}页</span>
 								</div>
-								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo" :icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
+								<control_pager display="2" v-model="query.page" :count="count / query.size" :func="goTo"
+									:icons="['首页', '上一页', '下一页', '尾页']"></control_pager>
 							</div>
 						</mm_card>
 					</mm_col>
@@ -233,15 +258,18 @@
 						</dd>
 						<dt>所在用户组</dt>
 						<dd>
-							<control_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name')" />
+							<control_select type="list" v-model="form.group_id"
+								:options="$to_kv(list_group, 'group_id', 'name')" />
 						</dd>
 						<dt>所在管理组</dt>
 						<dd>
-							<control_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name')" />
+							<control_select type="list" v-model="form.admin_id"
+								:options="$to_kv(list_admin, 'admin_id', 'name')" />
 						</dd>
 						<dt>推荐人</dt>
 						<dd>
-							<control_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select type="list" v-model="form.referee_id"
+								:options="$to_kv(list_account, 'user_id', 'nickname')" />
 						</dd>
 						<dt>手机认证</dt>
 						<dd>
@@ -311,6 +339,10 @@
 					'admin_id': '',
 					// 推荐人ID
 					'referee_id': '',
+					// 管理费——最小值
+					'service_fee_min': 0,
+					// 管理费——最大值
+					'service_fee_max': 0,
 					// 上次登录时间——开始时间
 					'login_time_min': '',
 					// 上次登录时间——结束时间
@@ -328,9 +360,9 @@
 					// 邮箱认证——最大值
 					'email_state_max': '',
 					// 创建时间——开始时间
-					'create_time_min': '',
+					'time_create_min': '',
 					// 创建时间——结束时间
-					'create_time_max': '',
+					'time_create_max': '',
 					// 关键词
 					'keyword': '',
 					//排序
@@ -338,19 +370,21 @@
 				},
 				form: {},
 				//颜色
-				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
+				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info',
+					'font_default'
+				],
 				// 账户状态
-				'arr_state':["","可用","异常","已冻结","已注销"],
+				'arr_state': ["", "可用", "异常", "已冻结", "已注销"],
 				// 所在用户组
-				'list_group':[],
+				'list_group': [],
 				// 所在管理组
-				'list_admin':[],
+				'list_admin': [],
 				// 推荐人
-				'list_account':[],
+				'list_account': [],
 				// 手机认证
-				'arr_phone_state':["未认证","审核中","已认证"],
+				'arr_phone_state': ["未认证", "审核中", "已认证"],
 				// 邮箱认证
-				'arr_email_state':["未认证","审核中","已认证"],
+				'arr_email_state': ["未认证", "审核中", "已认证"],
 				// 视图模型
 				vm: {}
 			}
@@ -400,7 +434,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,nickname,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

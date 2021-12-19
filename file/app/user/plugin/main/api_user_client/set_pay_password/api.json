@@ -1,0 +1,21 @@
+{
+	// 路由路径
+	"path": "/api/user/set_pay_password",
+	// 名称, 用于动态增删改API配置
+	"name": "user_set_pay_password",
+	// 标题, 用于开发文档显示
+	"title": "修改支付密码",
+	// 描述, 用于介绍该路由的作用
+	"description": "描述接口使用方法",
+	// 函数文件, 用于驱动脚本, 实现业务 
+	"func_file": "./index.js",
+	// 请求方法, 选填 GET, POST, ALL。 ALL指同时支持GET/POST
+	"method": "POST",
+	// 开放域, 如果域未开放, 则只有特定的协议头才能访问该API, 同时API文档不接见
+	"scope": true,
+	/* 授权协议 */
+	"oauth": {
+		// 是否需要登录, true表示需要登录才能访问该接口
+		"signIn": true
+	}
+}

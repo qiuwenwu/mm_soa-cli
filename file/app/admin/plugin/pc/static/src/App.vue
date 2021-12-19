@@ -16,8 +16,10 @@
 						<mm_row>
 							<mm_col class="col-12">
 								<nav_quick>
-									<button class="btn_link btn_primary hide_phone" @click="fold = !fold"><i class="fa-bars"></i></button>
-									<button class="btn_link btn_primary show_phone" @click="hide = !hide"><i class="fa-bars"></i></button>
+									<button class="btn_link btn_primary hide_phone" @click="fold = !fold">
+										<i class="fa-bars"></i></button>
+									<button class="btn_link btn_primary show_phone" @click="hide = !hide">
+										<i class="fa-bars"></i></button>
 								</nav_quick>
 								<nav_top></nav_top>
 							</mm_col>
@@ -31,7 +33,8 @@
 								<!-- 页签组件 -->
 								<mm_view id="tabs">
 									<div class="mm_tab_head">
-										<div v-for="(o, idx) in nav_cache" :key="idx" :class="{ 'active': o.url === url_now }">
+										<div v-for="(o, idx) in nav_cache" :key="idx"
+											:class="{ 'active': o.url === url_now }">
 											<router-link :to="o.url">
 												{{ o.title }}
 											</router-link>
@@ -162,24 +165,48 @@
 </script>
 
 <style>
+	.th_handle {
+		width: 10rem;
+	}
+	
+	.bar_action {
+		position: relative;
+	}
+	
+	.bar_action .count_tip {
+		position: absolute;
+		top: 0.25rem;
+		left: 10rem;
+	}
+	
+	.bar_action .count_tip .num { 
+		margin-left: 0.25rem;
+	}
+	
 	.card_body .mm_form {
 		margin: 1rem;
 	}
+
 	.card_body .mm_table {
 		margin: 1rem;
 	}
+
 	.card_body .bar_action {
 		margin: 0 1rem;
 	}
-	.card_foot .fr{
+
+	.card_foot .fr {
 		margin-right: 1rem;
 	}
-	.card_foot .fl{
+
+	.card_foot .fl {
 		margin-left: 1rem;
 	}
+
 	.control_pager {
 		margin: 1rem 0;
 	}
+
 	.icon-close {
 		border-radius: 50%;
 		background-color: var(--color_border);
@@ -192,7 +219,7 @@
 		display: inline-block;
 		position: relative;
 	}
-	
+
 	.icon-close::after {
 		content: "×";
 		position: relative;
@@ -214,14 +241,30 @@
 	.mm_page>.header~main {
 		padding-top: 4.5rem;
 	}
-
+	
+	
 	.bar_filter {
 		display: flex;
+		max-height: 100vh;
+		transition: max-height 0.5s ease-in-out;
+		overflow: hidden;
+	}
+	
+	.bar_filter::after {
+		content: "";
 		padding-bottom: .5rem;
 		margin-bottom: 1rem;
 		border-bottom: 1px solid rgba(51, 136, 255, .25);
 	}
-
+	
+	.hide_filter .bar_filter {
+		max-height: 0;
+	}
+	
+	.hide_filter .arrow::after {
+		transform: translateY(-50%) rotate(45deg);
+	}
+	
 	.bar_filter .mm_list {
 		align-items: center;
 	}

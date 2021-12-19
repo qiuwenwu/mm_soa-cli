@@ -6,7 +6,7 @@
     "orderby_default": "`lang_id` desc",
     "field_obj": "`lang_id`,`key`,`en`,`zh_cn`,`zh_tw`,`ko`,`ja`",
     "field_default": "`lang_id`,`key`,`en`,`zh_cn`,`zh_tw`,`ko`,`ja`",
-    "method": "get get_obj sum count",
+    "method": "get get_obj avg sum count",
     "query": {
         "key": "`key` like '%{0}%'",
         "en": "`en` like '%{0}%'",

@@ -1,0 +1,33 @@
+{
+    "name": "sys_share2",
+    "title": "",
+    "table": "sys_share",
+    "key": "share_id",
+    "orderby_default": "`share_id` desc",
+    "field_obj": "`share_id`,`available`,`name`,`qrcode_pos_x`,`qrcode_pos_y`,`qrcode_pos_way`,`button_pos_x`,`button_pos_y`,`button_pos_way`,`img_bg`,`background_color`",
+    "field_default": "`share_id`,`available`,`name`,`qrcode_pos_x`,`qrcode_pos_y`,`qrcode_pos_way`,`button_pos_x`,`button_pos_y`,`button_pos_way`,`img_bg`,`background_color`",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "qrcode_pos_x": "`qrcode_pos_x` like '%{0}%'",
+        "qrcode_pos_y": "`qrcode_pos_y` like '%{0}%'",
+        "qrcode_pos_way": "`qrcode_pos_way` like '%{0}%'",
+        "button_pos_x": "`button_pos_x` like '%{0}%'",
+        "button_pos_y": "`button_pos_y` like '%{0}%'",
+        "button_pos_way": "`button_pos_way` like '%{0}%'",
+        "img_bg": "`img_bg` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')",
+        "background_color": "`background_color` like '%{0}%'"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "available",
+            "title": "是否启用",
+            "list": [
+                "否",
+                "是"
+            ]
+        }
+    ],
+    "field_hide": []
+}

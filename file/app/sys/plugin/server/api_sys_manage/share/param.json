@@ -1,0 +1,182 @@
+{
+    "name": "sys_share2",
+    "title": "",
+    "add": {
+        "body": [
+            "available",
+            "name",
+            "qrcode_pos_x",
+            "qrcode_pos_y",
+            "qrcode_pos_way",
+            "button_pos_x",
+            "button_pos_y",
+            "button_pos_way",
+            "img_bg",
+            "background_color"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "share_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "share_id",
+            "available",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "available",
+            "name",
+            "qrcode_pos_x",
+            "qrcode_pos_y",
+            "qrcode_pos_way",
+            "button_pos_x",
+            "button_pos_y",
+            "button_pos_way",
+            "img_bg",
+            "background_color"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "share_id",
+            "available",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "share_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "share_id",
+            "title": "分享ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "available",
+            "title": "是否启用",
+            "description": "启用后前台才会显示该文章(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "name",
+            "title": "配置名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "qrcode_pos_x",
+            "title": "二维码X轴",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "qrcode_pos_y",
+            "title": "二维码Y轴",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "qrcode_pos_way",
+            "title": "二维码定位方式",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "button_pos_x",
+            "title": "按钮X轴",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "button_pos_y",
+            "title": "按钮Y轴",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "button_pos_way",
+            "title": "按钮定位方式",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img_bg",
+            "title": "分享背景图",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "background_color",
+            "title": "背景颜色",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索配置名(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

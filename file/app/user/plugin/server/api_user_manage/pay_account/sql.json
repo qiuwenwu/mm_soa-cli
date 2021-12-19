@@ -1,0 +1,42 @@
+{
+    "name": "user_pay_account2",
+    "title": "支付账号",
+    "table": "user_pay_account",
+    "key": "user_id",
+    "orderby_default": "`user_id` desc",
+    "field_obj": "`user_id`,`type_id`,`uesrname`,`state`",
+    "field_default": "`user_id`,`type_id`,`uesrname`,`state`,`time_create`,`time_update`",
+    "query": {
+        "uesrname": "`uesrname` like '%{0}%'",
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "keyword": "(`uesrname` like '%{0}%')"
+    },
+    "update": {
+        "state_add": "`state` = `state` + {0}"
+    },
+    "format": [
+        {
+            "key": "type_id",
+            "title": "类型",
+            "table": "user_pay_type",
+            "name": "name"
+        },
+        {
+            "key": "state",
+            "title": "状态",
+            "list": [
+                "",
+                "审核中",
+                "已通过",
+                "未通过",
+                "已冻结"
+            ]
+        }
+    ],
+    "field_hide": []
+}

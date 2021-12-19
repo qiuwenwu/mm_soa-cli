@@ -1,0 +1,114 @@
+{
+    "name": "dev_order2",
+    "title": "定制单",
+    "table": "dev_order",
+    "key": "order_id",
+    "orderby_default": "`order_id` desc",
+    "field_obj": "`order_id`,`order_number`,`name`,`price`,`doc`,`file`,`lang`,`mode`,`ui`,`db`,`framework`,`state`,`balance`,`institution`,`institution_name`,`tpl_home`,`tpl_admin`,`publisher`,`handler`,`time_end`,`time_balance`,`dispose_log`,`config`,`bg_login_home`,`bg_login_admin`,`bg_register_home`,`bg_register_admin`,`price_count`,`num_download`",
+    "field_default": "`order_id`,`order_number`,`name`,`price`,`file`,`lang`,`mode`,`ui`,`db`,`framework`,`state`,`balance`,`institution`,`institution_name`,`tpl_home`,`tpl_admin`,`publisher`,`handler`,`time_create`,`time_update`,`time_end`,`time_balance`,`dispose_log`,`config`,`bg_login_home`,`bg_login_admin`,`bg_register_home`,`bg_register_admin`,`price_count`,`num_download`",
+    "query": {
+        "order_number": "`order_number` like '%{0}%'",
+        "name": "`name` like '%{0}%'",
+        "price_min": "`price` >= {0}",
+        "price_max": "`price` <= {0}",
+        "doc": "`doc` like '%{0}%'",
+        "file": "`file` like '%{0}%'",
+        "lang": "`lang` like '%{0}%'",
+        "db": "`db` like '%{0}%'",
+        "framework": "`framework` like '%{0}%'",
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "tpl_home": "`tpl_home` like '%{0}%'",
+        "tpl_admin": "`tpl_admin` like '%{0}%'",
+        "publisher": "`publisher` like '%{0}%'",
+        "handler": "`handler` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "time_end_min": "`time_end` >= '{0}'",
+        "time_end_max": "`time_end` <= '{0}'",
+        "mode": "`mode` like '%{0}%'",
+        "dispose_log": "`dispose_log` like '%{0}%'",
+        "institution": "`institution` like '%{0}%'",
+        "config_min": "`config` >= {0}",
+        "config_max": "`config` <= {0}",
+        "keyword": "(`name` like '%{0}%' || `institution_name` like '%{0}%')",
+        "config": "`config` like '%{0}%'",
+        "bg_login_home": "`bg_login_home` like '%{0}%'",
+        "bg_login_admin": "`bg_login_admin` like '%{0}%'",
+        "bg_register_home": "`bg_register_home` like '%{0}%'",
+        "bg_register_admin": "`bg_register_admin` like '%{0}%'",
+        "price_count_min": "`price_count` >= {0}",
+        "price_count_max": "`price_count` <= {0}",
+        "institution_name": "`institution_name` like '%{0}%'",
+        "num_download_min": "`num_download` >= {0}",
+        "num_download_max": "`num_download` <= {0}",
+        "ui": "`ui` like '%{0}%'",
+        "time_balance_min": "`time_balance` >= '{0}'",
+        "time_balance_max": "`time_balance` <= '{0}'"
+    },
+    "update": {
+        "price_add": "`price` = `price` + {0}",
+        "state_add": "`state` = `state` + {0}",
+        "config_add": "`config` = `config` + {0}",
+        "price_count_add": "`price_count` = `price_count` + {0}",
+        "num_download_add": "`num_download` = `num_download` + {0}"
+    },
+    "format": [
+        {
+            "key": "mode",
+            "title": "模式",
+            "list": [
+                {
+                    "name": "MVC",
+                    "value": "MVC"
+                },
+                {
+                    "name": "MVVM",
+                    "value": "MVVM"
+                }
+            ]
+        },
+        {
+            "key": "state",
+            "title": "订单状态",
+            "list": [
+                "",
+                "待取单",
+                "待开发",
+                "进行中",
+                "已完成",
+                "修改中",
+                "已删除"
+            ]
+        },
+        {
+            "key": "balance",
+            "title": "已结算",
+            "list": [
+                "否",
+                "是"
+            ]
+        },
+        {
+            "key": "institution",
+            "title": "机构",
+            "list": [
+                {
+                    "name": "学校",
+                    "value": "学校"
+                },
+                {
+                    "name": "企业",
+                    "value": "企业"
+                },
+                {
+                    "name": "其他",
+                    "value": "其他"
+                }
+            ]
+        }
+    ],
+    "field_hide": []
+}

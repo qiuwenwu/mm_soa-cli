@@ -42,7 +42,7 @@
             "key": "user_id",
             "title": "用户",
             "table": "user_account",
-            "name": "nickname"
+            "name": "phone"
         }
     ]
 }

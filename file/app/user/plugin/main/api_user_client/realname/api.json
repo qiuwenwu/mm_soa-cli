@@ -1,0 +1,21 @@
+{
+	// 路由路径
+	"path": "/api/user/realname",
+	// 名称, 用于动态增删改API配置
+	"name": "user_realname",
+	// 标题, 用于开发文档显示
+	"title": "实名认证",
+	// 描述, 用于介绍该路由的作用
+	"description": "这是用户提交实名认证信息的接口",
+	// 函数文件, 用于驱动脚本, 实现业务 
+	"func_file": "./index.js",
+	// 请求方法, 选填 GET, POST, ALL。 ALL指同时支持GET/POST
+	"method": "POST",
+	// 参数配置路径, 用于校验API请求参数是否正确, 同时显示在API文档中 
+	"param_path": "./param.json",
+	/* 授权协议 */
+	"oauth": {
+		// 是否需要登录, true表示需要登录才能访问该接口
+		"signIn": true
+	}
+}

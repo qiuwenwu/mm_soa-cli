@@ -137,7 +137,7 @@
         {
             "name": "user_id",
             "title": "用户ID",
-            "description": "",
+            "description": "(user_account.nickname)",
             "type": "number",
             "dataType": "mediumint",
             "number": {

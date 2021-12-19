@@ -6,7 +6,7 @@
     "orderby_default": "`display` asc",
     "field_obj": "`province_id`,`show`,`name`",
     "field_default": "`province_id`,`show`,`display`,`name`",
-    "method": "get get_obj sum count",
+    "method": "get get_obj avg sum count",
     "query": {
         "show_min": "`show` >= {0}",
         "show_max": "`show` <= {0}",

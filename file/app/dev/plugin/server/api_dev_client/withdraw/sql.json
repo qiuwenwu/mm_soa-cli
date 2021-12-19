@@ -1,0 +1,61 @@
+{
+    "name": "dev_withdraw",
+    "title": "提现记录",
+    "table": "dev_withdraw",
+    "key": "withdraw_id",
+    "orderby_default": "`withdraw_id` desc",
+    "field_obj": "`withdraw_id`,`name`,`time_create`,`time_update`,`amount`,`time_end`,`state`,`way`,`account`",
+    "field_default": "`withdraw_id`,`name`,`time_create`,`time_update`,`amount`,`time_end`,`state`,`way`,`account`",
+    "method": "get get_obj sum count",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'",
+        "amount_min": "`amount` >= {0}",
+        "amount_max": "`amount` <= {0}",
+        "time_end_min": "`time_end` >= '{0}'",
+        "time_end_max": "`time_end` <= '{0}'",
+        "state_min": "`state` >= {0}",
+        "state_max": "`state` <= {0}",
+        "way": "`way` like '%{0}%'",
+        "account": "`account` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "query_default": {},
+    "update": {
+        "amount_add": "`amount` = `amount` + {0}",
+        "state_add": "`state` = `state` + {0}"
+    },
+    "format": [
+        {
+            "key": "state",
+            "title": "提现状态",
+            "list": [
+                "",
+                "待受理",
+                "受理中",
+                "已完成"
+            ]
+        },
+        {
+            "key": "way",
+            "title": "提现方式",
+            "list": [
+                {
+                    "name": "支付宝",
+                    "value": "支付宝"
+                },
+                {
+                    "name": "微信",
+                    "value": "微信"
+                },
+                {
+                    "name": "银行卡",
+                    "value": "银行卡"
+                }
+            ]
+        }
+    ]
+}

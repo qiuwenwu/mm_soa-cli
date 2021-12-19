@@ -6,7 +6,7 @@
     "orderby_default": "`display` asc",
     "field_obj": "`area_id`,`show`,`city_id`,`name`",
     "field_default": "`area_id`,`show`,`display`,`city_id`,`name`",
-    "method": "get get_obj sum count",
+    "method": "get get_obj avg sum count",
     "query": {
         "show_min": "`show` >= {0}",
         "show_max": "`show` <= {0}",

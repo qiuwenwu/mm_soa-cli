@@ -3,21 +3,15 @@
     "title": "文章频道",
     "add": {
         "body": [
+            "icon",
+            "title",
             "available",
             "hide",
-            "can_comment",
-            "display",
-            "father_id",
-            "city_id",
-            "template",
             "description",
-            "icon",
-            "url",
-            "title"
+            "display",
+            "father_id"
         ],
-        "body_required": [
-            "name"
-        ]
+        "body_required": []
     },
     "del": {
         "query": [],
@@ -28,31 +22,24 @@
     "set": {
         "query": [
             "channel_id",
+            "title",
             "available",
             "hide",
-            "can_comment",
+            "description",
             "display_min",
             "display_max",
-            "name",
-            "description",
-            "title",
             "keyword"
         ],
         "query_required": [],
         "body": [
+            "icon",
+            "title",
             "available",
             "hide",
-            "can_comment",
+            "description",
             "display",
             "display_add",
-            "father_id",
-            "city_id",
-            "name",
-            "template",
-            "description",
-            "icon",
-            "url",
-            "title"
+            "father_id"
         ],
         "body_required": [],
         "body_not": []
@@ -60,19 +47,21 @@
     "get": {
         "query": [
             "channel_id",
+            "title",
             "available",
             "hide",
-            "can_comment",
+            "description",
             "display_min",
             "display_max",
             "father_id",
-            "city_id",
-            "name",
-            "description",
-            "title",
             "keyword"
         ],
         "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "channel_id"
+        ]
     },
     "list": [
         {
@@ -81,8 +70,29 @@
             "description": "",
             "type": "number",
             "dataType": "smallint",
+            "default": "0",
             "number": {
                 "max": 10000
+            }
+        },
+        {
+            "name": "icon",
+            "title": "频道图标",
+            "description": "",
+            "type": "string",
+            "dataType": "text",
+            "default": null,
+            "string": {}
+        },
+        {
+            "name": "title",
+            "title": "频道标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "default": null,
+            "string": {
+                "max": 125
             }
         },
         {
@@ -91,6 +101,7 @@
             "description": "启用后才可以看到该频道。(0否|1是)",
             "type": "number",
             "dataType": "tinyint",
+            "default": "1",
             "number": {
                 "max": 1
             }
@@ -101,18 +112,20 @@
             "description": "隐藏非管理员该频道无法查看。(0否|1是)",
             "type": "number",
             "dataType": "tinyint",
+            "default": "0",
             "number": {
                 "max": 1
             }
         },
         {
-            "name": "can_comment",
-            "title": "是否可评论",
-            "description": "不可评论则用户只能看，无法点评。(0否|1是)",
-            "type": "number",
-            "dataType": "tinyint",
-            "number": {
-                "max": 1
+            "name": "description",
+            "title": "描述",
+            "description": "描述该频道的作用",
+            "type": "string",
+            "dataType": "varchar",
+            "default": null,
+            "string": {
+                "max": 255
             }
         },
         {
@@ -121,6 +134,7 @@
             "description": "决定频道显示的先后顺序",
             "type": "number",
             "dataType": "smallint",
+            "default": "100",
             "number": {
                 "max": 1000
             }
@@ -131,6 +145,7 @@
             "description": "决定频道显示的先后顺序",
             "type": "number",
             "dataType": "smallint",
+            "default": "100",
             "number": {
                 "max": 1000
             }
@@ -141,6 +156,7 @@
             "description": "决定频道显示的先后顺序",
             "type": "number",
             "dataType": "smallint",
+            "default": "100",
             "number": {
                 "max": 1000
             }
@@ -151,95 +167,18 @@
             "description": "在频道列表操作时，当上级频道展开时，才显示该频道(cms_article_channel.name.channel_id)",
             "type": "number",
             "dataType": "smallint",
+            "default": "0",
             "number": {
                 "max": 10000
             }
         },
         {
-            "name": "city_id",
-            "title": "所属城市",
-            "description": "一些地方频道，可以通过该条判断是否可查看。(sys_address_city)",
-            "type": "number",
-            "dataType": "mediumint",
-            "number": {
-                "max": 8388607
-            }
-        },
-        {
-            "name": "name",
-            "title": "频道名称",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "range": [
-                    2,
-                    16
-                ],
-                "notEmpty": true
-            }
-        },
-        {
-            "name": "template",
-            "title": "风格模板",
-            "description": "频道和文章都使用的样式",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 64
-            }
-        },
-        {
-            "name": "description",
-            "title": "描述",
-            "description": "描述该频道的作用",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255
-            }
-        },
-        {
-            "name": "icon",
-            "title": "频道图标",
-            "description": "",
-            "type": "string",
-            "dataType": "text",
-            "string": {}
-        },
-        {
-            "name": "url",
-            "title": "外链地址",
-            "description": "如果该频道是跳转到其他网站的情况下，就在该URL上设置",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 255,
-                "format": "url"
-            }
-        },
-        {
-            "name": "title",
-            "title": "频道标题",
-            "description": "",
-            "type": "string",
-            "dataType": "varchar",
-            "string": {
-                "max": 125
-            }
-        },
-        {
             "name": "keyword",
             "title": "关键词",
-            "description": "用于搜索频道名称(name)、描述(description)、频道标题(title)",
+            "description": "用于搜索频道标题(title)、描述(description)",
             "type": "string",
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "channel_id"
-        ]
-    }
+    ]
 }

@@ -9,6 +9,7 @@ require({
 	paths: {
 		css: '/js/css.min',
 		text: '/js/text.min',
+		json: '/js/json.min',
 		vue: '/js/requirejs-vue',
 
 		// 生产版||调试版
@@ -28,7 +29,9 @@ require({
 		router: './router',
 		echarts: '/js/echarts',
 		kindeditor: '/kindeditor/kindeditor-all-min',
-		page: '/src/mixins/page.js'
+		// mm_contract: '/js/mm_contract',
+		// contract: '/wr/js/contract',
+		page: '/src/mixins/page'
 	},
 	shim: {
 		clipboard: {
@@ -53,6 +56,9 @@ require({
 		mm_vue: {
 			deps: ['mm_sdk']
 		},
+		// contract: {
+		// 	deps: ['mm_contract']
+		// }
 		// sortable: {
 		// 	exports: 'sortable'
 		// },

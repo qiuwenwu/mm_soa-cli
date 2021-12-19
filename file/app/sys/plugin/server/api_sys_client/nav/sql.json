@@ -6,7 +6,7 @@
     "orderby_default": "`nav_id` desc",
     "field_obj": "`nav_id`,`available`,`name`,`title`,`url`,`style`,`class`,`target`,`position`,`device`,`father_id`",
     "field_default": "`nav_id`,`available`,`name`,`title`,`url`,`style`,`class`,`target`,`position`,`device`,`father_id`",
-    "method": "get get_obj sum count",
+    "method": "get get_obj avg sum count",
     "query": {
         "name": "`name` like '%{0}%'",
         "title": "`title` like '%{0}%'",

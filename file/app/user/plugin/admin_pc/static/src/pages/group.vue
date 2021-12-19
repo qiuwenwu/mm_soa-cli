@@ -6,7 +6,7 @@
 					<mm_col class="col-12">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>用户组</h5>
+								<h5>会员组表</h5>
 							</div>
 							<div class="card_body">
 								<mm_form class="bar_filter">
@@ -15,7 +15,7 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="用户名称 / 描述"
+											<control_input v-model="query.keyword" title="关键词" desc="组名"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -39,35 +39,20 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th class="th_display">
-												<control_reverse title="显示顺序" v-model="query.orderby" field="display" :func="search"></control_reverse>
-											</th>
-											<th class="th_level">
-												<control_reverse title="等级划分" v-model="query.orderby" field="level" :func="search"></control_reverse>
-											</th>
-											<th class="th_next_group_id">
-												<control_reverse title="下级用户组ID" v-model="query.orderby" field="next_group_id" :func="search"></control_reverse>
-											</th>
-											<th class="th_exp">
-												<control_reverse title="升级所需经验" v-model="query.orderby" field="exp" :func="search"></control_reverse>
-											</th>
-											<th class="th_discount">
-												<control_reverse title="折扣" v-model="query.orderby" field="discount" :func="search"></control_reverse>
-											</th>
-											<th class="th_bonus">
-												<control_reverse title="奖励比例" v-model="query.orderby" field="bonus" :func="search"></control_reverse>
-											</th>
-											<th class="th_app">
-												<control_reverse title="应用" v-model="query.orderby" field="app" :func="search"></control_reverse>
-											</th>
 											<th class="th_name">
-												<control_reverse title="用户名称" v-model="query.orderby" field="name" :func="search"></control_reverse>
+												<control_reverse title="组名" v-model="query.orderby" field="name" :func="search"></control_reverse>
 											</th>
-											<th class="th_description">
-												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											<th class="th_rules">
+												<control_reverse title="权限节点" v-model="query.orderby" field="rules" :func="search"></control_reverse>
 											</th>
-											<th class="th_icon">
-												<control_reverse title="图标" v-model="query.orderby" field="icon" :func="search"></control_reverse>
+											<th class="th_createtime">
+												<control_reverse title="添加时间" v-model="query.orderby" field="createtime" :func="search"></control_reverse>
+											</th>
+											<th class="th_updatetime">
+												<control_reverse title="更新时间" v-model="query.orderby" field="updatetime" :func="search"></control_reverse>
+											</th>
+											<th class="th_status">
+												<control_reverse title="状态" v-model="query.orderby" field="status" :func="search"></control_reverse>
 											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
@@ -78,34 +63,19 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
-											</td>
-											<td>
-												<span>{{ o.level }}</span>
-											</td>
-											<td>
-												<span>{{ o.next_group_id }}</span>
-											</td>
-											<td>
-												<span>{{ o.exp }}</span>
-											</td>
-											<td>
-												<span>{{ o.discount }}</span>
-											</td>
-											<td>
-												<span>{{ o.bonus }}</span>
-											</td>
-											<td>
-												<span>{{ o.app }}</span>
-											</td>
-											<td>
 												<span>{{ o.name }}</span>
 											</td>
 											<td>
-												<span>{{ o.description }}</span>
+												<span>{{ o.rules }}</span>
 											</td>
 											<td>
-												<img class="icon" :src="o.icon" alt="图标" />
+												<span>{{ o.createtime }}</span>
+											</td>
+											<td>
+												<span>{{ o.updatetime }}</span>
+											</td>
+											<td>
+												<span>{{ o.status }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./group_form?group_id=' + o[field]">修改</mm_btn>
@@ -178,32 +148,20 @@
 					size: 10,
 					// 用户组ID
 					'group_id': 0,
-					// 显示顺序——最小值
-					'display_min': 0,
-					// 显示顺序——最大值
-					'display_max': 0,
-					// 等级划分——最小值
-					'level_min': 0,
-					// 等级划分——最大值
-					'level_max': 0,
-					// 下级用户组ID
-					'next_group_id': 0,
-					// 升级所需经验——最小值
-					'exp_min': 0,
-					// 升级所需经验——最大值
-					'exp_max': 0,
-					// 折扣——最小值
-					'discount_min': 0,
-					// 折扣——最大值
-					'discount_max': 0,
-					// 奖励比例——最小值
-					'bonus_min': 0,
-					// 奖励比例——最大值
-					'bonus_max': 0,
-					// 用户名称
+					// 组名
 					'name': '',
-					// 描述
-					'description': '',
+					// 添加时间——最小值
+					'createtime_min': 0,
+					// 添加时间——最大值
+					'createtime_max': 0,
+					// 更新时间——最小值
+					'updatetime_min': 0,
+					// 更新时间——最大值
+					'updatetime_max': 0,
+					// 状态——最小值
+					'status_min': 0,
+					// 状态——最大值
+					'status_max': 0,
 					// 关键词
 					'keyword': '',
 					//排序

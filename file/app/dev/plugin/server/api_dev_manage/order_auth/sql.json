@@ -1,0 +1,18 @@
+{
+    "name": "dev_order_auth2",
+    "title": "定制授权",
+    "table": "dev_order_auth",
+    "key": "auth_id",
+    "orderby_default": "`auth_id` desc",
+    "field_obj": "`auth_id`,`name`,`order_id`,`power`",
+    "field_default": "`auth_id`,`name`,`order_id`,`power`",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "path": "`path` like '%{0}%'",
+        "power": "`power` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

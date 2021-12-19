@@ -11,10 +11,13 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt class="required">变量名</dt>
+										<dt>变量名</dt>
 										<dd>
-											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
-											 :required="true" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="32" placeholder="" />
+										</dd>
+										<dt>分组</dt>
+										<dd>
+											<control_input v-model="form.group" :minlength="0" :maxlength="32" placeholder="一般为默认组" />
 										</dd>
 										<dt class="required">数据类型</dt>
 										<dd>
@@ -26,7 +29,7 @@
 										</dd>
 										<dt>变量标题</dt>
 										<dd>
-											<control_input v-model="form.title" :minlength="0" :maxlength="16" placeholder="可以用中文名" />
+											<control_input v-model="form.title" :minlength="0" :maxlength="32" placeholder="可以用中文名" />
 										</dd>
 										<dt>变量值</dt>
 										<dd>
@@ -76,6 +79,7 @@
 				form: {
 					"config_id": 0,
 					"name": '',
+					"group": '',
 					"type": '',
 					"control": '',
 					"title": '',

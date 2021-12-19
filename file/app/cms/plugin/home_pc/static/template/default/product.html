@@ -429,8 +429,8 @@
 						});
 						return this.lang[name] || name;
 					},
-					show_time(create_time) {
-						var time = create_time.toTime();
+					show_time(time_create) {
+						var time = time_create.toTime();
 						var now = new Date();
 						var str = time.toStr('yyyy-MM-dd');
 						if (str === now.toStr('yyyy-MM-dd')) {

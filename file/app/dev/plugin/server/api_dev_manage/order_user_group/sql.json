@@ -1,0 +1,16 @@
+{
+    "name": "dev_order_user_group2",
+    "title": "定制用户组",
+    "table": "dev_order_user_group",
+    "key": "group_id",
+    "orderby_default": "`group_id` desc",
+    "field_obj": "`group_id`,`name`,`order_id`",
+    "field_default": "`group_id`,`name`,`order_id`",
+    "query": {
+        "name": "`name` like '%{0}%'",
+        "keyword": "(`name` like '%{0}%')"
+    },
+    "update": {},
+    "format": [],
+    "field_hide": []
+}

@@ -1,0 +1,74 @@
+{
+	"name": "user_realname",
+	"title": "实名认证",
+	"post": {
+		"body": [
+			"name",
+			"idcard",
+			"img_idcard_front",
+			"img_idcard_back",
+			"img_hand_held"
+		]
+	},
+	"list": [{
+			"name": "user_id",
+			"title": "用户ID",
+			"description": "",
+			"type": "number",
+			"dataType": "mediumint",
+			"number": {
+				"max": 8388607
+			}
+		},
+		{
+			"name": "name",
+			"title": "姓名",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"number": {
+				"max": 32
+			}
+		},
+		{
+			"name": "idcard",
+			"title": "身份证号",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 64
+			}
+		},
+		{
+			"name": "img_idcard_front",
+			"title": "身份证正面",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 255
+			}
+		},
+		{
+			"name": "img_idcard_back",
+			"title": "身份证反面",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 255
+			}
+		},
+		{
+			"name": "img_hand_held",
+			"title": "手持身份证",
+			"description": "",
+			"type": "string",
+			"dataType": "varchar",
+			"string": {
+				"max": 255
+			}
+		}
+	]
+}

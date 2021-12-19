@@ -22,8 +22,7 @@
 											<control_select v-model="query.sex" title="收件人性别" :options="$to_kv(arr_sex)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'nickname')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -91,7 +90,7 @@
 												<span>{{ o.area }}</span>
 											</td>
 											<td>
-												<control_switch v-model="o.sex" @click.native="set(o)" />
+												<span>{{ $get_name(arr_sex, o.sex, 'value') }}</span>
 											</td>
 											<td>
 												<span>{{ o.phone }}</span>
@@ -106,7 +105,7 @@
 												<span>{{ o.address }}</span>
 											</td>
 											<td>
-												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'phone') || o.user_id }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./address_form?address_id=' + o[field]">修改</mm_btn>
@@ -147,7 +146,7 @@
 						</dd>
 						<dt>用户</dt>
 						<dd>
-							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
 						</dd>
 					</dl>
 				</div>
@@ -187,8 +186,10 @@
 					size: 10,
 					// 地址ID
 					'address_id': 0,
-					// 收件人性别
-					'sex': '',
+					// 收件人性别——最小值
+					'sex_min': '',
+					// 收件人性别——最大值
+					'sex_max': '',
 					// 收件人姓名
 					'name': '',
 					// 用户ID
@@ -202,7 +203,7 @@
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
 				// 收件人性别
-				'arr_sex':["女","男"],
+				'arr_sex':["","女","男"],
 				// 用户
 				'list_account':[],
 				// 视图模型
@@ -218,7 +219,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {

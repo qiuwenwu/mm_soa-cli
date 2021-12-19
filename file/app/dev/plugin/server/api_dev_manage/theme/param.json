@@ -1,0 +1,84 @@
+{
+    "name": "dev_theme2",
+    "title": "主题分类",
+    "add": {
+        "body": [
+            "father_id",
+            "name"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "theme_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "theme_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "father_id",
+            "name"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "theme_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "theme_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "theme_id",
+            "title": "主题分类ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 30000
+            }
+        },
+        {
+            "name": "father_id",
+            "title": "上级主题ID",
+            "description": "(dev_theme.name.theme_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 32767
+            }
+        },
+        {
+            "name": "name",
+            "title": "主题名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 16
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索主题名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

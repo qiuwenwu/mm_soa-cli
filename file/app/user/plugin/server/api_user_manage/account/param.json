@@ -10,6 +10,7 @@
             "group_id",
             "admin_id",
             "referee_id",
+            "service_fee",
             "phone",
             "phone_state",
             "nickname",
@@ -19,7 +20,8 @@
             "signature",
             "avatar",
             "friends",
-            "wallet_address"
+            "wallet_address",
+            "password_pay"
         ],
         "body_required": [
             "salt",
@@ -45,6 +47,8 @@
             "gm_max",
             "mc_min",
             "mc_max",
+            "service_fee_min",
+            "service_fee_max",
             "phone_state_min",
             "phone_state_max",
             "username",
@@ -66,6 +70,8 @@
             "group_id",
             "admin_id",
             "referee_id",
+            "service_fee",
+            "service_fee_add",
             "salt",
             "invite_code",
             "phone",
@@ -81,7 +87,8 @@
             "signature",
             "avatar",
             "friends",
-            "wallet_address"
+            "wallet_address",
+            "password_pay"
         ],
         "body_required": [],
         "body_not": []
@@ -100,6 +107,8 @@
             "group_id",
             "admin_id",
             "referee_id",
+            "service_fee_min",
+            "service_fee_max",
             "login_time_min",
             "login_time_max",
             "phone_state_min",
@@ -108,8 +117,8 @@
             "nickname",
             "email_state_min",
             "email_state_max",
-            "create_time_min",
-            "create_time_max",
+            "time_create_min",
+            "time_create_max",
             "keyword"
         ],
         "query_required": []
@@ -274,6 +283,30 @@
             "number": {
                 "max": 8388607
             }
+        },
+        {
+            "name": "service_fee",
+            "title": "管理费",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "service_fee_min",
+            "title": "管理费——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "service_fee_max",
+            "title": "管理费——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
         },
         {
             "name": "login_time",
@@ -483,7 +516,7 @@
             "string": {}
         },
         {
-            "name": "create_time",
+            "name": "time_create",
             "title": "创建时间",
             "description": "",
             "type": "string",
@@ -494,7 +527,7 @@
             }
         },
         {
-            "name": "create_time_min",
+            "name": "time_create_min",
             "title": "创建时间——开始时间",
             "description": "",
             "type": "string",
@@ -505,7 +538,7 @@
             }
         },
         {
-            "name": "create_time_max",
+            "name": "time_create_max",
             "title": "创建时间——结束时间",
             "description": "",
             "type": "string",
@@ -523,6 +556,16 @@
             "dataType": "varchar",
             "string": {
                 "max": 70
+            }
+        },
+        {
+            "name": "password_pay",
+            "title": "支付密码",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
             }
         },
         {

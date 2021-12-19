@@ -6,7 +6,7 @@
 					<mm_col width="100">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>超级美眉</h5>
+								<h5>飞鸟云算力</h5>
 							</div>
 							<div class="card_body">
 								

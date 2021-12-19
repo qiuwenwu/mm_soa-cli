@@ -1,0 +1,84 @@
+{
+    "name": "dev_order_user_group2",
+    "title": "定制用户组",
+    "add": {
+        "body": [
+            "name",
+            "order_id"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "group_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "name",
+            "order_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "group_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "group_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "group_id",
+            "title": "用户组ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "组名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "order_id",
+            "title": "订单ID",
+            "description": "用于识别是哪个订单的用户组",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索组名(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

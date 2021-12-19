@@ -3,13 +3,14 @@
     "title": "系统配置",
     "add": {
         "body": [
+            "name",
+            "group",
             "title",
             "value",
             "description",
             "model"
         ],
         "body_required": [
-            "name",
             "type",
             "control"
         ]
@@ -31,6 +32,7 @@
         "query_required": [],
         "body": [
             "name",
+            "group",
             "type",
             "control",
             "title",
@@ -69,8 +71,17 @@
             "type": "string",
             "dataType": "varchar",
             "string": {
-                "max": 16,
-                "notEmpty": true
+                "max": 32
+            }
+        },
+        {
+            "name": "group",
+            "title": "分组",
+            "description": "一般为默认组",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
             }
         },
         {
@@ -102,7 +113,7 @@
             "type": "string",
             "dataType": "varchar",
             "string": {
-                "max": 16
+                "max": 32
             }
         },
         {

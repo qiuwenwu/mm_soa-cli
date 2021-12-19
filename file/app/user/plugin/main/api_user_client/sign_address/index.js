@@ -16,7 +16,7 @@ async function getCode(db, wallet_address) {
 			break;
 		}
 	}
-	return code.toUpperCase();
+	return code.toLocaleLowerCase();
 };
 
 /**
@@ -45,7 +45,7 @@ async function main(ctx, db) {
 		return $.ret.error(30000, "非法访问！");
 	}
 	var arr = content.split("\r\n");
-	var wallet_address = arr[0];
+	var wallet_address = arr[0].toLocaleLowerCase();
 	var phone = arr[1];
 	var invite = arr.length > 2 ? arr[2] : "";
 	

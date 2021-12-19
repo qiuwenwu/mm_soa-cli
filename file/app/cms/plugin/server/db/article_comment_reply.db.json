@@ -1,5 +1,5 @@
 {
-    "title": "文章评论",
+    "title": "文章评论回复",
     "description": "用于记录读者对某文章的评论",
     "name": "cms_article_comment_reply",
     "table": "cms_article_comment_reply",
@@ -111,7 +111,7 @@
             "max": 8388607,
             "decimal": 0,
             "default": "0",
-            "map": "user_account.nickname"
+            "map": "user_account.phone"
         },
         {
             "name": "name",

@@ -60,6 +60,24 @@
             "map": "cms_article_type.name.type_id"
         },
         {
+            "name": "show",
+            "title": "显示",
+            "description": "",
+            "type": "tinyint",
+            "key": false,
+            "auto": "",
+            "symbol": false,
+            "fill_zero": false,
+            "not_null": 1,
+            "min_length": 0,
+            "max_length": 1,
+            "min": 0,
+            "max": 1,
+            "decimal": 0,
+            "default": "1",
+            "map": "0否|1是"
+        },
+        {
             "name": "name",
             "title": "分类名称",
             "description": "",

@@ -13,7 +13,8 @@
 									<dl>
 										<dt>账户状态</dt>
 										<dd>
-											<control_select v-model="form.state" :options="$to_kv(arr_state)" />
+											<control_select v-model="form.state"
+												:options="$to_kv(arr_state)" />
 										</dd>
 										<dt>会员级别</dt>
 										<dd>
@@ -29,15 +30,22 @@
 										</dd>
 										<dt>所在用户组</dt>
 										<dd>
-											<control_select v-model="form.group_id" :options="$to_kv(list_group, 'group_id', 'name', '0')" />
+											<control_select type="list" v-model="form.group_id"
+												:options="$to_kv(list_group, 'group_id', 'name')" />
 										</dd>
 										<dt>所在管理组</dt>
 										<dd>
-											<control_select v-model="form.admin_id" :options="$to_kv(list_admin, 'admin_id', 'name', '0')" />
+											<control_select type="list" v-model="form.admin_id"
+												:options="$to_kv(list_admin, 'admin_id', 'name')" />
 										</dd>
 										<dt>推荐人</dt>
 										<dd>
-											<control_select v-model="form.referee_id" :options="$to_kv(list_account, 'user_id', 'nickname', '0')" />
+											<control_select type="list" v-model="form.referee_id"
+												:options="$to_kv(list_account, 'user_id', 'nickname')" />
+										</dd>
+										<dt>管理费</dt>
+										<dd>
+											<control_number v-model="form.service_fee" :min="0" :max="0" />
 										</dd>
 										<dt>上次登录时间</dt>
 										<dd>
@@ -45,60 +53,81 @@
 										</dd>
 										<dt class="required">邀请注册码</dt>
 										<dd>
-											<control_input v-model="form.invite_code" :minlength="0" :maxlength="8" placeholder="随着用户注册而生成"
-											 :required="true" />
+											<control_input v-model="form.invite_code" :minlength="0"
+												:maxlength="8"
+												placeholder="随着用户注册而生成"
+												:required="true" />
 										</dd>
 										<dt>手机号码</dt>
 										<dd>
-											<control_input v-model="form.phone" :minlength="0" :maxlength="11" placeholder="用户的手机号码，用于找回密码时或登录时" />
+											<control_input v-model="form.phone" :minlength="0"
+												:maxlength="11"
+												placeholder="用户的手机号码，用于找回密码时或登录时" />
 										</dd>
 										<dt>手机认证</dt>
 										<dd>
-											<control_select v-model="form.phone_state" :options="$to_kv(arr_phone_state)" />
+											<control_select v-model="form.phone_state"
+												:options="$to_kv(arr_phone_state)" />
 										</dd>
 										<dt class="required">用户名</dt>
 										<dd>
-											<control_input v-model="form.username" :minlength="0" :maxlength="16" placeholder="用户登录时所用的账户名称"
-											 :required="true" />
+											<control_input v-model="form.username" :minlength="0"
+												:maxlength="16"
+												placeholder="用户登录时所用的账户名称"
+												:required="true" />
 										</dd>
 										<dt>昵称</dt>
 										<dd>
-											<control_input v-model="form.nickname" :minlength="0" :maxlength="16" placeholder="" />
+											<control_input v-model="form.nickname" :minlength="0"
+												:maxlength="16"
+												placeholder="" />
 										</dd>
 										<dt>邮箱</dt>
 										<dd>
-											<control_input v-model="form.email" :minlength="0" :maxlength="64" placeholder="用户的邮箱，用于找回密码时或登录时" />
+											<control_input v-model="form.email" :minlength="0"
+												:maxlength="64"
+												placeholder="用户的邮箱，用于找回密码时或登录时" />
 										</dd>
 										<dt>邮箱认证</dt>
 										<dd>
-											<control_select v-model="form.email_state" :options="$to_kv(arr_email_state)" />
+											<control_select v-model="form.email_state"
+												:options="$to_kv(arr_email_state)" />
 										</dd>
 										<dt>上次登录IP</dt>
 										<dd>
-											<control_input v-model="form.login_ip" :minlength="0" :maxlength="128" placeholder="" />
+											<control_input v-model="form.login_ip" :minlength="0"
+												:maxlength="128"
+												placeholder="" />
 										</dd>
 										<dt>个性签名</dt>
 										<dd>
-											<control_input v-model="form.signature" :minlength="0" :maxlength="255" placeholder="" />
+											<control_input v-model="form.signature" :minlength="0"
+												:maxlength="255"
+												placeholder="" />
 										</dd>
 										<dt>头像地址</dt>
 										<dd>
-											<mm_upload_img width="10rem" height="10rem" name="avatar" type="text" v-model="form.avatar" />
+											<mm_upload_img width="10rem" height="10rem" name="avatar" type="text"
+												v-model="form.avatar" />
 										</dd>
 										<dt>好友</dt>
 										<dd>
-											<control_textarea v-model="form.friends" type="text" placeholder="多个好友ID用“,”分隔"></control_textarea>
+											<control_textarea v-model="form.friends" type="text"
+												placeholder="多个好友ID用“,”分隔">
+											</control_textarea>
 										</dd>
 										<dt>钱包地址</dt>
 										<dd>
-											<control_input v-model="form.wallet_address" :minlength="0" :maxlength="70" placeholder="" />
+											<control_input v-model="form.wallet_address" :minlength="0"
+												:maxlength="70"
+												placeholder="" />
 										</dd>
 									</dl>
 								</mm_form>
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -127,26 +156,49 @@
 					"user_id": 0
 				},
 				form: {
-					"user_id": 0,
-					"state": 0,
-					"vip": 0,
-					"gm": 0,
-					"mc": 0,
-					"group_id": 0,
-					"admin_id": 0,
-					"referee_id": 0,
+					//用户ID
+					"user_id":0,
+					//账户状态
+					"state":0,
+					//会员级别
+					"vip":0,
+					//管理员级别
+					"gm":0,
+					//商家级别
+					"mc":0,
+					//所在用户组
+					"group_id":0,
+					//所在管理组
+					"admin_id":0,
+					//推荐人
+					"referee_id":0,
+					//管理费
+					"service_fee":0,
+					//上次登录时间
 					"login_time": '',
+					//邀请注册码
 					"invite_code": '',
+					//手机号码
 					"phone": '',
-					"phone_state": 0,
+					//手机认证
+					"phone_state":0,
+					//用户名
 					"username": '',
+					//昵称
 					"nickname": '',
+					//邮箱
 					"email": '',
-					"email_state": 0,
+					//邮箱认证
+					"email_state":0,
+					//上次登录IP
 					"login_ip": '',
+					//个性签名
 					"signature": '',
+					//头像地址
 					"avatar": '',
+					//好友
 					"friends": '',
+					//钱包地址
 					"wallet_address": '',
 				},
 				// 账户状态

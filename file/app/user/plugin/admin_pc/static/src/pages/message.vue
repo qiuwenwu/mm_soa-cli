@@ -6,7 +6,7 @@
 					<mm_col class="col-12">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>用户留言</h5>
+								<h5>问题反馈</h5>
 							</div>
 							<div class="card_body">
 								<mm_form class="bar_filter">
@@ -17,6 +17,12 @@
 										<mm_item>
 											<control_input v-model="query.keyword" title="关键词" desc="留言标题 / 留言内容 / 留言者姓名"
 											 @blur="search()" />
+										</mm_item>
+										<mm_item>
+											<control_select type="list" v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
+										</mm_item>
+										<mm_item>
+											<control_select v-model="query.type" title="类型" :options="$to_kv(arr_type)" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -39,6 +45,21 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
+											<th class="th_user_id">
+												<control_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
+											</th>
+											<th class="th_img">
+												<control_reverse title="图片" v-model="query.orderby" field="img" :func="search"></control_reverse>
+											</th>
+											<th class="th_img_2">
+												<control_reverse title="图片2" v-model="query.orderby" field="img_2" :func="search"></control_reverse>
+											</th>
+											<th class="th_img_3">
+												<control_reverse title="图片3" v-model="query.orderby" field="img_3" :func="search"></control_reverse>
+											</th>
+											<th class="th_type">
+												<control_reverse title="类型" v-model="query.orderby" field="type" :func="search"></control_reverse>
+											</th>
 											<th class="th_title">
 												<control_reverse title="留言标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
 											</th>
@@ -54,6 +75,9 @@
 											<th class="th_time_create">
 												<control_reverse title="留言时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
 											</th>
+											<th class="th_time_update">
+												<control_reverse title="最后更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
+											</th>
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
@@ -62,6 +86,21 @@
 										<tr v-for="(o, idx) in list" :key="idx" :class="{'active': select == idx}" @click="selected(idx)">
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
+											<td>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'phone') || o.user_id }}</span>
+											</td>
+											<td>
+												<img class="img" :src="o.img" alt="图片" />
+											</td>
+											<td>
+												<img class="img_2" :src="o.img_2" alt="图片2" />
+											</td>
+											<td>
+												<img class="img_3" :src="o.img_3" alt="图片3" />
+											</td>
+											<td>
+												<span>{{ $get_name(arr_type, o.type, 'value') }}</span>
+											</td>
 											<td>
 												<span>{{ o.title }}</span>
 											</td>
@@ -76,6 +115,9 @@
 											</td>
 											<td>
 												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
+											</td>
+											<td>
+												<span>{{ $to_time(o.time_update, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
 												<mm_btn class="btn_primary" :url="'./message_form?message_id=' + o[field]">修改</mm_btn>
@@ -110,6 +152,14 @@
 				</div>
 				<div class="card_body pa">
 					<dl>
+						<dt>用户</dt>
+						<dd>
+							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
+						</dd>
+						<dt>类型</dt>
+						<dd>
+							<control_select v-model="form.type" :options="$to_kv(arr_type)" />
+						</dd>
 					</dl>
 				</div>
 				<div class="card_foot">
@@ -148,6 +198,8 @@
 					size: 10,
 					// 消息ID
 					'message_id': 0,
+					// 用户ID
+					'user_id': '',
 					// 留言标题
 					'title': '',
 					// 留言内容
@@ -158,6 +210,10 @@
 					'time_create_min': '',
 					// 留言时间——结束时间
 					'time_create_max': '',
+					// 最后更新时间——开始时间
+					'time_update_min': '',
+					// 最后更新时间——结束时间
+					'time_update_max': '',
 					// 关键词
 					'keyword': '',
 					//排序
@@ -166,13 +222,37 @@
 				form: {},
 				//颜色
 				arr_color: ['', '', 'font_yellow', 'font_success', 'font_warning', 'font_primary', 'font_info', 'font_default'],
+				// 用户
+				'list_account':[],
+				// 类型
+				'arr_type':[{"name":"平台","value":"平台"},{"name":"账号","value":"账号"},{"name":"订单","value":"订单"},{"name":"支付","value":"支付"},{"name":"其他","value":"其他"}],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
+			/**
+			 * 获取用户
+			 * @param {query} 查询条件
+			 */
+			get_account(query) {
+				var _this = this;
+				if (!query) {
+					query = {
+						field: "user_id,phone"
+					};
+				}
+				this.$get('~/apis/user/account?size=0', query, function(json) {
+					if (json.result) {
+						_this.list_account.clear();
+						_this.list_account.addList(json.result.list)
+					}
+				});
+			},
 		},
 		created() {
+			// 获取用户
+			this.get_account();
 		}
 	}
 </script>

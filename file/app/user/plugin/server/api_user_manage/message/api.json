@@ -1,7 +1,7 @@
 {
     "name": "user_message_manage",
     "title": "用户留言",
-    "description": "用于记录用提交的留言信息",
+    "description": "",
     "path": "/apis/user/message",
     "method": "ALL",
     "cache": 0,

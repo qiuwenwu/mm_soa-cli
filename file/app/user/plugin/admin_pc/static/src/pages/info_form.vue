@@ -11,29 +11,12 @@
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>性别</dt>
-										<dd>
-											<control_select v-model="form.sex" :options="$to_kv(arr_sex)" />
-										</dd>
 										<dt>身份实名认证</dt>
 										<dd>
-											<control_select v-model="form.idcard_state" :options="$to_kv(arr_idcard_state)" />
-										</dd>
-										<dt>年龄</dt>
-										<dd>
-											<control_number v-model="form.age" :min="0" :max="150" />
-										</dd>
-										<dt>省份</dt>
-										<dd>
-											<control_select v-model="form.province_id" :options="$to_kv(list_address_province, 'province_id', 'name', '0')" />
-										</dd>
-										<dt>所在城市</dt>
-										<dd>
-											<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name', '0')" />
-										</dd>
-										<dt>生日</dt>
-										<dd>
-											<mm_time v-model="form.birthday" type="date" />
+											<control_select v-if="obj.idcard_state === 2" v-model="form.idcard_state" :options="$to_kv(arr_idcard_state)" />
+											<span v-else>
+												{{ arr_idcard_state[obj.idcard_state] }}
+											</span>
 										</dd>
 										<dt>姓名</dt>
 										<dd>
@@ -43,44 +26,32 @@
 										<dd>
 											<control_input v-model="form.job" :minlength="0" :maxlength="16" placeholder="" />
 										</dd>
-										<dt>毕业学校</dt>
-										<dd>
-											<control_input v-model="form.school" :minlength="0" :maxlength="16" placeholder="" />
-										</dd>
-										<dt>所学专业</dt>
-										<dd>
-											<control_input v-model="form.major" :minlength="0" :maxlength="16" placeholder="" />
-										</dd>
 										<dt>身份证号</dt>
 										<dd>
 											<control_input v-model="form.idcard" :minlength="0" :maxlength="64" placeholder="" />
 										</dd>
-										<dt>公司地址</dt>
+										<dt>身份证正面</dt>
 										<dd>
-											<control_input v-model="form.company_address" :minlength="0" :maxlength="125" placeholder="用户当前就职的公司地址" />
+											<mm_upload_img width="10rem" height="10rem" name="img_idcard_front" type="text" v-model="form.img_idcard_front" />
 										</dd>
-										<dt>详细地址</dt>
+										<dt>身份证反面</dt>
 										<dd>
-											<control_input v-model="form.address" :minlength="0" :maxlength="255" placeholder="用户居住地的详细地址" />
+											<mm_upload_img width="10rem" height="10rem" name="img_idcard_back" type="text" v-model="form.img_idcard_back" />
 										</dd>
-										<dt>工作范围</dt>
+										<dt>手持身份证</dt>
 										<dd>
-											<control_input v-model="form.job_scope" :minlength="0" :maxlength="255" placeholder="" />
+											<mm_upload_img width="10rem" height="10rem" name="img_hand_held" type="text" v-model="form.img_hand_held" />
 										</dd>
-										<dt>公司经营范围</dt>
+										<dt>备注</dt>
 										<dd>
-											<control_input v-model="form.company_business" :minlength="0" :maxlength="255" placeholder="" />
-										</dd>
-										<dt>身份证图片</dt>
-										<dd>
-											<mm_upload_img width="10rem" height="10rem" name="idcard_img" type="text" v-model="form.idcard_img" />
+											<control_textarea v-model="form.note" :minlength="0" :maxlength="255" placeholder="用于驳回审核认证时" />
 										</dd>
 									</dl>
 								</mm_form>
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -111,8 +82,8 @@
 				form: {
 					"user_id": 0,
 					"sex": 0,
-					"idcard_state": 0,
 					"age": 0,
+					"idcard_state": 0,
 					"province_id": 0,
 					"city_id": 0,
 					"birthday": '',
@@ -125,12 +96,15 @@
 					"address": '',
 					"job_scope": '',
 					"company_business": '',
-					"idcard_img": '',
+					"img_idcard_front": '',
+					"img_idcard_back": '',
+					"img_hand_held": '',
+					"note": '',
 				},
 				// 性别
 				'arr_sex':["未设置","男","女"],
 				// 身份实名认证
-				'arr_idcard_state':["","未认证","认证中","认证通过"],
+				'arr_idcard_state':["","未认证","认证中","认证通过","驳回"],
 				// 省份
 				'list_address_province':[],
 				// 所在城市
@@ -138,6 +112,17 @@
 			}
 		},
 		methods: {
+			
+			/**
+			 *  提交前事件
+			 */
+			submit_before(param) {
+				let p = Object.assign({} ,param);
+				p.birthday = param.birthday.toTime().toStr("yyyy-MM-dd");
+				
+				return p;
+			},
+			
 			/**
 			 * 获取省份
 			 * @param {query} 查询条件

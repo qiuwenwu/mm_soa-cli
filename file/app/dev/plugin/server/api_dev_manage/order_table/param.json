@@ -1,0 +1,125 @@
+{
+    "name": "dev_order_table2",
+    "title": "定制表",
+    "add": {
+        "body": [
+            "order_id",
+            "name",
+            "title",
+            "description"
+        ],
+        "body_required": [
+            "config"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "table_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "table_id",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "order_id",
+            "name",
+            "title",
+            "description",
+            "config"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "table_id",
+            "name",
+            "title",
+            "description",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "table_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "table_id",
+            "title": "表ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "order_id",
+            "title": "订单ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "表名",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "title",
+            "title": "表格标题",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 64
+            }
+        },
+        {
+            "name": "description",
+            "title": "表描述",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "config",
+            "title": "配置信息",
+            "description": "用于配置生成的模型、视图",
+            "type": "string",
+            "dataType": "longtext",
+            "string": {
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索表名(name)、表格标题(title)、表描述(description)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

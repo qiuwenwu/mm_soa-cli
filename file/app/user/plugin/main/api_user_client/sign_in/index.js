@@ -60,7 +60,7 @@ async function main(ctx, db) {
 		var mm = params["mm"];
 		var arr = [];
 		if (mm) {
-			// 使用超级美眉账号登录
+			// 使用飞鸟云算力账号登录
 			arr = await db.get({
 				mm
 			});
@@ -110,7 +110,15 @@ async function main(ctx, db) {
 	if (!user) {
 		return $.ret.error(10000, '账号不存在');
 	} else {
-
+		if(user.state === 2){
+			return $.ret.error(10000, "账户异常!");
+		}
+		else if(user.state === 3){
+			return $.ret.error(10000,"账户已被冻结！");
+		}
+		else if(user.state === 4){
+			return $.ret.error(10000,"账户已注销！");
+		}
 		// 判断密码是否正确
 		var pass = (password + user.salt).md5();
 		if (user.password !== pass) {
@@ -129,26 +137,27 @@ async function main(ctx, db) {
 				user.nickname = json_info.nickName;
 				user.avatar = json_info.avatarUrl;
 			}
-			var u = Object.assign({}, user);
-			delete u.password;
-			delete u.salt;
-			delete u.create_time;
 			ctx.session.user = user;
+			var u = Object.assign({}, user);
+			u.password_pay = u.password_pay ? "******" : "";
+			u.password = u.password ? "******" : "";
+			delete u.salt;
+			delete u.time_create;
 			// var user = Object.assign({}, u);
 			// 自动生成的uuid是通过IP和浏览器信息加密而成，如果需要解密确认其身份，可再加上user_id加密，自行生成uuid
 			var body = $.ret.body({
 				token: ctx.session.uuid,
-				user: user,
+				user: u,
 				ip
 			});
-			bind(db, params, user);
+			$.bind_account(db, params, user);
 			// $.log.debug('入场', body);
 			return body
 		}
 	}
 };
 
-async function bind(db, body, user) {
+$.bind_account = async function(db, body, user) {
 	var open_id = body.open_id;
 	var user_id = user.user_id;
 	if (open_id) {

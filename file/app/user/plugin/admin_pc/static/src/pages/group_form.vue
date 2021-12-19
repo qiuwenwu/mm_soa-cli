@@ -6,54 +6,37 @@
 					<mm_col class="col-mm-12">
 						<mm_card>
 							<div class="card_head arrow">
-								<h5>{{ form[field] ? '修改' : '创建' }}用户组</h5>
+								<h5>{{ form[field] ? '修改' : '创建' }}会员组表</h5>
 							</div>
 							<div class="card_body">
 								<mm_form>
 									<dl>
-										<dt>等级划分</dt>
+										<dt>组名</dt>
 										<dd>
-											<control_number v-model="form.level" :min="0" :max="1000" />
+											<control_input v-model="form.name" :minlength="0" :maxlength="50" placeholder="" />
 										</dd>
-										<dt>下级用户组ID</dt>
+										<dt>权限节点</dt>
 										<dd>
-											<control_input v-model="form.next_group_id" :minlength="0" :maxlength="0" placeholder="决定用户升级后所属用户组" />
+											<control_textarea v-model="form.rules" type="text" placeholder=""></control_textarea>
 										</dd>
-										<dt>升级所需经验</dt>
+										<dt>添加时间</dt>
 										<dd>
-											<control_number v-model="form.exp" :min="0" :max="2147483647" />
+											<control_number v-model="form.createtime" :min="0" :max="2147483647" />
 										</dd>
-										<dt>折扣</dt>
+										<dt>更新时间</dt>
 										<dd>
-											<control_number v-model="form.discount" :min="0" :max="0" />
+											<control_number v-model="form.updatetime" :min="0" :max="2147483647" />
 										</dd>
-										<dt>奖励比例</dt>
+										<dt>状态</dt>
 										<dd>
-											<control_number v-model="form.bonus" :min="0" :max="0" />
-										</dd>
-										<dt>应用</dt>
-										<dd>
-											<control_input v-model="form.app" :minlength="0" :maxlength="12" placeholder="用于区分用户组使用范围，cms内容管理系统 / bbs社区 / mall商城" />
-										</dd>
-										<dt class="required">用户名称</dt>
-										<dd>
-											<control_input v-model="form.name" :minlength="0" :maxlength="16" placeholder=""
-											 :required="true" />
-										</dd>
-										<dt>描述</dt>
-										<dd>
-											<control_input v-model="form.description" :minlength="0" :maxlength="255" placeholder="描述该用户组的特点或权限范围" />
-										</dd>
-										<dt>图标</dt>
-										<dd>
-											<mm_upload_img width="10rem" height="10rem" name="icon" type="text" v-model="form.icon" />
+											<control_number v-model="form.status" :min="0" :max="0" />
 										</dd>
 									</dl>
 								</mm_form>
 							</div>
 							<div class="card_foot">
 								<div class="mm_group">
-									<button class="btn_default" type="button" @click="cancel">取消</button>
+									<button class="btn_default" type="button" @click="cancel">返回</button>
 									<button class="btn_primary" type="button" @click="submit()">提交</button>
 								</div>
 							</div>
@@ -83,15 +66,11 @@
 				},
 				form: {
 					"group_id": 0,
-					"level": 0,
-					"next_group_id": 0,
-					"exp": 0,
-					"discount": 0,
-					"bonus": 0,
-					"app": '',
 					"name": '',
-					"description": '',
-					"icon": '',
+					"rules": '',
+					"createtime": 0,
+					"updatetime": 0,
+					"status": 0,
 				},
 			}
 		},

@@ -1,0 +1,9 @@
+{
+    "name": "upload_image",
+    "filter": true,
+    "method": "post",
+    "list": [],
+    "func_file": "",
+    "func_name": "",
+    "title": "上传图片"
+}

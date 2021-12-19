@@ -55,6 +55,11 @@
         ],
         "query_required": []
     },
+    "get_obj": {
+        "query_required": [
+            "section_id"
+        ]
+    },
     "list": [
         {
             "name": "section_id",
@@ -154,10 +159,5 @@
             "dataType": "varchar",
             "string": {}
         }
-    ],
-    "get_obj": {
-        "query_required": [
-            "section_id"
-        ]
-    }
+    ]
 }

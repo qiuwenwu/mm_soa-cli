@@ -3,33 +3,6 @@
     "sort": 1,
     "routes": [
         {
-            "name": "cms",
-            "path": "/cms",
-            "redirect": "/cms/ad"
-        },
-        {
-            "name": "cms_ad",
-            "path": "/cms/ad",
-            "component": "/cms/admin_pc/src/pages/ad.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_ad_form",
-            "path": "/cms/ad_form",
-            "component": "/cms/admin_pc/src/pages/ad_form.vue",
-            "level": 4,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
             "name": "cms_article",
             "path": "/cms/article",
             "component": "/cms/admin_pc/src/pages/article.vue",
@@ -72,116 +45,6 @@
                 "gm": 2,
                 "user_admin": []
             }
-        },
-        {
-            "name": "cms_article_comment",
-            "path": "/cms/article_comment",
-            "component": "/cms/admin_pc/src/pages/article_comment.vue",
-            "level": 2,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_article_comment_form",
-            "path": "/cms/article_comment_form",
-            "component": "/cms/admin_pc/src/pages/article_comment_form.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_article_section",
-            "path": "/cms/article_section",
-            "component": "/cms/admin_pc/src/pages/article_section.vue",
-            "level": 2,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_article_section_form",
-            "path": "/cms/article_section_form",
-            "component": "/cms/admin_pc/src/pages/article_section_form.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_article_type",
-            "path": "/cms/article_type",
-            "component": "/cms/admin_pc/src/pages/article_type.vue",
-            "level": 2,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_article_type_form",
-            "path": "/cms/article_type_form",
-            "component": "/cms/admin_pc/src/pages/article_type_form.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_lang",
-            "path": "/cms/lang",
-            "component": "/cms/admin_pc/src/pages/lang.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_lang_form",
-            "path": "/cms/lang_form",
-            "component": "/cms/admin_pc/src/pages/lang_form.vue",
-            "level": 4,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_nav",
-            "path": "/cms/nav",
-            "component": "/cms/admin_pc/src/pages/nav.vue",
-            "level": 3,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
-        },
-        {
-            "name": "cms_nav_form",
-            "path": "/cms/nav_form",
-            "component": "/cms/admin_pc/src/pages/nav_form.vue",
-            "level": 4,
-            "oauth": {
-                "signIn": true,
-                "gm": 2,
-                "user_admin": []
-            }
         }
     ],
     "top": [],
@@ -192,18 +55,12 @@
     "quick": [],
     "main": [
         {
-            "title": "内容管理系统",
+            "title": "内容管理",
             "name": "cms",
-            "icon": "<i class=\"fa-file-text-o\"></i>",
+            "icon": "<i class=\"fa-file\"></i>",
             "url": "/cms",
             "display": 0,
             "sub": [
-                {
-                    "title": "CMS广告",
-                    "show": false,
-                    "name": "cms_ad",
-                    "url": "/cms/ad"
-                },
                 {
                     "title": "文章",
                     "show": false,
@@ -215,36 +72,6 @@
                     "show": false,
                     "name": "cms_article_channel",
                     "url": "/cms/article_channel"
-                },
-                {
-                    "title": "文章评论",
-                    "show": false,
-                    "name": "cms_article_comment",
-                    "url": "/cms/article_comment"
-                },
-                {
-                    "title": "文章章节",
-                    "show": false,
-                    "name": "cms_article_section",
-                    "url": "/cms/article_section"
-                },
-                {
-                    "title": "文章分类",
-                    "show": false,
-                    "name": "cms_article_type",
-                    "url": "/cms/article_type"
-                },
-                {
-                    "title": "CMS语言",
-                    "show": false,
-                    "name": "cms_lang",
-                    "url": "/cms/lang"
-                },
-                {
-                    "title": "CMS导航",
-                    "show": false,
-                    "name": "cms_nav",
-                    "url": "/cms/nav"
                 }
             ]
         }

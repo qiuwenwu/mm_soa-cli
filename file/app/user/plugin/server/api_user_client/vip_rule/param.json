@@ -1,0 +1,335 @@
+{
+    "name": "user_vip_rule",
+    "title": "",
+    "add": {
+        "body": [
+            "lv",
+            "available",
+            "name",
+            "info",
+            "up_product",
+            "invite_people",
+            "achievement",
+            "team_prize"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "vip_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "vip_id",
+            "lv_min",
+            "lv_max",
+            "available",
+            "name",
+            "up_product_min",
+            "up_product_max",
+            "invite_people_min",
+            "invite_people_max",
+            "achievement_min",
+            "achievement_max",
+            "team_prize_min",
+            "team_prize_max",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "lv",
+            "lv_add",
+            "available",
+            "name",
+            "info",
+            "up_product",
+            "up_product_add",
+            "invite_people",
+            "invite_people_add",
+            "achievement",
+            "achievement_add",
+            "team_prize",
+            "team_prize_add"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "vip_id",
+            "lv_min",
+            "lv_max",
+            "available",
+            "name",
+            "up_product_min",
+            "up_product_max",
+            "invite_people_min",
+            "invite_people_max",
+            "achievement_min",
+            "achievement_max",
+            "team_prize_min",
+            "team_prize_max",
+            "time_create_min",
+            "time_create_max",
+            "time_update_min",
+            "time_update_max",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "vip_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "vip_id",
+            "title": "VIP选项ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "lv",
+            "title": "会员级别",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 9
+            }
+        },
+        {
+            "name": "lv_min",
+            "title": "会员级别——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 9
+            }
+        },
+        {
+            "name": "lv_max",
+            "title": "会员级别——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "smallint",
+            "number": {
+                "max": 9
+            }
+        },
+        {
+            "name": "available",
+            "title": "是否启用",
+            "description": "启用后前台才会显示该文章(0否|1是)",
+            "type": "number",
+            "dataType": "tinyint",
+            "number": {
+                "max": 1
+            }
+        },
+        {
+            "name": "name",
+            "title": "会员名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "info",
+            "title": "会员介绍",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "up_product",
+            "title": "个人消费",
+            "description": "自己在平台上的消费，以平台基准币计算",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "up_product_min",
+            "title": "个人消费——最小值",
+            "description": "自己在平台上的消费，以平台基准币计算",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "up_product_max",
+            "title": "个人消费——最大值",
+            "description": "自己在平台上的消费，以平台基准币计算",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "invite_people",
+            "title": "邀请人数",
+            "description": "邀请的有效人数，包括间接推广",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "invite_people_min",
+            "title": "邀请人数——最小值",
+            "description": "邀请的有效人数，包括间接推广",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "invite_people_max",
+            "title": "邀请人数——最大值",
+            "description": "邀请的有效人数，包括间接推广",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "achievement",
+            "title": "团队业绩",
+            "description": "整个团队的消费",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "achievement_min",
+            "title": "团队业绩——最小值",
+            "description": "整个团队的消费",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "achievement_max",
+            "title": "团队业绩——最大值",
+            "description": "整个团队的消费",
+            "type": "number",
+            "dataType": "decimal",
+            "number": {}
+        },
+        {
+            "name": "team_prize",
+            "title": "团队奖励",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "team_prize_min",
+            "title": "团队奖励——最小值",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "team_prize_max",
+            "title": "团队奖励——最大值",
+            "description": "",
+            "type": "number",
+            "dataType": "double",
+            "number": {}
+        },
+        {
+            "name": "time_create",
+            "title": "创建时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_min",
+            "title": "创建时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_create_max",
+            "title": "创建时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "datetime",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update",
+            "title": "更新时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_min",
+            "title": "更新时间——开始时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "time_update_max",
+            "title": "更新时间——结束时间",
+            "description": "",
+            "type": "string",
+            "dataType": "timestamp",
+            "string": {
+                "notEmpty": true,
+                "format": "datetime"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索会员名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

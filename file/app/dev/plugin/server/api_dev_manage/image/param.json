@@ -1,0 +1,122 @@
+{
+    "name": "dev_image2",
+    "title": "图片素材",
+    "add": {
+        "body": [
+            "device",
+            "type",
+            "color",
+            "user_id",
+            "theme_id"
+        ],
+        "body_required": [
+            "img"
+        ]
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "image_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "image_id"
+        ],
+        "query_required": [],
+        "body": [
+            "device",
+            "type",
+            "color",
+            "img",
+            "user_id",
+            "theme_id"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "image_id"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "image_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "image_id",
+            "title": "图片ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "device",
+            "title": "设备",
+            "description": "(pc|pad|phone)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "type",
+            "title": "类型",
+            "description": "(轮播图|背景图)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "color",
+            "title": "颜色",
+            "description": "(红|橙|黄|绿|青|蓝|紫)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255
+            }
+        },
+        {
+            "name": "img",
+            "title": "图片",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "notEmpty": true
+            }
+        },
+        {
+            "name": "user_id",
+            "title": "用户ID",
+            "description": "用来识别是哪个用户上传的模板",
+            "type": "number",
+            "dataType": "mediumint",
+            "number": {
+                "max": 8388607
+            }
+        },
+        {
+            "name": "theme_id",
+            "title": "主题ID",
+            "description": "(dev_theme.name.theme_id)",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 32767
+            }
+        }
+    ]
+}

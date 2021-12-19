@@ -1,0 +1,18 @@
+{
+    "name": "dev_withdraw_manage",
+    "title": "提现记录",
+    "description": "用于技术员、客服申请提现，提现确认到账",
+    "path": "/apis/dev/withdraw",
+    "method": "ALL",
+    "cache": 0,
+    "client_cache": false,
+    "param_path": "./param.json",
+    "sql_path": "./sql.json",
+    "check_param": true,
+    "oauth": {
+        "scope": true,
+        "signIn": true,
+        "gm": 2,
+        "user_admin": []
+    }
+}

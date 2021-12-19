@@ -214,7 +214,7 @@ var mixin_page = {
 		set_before: function set_before(param, includeZero) {
 			var pm = $.delete(param, includeZero);
 			for (var k in pm) {
-				if (k.toLocaleLowerCase().indexOf('time') !== -1 && pm[k].indexOf('T') !== -1) {
+				if (k.toLocaleLowerCase().indexOf('time') !== -1 && typeof(pm[k]) === 'string' && pm[k].indexOf('T') !== -1) {
 					pm[k] = new Date(pm[k]).toStr('yyyy-MM-dd 00:00:00');
 				}
 			}
@@ -426,6 +426,7 @@ var mixin_page = {
 		 * @param {Function} func 回调函数
 		 */
 		get: function get(query, func) {
+			console.log("执行");
 			this.get_main(query, func);
 		},
 		/**
@@ -803,6 +804,7 @@ var mixin_page = {
 				func();
 			}
 		},
+		
 		/**
 		 * @description 上传文件
 		 * @param {Function} func 回调函数

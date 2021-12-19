@@ -1,0 +1,27 @@
+{
+    "name": "user_team2",
+    "title": "",
+    "table": "user_team",
+    "key": "team_id",
+    "orderby_default": "`team_id` desc",
+    "field_obj": "`team_id`,`user_id`,`referee_id`,`servants`,`branchs`",
+    "field_default": "`team_id`,`user_id`,`referee_id`,`servants`,`branchs`,`time_create`,`time_update`",
+    "query": {
+        "servants": "`servants` like '%{0}%'",
+        "branchs": "`branchs` like '%{0}%'",
+        "time_create_min": "`time_create` >= '{0}'",
+        "time_create_max": "`time_create` <= '{0}'",
+        "time_update_min": "`time_update` >= '{0}'",
+        "time_update_max": "`time_update` <= '{0}'"
+    },
+    "update": {},
+    "format": [
+        {
+            "key": "user_id",
+            "title": "用户",
+            "table": "user_account",
+            "name": "nickname"
+        }
+    ],
+    "field_hide": []
+}

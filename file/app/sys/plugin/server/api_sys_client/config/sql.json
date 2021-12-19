@@ -4,8 +4,8 @@
     "table": "sys_config",
     "key": "config_id",
     "orderby_default": "`config_id` desc",
-    "field_obj": "`config_id`,`name`,`type`,`control`,`title`,`value`,`description`,`model`",
-    "field_default": "`config_id`,`name`,`type`,`control`,`title`,`value`,`description`,`model`",
+    "field_obj": "`config_id`,`name`,`group`,`type`,`control`,`title`,`value`,`description`,`model`",
+    "field_default": "`config_id`,`name`,`group`,`type`,`control`,`title`,`value`,`description`,`model`",
     "method": "get get_obj avg sum count",
     "query": {
         "description": "`description` like '%{0}%'",
@@ -15,7 +15,8 @@
         "type": "`type` like '%{0}%'",
         "value": "`value` like '%{0}%'",
         "keyword": "(`name` like '%{0}%' || `title` like '%{0}%' || `description` like '%{0}%')",
-        "control": "`control` like '%{0}%'"
+        "control": "`control` like '%{0}%'",
+        "group": "`group` like '%{0}%'"
     },
     "query_default": {},
     "update": {},

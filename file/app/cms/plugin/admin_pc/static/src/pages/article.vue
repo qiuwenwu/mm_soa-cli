@@ -4,8 +4,8 @@
 			<mm_container>
 				<mm_row>
 					<mm_col class="col-12">
-						<mm_card>
-							<div class="card_head arrow">
+						<mm_card :class="{ 'hide_filter': !show_filter }">
+							<div class="card_head arrow" @click="show_filter = !show_filter">
 								<h5>文章</h5>
 							</div>
 							<div class="card_body">
@@ -15,7 +15,7 @@
 									</div>
 									<mm_list :col="3">
 										<mm_item>
-											<control_input v-model="query.keyword" title="关键词" desc="标题 / 关键词 / 描述 / 标签 / 正文"
+											<control_input v-model="query.keyword" title="关键词" desc="标题 / 描述 / 正文"
 											 @blur="search()" />
 										</mm_item>
 										<mm_item>
@@ -25,23 +25,10 @@
 											<control_select v-model="query.state" title="状态" :options="$to_kv(arr_state)" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.type_id" title="文章分类" :options="$to_kv(list_article_type, 'type_id', 'name')"
-											 @change="search()" />
+											<control_select type="list" v-model="query.channel_id" title="频道" :options="$to_kv(list_article_channel, 'channel_id', 'title')" @change="search()" />
 										</mm_item>
 										<mm_item>
-											<control_select v-model="query.channel_id" title="频道" :options="$to_kv(list_article_channel, 'channel_id', 'name')"
-											 @change="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'nickname')"
-											 @change="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.city_id" title="所属城市" :options="$to_kv(list_address_city, 'city_id', 'name')"
-											 @change="search()" />
-										</mm_item>
-										<mm_item>
-											<control_select v-model="query.lang" title="语言" :options="$to_kv(arr_lang)" @change="search()" />
+											<control_select type="list" v-model="query.user_id" title="用户" :options="$to_kv(list_account, 'user_id', 'phone')" @change="search()" />
 										</mm_item>
 										<mm_item>
 											<mm_btn class="btn_primary-x" type="reset" @click.native="reset();search()">重置</mm_btn>
@@ -64,69 +51,36 @@
 										<tr>
 											<th class="th_selected"><input type="checkbox" :checked="select_state" @click="select_all()" /></th>
 											<th class="th_id"><span>#</span></th>
-											<th>
-												<control_reverse title="是否启用" v-model="query.orderby" field="available" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="状态" v-model="query.orderby" field="state" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="文章分类" v-model="query.orderby" field="type_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="排序" v-model="query.orderby" field="display" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="频道" v-model="query.orderby" field="channel_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="所属城市" v-model="query.orderby" field="city_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="热度" v-model="query.orderby" field="hot" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="点赞次数" v-model="query.orderby" field="praise" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="采集规则ID" v-model="query.orderby" field="collect_id" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="语言" v-model="query.orderby" field="lang" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="作者" v-model="query.orderby" field="author" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="关键词" v-model="query.orderby" field="keywords" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="来源" v-model="query.orderby" field="source" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="来源地址" v-model="query.orderby" field="url" :func="search"></control_reverse>
-											</th>
-											<th>
-												<control_reverse title="标签" v-model="query.orderby" field="tag" :func="search"></control_reverse>
-											</th>
-											<th>
+											<th class="th_img">
 												<control_reverse title="封面图" v-model="query.orderby" field="img" :func="search"></control_reverse>
 											</th>
+											<th class="th_title">
+												<control_reverse title="标题" v-model="query.orderby" field="title" :func="search"></control_reverse>
+											</th>
+											<th class="th_available">
+												<control_reverse title="是否启用" v-model="query.orderby" field="available" :func="search"></control_reverse>
+											</th>
+											<!-- <th class="th_state">
+												<control_reverse title="状态" v-model="query.orderby" field="state" :func="search"></control_reverse>
+											</th> -->
+											<th class="th_channel_id">
+												<control_reverse title="频道" v-model="query.orderby" field="channel_id" :func="search"></control_reverse>
+											</th>
+											<th class="th_display">
+												<control_reverse title="排序" v-model="query.orderby" field="display" :func="search"></control_reverse>
+											</th>
+											<!-- <th class="th_user_id">
+												<control_reverse title="用户" v-model="query.orderby" field="user_id" :func="search"></control_reverse>
+											</th> -->
+											<th class="th_time_create">
+												<control_reverse title="创建时间" v-model="query.orderby" field="time_create" :func="search"></control_reverse>
+											</th>
+											<!-- <th class="th_time_update">
+												<control_reverse title="更新时间" v-model="query.orderby" field="time_update" :func="search"></control_reverse>
+											</th>
+											<th class="th_description">
+												<control_reverse title="描述" v-model="query.orderby" field="description" :func="search"></control_reverse>
+											</th> -->
 											<th class="th_handle"><span>操作</span></th>
 										</tr>
 									</thead>
@@ -136,75 +90,41 @@
 											<th class="th_selected"><input type="checkbox" :checked="select_has(o[field])" @click="select_change(o[field])" /></th>
 											<td>{{ o[field] }}</td>
 											<td>
-												<control_switch v-model="o.available" @click.native="set(o)" />
-											</td>
-											<td>
-												<span v-bind:class="arr_color[o.state]">{{arr_state[o.state] }}</span>
-											</td>
-											<td>
-												<span>{{ $get_name(list_article_type, o.type_id, 'type_id', 'name') }}</span>
-											</td>
-											<td>
-												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
-											</td>
-											<td>
-												<span>{{ $get_name(list_article_channel, o.channel_id, 'channel_id', 'name') }}</span>
-											</td>
-											<td>
-												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'nickname') }}</span>
-											</td>
-											<td>
-												<span>{{ $get_name(list_address_city, o.city_id, 'city_id', 'name') }}</span>
-											</td>
-											<td>
-												<span>{{ o.hot }}</span>
-											</td>
-											<td>
-												<span>{{ o.praise }}</span>
-											</td>
-											<td>
-												<span>{{ o.collect_id }}</span>
-											</td>
-											<td>
-												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
-											</td>
-											<td>
-												<span>{{ $to_time(o.time_update, 'yyyy-MM-dd hh:mm') }}</span>
-											</td>
-											<td>
-												<span>{{arr_lang[o.lang] }}</span>
-											</td>
-											<td>
-												<span>{{ o.author }}</span>
+												<img class="img" :src="o.img" alt="封面图" />
 											</td>
 											<td>
 												<span>{{ o.title }}</span>
 											</td>
 											<td>
-												<span>{{ o.keywords }}</span>
+												<control_switch v-model="o.available" @click.native="set(o)" />
+											</td>
+											<!-- <td>
+												<span v-bind:class="arr_color[o.state]">{{arr_state[o.state] }}</span>
+											</td> -->
+											<td>
+												<span>{{ $get_name(list_article_channel, o.channel_id, 'channel_id', 'title') }}</span>
+											</td>
+											<td>
+												<input class="input_display" v-model.number="o.display" @blur="set(o)" min="0" max="1000" />
+											</td>
+											<!-- <td>
+												<span>{{ $get_name(list_account, o.user_id, 'user_id', 'phone') }}</span>
+											</td> -->
+											<td>
+												<span>{{ $to_time(o.time_create, 'yyyy-MM-dd hh:mm') }}</span>
+											</td>
+											<!-- <td>
+												<span>{{ $to_time(o.time_update, 'yyyy-MM-dd hh:mm') }}</span>
 											</td>
 											<td>
 												<span>{{ o.description }}</span>
-											</td>
-											<td>
-												<span>{{ o.source }}</span>
-											</td>
-											<td>
-												<span>{{ o.url }}</span>
-											</td>
-											<td>
-												<span>{{ o.tag }}</span>
-											</td>
-											<td>
-												<img class="img" :src="o.img" alt="封面图" />
-											</td>
+											</td> -->
 											<td>
 												<mm_btn class="btn_primary" :url="'./article_form?article_id=' + o[field]">修改</mm_btn>
 												<mm_btn class="btn_warning" @click.native="del_show(o, field)">删除</mm_btn>
 											</td>
 										</tr>
 									</tbody>
-									<!-- </draggable> -->
 								</mm_table>
 							</div>
 							<div class="card_foot">
@@ -239,25 +159,13 @@
 						<dd>
 							<control_select v-model="form.state" :options="$to_kv(arr_state)" />
 						</dd>
-						<dt>文章分类</dt>
-						<dd>
-							<control_select v-model="form.type_id" :options="$to_kv(list_article_type, 'type_id', 'name')" />
-						</dd>
 						<dt>频道</dt>
 						<dd>
-							<control_select v-model="form.channel_id" :options="$to_kv(list_article_channel, 'channel_id', 'name')" />
+								<control_select type="list" v-model="form.channel_id" :options="$to_kv(list_article_channel, 'channel_id', 'title')" />
 						</dd>
 						<dt>用户</dt>
 						<dd>
-							<control_select v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'nickname')" />
-						</dd>
-						<dt>所属城市</dt>
-						<dd>
-							<control_select v-model="form.city_id" :options="$to_kv(list_address_city, 'city_id', 'name')" />
-						</dd>
-						<dt>语言</dt>
-						<dd>
-							<control_select v-model="form.lang" :options="$to_kv(arr_lang)" />
+								<control_select type="list" v-model="form.user_id" :options="$to_kv(list_account, 'user_id', 'phone')" />
 						</dd>
 					</dl>
 				</div>
@@ -297,24 +205,22 @@
 					size: 10,
 					// 文章id
 					'article_id': 0,
+					// 标题
+					'title': '',
 					// 是否启用
 					'available': '',
 					// 状态——最小值
 					'state_min': '',
 					// 状态——最大值
 					'state_max': '',
+					// 频道ID
+					'channel_id': '',
 					// 排序——最小值
 					'display_min': 0,
 					// 排序——最大值
 					'display_max': 0,
-					// 热度——最小值
-					'hot_min': 0,
-					// 热度——最大值
-					'hot_max': 0,
-					// 点赞次数——最小值
-					'praise_min': 0,
-					// 点赞次数——最大值
-					'praise_max': 0,
+					// 用户ID
+					'user_id': '',
 					// 创建时间——开始时间
 					'time_create_min': '',
 					// 创建时间——结束时间
@@ -323,14 +229,8 @@
 					'time_update_min': '',
 					// 更新时间——结束时间
 					'time_update_max': '',
-					// 标题
-					'title': '',
-					// 关键词
-					'keywords': '',
 					// 描述
 					'description': '',
-					// 标签
-					'tag': '',
 					// 正文
 					'content': '',
 					// 关键词
@@ -345,39 +245,15 @@
 				'arr_available':["否","是"],
 				// 状态
 				'arr_state':["","正常","推荐","认证","违规","官方"],
-				// 文章分类
-				'list_article_type':[],
 				// 频道
 				'list_article_channel':[],
 				// 用户
 				'list_account':[],
-				// 所属城市
-				'list_address_city':[],
-				// 语言
-				'arr_lang':[{"name":"zh_cn","value":"zh_cn"},{"name":"en","value":"en"},{"name":"zh_tw","value":"zh_tw"},{"name":"ko","value":"ko"},{"name":"ja","value":"ja"}],
 				// 视图模型
 				vm: {}
 			}
 		},
 		methods: {
-			/**
-			 * 获取文章分类
-			 * @param {query} 查询条件
-			 */
-			get_article_type(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "type_id,name"
-					};
-				}
-				this.$get('~/apis/cms/article_type?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_article_type.clear();
-						_this.list_article_type.addList(json.result.list)
-					}
-				});
-			},
 			/**
 			 * 获取频道
 			 * @param {query} 查询条件
@@ -386,7 +262,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "channel_id,name"
+						field: "channel_id,title"
 					};
 				}
 				this.$get('~/apis/cms/article_channel?size=0', query, function(json) {
@@ -404,7 +280,7 @@
 				var _this = this;
 				if (!query) {
 					query = {
-						field: "user_id,nickname"
+						field: "user_id,phone"
 					};
 				}
 				this.$get('~/apis/user/account?size=0', query, function(json) {
@@ -414,34 +290,12 @@
 					}
 				});
 			},
-			/**
-			 * 获取所属城市
-			 * @param {query} 查询条件
-			 */
-			get_address_city(query) {
-				var _this = this;
-				if (!query) {
-					query = {
-						field: "city_id,name"
-					};
-				}
-				this.$get('~/apis/sys/address_city?size=0', query, function(json) {
-					if (json.result) {
-						_this.list_address_city.clear();
-						_this.list_address_city.addList(json.result.list)
-					}
-				});
-			},
 		},
 		created() {
-			// 获取文章分类
-			this.get_article_type();
 			// 获取频道
 			this.get_article_channel();
 			// 获取用户
 			this.get_account();
-			// 获取所属城市
-			this.get_address_city();
 		}
 	}
 </script>

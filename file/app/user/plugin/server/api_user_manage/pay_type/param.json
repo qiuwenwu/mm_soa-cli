@@ -1,0 +1,85 @@
+{
+    "name": "user_pay_type2",
+    "title": "支付类型",
+    "add": {
+        "body": [
+            "name",
+            "url"
+        ],
+        "body_required": []
+    },
+    "del": {
+        "query": [],
+        "query_required": [
+            "type_id"
+        ]
+    },
+    "set": {
+        "query": [
+            "type_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": [],
+        "body": [
+            "name",
+            "url"
+        ],
+        "body_required": [],
+        "body_not": []
+    },
+    "get": {
+        "query": [
+            "type_id",
+            "name",
+            "keyword"
+        ],
+        "query_required": []
+    },
+    "get_obj": {
+        "query_required": [
+            "type_id"
+        ]
+    },
+    "list": [
+        {
+            "name": "type_id",
+            "title": "分类ID",
+            "description": "",
+            "type": "number",
+            "dataType": "int",
+            "number": {
+                "max": 2147483647
+            }
+        },
+        {
+            "name": "name",
+            "title": "名称",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 32
+            }
+        },
+        {
+            "name": "url",
+            "title": "地址",
+            "description": "",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {
+                "max": 255,
+                "format": "url"
+            }
+        },
+        {
+            "name": "keyword",
+            "title": "关键词",
+            "description": "用于搜索名称(name)",
+            "type": "string",
+            "dataType": "varchar",
+            "string": {}
+        }
+    ]
+}

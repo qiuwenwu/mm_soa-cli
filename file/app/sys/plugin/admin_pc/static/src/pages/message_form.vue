@@ -17,7 +17,7 @@
 										</dd>
 										<dt>留言内容</dt>
 										<dd>
-											<control_rich v-model="form.note"></control_rich>
+											<control_textarea v-model="form.note" type="text" placeholder=""></control_textarea>
 										</dd>
 									</dl>
 								</mm_form>

@@ -6,7 +6,7 @@
 		<mm_page id="page_root" v-else>
 			<mm_side v-model="hide" :fold="fold" :func="set_width">
 				<mm_warp>
-					<div class="mm_bar_logo"><img src="/img/logo.png"><span>超级美眉</span></div>
+					<div class="mm_bar_logo"><img src="/img/logo.png"><span>飞鸟云算力</span></div>
 					<nav_side></nav_side>
 				</mm_warp>
 			</mm_side>
@@ -52,7 +52,7 @@
 						<div class="mm_row">
 							<div class="mm_col col-12">
 								<div class="info">
-									<div class="fl"><a target="_blank" href="http://bbs.elins.cn">开发者: 超级美眉工作室</a></div>
+									<div class="fl"><a target="_blank" href="http://bbs.elins.cn">开发者: 飞鸟云算力工作室</a></div>
 									<div class="fr"><a href="tencent://message/?uin=573242395">升级维护联系：573242395@qq.com</a></div>
 								</div>
 							</div>
