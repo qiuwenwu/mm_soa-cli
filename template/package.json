@@ -4,7 +4,7 @@
 	"description": "{description}",
 	"main": "server.js",
 	"scripts": {
-		"dev": "cross-env NODE_ENV=development PORT=5000 nodemon server.js",
+		"dev": "cross-env NODE_ENV=development nodemon server.js",
 		"test": "cross-env NODE_ENV=test nodemon server.js",
 		"pro": "cross-env NODE_ENV=production node server.js",
 		"start": "cross-env NODE_ENV=local node server.js",
@@ -22,7 +22,8 @@
 	},
 	"homepage": "https://github.com/{author}/{name}#readme",
 	"dependencies": {
-		"mm_expand": "^1.4.7",
-		"mm_soa": "^1.1.4"
+		"compressing": "^1.5.1",
+		"mm_expand": "^1.5.1",
+		"mm_soa": "^2.0.9"
 	}
 }

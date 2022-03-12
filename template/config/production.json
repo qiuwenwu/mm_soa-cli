@@ -209,6 +209,13 @@
 				"header": {
 					"apikey": "bfd59291e825b5f2bbf1eb76569f8fe7"
 				}
+			},
+			// 转发到webscoket服务器
+			"/ws/(.*)": {
+				"target": "ws://127.0.0.1:0",
+				"changeOrigin": true,
+				// webscoket转发
+				"ws": true
 			}
 		}
 	}
