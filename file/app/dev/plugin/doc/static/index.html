@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="x-dns-prefetch-control" content="on">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="description" content="这是web API文档">
+		<meta name="keywords" content="开发文档">
+		<meta name="author" content="邱文武">
+
+		<!-- 加载CSS样式 -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css" async />
+		<link rel="stylesheet" href="/css/mm_base.css" async />
+		<link rel="stylesheet" href="/css/mm_layout.css" async />
+		<link rel="stylesheet" href="/css/mm_common.css" async />
+		<link rel="stylesheet" href="/css/mm_component.css" async />
+		<link rel="stylesheet" href="/css/mm_theme.css" async />
+
+		<!-- 加载JS脚本 -->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/clipboard.min.js" async></script>
+		<script src="/js/vue.js"></script>
+		<script src="/js/mm_sdk.js"></script>
+		<title>开发文档</title>
+		<style>
+			body {
+				background: #fff;
+			}
+
+			main {
+				padding: 2rem;
+			}
+
+			#app h4 {
+				padding-bottom: 0.5rem;
+				border-bottom: 1px solid rgba(125, 125, 125, 0.25);
+				margin-bottom: 1rem;
+			}
+
+			.mm_warp {
+				max-width: 800px;
+			}
+
+			.scope_list {
+				padding-left: 2rem;
+			}
+
+			.scope_list li {
+				float: left;
+				padding: 0.5rem 1rem;
+			}
+
+			.desc {
+				margin-bottom: 2rem;
+			}
+
+			.mm_btn {
+				line-height: 1.5rem;
+				height: 1.5rem;
+				border: 1px solid var(--color_border);
+			}
+
+			#list_scope {
+				width: 32rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="mm_page">
+				<main>
+					<div class="mm_warp">
+						<h4>API接口文档 —— <span>作用域</span></h4>
+						<p>所有的API接口都作用在不同的域下，您可以点击以下域，访问该域下的接口列表</p>
+						<table class="mm_table table-hover mt" v-if="list.length" id="list_scope">
+							<thead>
+								<tr>
+									<th width="60">#</th>
+									<th width="160">名称</th>
+									<th>标题</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(o, k) in list" :key="k" @click="go(o.name)" v-if="isAPI(o.name)">
+									<th>{{ k + 1 }}</th>
+									<td><a>{{ o.name }}</a></td>
+									<td>{{ o.title }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script>
+			var vue = new Vue({
+				el: '#app',
+				data: {
+					url: "/api/dev_api",
+					list: []
+				},
+				methods: {
+					go(scope) {
+						location.href = '/dev/doc/api_list.html?scope=' + scope
+					},
+					get_list() {
+						var _this = this;
+						$.http.get(this.url, function(json, status) {
+							_this.get_list_after(json);
+						});
+					},
+					get_list_after(json) {
+						if (json.result) {
+							var lt = this.list;
+							lt.clear();
+							lt.addList(json.result.scope);
+						}
+					},
+					isAPI(name) {
+						if (name.endsWith('_pc') || name.endsWith('_phone') || name.endsWith('_tv') || name.endsWith('_pad')) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				},
+				created() {
+					this.get_list();
+				}
+			});
+		</script>
+	</body>
+</html>
